@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:snbiz/Model_code/meetingStatus.dart';
 //import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:snbiz/src_code/meeting.dart';
+import 'package:snbiz/src_code/static.dart';
 
 class MeetingDetail extends StatefulWidget {
   final MeetingInfo details;
@@ -21,6 +23,7 @@ class MeetingDetail extends StatefulWidget {
 
 class MeetingDetailState extends State<MeetingDetail> {
  final format = DateFormat("yyyy-MM-dd HH:mm");
+  int _currentIndex = 1;
   final MeetingInfo details;
   MeetingDetailState(this.details);
   TextEditingController meetingTime;
@@ -36,9 +39,7 @@ class MeetingDetailState extends State<MeetingDetail> {
     details.reminderTime= meetingreminderTime.text;
     String jsonbody = jsonEncode(details);
     try {
-                   // "https://s-nbiz.conveyor.cloud/api/Meetings?sender="+ (details.organizationId).toString()),
-
-      http.Response data = await http.put(
+        http.Response data = await http.put(
           Uri.encodeFull(
               "https://s-nbiz.conveyor.cloud/api/Meetings/"+ details.meetingId.toString()+"?sender="+ (details.organizationId).toString()),
           headers: {
@@ -51,6 +52,33 @@ class MeetingDetailState extends State<MeetingDetail> {
       Text("Server error!!");
     }
   }
+
+  Future<List<MeetingStatus>>status()async{
+  try{
+  http.Response data = await http.get(
+          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/childstatus?id="+ StaticValue.meetingstatusId.toString()), 
+          headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json' 
+      }
+      );
+
+  var jsonData = json.decode(data.body);
+  List <MeetingStatus> status = [];
+  for (var u in jsonData){
+      var meetingstatus = MeetingStatus.fromJson(u);
+    status.add(meetingstatus);
+  }
+print(status.length);
+return status;
+ 
+}
+catch(e){
+  print(e);
+  return null;
+
+}
+} 
    String _time = "";
 time(){
                   DatePicker.showTimePicker(context,
@@ -178,6 +206,32 @@ time(){
                     )
                   ]
                   ),
+                  Row(
+                    children: <Widget>[
+                      Text("Status"),
+                      Row(
+                   children: <Widget>[]
+                      )
+                    ]
+                  ),
+                      /*ListView(
+                       padding: EdgeInsets.all(8.0),
+                        children: status.map((list) => RadioListTile(
+                          groupValue: _currentIndex,
+                          title: Text("$list"),
+                          value: list,
+                          onChanged: (val) {
+                                setState(() {
+                                _currentIndex = val;
+                            });
+                  },
+                ))
+            .toList(),
+      ),
+      */
+      
+          
+       
                   
                   FlatButton(
                       color: Colors.blue,
