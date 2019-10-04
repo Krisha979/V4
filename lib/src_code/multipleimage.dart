@@ -42,7 +42,7 @@ Map<String, String> url;
       // get file length
       var length = await file.length();
       // multipart that takes file
-      var multipartFile = new http.MultipartFile('file', stream, length,
+      var multipartFile = new http.MultipartFile('Files', stream, length,
           filename: basename(file.path));
       // add file to multipart
       request.files.add(multipartFile);

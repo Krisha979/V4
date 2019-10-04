@@ -15,23 +15,30 @@ class Create extends StatefulWidget {
 
 class _CreateState extends State<Create> {
   final format = DateFormat("yyyy-MM-dd HH:mm");
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController meetingTime;
-  TextEditingController meetingAgenda;
-  TextEditingController meetingLocation;
-  TextEditingController reminderTime;
+  final meetingTime = TextEditingController();
+  final meetingAgenda = TextEditingController();
+  final meetingLocation = TextEditingController();
+  final location = TextEditingController();
+  final reminderTime = TextEditingController();
 
   Future<void> createMeeting() async {
+
+     var agenda = meetingAgenda.text;
+     var loc = location.text;
+    
     CreateMeetings meeting = new CreateMeetings();
+
+    meeting.meetingId = null;
     meeting.organizationId = StaticValue.orgId;
     meeting.meetingTime = meetingTime.text;
-    meeting.location = meetingLocation.text;
-    meeting.agenda = meetingAgenda.text;
+    meeting.location = location.text;
+    meeting.agenda = meetingAgenda.text.toString();
     meeting.statusId = 13;
     meeting.reminderTime = reminderTime.text;
     meeting.dateCreated = DateTime.now().toString();
+    meeting.createdBy = 2;
     meeting.deleted = false;
-    meeting.rowstamp = new Uuid().toString();
+
 
     String jsonbody = jsonEncode(meeting);
 
@@ -104,7 +111,7 @@ class _CreateState extends State<Create> {
                           },
                         )),
                   ),
-                  Padding(
+                   Padding(
                     padding: EdgeInsets.only(right: 195),
                     child: Text(
                       'Location',
@@ -117,7 +124,7 @@ class _CreateState extends State<Create> {
                       elevation: 5.0,
                       shadowColor: Colors.black,
                       child: TextFormField(
-                          controller: meetingLocation,
+                          controller: location,
                           decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true,
