@@ -15,19 +15,20 @@ class Create extends StatefulWidget {
 
 class _CreateState extends State<Create> {
   final format = DateFormat("yyyy-MM-dd HH:mm");
-  final meetingTime = TextEditingController();
-  final meetingAgenda = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController meetingTime;
+  TextEditingController meetingAgenda;
   TextEditingController meetingLocation;
   TextEditingController reminderTime;
 
   Future<void> createMeeting() async {
     CreateMeetings meeting = new CreateMeetings();
     meeting.organizationId = StaticValue.orgId;
-    meeting.meetingTime = meetingTime.toString();
+    meeting.meetingTime = meetingTime.text;
     meeting.location = meetingLocation.text;
     meeting.agenda = meetingAgenda.text;
     meeting.statusId = 13;
-    meeting.reminderTime = reminderTime.toString();
+    meeting.reminderTime = reminderTime.text;
     meeting.dateCreated = DateTime.now().toString();
     meeting.deleted = false;
     meeting.rowstamp = new Uuid().toString();
