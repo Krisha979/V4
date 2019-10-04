@@ -3,4 +3,5 @@ class StaticValue{
   static String orgName;
   static String logo;
   static String userRowstamp;
+  static String orgRowstamp;
 }
