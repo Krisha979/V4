@@ -3,5 +3,6 @@ class StaticValue{
   static String orgName;
   static String logo;
   static String userRowstamp;
-  static int meetingstatusId = 3;
+  static String orgRowstamp;
+  static int meetingstatusId=3;
 }

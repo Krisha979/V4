@@ -6,6 +6,7 @@ import 'package:snbiz/src_code/page.dart';
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class LoginPage extends StatefulWidget{
         @override
@@ -22,7 +23,7 @@ class LoginPage extends StatefulWidget{
       final passwordcontroller = TextEditingController();
       final storage = new FlutterSecureStorage();
       final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+      final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
       @override
       void initState() {
       super.initState();
@@ -48,6 +49,23 @@ class LoginPage extends StatefulWidget{
              }
           }
       }
+
+  Future<bool> registerDevice(String fcmtoken) async{                 
+      http.Response response = await http.get(
+      Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/RegisterDevice"),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        "fcmtoken": fcmtoken,
+        "deviceId" : StaticValue.orgRowstamp
+              }
+          );
+          if(response.statusCode == 200){
+            return true;
+          }
+          return false;
+      }
+
   Future<void> checkCredentials(String email, String password) async{                 
       http.Response response = await http.get(
       Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/UserAuthentication"),
@@ -58,6 +76,7 @@ class LoginPage extends StatefulWidget{
         "password" : password
       }
       );
+
       if(response.statusCode == 200){
           print(response.body);
           Map data = await json.decode(response.body);
@@ -68,8 +87,20 @@ class LoginPage extends StatefulWidget{
                       StaticValue.orgName = user.organizationName;
                       StaticValue.logo = user.logo;
                       StaticValue.userRowstamp=user.userRowstamp;
+                      StaticValue.orgRowstamp = user.orgRowstamp;
                       await storage.write(key: "Email", value: email);
                       await storage.write(key: "Password", value: password);
+                      var fcmtoken = await storage.read(key:"fcmtoken");
+                      var token = await _firebaseMessaging.getToken();
+                      print(token);
+                      print(fcmtoken);
+                          if(fcmtoken != token){
+                          var status = await registerDevice(token);
+                          if(status == true){
+                              await storage.delete(key: "fcmtoken"); 
+                              await storage.write(key: "fcmtoken", value: token);
+                          }
+                      }
                       setState(() {
                                       isLoading = false; 
                                   });
@@ -87,13 +118,13 @@ class LoginPage extends StatefulWidget{
           setState(() {
                           isLoading = false; 
                       });
-          await _alert(context, "Invalid Credentials","Email not found.");
+          await _alert(context, "Invalid Credentials","Password did not match.");
       }
       else if(response.statusCode == 404){
             setState(() {
                             isLoading = false; 
                         });
-            await _alert(context, "Invalid Credentials","Password did not match.");
+            await _alert(context, "Invalid Credentials","Email not found.");
          }
       else{
         setState(() {
