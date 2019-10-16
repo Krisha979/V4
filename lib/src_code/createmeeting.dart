@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/createMeetings.dart';
 import 'package:snbiz/src_code/static.dart';
-import 'package:uuid/uuid.dart';
+//import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 class Create extends StatefulWidget {
