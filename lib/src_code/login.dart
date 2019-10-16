@@ -76,7 +76,7 @@ class LoginPage extends StatefulWidget{
 
   Future<bool> registerDevice(String fcmtoken) async{                 
       http.Response response = await http.get(
-      Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/RegisterDevice"),
+      Uri.encodeFull(StaticValue.baseUrl + "api/RegisterDevice"),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -92,7 +92,7 @@ class LoginPage extends StatefulWidget{
 
   Future<void> checkCredentials(String email, String password) async{                 
       http.Response response = await http.get(
-      Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/UserAuthentication"),
+      Uri.encodeFull(StaticValue.baseUrl + "api/UserAuthentication"),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',

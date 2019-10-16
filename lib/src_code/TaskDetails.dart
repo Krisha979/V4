@@ -4,19 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/OrgTask.dart';
 import 'package:snbiz/Model_code/Task.dart';
-import 'package:snbiz/src_code/TaskDetails.dart';
 import 'package:snbiz/src_code/meetingdetail.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:http/http.dart' as http;
 
-class TaskPage extends StatefulWidget {
+class TaskDetailsPage extends StatefulWidget {
+  final OrgTask details;
+  const TaskDetailsPage({Key key, this.details}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return TaskState();
+    return TaskDetailsState(this.details);
   }
 }
 
-class TaskState extends State<TaskPage> {
+class TaskDetailsState extends State<TaskDetailsPage> {
+final OrgTask details;
+  TaskDetailsState(this.details);
 
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
@@ -36,10 +39,11 @@ class TaskState extends State<TaskPage> {
     return time.toString();
   }
 
-Future<List<OrgTask>> getTask()async{
+Future<List<Task>> getTask()async{
+  var orgTaskId = details.parentTask.organizationTaskId;
   try{
   http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/AllOrgTasks?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl + "api/OrgChildTasks?Orgid=" + StaticValue.orgId.toString()+"&OrgTaskId=" + orgTaskId.toString() ), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 
@@ -47,9 +51,9 @@ Future<List<OrgTask>> getTask()async{
       );
 
   var jsonData = json.decode(data.body);
-  List <OrgTask> task = [];
+  List <Task> task = [];
   for (var u in jsonData){
-      var tasks = OrgTask.fromJson(u);
+      var tasks = Task.fromJson(u);
     task.add(tasks);
   }
 print(task.length);
@@ -70,25 +74,10 @@ catch(e){
     return Scaffold(
       body: 
       Container(            
-         child: FutureBuilder(
-          future: getTask(),
-          builder:(BuildContext context, AsyncSnapshot snapshot){
-            print(snapshot.data);
-            if(snapshot.data==null){
-              return Container(
-                child: Center(
-                  
-                child: CircularProgressIndicator()
-               
-                )
-              );
-            }else{
-              return ListView.builder(
-                itemCount: snapshot.data.length,
+         
+              child: ListView.builder(
+                itemCount: details.childTask.length,
                 itemBuilder: (BuildContext context, int index){
-                   var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
-                   var enddate = formatTime(snapshot.data[index].parentTask.endDate);
-                   var name = snapshot.data[index].parentTask.taskName;
                   return ListTile(
                     title: Container(
                     width: 315.0,
@@ -110,10 +99,8 @@ catch(e){
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                           Text(startdate),
-                           Text(enddate),
-                          Text(name),
-                          Text(snapshot.data[index].parentTask.statusName),
+                           Text(details.childTask[index].taskName),
+                           Text(details.childTask[index].statusName),
                             
                           ],
 
@@ -129,10 +116,7 @@ catch(e){
                                  Icons.picture_as_pdf,
                                  color: Colors.white,
                                  )),
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:                        
-                                snapshot.data[index])));
-                              },
+                              
                             ),
                           ),
                         )
@@ -141,10 +125,9 @@ catch(e){
                     ),
          );
                 }
-                  );
-            }
-          } 
-         )
+              
+                  )
+            
       )
          );     
 
