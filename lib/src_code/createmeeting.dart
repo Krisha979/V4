@@ -228,6 +228,7 @@ class _CreateState extends State<Create> {
                   Padding(
                     padding: EdgeInsets.only(top: 3.0),
                   ),
+                  
                   RaisedButton(
                     elevation: 5.0,
                     color: Colors.blue,
@@ -237,11 +238,7 @@ class _CreateState extends State<Create> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(3.0)),
                     onPressed: () {
-                     // if(meetingAgenda.text.isNotEmpty){
-                      createMeeting();
-                   //   }
-                      
-                      
+                      createMeeting();   
                     },
                     child: Text("Create"),
                   ),
