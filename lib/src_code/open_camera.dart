@@ -16,10 +16,7 @@ class CameraApp extends StatefulWidget {
     return CameraAppState();
   }
 }
-
 class CameraAppState extends State<CameraApp> {
-
-
   String _fileName;
   String _path;
   Map<String, String> _paths;

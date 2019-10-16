@@ -1,3 +1,5 @@
+import 'package:snbiz/Model_code/meetingStatus.dart';
+
 class StaticValue{
   static int orgId;
   static String orgName;
@@ -5,4 +7,5 @@ class StaticValue{
   static String userRowstamp;
   static String orgRowstamp;
   static int meetingstatusId=3;
+  static List<MeetingStatus> statuslist = [];
 }

@@ -16,6 +16,12 @@ class Meeting extends StatefulWidget{
 }
 
 class MeetingState extends State<Meeting>{
+
+@override
+  void initState() {
+    super.initState();
+    container();
+  }
 Future<List<MeetingInfo>>_meeting()async{
   try{
   http.Response data = await http.get(
@@ -25,7 +31,6 @@ Future<List<MeetingInfo>>_meeting()async{
         'Accept': 'application/json' 
       }
       );
-
   var jsonData = json.decode(data.body);
   List <MeetingInfo> meeting = [];
   for (var u in jsonData){
@@ -41,6 +46,51 @@ catch(e){
   return null;
 
 }
+}
+container(){
+  Container(           
+                      width: 350.0,
+                      height: 125.0,
+                       decoration: new BoxDecoration(
+                      color: Colors.white,
+                       borderRadius: new BorderRadius.circular(15.0),
+                       boxShadow: [
+                       BoxShadow(
+                              blurRadius: 4.0,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(0.5, 0.5),
+                            ),
+                          ],
+                       ),
+                       child:  Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text("All Meetings"),
+                              Text("148"),
+                              Icon(Icons.file_upload),
+                              Text("17th august 2019"),
+
+                            ],
+
+                          ),
+                         ClipOval(
+                          child: Material(
+                            color: Colors.blue, // button color
+                            child: InkWell(
+                              splashColor: Colors.red, // inkwell color
+                              child: SizedBox(width: 56, height: 56, child: Icon(Icons.picture_as_pdf)),
+                              onTap: () {},
+                            ),
+                          ),
+                        )
+                        ],
+                      ),
+
+                    );
 }
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
@@ -64,9 +114,54 @@ catch(e){
     //Size size = MediaQuery.of(context).size;
    
     return Scaffold(
-      body: 
-      Container(            
-         child: FutureBuilder(
+      body:Column(
+         children: <Widget>[
+            Container(           
+                      width: 350.0,
+                      height: 125.0,
+                       decoration: new BoxDecoration(
+                      color: Colors.white,
+                       borderRadius: new BorderRadius.circular(15.0),
+                       boxShadow: [
+                       BoxShadow(
+                              blurRadius: 4.0,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(0.5, 0.5),
+                            ),
+                          ],
+                       ),
+                       child:  Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Text("All Meetings"),
+                              Text("148"),
+                              Icon(Icons.file_upload),
+                              Text("17th august 2019"),
+
+                            ],
+
+                          ),
+                         ClipOval(
+                          child: Material(
+                            color: Colors.blue, // button color
+                            child: InkWell(
+                              splashColor: Colors.red, // inkwell color
+                              child: SizedBox(width: 56, height: 56, child: Icon(Icons.picture_as_pdf)),
+                              onTap: () {},
+                            ),
+                          ),
+                        )
+                        ],
+                      ),
+
+                    ),
+
+      Container(   child:
+          FutureBuilder(
           future: _meeting(),
           builder:(BuildContext context, AsyncSnapshot snapshot){
             print(snapshot.data);
@@ -138,11 +233,8 @@ catch(e){
             }
           } 
          )
+      )]
       )
-         );     
-
-
-
-
-            }
+      );
+    }
   }
