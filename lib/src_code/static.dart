@@ -4,4 +4,5 @@ class StaticValue{
   static String logo;
   static String userRowstamp;
   static String orgRowstamp;
+  static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
 }
