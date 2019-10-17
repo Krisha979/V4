@@ -43,7 +43,7 @@ class ProfileState extends State<Profile> {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(
-              "https://s-nbiz.conveyor.cloud/api/OrganizationDetails/" +
+              StaticValue.baseUrl + "api/OrganizationDetails/" +
                   StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',

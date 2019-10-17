@@ -31,7 +31,7 @@ Map<String, String> url;
      files.forEach((k,v) => docs.add(new File(v)));
      
       // string to uri
-      var uri = Uri.parse("https://s-nbiz.conveyor.cloud/api/UploadDocuments?Orgid="+StaticValue.orgId.toString() + "&OrgName="+ StaticValue.orgName);
+      var uri = Uri.parse(StaticValue.baseUrl + "api/UploadDocuments?Orgid="+StaticValue.orgId.toString() + "&OrgName="+ StaticValue.orgName);
       // create multipart request
       var request = new http.MultipartRequest("POST", uri
       ); 

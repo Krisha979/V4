@@ -44,7 +44,7 @@ class _CreateState extends State<Create> {
 
     try {
       http.Response response = await http.post(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/Meetings?sender=" +
+          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings?sender=" +
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
