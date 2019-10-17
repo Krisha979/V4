@@ -42,9 +42,9 @@ class ProfileState extends State<Profile> {
   Future<CreateProfile> profile() async {
     try {
       http.Response data = await http.get(
-          Uri.encodeFull(
-              "https://s-nbiz.conveyor.cloud/api/OrganizationDetails/" +
-                  StaticValue.orgId.toString()),
+          Uri.encodeFull(StaticValue.baseUrl +
+              "api/OrganizationDetails/" +
+              StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json'
@@ -63,15 +63,17 @@ class ProfileState extends State<Profile> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Profile"),
+          title: Text("Profile",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+          backgroundColor: const Color(0xFF9C38FF),
         ),
+
         /*body: Container(
         
                
@@ -96,65 +98,195 @@ class ProfileState extends State<Profile> {
           width: size.width,
           color: Color(0xFFd6d6d6),
           child: Column(
-            
             children: <Widget>[
-            
-            InkWell(
-                splashColor: Colors.yellow,
-                onLongPress: () {
-                  _showDialog();
-                },
-               
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.white,
-                    child: ClipOval(
-                      
-                      child: SizedBox(
-                            height: size.height/4,
-                            width: size.width/4,
-                     // child: Image.network(StaticValue.logo),      
-                    child: _image == null
+              Container(
+                margin: EdgeInsets.all(8.0),
+                height: size.height / 2,
+                width: size.width,
 
-                        ? Icon(Icons.people) : 
-                       // _image != null ?  Image.network(StaticValue.logo, fit: BoxFit.fill):
+                // margin: EdgeInsets.all(8),
+                // color: Colors.red,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white),
+                child: Column(
 
-                       (Image.file(
-                            _image,fit: BoxFit.fill,
-                           
-                          )), 
+                    // crossAxisAlignment: CrossAxisAlignment.center,
 
-                          
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                        child: InkWell(
+                          splashColor: Colors.yellow,
+                          onLongPress: () {
+                            _showDialog();
+                          },
+                          child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.blueGrey,
+                              child: ClipOval(
+                                  child: SizedBox(
+                                height: size.height / 4,
+                                width: size.width / 4,
+                                // child: Image.network(StaticValue.logo),
+                                child: _image == null
+                                    ? Icon(
+                                        Icons.person,
+                                        size: 70,
+                                        color: Colors.white,
+                                      )
+                                    :
+                                    // _image != null ?  Image.network(StaticValue.logo, fit: BoxFit.fill):
 
-                          
-
-                      )
-                    )
-
-                          
-                  ),
-                ),
-            FutureBuilder(
-                future: profile(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  print(snapshot.data);
-                  CreateProfile details = snapshot.data;
-                  if (snapshot.data == null) {
-                    return Container(
-                        child: Center(child: CircularProgressIndicator()));
-                  } else {
-                    return Container(
-                      child: Column(
-                        children: <Widget>[
-                          Text(details.organizationName),
-                          Text(details.organizationEmail),
-                          Text(details.organizationNumber),
-                        ],
+                                    (Image.file(
+                                        _image,
+                                        fit: BoxFit.cover,
+                                      )),
+                              ))),
+                        ),
                       ),
-                    );
-                  }
-                })
-          ]),
+                      Text("kathmandu codes pvt.ltd",
+                          style: TextStyle(fontSize: 20)),
+                     
+                         
+                          
+                             FutureBuilder(
+                                future: profile(),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot snapshot) {
+                                  print(snapshot.data);
+                                  CreateProfile details = snapshot.data;
+                                  if (snapshot.data == null) {
+                                    return Container(
+                                        child: Center(
+                                            child:
+                                                CircularProgressIndicator()));
+                                  } else {
+                                    return Container(
+//color: Colors.blueGrey,
+
+                                        child: Column(
+                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                         Padding(
+                                            padding: const EdgeInsets.fromLTRB(35, 15, 0, 0),
+                                           child: Text(
+                            "ORGANIZATION PROFILE",
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                                         ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(35, 15, 0, 0),
+                                          child: Text("Organization Name"),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(35, 10, 0, 0),
+                                          child: Text(
+                                            details.organizationName,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 25),
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: <Widget>[
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                  Text("organization email"),
+                                                  Padding(
+                                                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                                  ),
+                                                  Text(details.organizationEmail),
+                                                ]),
+
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                  Text("Organization phone"),
+                                                  Padding(
+                                                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                                  ),
+                                                  Text(
+                                                      details.organizationNumber),
+                                                ])
+                                              ]),
+                                        )
+                                      ],
+                                    ));
+                                  }
+                                }),
+                        
+                        
+                    
+                    ]),
+              ),
+              Container(
+                margin: EdgeInsets.all(8.0),
+                height: size.height / 2.2,
+                width: size.width,
+                // color: Colors.yellow,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white),
+
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 20, 0, 10),
+                      child: Text(
+                        "User Details",
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
+                      child: Text("User Name"),
+                    ),
+                    Center(
+                      child: Container(
+                        height: size.height / 16,
+                        width: size.width,
+                        margin: EdgeInsets.only(left: 20, right: 20),
+                        // color: Colors.white,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: Color(0xFFd6d6d6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                    ),
+                    Center(
+                      child: RaisedButton(
+                        onPressed: () {},
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.all(0.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                        child: Container(
+                            height: size.height / 16,
+                            width: size.width / 1.3,
+                            decoration: const BoxDecoration(
+                                color: Colors.blueGrey,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0))),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            child: Center(
+                              child:
+                                  Text('Save', style: TextStyle(fontSize: 18)),
+                            )),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         )));
   }
 
