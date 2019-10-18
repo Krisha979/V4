@@ -2,7 +2,41 @@ import 'package:flutter/material.dart';
 //import 'menu.dart';
 //import 'page.dart';
 
-class Invoice extends StatelessWidget{
+class Invoice extends StatefulWidget{
+  @override
+  _InvoiceState createState() => _InvoiceState();
+}
+
+class _InvoiceState extends State<Invoice> {
+//    Future<List<NotificationModel>> getNotifications()async{
+//   try{
+//   http.Response data = await http.get(
+//           Uri.encodeFull("https://s-nbiz.conveyor.cloud/" + "api/RecentNotifications?Orgid=" + StaticValue.orgId.toString()), 
+//           headers: {
+//         'Content-type': 'application/json',
+//         'Accept': 'application/json' 
+//         }
+//       );
+//   var jsonData = json.decode(data.body);
+//   List <NotificationModel> notifications = [];
+//   for (var u in jsonData){
+//       var notification = NotificationModel.fromJson(u);
+//     notifications.add(notification);
+//   }
+// print(notifications.length);
+// latestid = notifications[0].notificationId; 
+// print(latestid);
+// StaticValue.latestNotificationId = int.parse(await storage.read(key:"LatestNotificationId"));
+// print(StaticValue.latestNotificationId);
+// return notifications;
+ 
+// }
+// catch(e){
+//   print(e);
+//   return null;
+
+// }
+// }
   @override
   Widget build(BuildContext context) {
       Size size = MediaQuery.of(context).size;
@@ -55,5 +89,4 @@ class Invoice extends StatelessWidget{
     )
     );
   }
-
 }

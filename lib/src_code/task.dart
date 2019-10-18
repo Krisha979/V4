@@ -39,7 +39,7 @@ class TaskState extends State<TaskPage> {
 Future<List<OrgTask>> getTask()async{
   try{
   http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/AllOrgTasks?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl + "api/AllOrgTasks?Orgid=" + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 

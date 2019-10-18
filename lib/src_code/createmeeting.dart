@@ -7,7 +7,7 @@ import 'package:snbiz/Model_code/createMeetings.dart';
 import 'package:snbiz/src_code/home.dart';
 import 'package:snbiz/src_code/meeting.dart';
 import 'package:snbiz/src_code/static.dart';
-import 'package:uuid/uuid.dart';
+//import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 class Create extends StatefulWidget {
@@ -46,7 +46,7 @@ class _CreateState extends State<Create> {
     String jsonbody = jsonEncode(meeting);
     try {
       http.Response response = await http.post(
-          Uri.encodeFull(StaticValue.baseUrl+"/api/Meetings?sender=" +
+          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings?sender=" +
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',

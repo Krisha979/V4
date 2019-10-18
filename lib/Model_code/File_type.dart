@@ -33,4 +33,5 @@ class FileType {
   }
 
   static List<FileType> getFileType() {}
+
 }

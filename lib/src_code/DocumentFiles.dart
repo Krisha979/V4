@@ -1,45 +1,45 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/DocumentModel.dart';
-import 'package:http/http.dart' as http;
-import 'package:snbiz/src_code/DocumentFiles.dart';
+import 'package:snbiz/Model_code/OrgTask.dart';
+import 'package:snbiz/Model_code/Task.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:http/http.dart' as http;
 
-
-class Documents extends StatefulWidget{
-
+class DocumentFilesPage extends StatefulWidget {
+  final DocumentModel details;
+  const DocumentFilesPage({Key key, this.details}) : super(key: key);
   @override
-  _DocumentsState createState() => _DocumentsState();
-}
-
-class _DocumentsState extends State<Documents> {
-  Future<List<DocumentModel>> getDocuments()async{
-  try{
-  http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl+ "api/OrgDocumentsList?Orgid=" + StaticValue.orgId.toString()), 
-          headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json' 
-        }
-      );
-
-  var jsonData = json.decode(data.body);
-  List <DocumentModel> documents = [];
-  for (var u in jsonData){
-      var tasks = DocumentModel.fromJson(u);
-    documents.add(tasks);
+  State<StatefulWidget> createState() {
+    return DocumentFilesState(this.details);
   }
-print(documents.length);
-return documents;
+}
 
-}
-catch(e){
-  print(e);
-  return null;
+class DocumentFilesState extends State<DocumentFilesPage> {
+final DocumentModel details;
+  DocumentFilesState(this.details);
 
-}
-}
+  String formatDateTime(String date) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+    DateTime format = (dateFormat.parse(date));
+    DateFormat longdate = DateFormat("EEEE, MMM d, yyyy");
+    date = longdate.format(format);
+    return date;
+  }
+  String formatTime(String time) {
+     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
+   // DateFormat dateFormat = DateFormat.yMd().add_jm();
+    DateTime formattedtime = (dateFormatremoveT.parse(time));
+    DateFormat longtme = DateFormat.jm();
+    time = longtme.format(formattedtime);
+    print(time);
+   // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
+    return time.toString();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     //Size size = MediaQuery.of(context).size;
@@ -47,22 +47,10 @@ catch(e){
     return Scaffold(
       body: 
       Container(            
-         child: FutureBuilder(
-          future: getDocuments(),
-          builder:(BuildContext context, AsyncSnapshot snapshot){
-            print(snapshot.data);
-            if(snapshot.data==null){
-              return Container(
-                child: Center(
-                child: CircularProgressIndicator()
-               
-                )
-              );
-            }else{
-              return ListView.builder(
-                itemCount: snapshot.data.length,
+         
+              child: ListView.builder(
+                itemCount: details.documents.length,
                 itemBuilder: (BuildContext context, int index){
-                  var name = snapshot.data[index].documents[0].fileTypeName;
                   return ListTile(
                     title: Container(
                     width: 315.0,
@@ -84,8 +72,8 @@ catch(e){
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                          Text(name),
-                            
+                           Text(details.documents[index].fileName),
+                           Text(details.documents[index].documentURL),
                           ],
 
                         ),
@@ -100,10 +88,7 @@ catch(e){
                                  Icons.picture_as_pdf,
                                  color: Colors.white,
                                  )),
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:                        
-                                snapshot.data[index])));
-                              },
+                              
                             ),
                           ),
                         )
@@ -112,10 +97,9 @@ catch(e){
                     ),
          );
                 }
-                  );
-            }
-          } 
-         )
+              
+                  )
+            
       )
          );     
 
@@ -123,4 +107,5 @@ catch(e){
 
 
             }
+  
 }

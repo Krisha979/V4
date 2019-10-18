@@ -24,11 +24,11 @@ class MeetingState extends State<Meeting>{
 Future<List<MeetingInfo>>_meeting()async{
   try{
   http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl+"/api/OrgMeetings?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl + "api/OrgMeetings?Orgid=" + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 
-      }
+        }
       );
   var jsonData = json.decode(data.body);
   List <MeetingInfo> meeting = [];

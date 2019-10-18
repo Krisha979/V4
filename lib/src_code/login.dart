@@ -53,7 +53,7 @@ class LoginPage extends StatefulWidget{
       Future<void> status() async {
     try {
       http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl+"/api/childstatus?id=" +
+          Uri.encodeFull(StaticValue.baseUrl + "api/childstatus?id=" +
               StaticValue.meetingstatusId.toString()),
           headers: {
             'Content-type': 'application/json',
@@ -360,7 +360,6 @@ class LoginPage extends StatefulWidget{
                          );
                          return false;
                         }else if (result == ConnectivityResult.mobile){
-                        // _showDialog("Internet access","You are connected over mobile data");
                         _scaffoldKey.currentState.showSnackBar(
                           new SnackBar(
                             content: new Text('Internet Access, Connected over mobile data'),
