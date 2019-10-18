@@ -17,7 +17,7 @@ class _DocumentsState extends State<Documents> {
   Future<List<DocumentModel>> getDocuments()async{
   try{
   http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/"+ "api/OrgDocumentsList?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl+ "api/OrgDocumentsList?Orgid=" + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 

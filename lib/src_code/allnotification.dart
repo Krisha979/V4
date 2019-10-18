@@ -20,7 +20,7 @@ class AllNotificationState extends State<AllNotification>{
   Future<List<NotificationModel>> getNotifications()async{
   try{
   http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/" + "api/RecentNotifications?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl + "api/RecentNotifications?Orgid=" + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 
