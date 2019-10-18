@@ -12,4 +12,5 @@ class StaticValue{
   static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
   static List<String> filenames;
   static int latestNotificationId;
+  static int meetingScheduledId = 4;
 }

@@ -36,10 +36,10 @@ class _CreateState extends State<Create> {
     meeting.meetingTime = meetingTime.text;
     meeting.location = location.text;
     meeting.agenda = meetingAgenda.text.toString();
-    meeting.statusId = 13;
+    meeting.statusId = StaticValue.meetingScheduledId;
     meeting.reminderTime = reminderTime.text;
     meeting.dateCreated = DateTime.now().toString();
-    meeting.createdBy = 2;
+    meeting.createdBy = StaticValue.orgId;
     meeting.deleted = false;
 
 
