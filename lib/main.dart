@@ -40,14 +40,14 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
               var vibrationPattern = new Int64List(10);
                 vibrationPattern[0] = 0;
                 vibrationPattern[1] = 1000;
-                vibrationPattern[2] = 500;
-                vibrationPattern[3] = 1000;
-                vibrationPattern[4] = 500;
-                vibrationPattern[5] = 1000;
-                vibrationPattern[6] = 500;
-                vibrationPattern[7] = 200;
-                vibrationPattern[8] = 100;
-                vibrationPattern[9] = 200;
+                // vibrationPattern[2] = 500;
+                // vibrationPattern[3] = 1000;
+                // vibrationPattern[4] = 500;
+                // vibrationPattern[5] = 1000;
+                // vibrationPattern[6] = 500;
+                // vibrationPattern[7] = 200;
+                // vibrationPattern[8] = 100;
+                // vibrationPattern[9] = 200;
 
       var androidPlatformChannelSpecifics =
           new AndroidNotificationDetails('channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
@@ -80,7 +80,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
     getnotified();
 
     scheduleNotification(10,1000000);
-    scheduleNotification(20,100);
+    // scheduleNotification(20,100);
     var android = new AndroidInitializationSettings("@mipmap/launcher_icons");
     var ios = new IOSInitializationSettings();
     var initiSettings = new InitializationSettings(android, ios);

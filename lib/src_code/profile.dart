@@ -42,9 +42,15 @@ class ProfileState extends State<Profile> {
   Future<CreateProfile> profile() async {
     try {
       http.Response data = await http.get(
+<<<<<<< HEAD
           Uri.encodeFull(StaticValue.baseUrl +
               "api/OrganizationDetails/" +
               StaticValue.orgId.toString()),
+=======
+          Uri.encodeFull(
+              StaticValue.baseUrl + "api/OrganizationDetails/" +
+                  StaticValue.orgId.toString()),
+>>>>>>> f65b48541b02a6304fafc8740bf6814f56febff9
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json'

@@ -40,7 +40,7 @@ class MeetingDetailState extends State<MeetingDetail> {
     String jsonbody = jsonEncode(details);
     try {
       http.Response data = await http.put(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/Meetings/" +
+          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings/" +
               details.meetingId.toString() +
               "?sender=" +
               (details.organizationId).toString()),
