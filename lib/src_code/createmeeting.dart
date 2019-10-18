@@ -4,6 +4,8 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/createMeetings.dart';
+import 'package:snbiz/src_code/home.dart';
+import 'package:snbiz/src_code/meeting.dart';
 import 'package:snbiz/src_code/static.dart';
 //import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +16,7 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final meetingTime = TextEditingController();
   final meetingAgenda = TextEditingController();
@@ -22,7 +25,7 @@ class _CreateState extends State<Create> {
   final reminderTime = TextEditingController();
 
   Future<void> createMeeting() async {
-
+    bool _validate = false;
      var agenda = meetingAgenda.text;
      var loc = location.text;
     
@@ -41,7 +44,6 @@ class _CreateState extends State<Create> {
 
 
     String jsonbody = jsonEncode(meeting);
-
     try {
       http.Response response = await http.post(
           Uri.encodeFull(StaticValue.baseUrl + "api/Meetings?sender=" +
@@ -50,15 +52,20 @@ class _CreateState extends State<Create> {
             'Content-type': 'application/json',
             'Accept': 'application/json'
           },
+
           body: jsonbody);
+          print(response);
+
     } catch (e) {
       Text("Server error!!");
+
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("create Meeting"),
       ),
@@ -119,11 +126,13 @@ class _CreateState extends State<Create> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(20.0),
+                    
                     child: Material(
                       elevation: 5.0,
                       shadowColor: Colors.black,
                       child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines:null,
                           controller: location,
                           decoration: InputDecoration(
                               fillColor: Colors.white,
@@ -149,6 +158,8 @@ class _CreateState extends State<Create> {
                       elevation: 5.0,
                       shadowColor: Colors.black,
                       child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines:null,
                           controller: meetingAgenda,
                           decoration: InputDecoration(
                               fillColor: Colors.white,
@@ -161,33 +172,6 @@ class _CreateState extends State<Create> {
                                       color: Colors.white, width: 3.0)))),
                     ),
                   ),
-                  /*
-                  Padding(
-                    padding: EdgeInsets.only(right: 195),
-                    child: Text(
-                      'Status Id',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(20.0),
-                    child: Material(
-                      elevation: 5.0,
-                      shadowColor: Colors.black,
-                      child: TextFormField(
-                          controller: meetingstatus,
-                          decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              filled: true,
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 10.0),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 3.0)))),
-                    ),
-                  ),
-                  */
                   Padding(
                     padding: EdgeInsets.only(right: 195, top: 40.0),
                     child: Text(
@@ -237,10 +221,17 @@ class _CreateState extends State<Create> {
                     splashColor: Colors.red,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(3.0)),
-                    onPressed: () {
-                      createMeeting();   
-                    },
-                    child: Text("Create"),
+                        child: Text('Create'),
+                    onPressed: () async{
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context){
+                          return Center(child: CircularProgressIndicator(),);
+                        });
+                await createMeeting();
+                      Navigator.pop(context);  
+                        Navigator.pop(context); 
+                       }
                   ),
                 ],
               ),

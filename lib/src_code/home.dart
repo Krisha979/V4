@@ -260,9 +260,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       body: SingleChildScrollView(
         child: Container(
           color: Color(0xFFd6d6d6),
-          //  height: size.height-62,
-          //width: size.width,
-          // color: Colors.grey,
           child: Column(
             children: <Widget>[
               Container(
@@ -270,8 +267,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white),
-                //height: size.height/5 ,
-                // color: Colors.white,
                 child: Column(
                   children: <Widget>[
                     new Image(

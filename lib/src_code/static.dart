@@ -11,4 +11,5 @@ class StaticValue{
   //static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
   static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
   static List<String> filenames;
+  static int latestNotificationId;
 }

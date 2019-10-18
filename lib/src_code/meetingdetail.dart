@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-//import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -32,10 +30,6 @@ class MeetingDetailState extends State<MeetingDetail> {
   String _selectedvalue;
   int _statusid;
   Future<void> editData() async {
-    details.meetingTime = meetingTime.text;
-    details.location = meetingLocation.text;
-    details.agenda = meetingAgenda.text;
-    details.reminderTime = meetingreminderTime.text;
     details.statusId = _statusid;
     String jsonbody = jsonEncode(details);
     try {
@@ -54,38 +48,6 @@ class MeetingDetailState extends State<MeetingDetail> {
     }
   }
 
-  Future<void> status() async {
-    try {
-      http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/childstatus?id=" +
-              StaticValue.meetingstatusId.toString()),
-          headers: {
-            'Content-type': 'application/json',
-            'Accept': 'application/json'
-          });
-
-      var jsonData = json.decode(data.body);
-
-      for (var u in jsonData) {
-        var meetingstatus = MeetingStatus.fromJson(u);
-        statuslist.add(meetingstatus);
-      }
-      print(statuslist.length);
-    } catch (e) {
-      print(e);
-      return null;
-    }
-  }
-  @override
-  void initState() {
-    meetingTime = new TextEditingController(text: details.meetingTime);
-    meetingLocation = new TextEditingController(text: details.location);
-    meetingAgenda = new TextEditingController(text: details.agenda);
-    meetingreminderTime = new TextEditingController(text: details.reminderTime);
-    status();
-  }
-
-
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -94,34 +56,34 @@ class MeetingDetailState extends State<MeetingDetail> {
     return date;
   }
 
+  String formatTime(String time) {
+    DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
+    DateTime formattedtime = (dateFormatremoveT.parse(time));
+    DateFormat longtme = DateFormat.jm();
+    time = longtme.format(formattedtime);
+    return time.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     var date = formatDateTime(details.meetingTime);
+    var time = formatTime(details.meetingTime);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text("Details"),
           actions: <Widget>[
-           
             InkWell(
               onTap: () async {
-                 if(StaticValue.orgId==details.createdBy){        
-                Navigator.of(context).push(new MaterialPageRoute<Null>(
-                    builder: (BuildContext context) {
-                      return new AddEditDialog(details: details);
-                    },
-                    fullscreenDialog: true));
-              }
-              else{
-                   
-              }
-              
-             /* if(StaticValue.orgId==details.createdBy){ 
-          editPopup();
-              }
-              */
+                if (StaticValue.orgId == details.createdBy) {
+                  Navigator.of(context).push(new MaterialPageRoute<Null>(
+                      builder: (BuildContext context) {
+                        return new AddEditDialog(details: details);
+                      },
+                      fullscreenDialog: true));
+                } else {}
               },
-                child:Icon(
+              child: Icon(
                 Icons.edit,
                 color: Colors.white,
                 size: 30.0,
@@ -130,49 +92,186 @@ class MeetingDetailState extends State<MeetingDetail> {
           ],
         ),
         body: SingleChildScrollView(
-            child: Center(
-                child: Container(
-          width: size.width,
-          height: size.height,
-          color: Colors.blue,
-          margin: EdgeInsets.all(10.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Text("Meeting Time"),
-                  Text(details.meetingTime.toString()),
-                ],
+          child: Center(
+            child: Container(
+              color: Color(0xFFd6d6d6),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4.0,
+                        color: Colors.black.withOpacity(0.5),
+                        offset: Offset(0.5, 0.5),
+                      ),
+                    ],
+                    color: Colors.white),
+                margin: EdgeInsets.fromLTRB(5, 8, 5, 5),
+                padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                child: Column(children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                  ),
+                  Row(children: <Widget>[
+                    Text(
+                      "Meeting with SN Business",
+                      style: TextStyle(
+                          color: Color(0xFF665959),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
+                    ),
+                  ]),
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        date,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14),
+                      ),
+                      //  child: Text( DateFormat("dd-MM-yyyy").format(details.meetingTime)),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(12),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(time,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14)),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(12),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(details.location.toString(),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14)),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(14),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Meeting Agenda',
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF665959)),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                  ),
+                  Row(children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Color(0xFFFBF4F4),
+                        ),
+                        margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                        padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                        child: Text(details.agenda.toString()),
+                      ),
+                    ),
+                  ]),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          'Status',
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 50),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Color(0xFFFBF4F4),
+                          ),
+                          margin: EdgeInsets.fromLTRB(5, 5, 0, 5),
+                          padding: EdgeInsets.fromLTRB(35, 15, 35, 15),
+                          child: DropdownButton(
+                            icon: Icon(Icons.arrow_downward),
+                            iconSize: 24,
+                            elevation: 16,
+                            style: TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            items: StaticValue.statuslist.map((list) {
+                              return DropdownMenuItem<String>(
+                                value: list.statusName,
+                                child: Text(list.statusName),
+                              );
+                            }).toList(),
+                            onChanged: (newvalue) {
+                              setState(() {
+                                _selectedvalue = newvalue.toString();
+                                for (MeetingStatus items
+                                    in StaticValue.statuslist) {
+                                  if (items.statusName == _selectedvalue) {
+                                    _statusid = items.statusId;
+                                  }
+                                }
+                              });
+                            },
+                            value: _selectedvalue,
+                            hint: Text(details.statusName),
+                          ),
+                        )
+                      ]),
+                  Padding(
+                    padding: EdgeInsets.all(12),
+                  ),
+                  Center(
+                    child: RaisedButton(
+                      onPressed: () {
+                        editData();
+                      },
+                      textColor: Colors.white,
+                      padding: const EdgeInsets.all(0.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: Container(
+                          decoration: const BoxDecoration(
+                              color: Color(0xFFB56AFF),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          child: Center(
+                            child:
+                                Text('Respond', style: TextStyle(fontSize: 18)),
+                          )),
+                    ),
+                  )
+                ]),
               ),
-              Row(
-                children: <Widget>[
-                  Text("Meeting Date"),
-                  Text(date),
-                  //  child: Text( DateFormat("dd-MM-yyyy").format(details.meetingTime)),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text("Meeting Location"),
-                  Text(details.location.toString()),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text("Meeting Agenda"),
-                  Text(details.agenda.toString()),
-                ],
-              ),
-              Row(children: <Widget>[
-                Text("Set Reminder"),
-                Text(details.reminderTime.toString()),
-              ]),
-              Row(children: <Widget>[
-                Text("Status"),
-                Text(details.statusName.toString()),
-              ]),
-            ],
+            ),
           ),
-        ))));
+        ));
   }
 }
