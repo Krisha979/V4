@@ -38,7 +38,7 @@ Future<List<MeetingInfo>>_meeting()async{
   }
 print(meeting.length);
 var sorted = sortedlist(meeting);
-return meeting;
+return sorted;
  
 }
 catch(e){
@@ -49,7 +49,6 @@ catch(e){
 }
 
 Future<List<MeetingInfo>> sortedlist(List<MeetingInfo> meetinginfo) async{
-  var date = DateTime.now();
     meetinginfo.sort((a,b) => DateTime.parse(b.meetingTime).compareTo(DateTime.parse(a.meetingTime)));
     print(meetinginfo);
     return meetinginfo;

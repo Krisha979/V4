@@ -43,6 +43,9 @@ class MeetingDetailState extends State<MeetingDetail> {
             'Accept': 'application/json'
           },
           body: jsonbody);
+          if(data.statusCode == 500){
+
+          }
     } catch (e) {
       Text("Server error!!");
     }
@@ -68,7 +71,7 @@ class MeetingDetailState extends State<MeetingDetail> {
   Widget build(BuildContext context) {
     var date = formatDateTime(details.meetingTime);
     var time = formatTime(details.meetingTime);
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text("Details"),

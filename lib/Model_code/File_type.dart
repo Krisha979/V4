@@ -31,7 +31,4 @@ class FileType {
     data['rowstamp'] = this.rowstamp;
     return data;
   }
-
-  static List<FileType> getFileType() {}
-
 }

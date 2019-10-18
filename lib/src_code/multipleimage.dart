@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
@@ -60,19 +60,19 @@ class MultipleImageState extends State<MultipleImage> {
     });
   }
 
-  Future<void> uploadFiles(File file) async {
-    BaseOptions options = new BaseOptions(
-        baseUrl: "https://s-nbiz.conveyor.cloud/api",
-        connectTimeout: 10000,
-        receiveTimeout: 30000,
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-        });
-    FormData formdata = new FormData();
-    formdata.add("files", new UploadFileInfo(file, basename(file.path)));
-  }
+  // Future<void> uploadFiles(File file) async {
+  //   BaseOptions options = new BaseOptions(
+  //       baseUrl: "https://s-nbiz.conveyor.cloud/api",
+  //       connectTimeout: 10000,
+  //       receiveTimeout: 30000,
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //         'Accept': 'application/json',
+  //       });
+  //   FormData formdata = new FormData();
+  //   formdata.add("files", new UploadFileInfo(file, basename(file.path)));
+  // }
 
   @override
   Widget build(BuildContext context) {

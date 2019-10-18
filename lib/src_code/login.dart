@@ -381,25 +381,25 @@ class LoginPage extends StatefulWidget{
                           }
                           return false;
                         }
-                        _showDialog(title, text) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text(title),
-                                content: Text(text),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text('Dismiss', style: TextStyle(color: Colors.blue, fontSize: 12.0),),
-                                     onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  )
-                                ],
-                              );
-                            }
-                          );
-                        }
+                        // _showDialog(title, text) {
+                        //   showDialog(
+                        //     context: context,
+                        //     builder: (context) {
+                        //       return AlertDialog(
+                        //         title: Text(title),
+                        //         content: Text(text),
+                        //         actions: <Widget>[
+                        //           FlatButton(
+                        //             child: Text('Dismiss', style: TextStyle(color: Colors.blue, fontSize: 12.0),),
+                        //              onPressed: () {
+                        //               Navigator.of(context).pop();
+                        //             },
+                        //           )
+                        //         ],
+                        //       );
+                        //     }
+                        //   );
+                        // }
                       }
                       Future<void> _alert(BuildContext context, String header, String body) {
                           

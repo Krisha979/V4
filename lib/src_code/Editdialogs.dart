@@ -49,6 +49,9 @@ class AddEditDialogState extends State<AddEditDialog> {
             'Accept': 'application/json'
           },
           body: jsonbody);
+          if(data.statusCode == 500){
+            
+          }
     } catch (e) {
       Text("Server error!!");
     }

@@ -1,12 +1,7 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/DocumentModel.dart';
-import 'package:snbiz/Model_code/OrgTask.dart';
-import 'package:snbiz/Model_code/Task.dart';
-import 'package:snbiz/src_code/static.dart';
-import 'package:http/http.dart' as http;
 
 class DocumentFilesPage extends StatefulWidget {
   final DocumentModel details;

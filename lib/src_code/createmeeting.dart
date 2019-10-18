@@ -4,8 +4,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/createMeetings.dart';
-import 'package:snbiz/src_code/home.dart';
-import 'package:snbiz/src_code/meeting.dart';
 import 'package:snbiz/src_code/static.dart';
 //import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
@@ -25,9 +23,9 @@ class _CreateState extends State<Create> {
   final reminderTime = TextEditingController();
 
   Future<void> createMeeting() async {
-    bool _validate = false;
-     var agenda = meetingAgenda.text;
-     var loc = location.text;
+    // bool _validate = false;
+    //  var agenda = meetingAgenda.text;
+    //  var loc = location.text;
     
     CreateMeetings meeting = new CreateMeetings();
 

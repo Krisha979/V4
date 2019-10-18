@@ -20,11 +20,11 @@ class _AppStart extends State<AppStart> {
 final FirebaseMessaging _fcm = FirebaseMessaging();
  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
  
- Future<void> getnotified() async {
-      var pendingNotificationRequest = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
- }
+//  Future<void> getnotified() async {
+//       var pendingNotificationRequest = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
+//  }
 
-  Future selectNotification(String payload){
+  void selectNotification(String payload){
       showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -77,7 +77,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
   void initState() {
     super.initState();
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
-    getnotified();
+    // getnotified();
 
     scheduleNotification(10,1000000);
     // scheduleNotification(20,100);
