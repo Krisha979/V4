@@ -1,12 +1,14 @@
-import 'package:snbiz/src_code/multipleImage.dart';
 
-import 'file_picker.dart';
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:snbiz/src_code/multipleImage.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:snbiz/src_code/imagePreview.dart';
 import 'package:flutter/services.dart';
+import 'file_picker.dart';
 
 
 
@@ -27,7 +29,8 @@ class CameraAppState extends State<CameraApp> {
   FileType _pickingType=FileType.ANY;
 
 
-  
+  File imageFile;
+ String img;
 
 
   void _openFileExplorer() async {
@@ -60,21 +63,16 @@ class CameraAppState extends State<CameraApp> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      
-    );
-  }
-  
- File imageFile;
- String img;
+ 
+ 
 
-  openCamera(BuildContext context) async {
+  void openCamera() async {
     var picture = await ImagePicker.pickImage(source: ImageSource.camera);
     imageFile = picture;
-    img = imageFile.path;
     call();
+    img = imageFile.path;
+     call();
+    
   }
 
   TextEditingController _controller = new TextEditingController();
@@ -152,7 +150,7 @@ class CameraAppState extends State<CameraApp> {
                           FloatingActionButton(
                             child: Icon(Icons.camera_alt),
                             onPressed: () {
-                              openCamera(context);
+                              openCamera();
                               Navigator.of(context).pop();
 
                               // To close the dialog
@@ -185,5 +183,13 @@ void image1(){
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => PreviewImage(url: img)));
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }

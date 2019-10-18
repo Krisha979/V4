@@ -12,72 +12,73 @@ class Nav extends StatefulWidget {
 class NavBar extends State<Nav> {
   @override
   Widget build(BuildContext context) {
+     Size size = MediaQuery.of(context).size;
     return Drawer(
       child: ListView(children: <Widget>[
-        DrawerHeader(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: <Color>[
-            Colors.purpleAccent,
-            Colors.deepPurple,
-          ])),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                new Image(
-                  image: new AssetImage("assets/logo.jpg"),
-                  height: 80.0,
-                  width: 140.0,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0),
-                ),
-                Text(
-                  "SN Business Solutions",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 14.0),
-                ),
-                Text(
-                  "Pvt. Ltd",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 14.0),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 8.0),
-                ),
-              ],
+        Container(
+          height: size.height/3.1,
+          width: size.width,
+          child: DrawerHeader(
+
+            
+            decoration: BoxDecoration(
+               color: Color(0xFFFAE8E8),
+
             ),
+
+              child: Column(
+               // mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Image(
+                    image: new AssetImage("assets/logo.jpg"),
+                    height: 120.0,
+                    width: 120.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                  ),
+                  Text(
+                    "SN Business Solutions",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 18.0),
+                  ),
+                  Text(
+                    "Pvt. Ltd",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 14.0),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                  ),
+                ],
+              ),
+            
           ),
         ),
         Center(
           child: Container(
+            height: 30,
+            width: 140,
+
             margin: EdgeInsets.all(8.0),
-            color: Colors.blue,
-           // decoration: BoxDecoration(
-             // borderRadius: BorderRadius.circular(10.0),
-            //),
-            child: Container(
-              decoration: BoxDecoration(
-
-                color: Colors.blue,
-               // borderRadius: BorderRadius.circular(4),
-                shape: BoxShape.circle
-                
-              
-
-              ),
-              padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
+           // color: Colors.blue,
+           decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Color(0xFFA551F8)
+            ),
+           
+              padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
               child: Text(
                 "CustomerId:",
                 style: TextStyle(color: Colors.white),
               ),
             ),
           ),
-        ),
+        
         Container(
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
@@ -91,7 +92,7 @@ class NavBar extends State<Nav> {
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                   ),
-                  Text('Home'),
+                  Text('Profile'),
                 ],
               ),
               onTap: () {
@@ -112,7 +113,7 @@ class NavBar extends State<Nav> {
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                   ),
-                  Text('Notifiaction'),
+                  Text('About SN Business'),
                 ],
               ),
               onTap: () {
@@ -133,7 +134,7 @@ class NavBar extends State<Nav> {
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                   ),
-                  Text('Invoices'),
+                  Text('Settings'),
                 ],
               ),
               onTap: () {
@@ -148,13 +149,13 @@ class NavBar extends State<Nav> {
               title: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.filter_4,
+                    Icons.directions_run,
                     color: Colors.purple,
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                   ),
-                  Text('Summary'),
+                  Text('Logout'),
                 ],
               ),
               onTap: () {
@@ -162,35 +163,17 @@ class NavBar extends State<Nav> {
                     MaterialPageRoute(builder: (context) => Summary()));
               }),
         ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
-          child: ListTile(
-              title: Row(
-                children: <Widget>[
-                  Icon(Icons.directions_run),
-                  Padding(
-                    padding: EdgeInsets.only(left: 20),
-                  ),
-                  Text('logout'),
-                ],
-              ),
-              onTap: () {
-                /*Navigator.push(
-                              context, MaterialPageRoute(
-                                builder: (context) => MainPage()));*/
-              }),
-        ),
-        Container(
-          margin: EdgeInsets.only(right: 40),
-        ),
+       
+       
+
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          
+         // crossAxisAlignment: CrossAxisAlignment.start,
+         mainAxisAlignment: MainAxisAlignment.start,
+         
           children: <Widget>[
             
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
               child: InkWell(
                 splashColor: Colors.red,
                 onTap: () {},
@@ -201,21 +184,9 @@ class NavBar extends State<Nav> {
                 ),
               ),
             ),
+           
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
-              
-              child: InkWell(
-                splashColor: Colors.blue,
-                onTap: () {},
-                child: Image(
-                  image: new AssetImage("assets/instagram.png"),
-                  height: 30.0,
-                  width: 30.0,
-                ),
-              ),
-            ),
-            Padding(
-             padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+             padding: const EdgeInsets.fromLTRB(20, 30, 0, 0),
                 child: InkWell(
                 splashColor: Colors.blue,
                 onTap: () {},
@@ -227,7 +198,7 @@ class NavBar extends State<Nav> {
               ),
             ),
             Padding(
-             padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+             padding: const EdgeInsets.fromLTRB(20,30, 0, 0),
               child: InkWell(
                 splashColor: Colors.red,
                 child: Image(
@@ -239,7 +210,22 @@ class NavBar extends State<Nav> {
             ),
           ],
         ),
-      ]),
+        Padding(
+          padding: EdgeInsets.only(top: 20),
+          
+        ),
+        
+        Divider(
+color: Color(0xFFC4C4C4),
+        ),
+Padding(
+          padding: EdgeInsets.only(top: 20),
+          
+        ),
+        
+        Center(child: Text("Privacy Policy | Terms of Use"))
+      ]
+      ),
     );
   }
 }
