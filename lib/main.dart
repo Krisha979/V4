@@ -107,7 +107,8 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
 
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple
+        primarySwatch: Colors.deepPurple, 
+        fontFamily: 'Poppins'
       ),
     debugShowCheckedModeBanner: false,
    

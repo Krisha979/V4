@@ -53,7 +53,7 @@ class LoginPage extends StatefulWidget{
       Future<void> status() async {
     try {
       http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/childstatus?id=" +
+          Uri.encodeFull(StaticValue.baseUrl+"/api/childstatus?id=" +
               StaticValue.meetingstatusId.toString()),
           headers: {
             'Content-type': 'application/json',
