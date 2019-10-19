@@ -24,8 +24,8 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
 //       var pendingNotificationRequest = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
 //  }
 
-  void selectNotification(String payload){
-      showDialog(
+  Future<dynamic> selectNotification(String payload){
+      return showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
                         content: new Text('$payload'),
