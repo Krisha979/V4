@@ -78,6 +78,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     var picture = await ImagePicker.pickImage(source: ImageSource.camera);
     imageFile = picture;
     img = imageFile.path;
+    StaticValue.imgfile = imageFile;
     call();
   }
 
@@ -95,7 +96,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              //   borderRadius: BorderRadius.circular(20.0)),
             child: Container(
               height: size.height/3.4,
-             width: size.width/2,
+             width: size.width/1.2,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20.0),
                   color: Color(0xFFFBF4F4)),
@@ -105,6 +106,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: <Widget>[
                      // Container(height: 150.0),
                       Container(
+                        margin: EdgeInsets.only(top: 15),
                         height: size.height/13,
                         width: size.width,
                         decoration: BoxDecoration(
@@ -134,8 +136,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               GestureDetector(
                                                           child: Image(
                                    image: new AssetImage("assets/file.png"),
-                        height: size.height /9,
-                        width: size.width/6),
+                        height: size.height /8,
+                        width: size.width/5),
                         
                         onTap: (){
                                _openFileExplorer();
@@ -153,8 +155,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                GestureDetector(
                                                           child: Image(
                                    image: new AssetImage("assets/camera.png"),
-                                    height: size.height /9,
-                        width: size.width/6
+                                    height: size.height /8,
+                        width: size.width/5
                                    ),
                                    onTap: (){
                                       openCamera(context);

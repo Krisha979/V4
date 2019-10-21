@@ -8,15 +8,22 @@ import 'package:snbiz/src_code/static.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
+   final ProfileModel detail;
+  const Profile({Key key, this.detail}) : super(key: key);
   @override
-  State<StatefulWidget> createState() {
-    return ProfileState();
-  }
+  
+   ProfileState createState() => new ProfileState(this.detail);
 }
 
 String url;
 
 class ProfileState extends State<Profile> {
+
+  final ProfileModel details;
+  ProfileState(this.details);
+   final userName = TextEditingController();
+  final userEmail = TextEditingController();
+  final userContact = TextEditingController();
   File _image;
 
   Future getImage() async {
@@ -41,13 +48,15 @@ class ProfileState extends State<Profile> {
   }
 
   Future<ProfileModel> profile() async {
+
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/OrganizationDetails/" +
+              "api/OrganizationUserDetails?Orgid=" +
               StaticValue.orgId.toString()),
           headers: {
-            'Content-type': 'application/json', 'Accept': 'application/json'
+            'Content-type': 'application/json',
+            'Accept': 'application/json'
           });
 
       var jsonData = json.decode(data.body);
@@ -63,6 +72,12 @@ class ProfileState extends State<Profile> {
     }
   }
 
+ @override
+  void initState() {
+    super.initState();
+
+    
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -128,20 +143,19 @@ class ProfileState extends State<Profile> {
                                   height: size.height / 4,
                                   width: size.width / 4,
                                   // child: Image.network(StaticValue.logo),
-                                  child: _image == null
+                                  child: StaticValue.logo == null
                                       ? Icon(
                                           Icons.person,
                                           size: 70,
                                           color: Colors.white,
                                         )
-                                      :
-                                       _image != null ?  Image.network(StaticValue.logo, fit: BoxFit.fill):
-
-                                      (Image.file(
-                                          _image,
-                                          fit: BoxFit.cover,
-                                        )),
-                                        
+                                      : StaticValue.logo != null
+                                          ? Image.network(StaticValue.logo,
+                                              fit: BoxFit.cover)
+                                          : (Image.file(
+                                              _image,
+                                              fit: BoxFit.cover,
+                                            )),
                                 ))),
                           ),
                         ),
@@ -152,7 +166,7 @@ class ProfileState extends State<Profile> {
                             builder:
                                 (BuildContext context, AsyncSnapshot snapshot) {
                               print(snapshot.data);
-                              ProfileModel details = snapshot.data;
+                             ProfileModel details = snapshot.data;
                               if (snapshot.data == null) {
                                 return Container(
                                     child: Center(
@@ -178,7 +192,6 @@ class ProfileState extends State<Profile> {
                                       padding: const EdgeInsets.fromLTRB(
                                           65, 15, 0, 0),
                                       child: Text("Organization Name"),
-
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
@@ -216,57 +229,155 @@ class ProfileState extends State<Profile> {
                                                             0, 5, 10, 0),
                                                   ),
                                                   Text(details
-                                                     .organizationNumber),
+                                                      .organizationNumber),
                                                 ])
                                           ]),
                                     )
                                   ],
                                 ));
                               }
-                            }),
-                      ]),
+                            })
+                      ],
+                      ),
                 ),
                 
-                 Container(
-                   color: Colors.red,
-                   child: FutureBuilder(
+                
+                Container(
+                  margin: EdgeInsets.all(8.0),
+                  height: size.height / 2.2,
+                  width: size.width,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Color(0xFFFFFFFF)),
+                  child: FutureBuilder(
                       future: profile(),
-                      builder:
-                                  (BuildContext context, AsyncSnapshot snapshot) {
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        print(snapshot.data);
+                        ProfileModel details = snapshot.data;
+                        userName.text = details.fullName;
+                        userEmail.text = details.email;
+                        userContact.text = details.contactNumber;
+                        if (snapshot.data == null) {
+                          return Container(
+                              child:
+                                  Center(child: CircularProgressIndicator()));
+                        } else {
+                          return Container(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                                  child: Text(
+                                    "User Name",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                
 
-                                     print(snapshot.data);
-                                ProfileModel details = snapshot.data;
-                                if (snapshot.data == null) {
-                                  return Container(
+                                  child: Container(
+                                     height: size.height / 20,
+                          width: size.width,
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFd6d6d6)),
+                                    child: TextFormField(
+                                      controller: userName,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                                  child: Text(
+                                    "Email",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                               
+                                 Container(
+                                    height: size.height / 20,
+                          width: size.width,
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFd6d6d6)),
+                                   child: TextFormField(
+                                      controller: userContact,
+                                    ),
+                                 ),
+                                
+
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                                  child: Container(
+                                    child: Text(
+                                      "Contact Number",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              
+                                 Container(
+                                    height: size.height / 20,
+                          width: size.width,
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFd6d6d6)),
+                                   child: TextFormField(
+                                      controller: userEmail,
+                                    ),
+                                 ),
+                                
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, left: 15, right: 15),
+                                  child: MaterialButton(
+                                      height: 40,
+                                      onPressed: () async {
+                                        showDialog(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (BuildContext context) {
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            });
+
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      textColor: Colors.white,
+                                      color: Color(0xFFB56AFF),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
                                       child: Center(
-                                          child: CircularProgressIndicator()));
-                                } else {
-                                    return Container(
-                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            65, 15, 0, 0),
-                                        child: Text(
-                                          "User Name",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ),
-                                        Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            65, 10, 0, 0),
-                                        child: Text(
-                                          details.contactNumber,
-                                        ),
-                                      ),
-                     
-                                      ]
-                                      )  );}              }
-                   ),
-                 )
+                                        child: Text('save',
+                                            style: TextStyle(fontSize: 16)),
+                                      )),
+                                ),
+                              ]));
+                        }
+                      }),
+                )
               ]))),
     );
   }
@@ -280,8 +391,7 @@ class ProfileState extends State<Profile> {
         return AlertDialog(
           title: Center(child: new Text("Change Profile Photo")),
           content: Container(
-         
-            height: 50,
+            height: 75,
             width: 50,
             child: ListView(
               children: <Widget>[
