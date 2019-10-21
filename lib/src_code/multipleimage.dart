@@ -19,6 +19,7 @@ class MultipleImage extends StatefulWidget {
 }
 
 class MultipleImageState extends State<MultipleImage> {
+  
   Map<String, String> url;
   //  String url;
   MultipleImageState(this.url);
@@ -74,9 +75,11 @@ class MultipleImageState extends State<MultipleImage> {
   //   formdata.add("files", new UploadFileInfo(file, basename(file.path)));
   // }
 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+   
     return Scaffold(
       appBar: AppBar(
         title: Text("Preview Image",),
@@ -96,65 +99,118 @@ class MultipleImageState extends State<MultipleImage> {
             borderRadius: BorderRadius.circular(10.0)
           ),
           child: Column(
+
             children: <Widget>[
+               Padding(
+                              padding: const EdgeInsets.only(right: 100, top: 20),
+                              child: Text("UPLOAD IMAGES & FILES", style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
+                            ),
               ListView.builder(
                   shrinkWrap: true,
                   itemCount: StaticValue.filenames.length,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    return ListTile(
-                      title: Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            new Image(
-                                image: new AssetImage("assets/pdf.png"),
-                                height: size.height / 10,
-                                width: size.width / 10),
-                            Text(StaticValue.filenames[index].substring(
-                                StaticValue.filenames[index].lastIndexOf('/') +
-                                    1)),
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
-              Center(
-                child: RaisedButton(
-                  onPressed: () async {
+
                     
 
-                    showDialog(
-                     context: context,
-                     builder: (BuildContext context) {
-                       return Center(child: CircularProgressIndicator(),);
-                     } 
-                   );
-                   await upload(url);
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                  },
-                  textColor: Colors.white,
-                  // color: Color(0xFF9C38FF),
+                    return ListTile(
+                      
 
-                  padding: const EdgeInsets.all(0.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)),
+                        title: Column(
+                          children: <Widget>[
+                           
+                           
+                            Row(
+                             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: new Image(
+                                      image: new AssetImage("assets/pdf.png"),
+                                      height: size.height / 8,
+                                      width: size.width / 8),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                ),
+                                Text(StaticValue.filenames[index].substring(
+                                    StaticValue.filenames[index].lastIndexOf('/') +
+                                        1),style: TextStyle(fontStyle: FontStyle.normal, fontSize: 14, fontWeight: FontWeight.normal), ),
+                                        
+                                        
+                              ],
+                              
+                            ),
+
+                                        //Divider(height: 0,color: Color(0xFFB162F7),
+                                        //)
+                                     /* SizedBox(
+                                        height: 10,
+                                        width: 10,
+                                        
+                                      )*/
+
+                                      new Container(height: 1, width: size.width, color: Color(0xFFB162F7),
+                        margin: const EdgeInsets.only(left: 2.0, right: 2.0),),
+                                      
+                                    
+                          ],
+                        ),
+
+                      
+                      
+                    );
+                    
+                  }),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
                   child: Container(
-                      height: size.height / 16,
-                      width: size.width / 1.3,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFFB56AFF),
-                          borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      child: Center(
-                        child: Text('Upload', style: TextStyle(fontSize: 18)),
-                      )),
+                    height: size.height/16,
+                    width: size.width/1.4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Color(0xFFB56AFF),
+                      
+                      boxShadow: [new BoxShadow(
+            color: Color.fromARGB(25, 0, 0, 0),
+            blurRadius: 10, 
+            
+          ),]
+                    ),
+                    child: RaisedButton(
+                      onPressed: () async {
+                        
+
+                        showDialog(
+                         context: context,
+                         builder: (BuildContext context) {
+                           return Center(child: CircularProgressIndicator(),);
+                         } 
+                       );
+                       await upload(url);
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      },
+                      textColor: Colors.white,
+                       color: Color(0xFFB56AFF),
+                         shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                       
+
+                     
+                          child: Center(
+                            child: Text('Upload', style: TextStyle(fontSize: 16)),
+                          )),
+                  ),
                 ),
-              ),
-            ],
-          ),
+                ),
+              
+            ] 
+          )
+            
+        )
         ),
-      ),
+      
 
       /* FlatButton(
                   

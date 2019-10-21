@@ -9,6 +9,8 @@ import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
 
 import 'package:snbiz/src_code/multipleImage.dart';
+
+
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:snbiz/src_code/imagePreview.dart';
@@ -92,7 +94,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
            // shape: RoundedRectangleBorder(
              //   borderRadius: BorderRadius.circular(20.0)),
             child: Container(
-              height: size.height/4,
+              height: size.height/3.5,
              width: size.width/2,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20.0),
@@ -108,18 +110,18 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.only(topLeft: Radius.circular(5.0)),
-                          color: const Color(0xFF1500ff),
+                          color: const Color(0xFFFBF4F4),
                         ),
                         child: Center(
-                          child: Text("Upload", style: TextStyle(color: Colors.white, fontSize: 16),)),
+                          child: Text("Upload Options", style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),)),
                       ),
                       
                     ],
                   ),
-                     Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text("Upload options", style: TextStyle(fontSize: 16),),
-                     ),
+                  Divider(
+                    color: Colors.grey,
+                  ),
+                    
                  
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -130,34 +132,47 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           
                        
                           
-                          GestureDetector(
-                                                      child: Image(
-                               image: new AssetImage("assets/file.png"),
+                          Column(
+                            children: <Widget>[
+                              GestureDetector(
+                                                          child: Image(
+                                   image: new AssetImage("assets/file.png"),
                         height: size.height /9,
                         width: size.width/6),
+                        
                         onTap: (){
-                           _openFileExplorer();
-                           Navigator.pop(context);
-                           
+                               _openFileExplorer();
+                               Navigator.pop(context);
+                               
 
                         },
+                              ),
+                              Text("Files"),
+                            ],
                           ),
 
-                          GestureDetector(
-                                                      child: Image(
-                               image: new AssetImage("assets/camera.png"),
-                                height: size.height /9,
+                           Column(
+                             children: <Widget>[
+                               GestureDetector(
+                                                          child: Image(
+                                   image: new AssetImage("assets/camera.png"),
+                                    height: size.height /9,
                         width: size.width/6
-                               ),
-                               onTap: (){
-                                  openCamera(context);
-                                    Navigator.pop(context);
-                               },
-                             
+                                   ),
+                                   onTap: (){
+                                      openCamera(context);
+                                        Navigator.pop(context);
+                                   },
+                                 
 
 
                           ),
+                          Text("Camera")
+                             ],
+                           ),
                           
+
+                         
 
                          /* FloatingActionButton(
                             //child: Icon(Icons.sd_storage),
