@@ -241,10 +241,10 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                     
                                     Text(formattedtime, textAlign: TextAlign.left, 
                                     style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
-                                   Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),)),
+                                   Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),)),
                                    
-                                    Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500))),
-                                     Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500))),
+                                    Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))),
+                                     Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))),
                                   ],
 
                                 ),

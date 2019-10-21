@@ -277,14 +277,15 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white),
                 child: Column(
                   children: <Widget>[
                     new Image(
-                        image: new AssetImage("assets/logo.jpg"),
+                        image: new AssetImage("assets/img.png"),
+                        fit: BoxFit.fill,
                         height: size.height / 4.8,
                         width: size.width),
                   ],
@@ -388,7 +389,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/icon5.png"),
+                                    image: new AssetImage("assets/time.png"),
                                     height: size.height / 13,
                                   ),
                                 ),
