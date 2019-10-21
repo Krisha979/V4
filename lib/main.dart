@@ -34,12 +34,26 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
             );
     }
 
-    Future scheduleNotification(int date, int channelid) async{
+    Future scheduleNotification(int time, int channelid) async{
               var scheduledNotificationDateTime =
-              new DateTime.now().add(new Duration(seconds: date));
+              new DateTime.now().add(new Duration(seconds: time));
+              var currenttime = DateTime.now();
+              String message;
+              int hours = currenttime.hour;
+              if(hours>=24 || hours<=12){
+                  message = "Good Morning!";
+              }else if(hours>=12 || hours<=16){
+                  message = "Good Afternoon!";
+              }else if(hours>=16 || hours<=21){
+                  message = "Good Evening!";
+              }else if(hours>=21 || hours<=24){
+                  message = "Good Night!";
+              }
+            
               var vibrationPattern = new Int64List(10);
                 vibrationPattern[0] = 0;
-                vibrationPattern[1] = 1000;
+                vibrationPattern[1] = 100
+                ;
                 // vibrationPattern[2] = 500;
                 // vibrationPattern[3] = 1000;
                 // vibrationPattern[4] = 500;
@@ -60,7 +74,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
       await flutterLocalNotificationsPlugin.schedule(
           channelid,
           'S.N Business',
-          date.toString(),
+          message,
           scheduledNotificationDateTime,
           platformChannelSpecifics);
     }

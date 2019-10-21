@@ -9,6 +9,8 @@ import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
 
 import 'package:snbiz/src_code/multipleImage.dart';
+
+
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:snbiz/src_code/imagePreview.dart';
@@ -76,6 +78,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     var picture = await ImagePicker.pickImage(source: ImageSource.camera);
     imageFile = picture;
     img = imageFile.path;
+    StaticValue.imgfile = imageFile;
     call();
   }
 
@@ -92,8 +95,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
            // shape: RoundedRectangleBorder(
              //   borderRadius: BorderRadius.circular(20.0)),
             child: Container(
-              height: size.height/4,
-             width: size.width/2,
+              height: size.height/3.4,
+             width: size.width/1.2,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20.0),
                   color: Color(0xFFFBF4F4)),
@@ -103,23 +106,21 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: <Widget>[
                      // Container(height: 150.0),
                       Container(
-                        height: size.height/14,
+                        margin: EdgeInsets.only(top: 15),
+                        height: size.height/13,
                         width: size.width,
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.only(topLeft: Radius.circular(5.0)),
-                          color: const Color(0xFF1500ff),
+                          color: const Color(0xFFFBF4F4),
                         ),
                         child: Center(
-                          child: Text("Upload", style: TextStyle(color: Colors.white, fontSize: 16),)),
+                          child: Text("UPLOAD OPTIONS", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
                       ),
                       
                     ],
                   ),
-                     Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: Text("Upload options", style: TextStyle(fontSize: 16),),
-                     ),
+                
                  
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -130,34 +131,47 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           
                        
                           
-                          GestureDetector(
-                                                      child: Image(
-                               image: new AssetImage("assets/file.png"),
-                        height: size.height /9,
-                        width: size.width/6),
+                          Column(
+                            children: <Widget>[
+                              GestureDetector(
+                                                          child: Image(
+                                   image: new AssetImage("assets/file.png"),
+                        height: size.height /8,
+                        width: size.width/5),
+                        
                         onTap: (){
-                           _openFileExplorer();
-                           Navigator.pop(context);
-                           
+                               _openFileExplorer();
+                               Navigator.pop(context);
+                               
 
                         },
+                              ),
+                              Text("Files"),
+                            ],
                           ),
 
-                          GestureDetector(
-                                                      child: Image(
-                               image: new AssetImage("assets/camera.png"),
-                                height: size.height /9,
-                        width: size.width/6
-                               ),
-                               onTap: (){
-                                  openCamera(context);
-                                    Navigator.pop(context);
-                               },
-                             
+                           Column(
+                             children: <Widget>[
+                               GestureDetector(
+                                                          child: Image(
+                                   image: new AssetImage("assets/camera.png"),
+                                    height: size.height /8,
+                        width: size.width/5
+                                   ),
+                                   onTap: (){
+                                      openCamera(context);
+                                        Navigator.pop(context);
+                                   },
+                                 
 
 
                           ),
+                          Text("Camera")
+                             ],
+                           ),
                           
+
+                         
 
                          /* FloatingActionButton(
                             //child: Icon(Icons.sd_storage),
@@ -234,15 +248,15 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     animationDuration: Duration(milliseconds: 2000),
     dotSize: 2.0,
     dotIncreasedColor: Color(0xFFFFFFFF),
-    dotBgColor: Colors.black.withOpacity(0.5),
+    dotBgColor: Colors.black.withOpacity(0),
     autoplayDuration: Duration(seconds: 5),
     images: [
       AssetImage(
-        'assets/image1.jpg',
+        'assets/image1.png',
       ),
-      AssetImage('assets/image2.jpg'),
-      AssetImage('assets/image3.jpg'),
-      AssetImage('assets/image4.jpg'),
+      AssetImage('assets/image2.png'),
+      AssetImage('assets/image3.png'),
+      AssetImage('assets/image4.png'),
     ],
     // dotBgColor: Colors.white.withOpacity(1),
   );

@@ -65,10 +65,10 @@ flutter:
    - assets/facebook.png
    - assets/logo.jpg
    - assets/docicon.png
-   - assets/image1.jpg
-   - assets/image2.jpg
-   - assets/image3.jpg
-   - assets/image4.jpg
+   - assets/image1.png
+   - assets/image2.png
+   - assets/image3.png
+   - assets/image4.png
    - assets/invoice.png
    - assets/icon1.png
    - assets/Document.png
@@ -78,8 +78,11 @@ flutter:
    - assets/file.png
    - assets/camera.png
    - assets/pdf.png
-
-
+   - assets/profile.png
+   - assets/setting.png
+   - assets/snbiz.png
+   - assets/contact.png
+   - assets/logout.png
    - assets/new_meeting.png
    
 

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
+//import 'package:snbiz/src_code/profile.dart' as prefix0;
 import 'package:snbiz/src_code/static.dart';
 //import 'package:snbiz/Model_code/File_type.dart';
 //import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -21,43 +22,46 @@ const PreviewImage({Key key, this.url}) : super(key: key);
 
 class PreviewImageState extends State<PreviewImage> {
 
-   File imageFile;
+  File imageFile;
   String url;
   PreviewImageState( this.url);
-  //List<FileType> _fileType = FileType.getFileType();
-  //List <DropdownMenuItem<FileType>> _dropdownMenuItems;
-  //FileType _file;
-  
- Future<void>upload(files) async {    
-     
-      List<File> docs = new List();
-     files.forEach((k,v) => docs.add(new File(v)));
-     
-      // string to uri
-      var uri = Uri.parse(StaticValue.baseUrl + "api/UploadDocuments?Orgid="+StaticValue.orgId.toString() + "&OrgName="+ StaticValue.orgName);
-      // create multipart request
-      var request = new http.MultipartRequest("POST", uri
-      ); 
-      for(File file in docs){
-         // open a bytestream
+ 
+ Future<void> upload(File files) async {
+    List<File> docs = new List();
+    // if (files.isNotEmpty) {
+    //   files.forEach((k, v) => docs.add(new File(v)));
+    // }
+    docs.add(files);
+    // string to uri
+    var uri = Uri.parse(StaticValue.baseUrl +
+        "api/UploadDocuments?Orgid=" +
+        StaticValue.orgId.toString() +
+        "&OrgName=" +
+        StaticValue.orgName);
+    // create multipart request
+    var request = new http.MultipartRequest("POST", uri);
+    for (File file in docs) {
+      // open a bytestream
       var stream = new http.ByteStream(DelegatingStream.typed(file.openRead()));
-      
+
       // get file length
       var length = await file.length();
       // multipart that takes file
       var multipartFile = new http.MultipartFile('Files', stream, length,
           filename: basename(file.path));
+
       // add file to multipart
       request.files.add(multipartFile);
-      }
-      // send
-      var response = await request.send();
-      print(response.statusCode);
-      // listen for response
-      response.stream.transform(utf8.decoder).listen((value) {
-        print(value);
-      });
     }
+    // send
+    var response = await request.send();
+    print(response.statusCode);
+    // listen for response
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+    });
+  }
+
     //using dio package
   // Future<void> uploadFiles(File file) async{
      
@@ -85,7 +89,7 @@ class PreviewImageState extends State<PreviewImage> {
       child: Column(
       children: <Widget>[
         new Container (
-         // height: size.height,
+         height: size.height-200,
           width: size.width,
           
           margin: EdgeInsets.all(8.0),
@@ -101,15 +105,40 @@ class PreviewImageState extends State<PreviewImage> {
               padding: EdgeInsets.all(10.0),
             ),
             
-           FlatButton(
-             onPressed: (){
-             upload(url);
-             Navigator.pop(context);
+             Padding(
+                        padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                       
+                          child: MaterialButton(
+                            height: 45,
+                              onPressed: () async {
+                                showDialog(
+                                    context: context,
+                                     barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    });
+                                    if(StaticValue.imgfile.path ==url){
+                                     await upload(StaticValue.imgfile);
+                                    }
+                              
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
+                              textColor: Colors.white,
+                              color: Color(0xFFB56AFF),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Center(
+                                child: Text('Upload',
+                                    style: TextStyle(fontSize: 16)),
+                              )),
+                        ),
+                    
 
-             },
-             child: Text("Upload", style: TextStyle(color: Colors.white),),
-             color: Colors.blue,
-           )
+                  
+                   
           ]
           
         )

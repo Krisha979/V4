@@ -150,6 +150,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                   Text("17th august 2019"),
 
                                 ],
+                                
 
                               ),
                             Image(

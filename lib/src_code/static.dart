@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:snbiz/Model_code/meetingStatus.dart';
 
 class StaticValue{
@@ -14,4 +16,5 @@ class StaticValue{
   static int latestNotificationId;
   static int meetingScheduledId = 4;
   static bool togglestate;
+  static File imgfile;
 }
