@@ -8,6 +8,7 @@ import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:snbiz/src_code/multipleImage.dart';
 
 
@@ -36,8 +37,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation;
   bool showIndicator = false;
-
-  static List<Widget> widgets;
+  static List<Widget> widgets = [];
 
   void _openFileExplorer() async {
     if (_pickingType != FileType.CUSTOM || _hasValidMime) {
@@ -222,10 +222,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
-  
-
-
- Future<List<Widget>> listwidget()async {
+  Future<List<Widget>> listwidget()async {
 
         var widget1 = new Container(
              color:Color(0XFFF4EAEA),
@@ -307,7 +304,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   Text("All Tasks"),
                                   Text("148"),
                                   Icon(Icons.file_upload),
-                                  Text("3 pending"),
+                                  Text("3"),
 
                                 ],
                                 
@@ -373,9 +370,6 @@ final carousel1 = CarouselSlider(
 );
 
 
-
-
-
   final carousel2 = Carousel(
     boxFit: BoxFit.cover,
     animationCurve: Curves.fastOutSlowIn,
@@ -411,15 +405,14 @@ final carousel1 = CarouselSlider(
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white),
                 child: Column(
                   children: <Widget>[
                     new Image(
-                        image: new AssetImage("assets/img.png"),
-                        fit: BoxFit.fill,
+                        image: new AssetImage("assets/logo.jpg"),
                         height: size.height / 4.8,
                         width: size.width),
                   ],
@@ -523,7 +516,7 @@ final carousel1 = CarouselSlider(
                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/time.png"),
+                                    image: new AssetImage("assets/icon5.png"),
                                     height: size.height / 13,
                                   ),
                                 ),
