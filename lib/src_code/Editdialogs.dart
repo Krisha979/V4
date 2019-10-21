@@ -65,37 +65,17 @@ class AddEditDialogState extends State<AddEditDialog> {
     meetingAgenda = new TextEditingController(text: details.agenda);
     meetingreminderTime = new TextEditingController(text: details.reminderTime);
     _selectedvalue = details.statusName;
-    /*
-     setState(() {
-                                          _selectedvalue = newvalue.toString();
-                                          for (MeetingStatus items
-                                              in StaticValue.statuslist) {
-                                            if (items.statusName ==
-                                                _selectedvalue) {
-                                              _statusid = items.statusId;
-                                            }
-                                          }
-                                        }
-*/
-    
+    _statusid = details.statusId;
+
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return new Scaffold(
-        appBar: new AppBar(
-          title: const Text('New entry'),
-          actions: [
-            new FlatButton(
-                onPressed: () {},
-                child: new Text('SAVE',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subhead
-                        .copyWith(color: Colors.white))),
-          ],
-        ),
+       appBar: AppBar(
+          title: Text("Details"),
+       ),
         body: SingleChildScrollView(
             child: Center(
                 child: Container(
@@ -113,13 +93,17 @@ class AddEditDialogState extends State<AddEditDialog> {
                             ],
                             color: Colors.white),
                         margin: EdgeInsets.fromLTRB(5, 8, 5, 5),
-                        padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                        padding: EdgeInsets.fromLTRB(30, 0, 30, 60),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                   Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
                                     "Edit Meeting",
@@ -128,6 +112,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold),
                                   ),
+                                ]),
                                   Image(
                                     image: new AssetImage(
                                         "assets/new_meeting.png"),
@@ -255,7 +240,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                               )),
                             
 
-
+/*
                             
                             Row(children: <Widget>[
                               Text(
@@ -305,6 +290,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                   }
                                 },
                               )),
+                              */
                           
                             Row(
                                 mainAxisAlignment:
@@ -369,7 +355,8 @@ class AddEditDialogState extends State<AddEditDialog> {
                                 Center(
                                   child: RaisedButton(
                                     onPressed: () async {
-                                      if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty){
+                                      if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
+                                      meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty){
                                         showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -388,7 +375,9 @@ class AddEditDialogState extends State<AddEditDialog> {
                                       await editData();
                                       Navigator.pop(context);
                                       Navigator.pop(context);
-                                    }
+                                     
+                                      }
+
                                     },
                                     textColor: Colors.white,
                                     padding: const EdgeInsets.all(0.0),

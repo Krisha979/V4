@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:math';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,28 @@ class Meeting extends StatefulWidget{
 }
 
 class MeetingState extends State<Meeting>{
-
+  String switchText = 'Latest Meeting';
+  bool isSwitched = false;
+  bool isLoading = false;
+   List <MeetingInfo> meetinglist =[];
+  Future<void>_onSwitchChanged(bool value) async {
+    
+      
+    if(value == true){
+            isSwitched = true;
+            StaticValue.togglestate = true;
+    }
+    else{
+      isSwitched = false;
+      StaticValue.togglestate = false;
+    }
+    setState(() {
+      
+    });
+    
+    
+    }
+  
 @override
   void initState() {
     super.initState();
@@ -37,8 +60,19 @@ Future<List<MeetingInfo>>_meeting()async{
     meeting.add(meetinginfo);
   }
 print(meeting.length);
-var sorted = sortedlist(meeting);
-return sorted;
+if(StaticValue.togglestate == true){
+    isSwitched = true;
+    
+    switchText = 'Latest Meeting';
+    var sorted = await upcomingsortedlist(meeting);
+    return sorted;
+}
+else{
+  isSwitched = false;
+  switchText = 'Upcomming Meeting';
+  return meeting;
+}
+
  
 }
 catch(e){
@@ -48,8 +82,16 @@ catch(e){
 }
 }
 
-Future<List<MeetingInfo>> sortedlist(List<MeetingInfo> meetinginfo) async{
-    meetinginfo.sort((a,b) => DateTime.parse(b.meetingTime).compareTo(DateTime.parse(a.meetingTime)));
+Future<List<MeetingInfo>> upcomingsortedlist(List<MeetingInfo> meetinginfo) async{
+
+
+    meetinginfo.sort((a,b) => DateTime.now().compareTo(DateTime.parse(a.meetingTime)));
+    print(meetinginfo);
+    return meetinginfo;
+}
+
+Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
+    meetinginfo.sort((a,b) => DateTime.parse(b.dateCreated).compareTo(DateTime.parse(a.dateCreated)));
     print(meetinginfo);
     return meetinginfo;
 }
@@ -73,83 +115,16 @@ Future<List<MeetingInfo>> sortedlist(List<MeetingInfo> meetinginfo) async{
     Size size = MediaQuery.of(context).size;
    
     return Scaffold(
-      body:
-      
-      
-         Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-              ),
-              Container(           
-                        width: 350.0,
-                        height: 125.0,
-                         decoration: new BoxDecoration(
-                        color: Colors.white,
-                         borderRadius: new BorderRadius.circular(15.0),
-                         boxShadow: [
-                         BoxShadow(
-                                blurRadius: 4.0,
-                                color: Colors.black.withOpacity(0.5),
-                                offset: Offset(0.5, 0.5),
-                              ),
-                            ],
-                         ),
-                         child:  Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text("All Meetings"),
-                                Text("148"),
-                                Icon(Icons.file_upload),
-                                Text("17th august 2019"),
-
-                              ],
-
-                            ),
-                          Image(
-                                    image: new AssetImage("assets/new_meeting.png"),
-                                    height: size.height / 9,
-                                  ),
-                          ],
-                        ),
-
-                      ),
-    Padding(
-         padding: EdgeInsets.all(10),
-    ),
-    
-        Container( 
-            child:FutureBuilder(
-            future: _meeting(),
-            builder:(BuildContext context, AsyncSnapshot snapshot){
-              print(snapshot.data);
-              if(snapshot.data==null){
-                return Container(
-                  child: Center(
-                    
-                  child: CircularProgressIndicator()
-                 
-                  )
-                );
-              }else{
-                return Flexible(
-                                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int meetingId){
-                       var date = formatDateTime(snapshot.data[meetingId].meetingTime);
-                       var formattedtime = formatTime(snapshot.data[meetingId].meetingTime);
-                      return ListTile(
-                        title: InkWell(
-                                              child: Container(
-                          width: 315.0,
-                          height: 125.0,
+      body:Container(
+               color:Color(0XFFF4EAEA),
+        child: Column(
+              children: <Widget>[
+               
+                Container(           
+                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
+                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
                            decoration: new BoxDecoration(
-                           color: Colors.white,
+                          color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
                            boxShadow: [
                            BoxShadow(
@@ -159,51 +134,158 @@ Future<List<MeetingInfo>> sortedlist(List<MeetingInfo> meetinginfo) async{
                                 ),
                               ],
                            ),
-                           child: new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
+
+                           child: Column(
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                 Text(date),
-                                 Text(formattedtime),
-                                  Flexible(child: Text(snapshot.data[meetingId].location)),
+                                  Text("All Meetings"),
+                                  Text("148"),
+                                  Icon(Icons.file_upload),
+                                  Text("17th august 2019"),
+
                                 ],
 
                               ),
-                      
-                             // button color
-                                  InkWell(
-                                    child: Image(
-                                    image: new AssetImage("assets/new_meeting.png"),
-                                   height: size.height /12,
-                                  ),
-                                    splashColor: Colors.red, // inkwell color
-                                    onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:                        
-                                      snapshot.data[meetingId])));
-                                    },
-                                  ),
-                                
-                             
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      height: size.height / 9,
+                                    ),
                             ],
                           ),
-                                              ),
-                                              onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:                        
-                                      snapshot.data[meetingId])));
-                                    },
 
+                        
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Colors.white,
+                          ),
+                          margin: EdgeInsets.fromLTRB(14, 8, 12, 5),
+
+                        child:  Row(
+                          mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+                                                children:<Widget>[
+                                                Text('$switchText'),
+                                                   Transform.scale(
+              scale: 1.0,
+              child: Switch(
+                onChanged: _onSwitchChanged,
+                value: isSwitched,
+              ),
+            ),
+                                                ]),
+                ),])),
+          Container( 
+              child:FutureBuilder(
+              future: _meeting(),
+              builder:(BuildContext context, AsyncSnapshot snapshot){
+                meetinglist = snapshot.data;
+                print(snapshot.data);
+                if(snapshot.data==null){
+                  return Container(
+                    child: Center(
+                      
+                    child: CircularProgressIndicator()
+                   
+                    )
+                  );
+                }else{
+                  return Flexible(
+                                    child: ListView.builder(
+
+                                    
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int meetingId){
+                         var date = formatDateTime(meetinglist[meetingId].meetingTime);
+                         var formattedtime = formatTime(meetinglist[meetingId].meetingTime);
+                        return ListTile(
+                        //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          
+                          title: InkWell(
+                           child: new Theme(
+                              data: new ThemeData(
+                                hintColor: Colors.white,
+                              ),
+                                                child: Container(
+                                                  padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                                  constraints: new BoxConstraints(minWidth: size.width),
+                            width: size.width,
+                            height: size.height/5.5,
+                          
+                             decoration: new BoxDecoration(
+                             color: Colors.white,
+                             borderRadius: new BorderRadius.circular(15.0),
+                            // boxShadow: [
+                            //  BoxShadow(
+                            //         blurRadius: 2.0,
+                            //         color: Colors.black.withOpacity(0.5),
+                            //         offset: Offset(0.0, 0.0),
+                            //       ),
+                            //     ],
+                             ),
+                             child: new Row(
+                               
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                               
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  
+                                  children: <Widget>[
+
+                                    
+                                    Text(formattedtime, textAlign: TextAlign.left, 
+                                    style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
+                                   Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),)),
+                                   
+                                    Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500))),
+                                     Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500))),
+                                  ],
+
+                                ),
+                      
+                               // button color
+                                    InkWell(
+                                      
+                                      child: Image(
+                                  alignment: Alignment.centerRight,
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                     height: size.height /12,
+                                    ),
+                                      splashColor: Colors.red, // inkwell color
+                                      onTap: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:                        
+                                        meetinglist[meetingId])));
+                                      },
+                                    ),
+                                  
+                               
+                              ],
+                            ),
+                             )  ),
+                                                onTap: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:                        
+                                        meetinglist[meetingId])));
+                                      },
+
+                          ),
+             );
+                      }
                         ),
-           );
-                    }
-                      ),
-                );
-              }
-            } 
-           )
-        )
-            ])
+                  );
+                }
+              } 
+             )
+              
+          )
+              ]),
+      )
     );
     }
   }

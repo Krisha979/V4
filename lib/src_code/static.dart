@@ -13,4 +13,5 @@ class StaticValue{
   static List<String> filenames;
   static int latestNotificationId;
   static int meetingScheduledId = 4;
+  static bool togglestate;
 }

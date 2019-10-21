@@ -13,11 +13,16 @@ class MeetingDetail extends StatefulWidget {
   const MeetingDetail({Key key, this.details}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
+    if(StaticValue.orgId==details.createdBy){
+      
+    }
     return MeetingDetailState(this.details);
   }
 }
 
 class MeetingDetailState extends State<MeetingDetail> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+    new GlobalKey<RefreshIndicatorState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final MeetingInfo details;
   MeetingDetailState(this.details);
@@ -69,6 +74,7 @@ class MeetingDetailState extends State<MeetingDetail> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     var date = formatDateTime(details.meetingTime);
     var time = formatTime(details.meetingTime);
     // Size size = MediaQuery.of(context).size;
@@ -84,7 +90,9 @@ class MeetingDetailState extends State<MeetingDetail> {
                         return new AddEditDialog(details: details);
                       },
                       fullscreenDialog: true));
-                } else {}
+                } else{
+                  
+                }
               },
               child: Icon(
                 Icons.edit,
@@ -97,8 +105,12 @@ class MeetingDetailState extends State<MeetingDetail> {
         body: SingleChildScrollView(
           child: Center(
             child: Container(
+              
+              height: size.height,
               color: Color(0xFFd6d6d6),
               child: Container(
+                constraints: new BoxConstraints(minHeight: size.height),
+                
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     boxShadow: [
@@ -109,7 +121,7 @@ class MeetingDetailState extends State<MeetingDetail> {
                       ),
                     ],
                     color: Colors.white),
-                margin: EdgeInsets.fromLTRB(5, 8, 5, 5),
+                margin: EdgeInsets.fromLTRB(8, 8, 8, 8),
                 padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
                 child: Column(children: <Widget>[
                   Padding(
@@ -164,7 +176,7 @@ class MeetingDetailState extends State<MeetingDetail> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.all(14),
+                    padding: EdgeInsets.all(20),
                   ),
                   Row(
                     children: <Widget>[
@@ -207,15 +219,15 @@ class MeetingDetailState extends State<MeetingDetail> {
                               color: Colors.black),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 50),
+                          padding: EdgeInsets.only(left: 35),
                         ),
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             color: Color(0xFFFBF4F4),
                           ),
-                          margin: EdgeInsets.fromLTRB(5, 5, 0, 5),
-                          padding: EdgeInsets.fromLTRB(35, 15, 35, 15),
+                          margin: EdgeInsets.fromLTRB(0, 0, 0,0),
+                          padding: EdgeInsets.fromLTRB(35, 5, 35, 5),
                           child: DropdownButton(
                             icon: Icon(Icons.arrow_downward),
                             iconSize: 24,
@@ -248,33 +260,47 @@ class MeetingDetailState extends State<MeetingDetail> {
                         )
                       ]),
                   Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(20),
                   ),
-                  Center(
-                    child: RaisedButton(
-                      onPressed: () {
-                        editData();
-                      },
-                      textColor: Colors.white,
-                      padding: const EdgeInsets.all(0.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      child: Container(
-                          decoration: const BoxDecoration(
-                              color: Color(0xFFB56AFF),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0))),
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                          child: Center(
-                            child:
-                                Text('Respond', style: TextStyle(fontSize: 18)),
-                          )),
-                    ),
-                  )
-                ]),
+                  
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                                          children:<Widget>[ RaisedButton(
+                        onPressed: () async{
+                                      
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            });
+                                        await editData();
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.all(0.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Container(
+                            decoration: const BoxDecoration(
+                                color: Color(0xFFB56AFF),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            child: Center(
+                              child:
+                                  Text('Respond', style: TextStyle(fontSize: 18)),
+                            )),
+                      
+                                          ),]),
+                ])
+            )),
               ),
             ),
-          ),
-        ));
+          );
+        
   }
 }
