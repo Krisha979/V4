@@ -40,13 +40,13 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
               var currenttime = DateTime.now();
               String message;
               int hours = currenttime.hour;
-              if(hours>=24 || hours<=12){
+              if(hours<=12){
                   message = "Good Morning!";
-              }else if(hours>=12 || hours<=16){
+              }else if(hours<=16){
                   message = "Good Afternoon!";
-              }else if(hours>=16 || hours<=21){
+              }else if(hours<=21){
                   message = "Good Evening!";
-              }else if(hours>=21 || hours<=24){
+              }else if(hours<=24){
                   message = "Good Night!";
               }
             
