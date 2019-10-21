@@ -96,7 +96,7 @@ class ProfileState extends State<Profile> {
               margin: EdgeInsets.all(8.0),
               height: size.height,
               width: size.width,
-              color: Color(0xFFd6d6d6),
+              color: Color(0xFFF4EAEA),
               child: Column(children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(8.0),
@@ -107,7 +107,7 @@ class ProfileState extends State<Profile> {
                   // color: Colors.red,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.white),
+                      color: Color(0xFFFFFFFF)),
                   child: Column(
 
                       // crossAxisAlignment: CrossAxisAlignment.center,
@@ -135,12 +135,13 @@ class ProfileState extends State<Profile> {
                                           color: Colors.white,
                                         )
                                       :
-                                      // _image != null ?  Image.network(StaticValue.logo, fit: BoxFit.fill):
+                                       _image != null ?  Image.network(StaticValue.logo, fit: BoxFit.fill):
 
                                       (Image.file(
                                           _image,
                                           fit: BoxFit.cover,
                                         )),
+                                        
                                 ))),
                           ),
                         ),
@@ -225,122 +226,47 @@ class ProfileState extends State<Profile> {
                             }),
                       ]),
                 ),
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  height: size.height / 2,
-                  width: size.width,
-                  // color: Colors.yellow,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.white),
+                
+                 Container(
+                   color: Colors.red,
+                   child: FutureBuilder(
+                      future: profile(),
+                      builder:
+                                  (BuildContext context, AsyncSnapshot snapshot) {
 
-                  child: ListView(children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
-                      child: Text(
-                        "User Details",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
-                      child: Text("User Name"),
-                    ),
-                    Center(
-                      child: Container(
-                        height: size.height / 20,
-                        width: size.width,
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        // color: Colors.white,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Color(0xFFd6d6d6)),
-                            //child:Text(details.),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
-                      child: Text("User Name"),
-                    ),
-                    Center(
-                      child: Container(
-                        height: size.height / 20,
-                        width: size.width,
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        // color: Colors.white,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Color(0xFFd6d6d6)),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
-                      child: Text("User Name"),
-                    ),
-                    Center(
-                      child: Container(
-                        height: size.height / 20,
-                        width: size.width,
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        // color: Colors.white,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Color(0xFFd6d6d6)),
-                          //  child: Text(details.fullName),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
-                      child: Text("User Name"),
-                    ),
-                    Center(
-                      child: Container(
-                        height: size.height / 20,
-                        width: size.width,
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        // color: Colors.white,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Color(0xFFd6d6d6)),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                    ),
-                    Center(
-                      child: RaisedButton(
-                        onPressed: () {},
-                        textColor: Colors.white,
-                        // color: Color(0xFF9C38FF),
-
-                        padding: const EdgeInsets.all(0.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0)),
-                        child: Container(
-                            height: size.height / 16,
-                            width: size.width / 1.3,
-                            decoration: const BoxDecoration(
-                                color: Color(0xFF9C38FF),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0))),
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                            child: Center(
-                              child:
-                                  Text('Save', style: TextStyle(fontSize: 18)),
-                            )),
-                      ),
-                    )
-                  ]),
-                )
+                                     print(snapshot.data);
+                                ProfileModel details = snapshot.data;
+                                if (snapshot.data == null) {
+                                  return Container(
+                                      child: Center(
+                                          child: CircularProgressIndicator()));
+                                } else {
+                                    return Container(
+                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            65, 15, 0, 0),
+                                        child: Text(
+                                          "User Name",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                        Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            65, 10, 0, 0),
+                                        child: Text(
+                                          details.contactNumber,
+                                        ),
+                                      ),
+                     
+                                      ]
+                                      )  );}              }
+                   ),
+                 )
               ]))),
     );
   }

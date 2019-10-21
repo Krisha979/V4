@@ -169,6 +169,7 @@ Future<List<MeetingInfo>> sortedlist(List<MeetingInfo> meetinginfo) async{
                                  Text(formattedtime),
                                   Flexible(child: Text(snapshot.data[meetingId].location)),
                                 ],
+                                
 
                               ),
                       

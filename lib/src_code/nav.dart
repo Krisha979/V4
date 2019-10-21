@@ -61,8 +61,7 @@ class NavBar extends State<Nav> {
         ),
         Center(
           child: Container(
-            height: 30,
-            width: 140,
+            
 
             margin: EdgeInsets.all(8.0),
            // color: Colors.blue,
@@ -71,7 +70,7 @@ class NavBar extends State<Nav> {
               color: Color(0xFFA551F8)
             ),
            
-              padding: EdgeInsets.fromLTRB(10, 5, 0, 10),
+              padding: EdgeInsets.fromLTRB(60,10,60, 10),
               child: Text(
                 "CustomerId:",
                 style: TextStyle(color: Colors.white),
@@ -80,19 +79,20 @@ class NavBar extends State<Nav> {
           ),
         
         Container(
+          padding: EdgeInsets.only(top: 30),
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(
-                    Icons.home,
-                    color: Colors.blue,
-                  ),
+                    Image(
+                  image: new AssetImage("assets/profile.png"),
+                 
+                ),
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                   ),
-                  Text('Profile'),
+                  Text('Profile', style: TextStyle(fontSize: 17, fontStyle: FontStyle.normal, fontWeight: FontWeight.normal),),
                 ],
               ),
               onTap: () {
@@ -106,14 +106,15 @@ class NavBar extends State<Nav> {
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(
-                    Icons.notifications,
-                    color: Colors.red,
-                  ),
+                    Image(
+                  image: new AssetImage("assets/snbiz.png"),
+                 
+                ),
+                 
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text('About SN Business',style: TextStyle(fontSize: 17, fontStyle: FontStyle.normal, fontWeight: FontWeight.normal)),
                   ),
-                  Text('About SN Business'),
                 ],
               ),
               onTap: () {
@@ -127,14 +128,15 @@ class NavBar extends State<Nav> {
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(
-                    Icons.format_list_bulleted,
-                    color: Colors.pink,
-                  ),
+                    Image(
+                  image: new AssetImage("assets/setting.png"),
+                 
+                ),
+                 
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text('Settings',style: TextStyle(fontSize: 17, fontStyle: FontStyle.normal, fontWeight: FontWeight.normal)),
                   ),
-                  Text('Settings'),
                 ],
               ),
               onTap: () {
@@ -148,14 +150,19 @@ class NavBar extends State<Nav> {
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(
-                    Icons.directions_run,
-                    color: Colors.purple,
-                  ),
+                   Padding(
+                     padding: const EdgeInsets.only(left: 10),
+                     child: Image(
+                  image: new AssetImage("assets/logout.png"),
+                 // height: 30.0,
+                  //width: 30.0,
+                ),
+                   ),
+                
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Logout',style: TextStyle(fontSize: 17, fontStyle: FontStyle.normal, fontWeight: FontWeight.normal)),
                   ),
-                  Text('Logout'),
                 ],
               ),
               onTap: () {
@@ -211,7 +218,7 @@ class NavBar extends State<Nav> {
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 30),
           
         ),
         

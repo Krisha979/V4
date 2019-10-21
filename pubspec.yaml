@@ -78,8 +78,11 @@ flutter:
    - assets/file.png
    - assets/camera.png
    - assets/pdf.png
-
-
+   - assets/profile.png
+   - assets/setting.png
+   - assets/snbiz.png
+   - assets/contact.png
+   - assets/logout.png
    - assets/new_meeting.png
    
 
