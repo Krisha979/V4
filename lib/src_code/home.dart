@@ -94,7 +94,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
            // shape: RoundedRectangleBorder(
              //   borderRadius: BorderRadius.circular(20.0)),
             child: Container(
-              height: size.height/3.5,
+              height: size.height/3.4,
              width: size.width/2,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20.0),
@@ -105,7 +105,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: <Widget>[
                      // Container(height: 150.0),
                       Container(
-                        height: size.height/14,
+                        height: size.height/13,
                         width: size.width,
                         decoration: BoxDecoration(
                           borderRadius:
@@ -113,15 +113,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           color: const Color(0xFFFBF4F4),
                         ),
                         child: Center(
-                          child: Text("Upload Options", style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),)),
+                          child: Text("UPLOAD OPTIONS", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
                       ),
                       
                     ],
                   ),
-                  Divider(
-                    color: Colors.grey,
-                  ),
-                    
+                
                  
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
