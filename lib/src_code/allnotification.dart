@@ -36,10 +36,10 @@ print(notifications.length);
 latestid = notifications[0].notificationId; 
 print(latestid);
 var id = await storage.read(key:"LatestNotificationId");
-if(id !=null || id != ""){
+try{
   StaticValue.latestNotificationId = int.parse(id);
 }
-else{
+catch(e) {
   StaticValue.latestNotificationId = 0;
 }
 print(StaticValue.latestNotificationId);

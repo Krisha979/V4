@@ -7,7 +7,7 @@ import 'package:snbiz/src_code/static.dart';
 //import 'package:snbiz/src_code/open_camera.dart';
 import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:snbiz/src_code/multipleImage.dart';
 
 
@@ -36,6 +36,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation;
   bool showIndicator = false;
+
+  static List<Widget> widgets;
 
   void _openFileExplorer() async {
     if (_pickingType != FileType.CUSTOM || _hasValidMime) {
@@ -223,6 +225,112 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   
 
 
+ Future<List<Widget>> listwidget()async {
+
+        var widget1 = new Container(
+             color:Color(0XFFF4EAEA),
+             child: Column(
+               children: <Widget>[
+                 Container(           
+                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
+                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           boxShadow: [
+                           BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(0.5, 0.5),
+                                ),
+                              ],
+                           ),
+
+                           child: Column(
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text("All Meetings"),
+                                  Text("148"),
+                                  Icon(Icons.file_upload),
+                                  Text("17th august 2019"),
+
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      height: 50,
+                                    ),
+                            ],
+                          )
+               ],
+             ),
+        )
+               ]
+             )
+        );
+        var widget2 = new Container(
+             color:Color(0XFFF4EAEA),
+             child: Column(
+               children: <Widget>[
+                 Container(           
+                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
+                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           boxShadow: [
+                           BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(0.5, 0.5),
+                                ),
+                              ],
+                           ),
+
+                           child: Column(
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text("All Tasks"),
+                                  Text("148"),
+                                  Icon(Icons.file_upload),
+                                  Text("3 pending"),
+
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      height: 50,
+                                    ),
+                            ],
+                          )
+               ],
+             ),
+        )
+               ]
+             )
+        );
+        widgets.add(widget1);
+        widgets.add(widget2);
+        return widgets;
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -236,7 +344,33 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         setState(() {});
       });
     controller.forward();
+   
   }
+
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+      listwidget();
+  }
+
+
+final carousel1 = CarouselSlider(
+  items: widgets,
+   height: 400,
+   aspectRatio: 16/9,
+   viewportFraction: 0.9,
+   initialPage: 0,
+   enableInfiniteScroll: true,
+   reverse: false,
+   autoPlay: true,
+   enlargeCenterPage: true,
+   autoPlayInterval: Duration(seconds: 3),
+   autoPlayAnimationDuration: Duration(milliseconds: 800),
+   pauseAutoPlayOnTouch: Duration(seconds: 5),
+   scrollDirection: Axis.horizontal,
+);
 
 
 
@@ -432,10 +566,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                      height: size.height / 4.8,
+                      height: size.height / 4.5,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
-                          child: carousel2),
+                          child: carousel1),
                     ),
                   ],
                 ),
