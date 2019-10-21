@@ -84,7 +84,9 @@ class MeetingDetailState extends State<MeetingDetail> {
                         return new AddEditDialog(details: details);
                       },
                       fullscreenDialog: true));
-                } else {}
+                } else {
+                    await _alert(context, "Information", "Sorry you cannot edit this meeting. Only meetings created by yourself can be edited.");
+                }
               },
               child: Icon(
                 Icons.edit,
@@ -277,4 +279,27 @@ class MeetingDetailState extends State<MeetingDetail> {
           ),
         ));
   }
+  Future<void> _alert(BuildContext context, String header, String body) {
+                          
+                        return showDialog<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                        return AlertDialog(
+                            title: Text(header),
+                            content: Text(body),
+                        
+                                actions: <Widget>[
+                          
+                                  FlatButton(
+                                          child: Text('Ok', style: TextStyle(color: Colors.blue, fontSize: 12.0)),
+                                          
+                                          onPressed: () {
+                                                     Navigator.of(context).pop();
+                                    },
+                                  ),
+                               ],
+                             );
+                            },
+                          );
+                        }
 }

@@ -248,15 +248,15 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     animationDuration: Duration(milliseconds: 2000),
     dotSize: 2.0,
     dotIncreasedColor: Color(0xFFFFFFFF),
-    dotBgColor: Colors.black.withOpacity(0.5),
+    dotBgColor: Colors.black.withOpacity(0),
     autoplayDuration: Duration(seconds: 5),
     images: [
       AssetImage(
-        'assets/image1.jpg',
+        'assets/image1.png',
       ),
-      AssetImage('assets/image2.jpg'),
-      AssetImage('assets/image3.jpg'),
-      AssetImage('assets/image4.jpg'),
+      AssetImage('assets/image2.png'),
+      AssetImage('assets/image3.png'),
+      AssetImage('assets/image4.png'),
     ],
     // dotBgColor: Colors.white.withOpacity(1),
   );
