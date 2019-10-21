@@ -91,6 +91,7 @@ class MeetingDetailState extends State<MeetingDetail> {
                       },
                       fullscreenDialog: true));
                 } else {
+      
                     await _alert(context, "Information", "Sorry you cannot edit this meeting. Only meetings created by yourself can be edited.");
                 }
               },
