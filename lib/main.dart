@@ -39,7 +39,8 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
               new DateTime.now().add(new Duration(seconds: date));
               var vibrationPattern = new Int64List(10);
                 vibrationPattern[0] = 0;
-                vibrationPattern[1] = 1000;
+                vibrationPattern[1] = 100
+                ;
                 // vibrationPattern[2] = 500;
                 // vibrationPattern[3] = 1000;
                 // vibrationPattern[4] = 500;

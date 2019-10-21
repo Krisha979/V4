@@ -35,7 +35,13 @@ class AllNotificationState extends State<AllNotification>{
 print(notifications.length);
 latestid = notifications[0].notificationId; 
 print(latestid);
-StaticValue.latestNotificationId = int.parse(await storage.read(key:"LatestNotificationId"));
+var id = await storage.read(key:"LatestNotificationId");
+if(id !=null || id != ""){
+  StaticValue.latestNotificationId = int.parse(id);
+}
+else{
+  StaticValue.latestNotificationId = 0;
+}
 print(StaticValue.latestNotificationId);
 return notifications;
  
