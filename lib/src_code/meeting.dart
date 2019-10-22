@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:math';
-import 'package:flutter/services.dart';
+//import 'dart:math';
+//import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +18,7 @@ class Meeting extends StatefulWidget{
 }
 
 class MeetingState extends State<Meeting>{
+  int counts;
   String switchText = 'Latest Meeting';
   bool isSwitched = false;
   bool isLoading = false;
@@ -43,6 +44,7 @@ class MeetingState extends State<Meeting>{
 @override
   void initState() {
     super.initState();
+    _meeting();
   }
 Future<List<MeetingInfo>>_meeting()async{
   try{
@@ -60,6 +62,10 @@ Future<List<MeetingInfo>>_meeting()async{
     meeting.add(meetinginfo);
   }
 print(meeting.length);
+setState(() {
+  counts = meeting.length;
+});
+//counts = meeting.length;
 if(StaticValue.togglestate == true){
     isSwitched = true;
     
@@ -81,6 +87,8 @@ catch(e){
 
 }
 }
+
+
 
 Future<List<MeetingInfo>> upcomingsortedlist(List<MeetingInfo> meetinginfo) async{
 
@@ -142,12 +150,11 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Text("All Meetings"),
-                                  Text("148"),
-                                  Icon(Icons.file_upload),
-                                  Text("17th august 2019"),
+                                  Text('$counts'),
+                                  
 
                                 ],
                                 
@@ -186,6 +193,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
               future: _meeting(),
               builder:(BuildContext context, AsyncSnapshot snapshot){
                 meetinglist = snapshot.data;
+                //counts= meetinglist.length;
                 print(snapshot.data);
                 if(snapshot.data==null){
                   return Container(
@@ -243,10 +251,10 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                     
                                     Text(formattedtime, textAlign: TextAlign.left, 
                                     style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
-                                   Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),)),
+                                   Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
                                    
-                                    Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))),
-                                     Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400))),
+                                    Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                     Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                                   ],
 
                                 ),

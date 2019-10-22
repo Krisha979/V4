@@ -17,6 +17,7 @@ class TaskPage extends StatefulWidget {
 }
 
 class TaskState extends State<TaskPage> {
+  int count;
 
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
@@ -53,6 +54,9 @@ Future<List<OrgTask>> getTask()async{
     task.add(tasks);
   }
 print(task.length);
+setState(() {
+  count = task.length;
+});
 return task;
 
 }
@@ -65,11 +69,57 @@ catch(e){
 
   @override
   Widget build(BuildContext context) {
-    //Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
    
     return Scaffold(
-      body: 
-      Container(            
+      appBar: AppBar(title: Text('Task')),
+    body: Container(
+               color:Color(0XFFF4EAEA),
+        child: Column(
+              children: <Widget>[
+               
+                Container(           
+                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
+                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           boxShadow: [
+                           BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(0.5, 0.5),
+                                ),
+                              ],
+                           ),
+
+                           child: Column(
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("All Task"),
+                                  Text('$count'),
+                                  
+
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      height: size.height / 9,
+                                    ),
+                            ],
+                          ),
+
+                        
+                        ])),
+          Container(            
          child: FutureBuilder(
           future: getTask(),
           builder:(BuildContext context, AsyncSnapshot snapshot){
@@ -83,68 +133,92 @@ catch(e){
                 )
               );
             }else{
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index){
-                   var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
-                   var enddate = formatTime(snapshot.data[index].parentTask.endDate);
-                   var name = snapshot.data[index].parentTask.taskName;
-                  return ListTile(
-                    title: Container(
-                    width: 315.0,
-                    height: 125.0,
-                     decoration: new BoxDecoration(
-                     color: Colors.white,
-                     borderRadius: new BorderRadius.circular(15.0),
-                     boxShadow: [
-                     BoxShadow(
-                            blurRadius: 4.0,
-                            color: Colors.black.withOpacity(0.5),
-                            offset: Offset(0.5, 0.5),
-                          ),
-                        ],
-                     ),
-                     child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              return Flexible(
+                              child: ListView.builder(
+                   shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index){
+                     var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
+                     var enddate = formatTime(snapshot.data[index].parentTask.endDate);
+                     var name = snapshot.data[index].parentTask.taskName;
+                    return ListTile(
+                      title: InkWell(
+                                              child: new Theme(
+                                                data: new ThemeData(
+                                hintColor: Colors.white,
+                              ),
+                                                child: Container(
+                                                  
+                                                  padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                                  constraints: new BoxConstraints(minWidth: size.width),
+                            width: size.width,
+                            height: size.height/5.5,
+                        
+                         decoration: new BoxDecoration(
+                         color: Colors.white,
+                         borderRadius: new BorderRadius.circular(15.0),
+                         boxShadow: [
+                         BoxShadow(
+                                blurRadius: 2.0,
+                                color: Colors.black.withOpacity(0.5),
+                                offset: Offset(0.0, 0.5),
+                              ),
+                            ],
+                         ),
+                         child: new Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                           Text(startdate),
-                           Text(enddate),
-                          Text(name),
-                          Text(snapshot.data[index].parentTask.statusName),
-                            
-                          ],
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(enddate, textAlign: TextAlign.left, 
+                                    style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ),
+                               Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+                              
+                              Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+                              Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                
+                              ],
 
-                        ),
-                  
-                       ClipOval(
-                          child: Material(
-                            color: Colors.blue, // button color
-                            child: InkWell(
-                              splashColor: Colors.red, // inkwell color
-                              child: SizedBox(width: 56, height: 56,
-                               child: Icon(
-                                 Icons.picture_as_pdf,
-                                 color: Colors.white,
-                                 )),
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:                        
-                                snapshot.data[index])));
-                              },
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                    ),
+                    
+                           ClipOval(
+                              child: Material(
+                                color: Colors.blue, // button color
+                                child: InkWell(
+                                  splashColor: Colors.red, // inkwell color
+                                  child: SizedBox(width: 56, height: 56,
+                                   child: Icon(
+                                     Icons.picture_as_pdf,
+                                     color: Colors.white,
+                                     )),
+                                  onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:                        
+                                    snapshot.data[index])));
+                                  },
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        ),
+                                              ),
+                                              onTap: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:                        
+                                    snapshot.data[index])));
+                                      },
+                      ),
          );
-                }
-                  );
+                  }
+                    ),
+              );
             }
           } 
          )
+      )
+
+
+              ]),
       )
          );     
 

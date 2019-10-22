@@ -268,7 +268,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    //  double screenHeight = MediaQuery.of(context).size.height;
+    //double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SingleChildScrollView(

@@ -69,64 +69,81 @@ catch(e){
 
   @override
   Widget build(BuildContext context) {
-    //Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
    
     return Scaffold(
+      appBar: AppBar(title: Text('Task'),),
       body: 
-      Container(            
+      Container(     
+        color:  Color(0XFFF4EAEA),    
          
-              child: ListView.builder(
-                itemCount: details.childTask.length,
-                itemBuilder: (BuildContext context, int index){
-                  return ListTile(
-                    title: Container(
-                    width: 315.0,
-                    height: 125.0,
-                     decoration: new BoxDecoration(
-                     color: Colors.white,
-                     borderRadius: new BorderRadius.circular(15.0),
-                     boxShadow: [
-                     BoxShadow(
-                            blurRadius: 4.0,
-                            color: Colors.black.withOpacity(0.5),
-                            offset: Offset(0.5, 0.5),
-                          ),
-                        ],
-                     ),
-                     child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                           Text(details.childTask[index].taskName),
-                           Text(details.childTask[index].statusName),
-                            
-                          ],
+              child: Container(
+                margin: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                         //padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(10.0),
+                           boxShadow: [
+                           BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(0.5, 0.5),
+                                ),
+                              ],
+                           ),
 
-                        ),
+                child: ListView.builder(
                   
-                       ClipOval(
-                          child: Material(
-                            color: Colors.blue, // button color
-                            child: InkWell(
-                              splashColor: Colors.red, // inkwell color
-                              child: SizedBox(width: 56, height: 56,
-                               child: Icon(
-                                 Icons.picture_as_pdf,
-                                 color: Colors.white,
-                                 )),
-                              
-                            ),
+                  itemCount: details.childTask.length,
+                  itemBuilder: (BuildContext context, int index){
+                    return Container(
+                      child: Card(
+                        elevation: 5,
+                        margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                        
+                                              child: ListTile(
+                          title: Container(
+                             
+                           child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                 mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                 Text(details.childTask[index].taskName, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
+                                
+                                ],
+
+                              ),
+                        
+                             ClipOval(
+                                child: Material(
+                                  color: Colors.blue, // button color
+                                  child: InkWell(
+                                    splashColor: Colors.red, // inkwell color
+                                    child: SizedBox(
+                                      height: size.height/15,
+                                      width: size.width/8,
+                                      
+                                     child: Icon(
+                                       Icons.picture_as_pdf,
+                                       
+                                       color: Colors.white,
+                                       )),
+                                    
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
-                        )
-                      ],
+                          ),
+         ),
+                      ),
+                    );
+                  }
+                
                     ),
-                    ),
-         );
-                }
-              
-                  )
+              )
             
       )
          );     

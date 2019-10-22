@@ -4,6 +4,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/createMeetings.dart';
+import 'package:date_format/date_format.dart';
 import 'package:snbiz/src_code/static.dart';
 //import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,7 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
+  DateTime meeting;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final meetingTime = TextEditingController();
@@ -22,10 +24,13 @@ class _CreateState extends State<Create> {
   final location = TextEditingController();
   final reminderTime = TextEditingController();
 
+  
+
   Future<void> createMeeting() async {
     // bool _validate = false;
     //  var agenda = meetingAgenda.text;
     //  var loc = location.text;
+
     
     CreateMeetings meeting = new CreateMeetings();
 
@@ -35,7 +40,7 @@ class _CreateState extends State<Create> {
     meeting.location = meetingLocation.text;
     meeting.agenda = meetingAgenda.text.toString();
     meeting.statusId = StaticValue.meetingScheduledId;
-    meeting.reminderTime = reminderTime.text;
+    meeting.reminderTime = (DateTime.parse(meetingTime.text).add(new Duration(hours: -1))).toString();
     meeting.dateCreated = DateTime.now().toString();
     meeting.createdBy = StaticValue.orgId;
     meeting.deleted = false;
@@ -50,7 +55,6 @@ class _CreateState extends State<Create> {
             'Content-type': 'application/json',
             'Accept': 'application/json'
           },
-
           body: jsonbody);
           print(response);
 

@@ -21,8 +21,7 @@ class MeetingDetail extends StatefulWidget {
 }
 
 class MeetingDetailState extends State<MeetingDetail> {
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-    new GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final MeetingInfo details;
   MeetingDetailState(this.details);

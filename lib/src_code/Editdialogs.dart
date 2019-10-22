@@ -357,11 +357,6 @@ class AddEditDialogState extends State<AddEditDialog> {
                                     onPressed: () async {
                                       if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
                                       meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty){
-                                        showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: new Text("Please enter all the values."),);});
                                       }
                                       else{
                                       showDialog(
