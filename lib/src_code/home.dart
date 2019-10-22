@@ -38,7 +38,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Animation<double> animation;
   bool showIndicator = false;
   static List<Widget> widgets = [];
-
+  static Size size;
   void _openFileExplorer() async {
     if (_pickingType != FileType.CUSTOM || _hasValidMime) {
       setState(() => _loadingPath = true);
@@ -225,25 +225,27 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Future<List<Widget>> listwidget()async {
 
         var widget1 = new Container(
-             color:Color(0XFFF4EAEA),
+             color:Color(0xffd6d6d6),
              child: Column(
                children: <Widget>[
                  Container(           
-                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                          margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                         padding: EdgeInsets.fromLTRB(25, 30, 30, 30),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
                            boxShadow: [
-                           BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.5, 0.5),
-                                ),
+//                           BoxShadow(
+//                                  blurRadius: 4.0,
+//                                  color: Colors.black.withOpacity(0.5),
+//                                  offset: Offset(0.0, 0.5),
+//                                ),
                               ],
                            ),
 
                            child: Column(
+                             mainAxisSize: MainAxisSize.max,
+
                                 children: <Widget>[ 
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -263,7 +265,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             Image(
                                       image: new AssetImage("assets/new_meeting.png"),
-                                      height: 50,
+                                      fit: BoxFit.fill,
+                              height: size.height/13,
                                     ),
                             ],
                           )
@@ -274,25 +277,27 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              )
         );
         var widget2 = new Container(
-             color:Color(0XFFF4EAEA),
+
+             color:Color(0xffd6d6d6),
              child: Column(
                children: <Widget>[
-                 Container(           
-                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                 Container(
+                   margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                   padding: EdgeInsets.fromLTRB(25, 30, 30, 30),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
                            boxShadow: [
-                           BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.5, 0.5),
-                                ),
+//                           BoxShadow(
+//                                  blurRadius: 4.0,
+//                                  color: Colors.black.withOpacity(0.5),
+//                                  offset: Offset(0.0, 0.5),
+//                                ),
                               ],
                            ),
 
                            child: Column(
+                             mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[ 
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -312,7 +317,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               ),
                             Image(
                                       image: new AssetImage("assets/new_meeting.png"),
-                                      height: 50,
+                                      fit: BoxFit.fill,
+                                     //width: size.width,
+                              height: size.height/13,
                                     ),
                             ],
                           )
@@ -331,6 +338,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
      _controller.addListener(() => _extension = _controller.text);
     controller = AnimationController(
       duration: Duration(milliseconds: 2000),
@@ -348,21 +356,23 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
+
     super.didChangeDependencies();
+    size = MediaQuery.of(context).size;
       listwidget();
   }
 
 
 final carousel1 = CarouselSlider(
   items: widgets,
-   height: 400,
-   aspectRatio: 16/9,
-   viewportFraction: 0.9,
+   height:175,
+  aspectRatio: 16/9,
+   viewportFraction: 0.93,
    initialPage: 0,
    enableInfiniteScroll: true,
    reverse: false,
    autoPlay: true,
-   enlargeCenterPage: true,
+   enlargeCenterPage: false,
    autoPlayInterval: Duration(seconds: 3),
    autoPlayAnimationDuration: Duration(milliseconds: 800),
    pauseAutoPlayOnTouch: Duration(seconds: 5),
@@ -405,15 +415,16 @@ final carousel1 = CarouselSlider(
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white),
                 child: Column(
                   children: <Widget>[
                     new Image(
-                        image: new AssetImage("assets/logo.jpg"),
+                        image: new AssetImage("assets/img.png"),
                         height: size.height / 4.8,
+                        fit: BoxFit.fill,
                         width: size.width),
                   ],
                 ),
@@ -427,7 +438,7 @@ final carousel1 = CarouselSlider(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white),
-                    margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
                     // color: Colors.white,
                     padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
                     //color: Colors.black,
@@ -516,7 +527,7 @@ final carousel1 = CarouselSlider(
                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/icon5.png"),
+                                    image: new AssetImage("assets/time.png"),
                                     height: size.height / 13,
                                   ),
                                 ),
@@ -558,8 +569,8 @@ final carousel1 = CarouselSlider(
                 child: Wrap(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                      height: size.height / 4.5,
+                      margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                      height: size.height / 5.0,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: carousel1),
