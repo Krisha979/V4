@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/DocumentModel.dart';
@@ -14,7 +13,7 @@ class DocumentFilesPage extends StatefulWidget {
 }
 
 class DocumentFilesState extends State<DocumentFilesPage> {
-final DocumentModel details;
+  final DocumentModel details;
   DocumentFilesState(this.details);
   String documentUrl;
   String formatDateTime(String date) {
@@ -24,14 +23,15 @@ final DocumentModel details;
     date = longdate.format(format);
     return date;
   }
+
   String formatTime(String time) {
-     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
-   // DateFormat dateFormat = DateFormat.yMd().add_jm();
+    DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
+    // DateFormat dateFormat = DateFormat.yMd().add_jm();
     DateTime formattedtime = (dateFormatremoveT.parse(time));
     DateFormat longtme = DateFormat.jm();
     time = longtme.format(formattedtime);
     print(time);
-   // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
+    // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
     return time.toString();
   }
 

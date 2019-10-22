@@ -7,6 +7,7 @@ import 'package:snbiz/src_code/static.dart';
 //import 'package:snbiz/src_code/open_camera.dart';
 import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:snbiz/src_code/multipleImage.dart';
 
@@ -36,7 +37,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation;
   bool showIndicator = false;
-
+  static List<Widget> widgets = [];
+  static Size size;
   void _openFileExplorer() async {
     if (_pickingType != FileType.CUSTOM || _hasValidMime) {
       setState(() => _loadingPath = true);
@@ -220,12 +222,123 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
-  
+  Future<List<Widget>> listwidget()async {
+
+        var widget1 = new Container(
+             color:Color(0xffd6d6d6),
+             child: Column(
+               children: <Widget>[
+                 Container(           
+                          margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                         padding: EdgeInsets.fromLTRB(25, 30, 30, 30),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           boxShadow: [
+//                           BoxShadow(
+//                                  blurRadius: 4.0,
+//                                  color: Colors.black.withOpacity(0.5),
+//                                  offset: Offset(0.0, 0.5),
+//                                ),
+                              ],
+                           ),
+
+                           child: Column(
+                             mainAxisSize: MainAxisSize.max,
+
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text("All Meetings"),
+                                  Text("148"),
+                                  Icon(Icons.file_upload),
+                                  Text("17th august 2019"),
+
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      fit: BoxFit.fill,
+                              height: size.height/13,
+                                    ),
+                            ],
+                          )
+               ],
+             ),
+        )
+               ]
+             )
+        );
+        var widget2 = new Container(
+
+             color:Color(0xffd6d6d6),
+             child: Column(
+               children: <Widget>[
+                 Container(
+                   margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                   padding: EdgeInsets.fromLTRB(25, 30, 30, 30),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           boxShadow: [
+//                           BoxShadow(
+//                                  blurRadius: 4.0,
+//                                  color: Colors.black.withOpacity(0.5),
+//                                  offset: Offset(0.0, 0.5),
+//                                ),
+                              ],
+                           ),
+
+                           child: Column(
+                             mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text("All Tasks"),
+                                  Text("148"),
+                                  Icon(Icons.file_upload),
+                                  Text("3"),
+
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      fit: BoxFit.fill,
+                                     //width: size.width,
+                              height: size.height/13,
+                                    ),
+                            ],
+                          )
+               ],
+             ),
+        )
+               ]
+             )
+        );
+        widgets.add(widget1);
+        widgets.add(widget2);
+        return widgets;
+  }
 
 
   @override
   void initState() {
     super.initState();
+
      _controller.addListener(() => _extension = _controller.text);
     controller = AnimationController(
       duration: Duration(milliseconds: 2000),
@@ -236,10 +349,35 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         setState(() {});
       });
     controller.forward();
+   
   }
 
 
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
 
+    super.didChangeDependencies();
+    size = MediaQuery.of(context).size;
+      listwidget();
+  }
+
+
+final carousel1 = CarouselSlider(
+  items: widgets,
+   height:175,
+  aspectRatio: 16/9,
+   viewportFraction: 0.93,
+   initialPage: 0,
+   enableInfiniteScroll: true,
+   reverse: false,
+   autoPlay: true,
+   enlargeCenterPage: false,
+   autoPlayInterval: Duration(seconds: 3),
+   autoPlayAnimationDuration: Duration(milliseconds: 800),
+   pauseAutoPlayOnTouch: Duration(seconds: 5),
+   scrollDirection: Axis.horizontal,
+);
 
 
   final carousel2 = Carousel(
@@ -285,8 +423,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   children: <Widget>[
                     new Image(
                         image: new AssetImage("assets/img.png"),
-                        fit: BoxFit.fill,
                         height: size.height / 4.8,
+                        fit: BoxFit.fill,
                         width: size.width),
                   ],
                 ),
@@ -300,7 +438,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white),
-                    margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
                     // color: Colors.white,
                     padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
                     //color: Colors.black,
@@ -431,11 +569,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 child: Wrap(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                      height: size.height / 4.8,
+                      margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                      height: size.height / 5.0,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
-                          child: carousel2),
+                          child: carousel1),
                     ),
                   ],
                 ),
