@@ -9,25 +9,26 @@ import 'package:snbiz/src_code/static.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
-   final ProfileModel detail;
-  const Profile({Key key, this.detail}) : super(key: key);
-  @override
+ final ProfileModel detail;
+ const Profile({Key key, this.detail}):super(key:key);
   
-   ProfileState createState() => new ProfileState(this.detail);
+  @override
+  ProfileState createState() => new ProfileState(this.detail);
+
 }
 
 String url;
 
 class ProfileState extends State<Profile> {
+  
 
   final ProfileModel details;
   ProfileState(this.details);
   TextEditingController userName;
-  var userEmail = TextEditingController();
-  var userContact = TextEditingController();
+  final userEmail = TextEditingController();
+  final userContact = TextEditingController();
   File _image;
   Future<ProfileModel> profile() async {
-
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
@@ -40,6 +41,9 @@ class ProfileState extends State<Profile> {
 
       var jsonData = json.decode(data.body);
       ProfileModel _profile;
+      
+      
+
 
       _profile = ProfileModel.fromJson(jsonData);
 
@@ -91,9 +95,8 @@ class ProfileState extends State<Profile> {
  @override
   void initState() {
     super.initState();
-
-    
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -104,24 +107,6 @@ class ProfileState extends State<Profile> {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
         backgroundColor: const Color(0xFF9C38FF),
       ),
-
-      /*body: Container(
-        
-               
-                      child: Column(
-                        children: <Widget>[
-
-                        Text(profileDetails.organizationName),
-                       
-                          
-                                  //Flexible(
-                                    //  child: Text()),
-                                 
-                        ]  
-                              ),
-                            
-                          )*/
-
       body: SingleChildScrollView(
           child: Container(
               margin: EdgeInsets.all(8.0),
@@ -132,9 +117,6 @@ class ProfileState extends State<Profile> {
                   margin: EdgeInsets.all(8.0),
                   height: size.height / 1.7,
                   width: size.width,
-
-                  // margin: EdgeInsets.all(8),
-                  // color: Colors.red,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: Color(0xFFFFFFFF)),
@@ -199,73 +181,70 @@ class ProfileState extends State<Profile> {
                                 return Container(
 //color: Colors.blueGrey,
 
-                                    child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          65, 15, 0, 0),
-                                      child: Text(
-                                        "ORGANIZATION PROFILE",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                        ),
+                                  child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(50, 15, 0, 0),
+                                    child: Text(
+                                      "ORGANIZATION PROFILE",
+                                      style: TextStyle(
+                                        fontSize: 16,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          65, 15, 0, 0),
-                                      child: Text("Organization Name"),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(50, 15, 0, 0),
+                                    child: Text("Organization Name"),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(50, 10, 0, 0),
+                                    child: Text(
+                                      details.organizationName,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          65, 10, 0, 0),
-                                      child: Text(
-                                        details.organizationName,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 25),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Text("Vat/Pan number"),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 5, 10, 5),
-                                                  ),
-                                                  Text(details.taXPAN),
-                                                ]),
-                                            Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Text("Organization phone"),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0, 5, 10, 0),
-                                                  ),
-                                                  Text(details
-                                                      .organizationNumber),
-                                                ])
-                                          ]),
-                                    )
-                                  ],
-                                ));
-                              }
-                            })
-                      ],
-                      ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, right: 28),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text("Vat/Pan number"),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      0, 5, 10, 5),
+                                                ),
+                                                Text(details.taXPAN),
+                                              ]),
+                                          Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text("Organization phone"),
+                                                Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      0, 5, 10, 5),
+                                                ),
+                                                Text(
+                                                    details.organizationNumber),
+                                              ])
+                                        ]),
+                                  )
+                                ],
+                              ));
+                            }
+                          })
+                    ],
+                  ),
                 ),
-                
-                
                 Container(
                   margin: EdgeInsets.all(8.0),
                   height: size.height / 1.9,
@@ -277,6 +256,7 @@ class ProfileState extends State<Profile> {
                       future: profile(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         print(snapshot.data);
+                        
                         ProfileModel details = snapshot.data;
                         
                         if (details == null) {
@@ -286,6 +266,8 @@ class ProfileState extends State<Profile> {
                         } else {
                         
                           return Container(
+
+                            
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -294,6 +276,7 @@ class ProfileState extends State<Profile> {
                                       const EdgeInsets.fromLTRB(20, 15, 0, 0),
                                   child: Text(
                                     "User Name",
+                                    
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -302,17 +285,27 @@ class ProfileState extends State<Profile> {
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                
-
                                   child: Container(
-                                     height: size.height / 20,
-                          width: size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xFFd6d6d6)),
+                                    height: size.height / 20,
+                                    width: size.width,
+                                    margin:
+                                        EdgeInsets.only(left: 20, right: 20),
+                                    // color: Colors.white,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        color: Color(0xFFd6d6d6)),
                                     child: TextFormField(
+                                      
+                                      decoration: new InputDecoration(
+                                        border: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        contentPadding: EdgeInsets.only(
+                                            left: 15,
+                                            bottom: 11,
+                                            top: 11,
+                                            right: 15),
+                                      ),
                                       controller: userName,
                                     ),
                                   ),
@@ -327,21 +320,28 @@ class ProfileState extends State<Profile> {
                                     ),
                                   ),
                                 ),
-                               
-                                 Container(
-                                    height: size.height / 20,
-                          width: size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xFFd6d6d6)),
-                                   child: TextFormField(
-                                      controller: userContact,
+                                Container(
+                                  height: size.height / 20,
+                                  width: size.width,
+                                  margin: EdgeInsets.only(left: 20, right: 20),
+                                  // color: Colors.white,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Color(0xFFd6d6d6)),
+                                  child: TextFormField(
+                                    controller: userEmail,
+                                    decoration: new InputDecoration(
+                                      border: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      contentPadding: EdgeInsets.only(
+                                          left: 15,
+                                          bottom: 11,
+                                          top: 11,
+                                          right: 15),
                                     ),
-                                 ),
-                                
-
+                                   // controller: userContact,
+                                  ),
+                                ),
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(20, 15, 0, 0),
@@ -354,20 +354,28 @@ class ProfileState extends State<Profile> {
                                     ),
                                   ),
                                 ),
-                              
-                                 Container(
-                                    height: size.height / 20,
-                          width: size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xFFd6d6d6)),
-                                   child: TextFormField(
-                                      controller: userEmail,
+                                Container(
+                                  height: size.height / 20,
+                                  width: size.width,
+                                  margin: EdgeInsets.only(left: 20, right: 20),
+                                  // color: Colors.white,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      color: Color(0xFFd6d6d6)),
+                                  child: TextFormField(
+                                    
+                                    decoration: new InputDecoration(
+                                      border: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      contentPadding: EdgeInsets.only(
+                                          left: 15,
+                                          bottom: 11,
+                                          top: 11,
+                                          right: 15),
                                     ),
-                                 ),
-                                
+                                    controller: userContact,
+                                  ),
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 10, left: 15, right: 15),
@@ -404,5 +412,8 @@ class ProfileState extends State<Profile> {
               ]))),
     );
   }
+  
 
 }
+
+
