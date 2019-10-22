@@ -16,7 +16,7 @@ class NavBar extends State<Nav> {
     return Drawer(
       child: ListView(children: <Widget>[
         Container(
-          height: size.height/3.1,
+          height: size.height/2.96,
           width: size.width,
           child: DrawerHeader(
 
@@ -59,24 +59,7 @@ class NavBar extends State<Nav> {
             
           ),
         ),
-        Center(
-          child: Container(
-            
-
-            margin: EdgeInsets.all(8.0),
-           // color: Colors.blue,
-           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color(0xFFA551F8)
-            ),
-           
-              padding: EdgeInsets.fromLTRB(60,10,60, 10),
-              child: Text(
-                "CustomerId:",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
+       
         
         Container(
           padding: EdgeInsets.only(top: 30),
@@ -122,28 +105,7 @@ class NavBar extends State<Nav> {
                     MaterialPageRoute(builder: (context) => AllNotification()));
               }),
         ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
-          child: ListTile(
-              title: Row(
-                children: <Widget>[
-                    Image(
-                  image: new AssetImage("assets/setting.png"),
-                 
-                ),
-                 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text('Settings',style: TextStyle(fontSize: 17, fontStyle: FontStyle.normal, fontWeight: FontWeight.normal)),
-                  ),
-                ],
-              ),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Invoice()));
-              }),
-        ),
+
         Container(
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey.shade100))),

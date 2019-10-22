@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:snbiz/Model_code/UserAccount.dart';
 import 'package:snbiz/Model_code/profile.dart';
 //import 'package:snbiz/Model_code/profilemodel.dart';
 import 'package:snbiz/src_code/static.dart';
@@ -21,32 +22,10 @@ class ProfileState extends State<Profile> {
 
   final ProfileModel details;
   ProfileState(this.details);
-   final userName = TextEditingController();
-  final userEmail = TextEditingController();
-  final userContact = TextEditingController();
+  TextEditingController userName;
+  var userEmail = TextEditingController();
+  var userContact = TextEditingController();
   File _image;
-
-  Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    // var image2 = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-      url = image.path;
-      //  _image= image2;
-    });
-  }
-
-  Future getImage2() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    // var image2 = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-      //  _image= image2;
-    });
-  }
-
   Future<ProfileModel> profile() async {
 
     try {
@@ -69,6 +48,43 @@ class ProfileState extends State<Profile> {
     } catch (e) {
       print(e);
       return null;
+    }
+  }
+
+  Future<UserAccount> UpdateDetails () async{
+
+     UserAccount userAccount;
+     userAccount.userAccountId = details.userAccountId;
+     userAccount.fullName = details.fullName;
+     userAccount.contactNumber = details.contactNumber;
+     userAccount.email = details.email;
+     userAccount.organizationId = details.organizationId;
+     userAccount.requestTime = details.requestTime;
+     userAccount.changeRequest= details.changeRequest;
+     userAccount.dateCreated = details.dateCreated;
+     userAccount.rowstamp = details.rowstamp;
+     userAccount.isValidated = details.isValidated;
+     userAccount.userTypeId = details.userTypeId;
+     userAccount.password = details.password;
+     userAccount.deleted = details.deleted;
+     
+    String jsonbody = jsonEncode(userAccount);
+
+    try {
+      http.Response data = await http.put(
+          Uri.encodeFull(StaticValue.baseUrl + "api/UserAccoounts/" +
+             details.userAccountId.toString() 
+              ),
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: jsonbody);
+          if(data.statusCode == 500){
+            
+          }
+    } catch (e) {
+      Text("Server error!!");
     }
   }
 
@@ -109,13 +125,12 @@ class ProfileState extends State<Profile> {
       body: SingleChildScrollView(
           child: Container(
               margin: EdgeInsets.all(8.0),
-              height: size.height,
               width: size.width,
               color: Color(0xFFF4EAEA),
               child: Column(children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(8.0),
-                  height: size.height / 2.2,
+                  height: size.height / 1.7,
                   width: size.width,
 
                   // margin: EdgeInsets.all(8),
@@ -132,9 +147,7 @@ class ProfileState extends State<Profile> {
                           padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
                           child: InkWell(
                             splashColor: Colors.yellow,
-                            onLongPress: () {
-                              _showDialog();
-                            },
+                            
                             child: CircleAvatar(
                                 radius: 50,
                                 backgroundColor: Colors.blueGrey,
@@ -167,11 +180,22 @@ class ProfileState extends State<Profile> {
                                 (BuildContext context, AsyncSnapshot snapshot) {
                               print(snapshot.data);
                              ProfileModel details = snapshot.data;
-                              if (snapshot.data == null) {
+                              if (details== null) {
                                 return Container(
                                     child: Center(
                                         child: CircularProgressIndicator()));
                               } else {
+                                if(userName == null){
+                                    userName = new TextEditingController(text:details.fullName);
+                                    userEmail.text = details.email;
+                                  userContact.text = details.contactNumber;
+                                }
+                                else{
+                                   details.email = userEmail.text;
+                                   details.contactNumber = userContact.text;
+                                  details.fullName = userName.text;
+                                }
+                        
                                 return Container(
 //color: Colors.blueGrey,
 
@@ -244,7 +268,7 @@ class ProfileState extends State<Profile> {
                 
                 Container(
                   margin: EdgeInsets.all(8.0),
-                  height: size.height / 2.2,
+                  height: size.height / 1.9,
                   width: size.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
@@ -254,14 +278,13 @@ class ProfileState extends State<Profile> {
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         print(snapshot.data);
                         ProfileModel details = snapshot.data;
-                        userName.text = details.fullName;
-                        userEmail.text = details.email;
-                        userContact.text = details.contactNumber;
-                        if (snapshot.data == null) {
+                        
+                        if (details == null) {
                           return Container(
                               child:
                                   Center(child: CircularProgressIndicator()));
                         } else {
+                        
                           return Container(
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -382,39 +405,4 @@ class ProfileState extends State<Profile> {
     );
   }
 
-  void _showDialog() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Center(child: new Text("Change Profile Photo")),
-          content: Container(
-            height: 75,
-            width: 50,
-            child: ListView(
-              children: <Widget>[
-                Column(children: <Widget>[
-                  InkWell(
-                      onTap: () {
-                        getImage2();
-                        Navigator.pop(context);
-                      },
-                      child: new Text("Upload from gallery")),
-                  Divider(),
-                  InkWell(
-                      onTap: () {
-                        getImage();
-                        Navigator.pop(context);
-                      },
-                      child: new Text("Upload from Camera"))
-                ])
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 }

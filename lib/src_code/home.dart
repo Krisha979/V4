@@ -230,7 +230,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                children: <Widget>[
                  Container(           
                           margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                         padding: EdgeInsets.fromLTRB(25, 30, 30, 30),
+                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -283,7 +283,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                children: <Widget>[
                  Container(
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(25, 30, 30, 30),
+                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -365,17 +365,17 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 final carousel1 = CarouselSlider(
   items: widgets,
-   height:175,
+   height:400,
   aspectRatio: 16/9,
-   viewportFraction: 0.93,
+   viewportFraction: 0.99,
    initialPage: 0,
    enableInfiniteScroll: true,
    reverse: false,
    autoPlay: true,
    enlargeCenterPage: false,
    autoPlayInterval: Duration(seconds: 3),
-   autoPlayAnimationDuration: Duration(milliseconds: 800),
-   pauseAutoPlayOnTouch: Duration(seconds: 5),
+   autoPlayAnimationDuration: Duration(milliseconds: 2000),
+   pauseAutoPlayOnTouch: Duration(seconds: 4),
    scrollDirection: Axis.horizontal,
 );
 
@@ -569,10 +569,10 @@ final carousel1 = CarouselSlider(
                 child: Wrap(
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                      height: size.height / 5.0,
+                      margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
+                      height: size.height / 4.6,
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(0.0),
                           child: carousel1),
                     ),
                   ],
