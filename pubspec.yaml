@@ -84,6 +84,9 @@ flutter:
    - assets/contact.png
    - assets/logout.png
    - assets/new_meeting.png
+   - assets/mainlogo.png
+   - assets/due.png
+   - assets/invoice1.png
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

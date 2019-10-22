@@ -79,179 +79,148 @@ class MultipleImageState extends State<MultipleImage> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Preview Image",
+        appBar: AppBar(
+          title: Text(
+            "Preview Image",
+            style: TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: Colors.white),
+          ),
+          backgroundColor: Color(0xFF9C38FF),
         ),
-        backgroundColor: Color(0xFF9C38FF),
-      ),
-      body:  Container(
-   
+        body: Container(
+          color: Color(0xFFE0CECE),
 
-            color: Color(0xFFE0CECE),
+          //  margin: EdgeInsets.all(10.0),
 
-            //  margin: EdgeInsets.all(10.0),
-
-            child: Column(
-              children: <Widget>[
-                Container(
-                    height: size.height-200,
-                    width: size.width,
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color(0xFFFFFFFF),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10)
-                        )
-
-                        ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(right: 100, top: 20),
-                        child: Text(
-                          "UPLOAD IMAGES & FILES",
-                          style:
-                              TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-
-                      
-                      Flexible(
-                           child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: StaticValue.filenames.length,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              return ListTile(
-                                title: Column(
+          child: Column(children: <Widget>[
+            Container(
+              height: size.height - 200,
+              width: size.width,
+              margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              decoration: BoxDecoration(
+                  color: Color(0xFFFFFFFF),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10))),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 100, top: 20),
+                    child: Text(
+                      "UPLOAD IMAGES & FILES",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Flexible(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: StaticValue.filenames.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return ListTile(
+                            title: Column(
+                              children: <Widget>[
+                                Row(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 20),
-                                          child: new Image(
-                                              image: new AssetImage("assets/pdf.png"),
-                                              height: size.height / 8,
-                                              width: size.width / 8),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                        ),
-                                        Flexible(
-                                          child: Text(
-                                            StaticValue.filenames[index].substring(
-                                                StaticValue.filenames[index]
-                                                        .lastIndexOf('/') +
-                                                    1),
-                                            style: TextStyle(
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal),
-                                          ),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 20),
+                                      child: new Image(
+                                          image:
+                                              new AssetImage("assets/pdf.png"),
+                                          height: size.height / 8,
+                                          width: size.width / 8),
                                     ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 10, 0, 0),
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        StaticValue.filenames[index].substring(
+                                            StaticValue.filenames[index]
+                                                    .lastIndexOf('/') +
+                                                1),
+                                        style: TextStyle(
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                    ),
+                                  ],
+                                ),
 
-                                    //Divider(height: 0,color: Color(0xFFB162F7),
-                                    //)
-                                    /* SizedBox(
+                                //Divider(height: 0,color: Color(0xFFB162F7),
+                                //)
+                                /* SizedBox(
                                                 height: 10,
                                                 width: 10,
                                                 
                                               )*/
 
-                                    new Container(
-                                      height: 1,
-                                      width: size.width,
-                                      color: Color(0xFFB162F7),
-                                      margin: const EdgeInsets.only(
-                                          left: 2.0, right: 2.0),
-                                    ),
-                                  ],
+                                new Container(
+                                  height: 1.5,
+                                  width: size.width,
+                                  color: Color(0xFFB162F7),
+                                  margin: const EdgeInsets.only(
+                                      left: 2.0, right: 2.0),
                                 ),
-                              );
-                            }),
-                      ),
-                     
-                    ],
+                              ],
+                            ),
+                          );
+                        }),
                   ),
-                        
-                        
-                      
-                  
-                       
-                  
-                  
-                     
-                     
-                    
-                    
-                    ),
-
-                    Container(
-                     // color: Colors.white,
-                      height: 90,
-                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      decoration: BoxDecoration(
-                       borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10.0),
-                             bottomRight: Radius.circular(10.0)
-                       ),
-                       color: Colors.white
-                      ),
-                      
-                     child: Column(
-                       mainAxisAlignment: MainAxisAlignment.end,
-                       children: <Widget>[
-                         Padding(
-                                    
-
-                                  padding: const EdgeInsets.only( left: 15, right: 15),
-                                  
-                                 
-                                       child: MaterialButton(
-                                     
-                                          onPressed: () async {
-                                            showDialog(
-                                                context: context,
-                                                barrierDismissible: false,
-                                                builder: (BuildContext context) {
-                                                  return Center(
-                                                    child: CircularProgressIndicator(),
-                                                  );
-                                                });
-                                            await upload(url);
-                                            Navigator.pop(context);
-                                            Navigator.pop(context);
-                                          },
-                                          textColor: Colors.white,
-                                          color: Color(0xFFB56AFF),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0)),
-                                          child: Center(
-                                            child: Text('Upload',
-                                                style: TextStyle(fontSize: 16)),
-                                          )),
-                                    
-                                  ),
-                       ],
-                     ),
-                    )
-
-                    
-              ]
+                ],
+              ),
             ),
-      )
-    );
-                
-                
+            Container(
+              // color: Colors.white,
+              height: 90,
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10.0),
+                      bottomRight: Radius.circular(10.0)),
+                  color: Colors.white),
 
-      
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: MaterialButton(
+                        onPressed: () async {
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              });
+                          await upload(url);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        textColor: Colors.white,
+                        color: Color(0xFFB56AFF),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Center(
+                          child: Text('Upload', style: TextStyle(fontSize: 16)),
+                        )),
+                  ),
+                ],
+              ),
+            )
+          ]),
+        ));
 
-      /* FlatButton(
+    /* FlatButton(
                   
                   onPressed: () async{
                   
@@ -275,6 +244,5 @@ class MultipleImageState extends State<MultipleImage> {
                   child: Text("Upload",
                   style: TextStyle(color: Colors.white),),
                 )*/
-    
   }
 }
