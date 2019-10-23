@@ -16,7 +16,7 @@ class NavBar extends State<Nav> {
     return Drawer(
       child: ListView(children: <Widget>[
         Container(
-          height: size.height / 2.8,
+          height: size.height/2.96,
           width: size.width,
           child: DrawerHeader(
             decoration: BoxDecoration(
@@ -53,21 +53,8 @@ class NavBar extends State<Nav> {
             ),
           ),
         ),
-        Center(
-          child: Container(
-            margin: EdgeInsets.all(8.0),
-            // color: Colors.blue,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Color(0xFFA551F8)),
-
-            padding: EdgeInsets.fromLTRB(80, 8, 80, 8),
-            child: Text(
-              "CustomerId:",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
+       
+        
         Container(
           padding: EdgeInsets.only(top: 20),
           decoration: BoxDecoration(
@@ -123,33 +110,6 @@ class NavBar extends State<Nav> {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AllNotification()));
-              }),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
-          child: ListTile(
-              title: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Image(
-                      image: new AssetImage("assets/setting.png"),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Text('Settings',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal)),
-                  ),
-                ],
-              ),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Invoice()));
               }),
         ),
         Container(
