@@ -16,12 +16,12 @@ class Nav extends StatefulWidget {
 class NavBar extends State<Nav> {
         final storage = new FlutterSecureStorage();
         removeStaticValue(){
-          StaticValue.orgId==null;
+  // StaticValue.orgId==null;
    StaticValue.orgName==null;
-  StaticValue.logo==null;
-  StaticValue.userRowstamp==null;
-  StaticValue.orgRowstamp==null;
- StaticValue.meetingstatusId=3;
+   StaticValue.logo==null;
+   StaticValue.userRowstamp==null;
+   StaticValue.orgRowstamp==null;
+ //  StaticValue.meetingstatusId=3;
         }
 
   @override
