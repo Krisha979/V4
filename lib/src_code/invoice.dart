@@ -140,7 +140,7 @@ class _InvoiceState extends State<Invoice> {
                                                 children: <Widget>[
                                                   Flexible(
                                                     child: Text(
-                                                      "bhawana",
+                                                      name,
                                                       style: TextStyle(
                                                           fontStyle:
                                                               FontStyle.normal,

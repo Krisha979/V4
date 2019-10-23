@@ -240,56 +240,7 @@ class _CreateState extends State<Create> {
                               )),
                             
 
-                 /*
-                  Row(children: <Widget>[
-                              Text(
-                                "Reminder Time",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 13,
-                                  color: Color(0XFFA19F9F),
-                                ),
-                              ),
-                            ]),
-                            
-                            new Theme(
-                              data: new ThemeData(
-                                hintColor: Color(0xFFFBF4F4),
-                              ),
-                              
-                                  child: DateTimeField(
-                                controller: reminderTime,
-                                format: format,
-                                decoration: new InputDecoration(
-                                  fillColor: Color(0xFFFBF4F4),
-                                  filled: true,
-                                  border: new OutlineInputBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                                onShowPicker: (context, currentValue) async {
-                                  final date = await showDatePicker(
-                                      context: context,
-                                      firstDate: DateTime(1900),
-                                      initialDate:
-                                          currentValue ?? DateTime.now(),
-                                      lastDate: DateTime(2100));
-                                  if (date != null) {
-                                    final time = await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.fromDateTime(
-                                          currentValue ?? DateTime.now()),
-                                    );
-                                    return DateTimeField.combine(date, time);
-                                    
-                                    
-                                  } else {
-                                    return currentValue;
-                                  }
-                                },
-                              )),
-              */
+                  
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[
@@ -304,7 +255,8 @@ class _CreateState extends State<Create> {
         return AlertDialog(
           content: new Text("Please enter all the values."),);});
                                       
-                                      }else{
+                                      }
+                                      else{
                       showDialog(
                         context: context,
                         builder: (BuildContext context){

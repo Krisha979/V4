@@ -17,7 +17,7 @@ class Meeting extends StatefulWidget{
 
 class MeetingState extends State<Meeting>{
   int counts;
-  String switchText = 'Latest Meeting';
+  String switchText;
   bool isSwitched = false;
   bool isLoading = false;
    List <MeetingInfo> meetinglist =[];
@@ -67,13 +67,13 @@ setState(() {
 if(StaticValue.togglestate == true){
     isSwitched = true;
     
-    switchText = 'Latest Meeting';
+    switchText = 'Upcomming Meeting';
     var sorted = await upcomingsortedlist(meeting);
     return sorted;
 }
 else{
   isSwitched = false;
-  switchText = 'Upcomming Meeting';
+  switchText = 'Latest Meeting';
   return meeting;
 }
 
@@ -148,7 +148,8 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                    
                                 children: <Widget>[
                                   Text("All Meetings"),
                                   Text('$counts'),
@@ -228,33 +229,29 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                              decoration: new BoxDecoration(
                              color: Colors.white,
                              borderRadius: new BorderRadius.circular(15.0),
-                            // boxShadow: [
-                            //  BoxShadow(
-                            //         blurRadius: 2.0,
-                            //         color: Colors.black.withOpacity(0.5),
-                            //         offset: Offset(0.0, 0.0),
-                            //       ),
-                            //     ],
+                           
                              ),
                              child: new Row(
                                
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  
-                                  children: <Widget>[
-
+                                Flexible(
+                                                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     
-                                    Text(formattedtime, textAlign: TextAlign.left, 
-                                    style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
-                                   Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
-                                   
-                                    Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                     Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                  ],
+                                    children: <Widget>[
 
+                                      
+                                      Text(formattedtime, textAlign: TextAlign.left, 
+                                      style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
+                                     Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+                                     
+                                      Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                       Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                    ],
+
+                                  ),
                                 ),
                       
                                // button color

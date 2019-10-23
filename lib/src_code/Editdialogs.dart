@@ -30,7 +30,7 @@ class AddEditDialogState extends State<AddEditDialog> {
 
   int _statusid;
   Future<void> editData() async {
-    var mt = meetingreminderTime.text.replaceAll(new RegExp(r"\ "),"T");
+    var mt = meetingTime.text.replaceAll(new RegExp(r"\ "),"T");
     details.meetingTime = mt;
     details.location = meetingLocation.text;
     details.agenda = meetingAgenda.text;
@@ -240,57 +240,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                               )),
                             
 
-/*
-                            
-                            Row(children: <Widget>[
-                              Text(
-                                "Reminder Time",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 13,
-                                  color: Color(0XFFA19F9F),
-                                ),
-                              ),
-                            ]),
-                            
-                            new Theme(
-                              data: new ThemeData(
-                                hintColor: Color(0xFFFBF4F4),
-                              ),
-                              
-                                  child: DateTimeField(
-                                controller: meetingreminderTime,
-                                format: format,
-                                decoration: new InputDecoration(
-                                  fillColor: Color(0xFFFBF4F4),
-                                  filled: true,
-                                  border: new OutlineInputBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                                onShowPicker: (context, currentValue) async {
-                                  final date = await showDatePicker(
-                                      context: context,
-                                      firstDate: DateTime(1900),
-                                      initialDate:
-                                          currentValue ?? DateTime.now(),
-                                      lastDate: DateTime(2100));
-                                  if (date != null) {
-                                    final time = await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.fromDateTime(
-                                          currentValue ?? DateTime.now()),
-                                    );
-                                    return DateTimeField.combine(date, time);
-                                    
-                                    
-                                  } else {
-                                    return currentValue;
-                                  }
-                                },
-                              )),
-                              */
+
                           
                             Row(
                                 mainAxisAlignment:
@@ -370,6 +320,8 @@ class AddEditDialogState extends State<AddEditDialog> {
                                       await editData();
                                       Navigator.pop(context);
                                       Navigator.pop(context);
+                                      Navigator.pop(context);
+                                     
                                      
                                       }
 
