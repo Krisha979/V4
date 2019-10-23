@@ -186,7 +186,7 @@ class ProfileState extends State<Profile> {
                                 children: <Widget>[
                                   Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(50, 15, 0, 0),
+                                        const EdgeInsets.fromLTRB(10, 15, 0, 0),
                                     child: Text(
                                       "ORGANIZATION PROFILE",
                                       style: TextStyle(
@@ -196,12 +196,12 @@ class ProfileState extends State<Profile> {
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(50, 15, 0, 0),
+                                        const EdgeInsets.fromLTRB(10, 15, 0, 0),
                                     child: Text("Organization Name"),
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(50, 10, 0, 0),
+                                        const EdgeInsets.fromLTRB(10, 10, 0, 0),
                                     child: Text(
                                       details.organizationName,
                                     ),
@@ -220,7 +220,7 @@ class ProfileState extends State<Profile> {
                                                 Text("Vat/Pan number"),
                                                 Padding(
                                                   padding: EdgeInsets.fromLTRB(
-                                                      0, 5, 10, 5),
+                                                    10, 5, 10, 5),
                                                 ),
                                                 Text(details.taXPAN),
                                               ]),
@@ -231,7 +231,7 @@ class ProfileState extends State<Profile> {
                                                 Text("Organization phone"),
                                                 Padding(
                                                   padding: EdgeInsets.fromLTRB(
-                                                      0, 5, 10, 5),
+                                                      10, 5, 10, 5),
                                                 ),
                                                 Text(
                                                     details.organizationNumber),

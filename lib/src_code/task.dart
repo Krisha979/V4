@@ -157,13 +157,7 @@ catch(e){
                          decoration: new BoxDecoration(
                          color: Colors.white,
                          borderRadius: new BorderRadius.circular(15.0),
-                         boxShadow: [
-                         BoxShadow(
-                                blurRadius: 2.0,
-                                color: Colors.black.withOpacity(0.5),
-                                offset: Offset(0.0, 0.5),
-                              ),
-                            ],
+                        
                          ),
                          child: new Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:snbiz/src_code/Summary.dart';
 import 'package:snbiz/src_code/allnotification.dart';
 import 'package:snbiz/src_code/invoice.dart';
+import 'package:snbiz/src_code/login.dart';
 import 'package:snbiz/src_code/profile.dart';
+import 'package:snbiz/src_code/static.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Nav extends StatefulWidget {
   @override
@@ -10,50 +14,80 @@ class Nav extends StatefulWidget {
 }
 
 class NavBar extends State<Nav> {
+        final storage = new FlutterSecureStorage();
+        removeStaticValue(){
+          StaticValue.orgId==null;
+   StaticValue.orgName==null;
+  StaticValue.logo==null;
+  StaticValue.userRowstamp==null;
+  StaticValue.orgRowstamp==null;
+ StaticValue.meetingstatusId=3;
+        }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Drawer(
       child: ListView(children: <Widget>[
         Container(
-          height: size.height/2.96,
+          height: size.height/3,
           width: size.width,
           child: DrawerHeader(
             decoration: BoxDecoration(
               color: Color(0xFFFAE8E8),
             ),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                new Image(
-                  image: new AssetImage("assets/mainlogo.png"),
-                  height: 160.0,
-                  width: 160.0,
-                ),
+               Image
+               (image: AssetImage("assets/snbizlogo.png"), 
+               height: size.height/7,
+               width: 140),
+                                Padding(padding: EdgeInsets.only(top: 5),),
+                                
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+               
                 Text(
                   "SN Business Solutions",
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
-                      fontSize: 18.0),
+                      fontSize: 20.0),
                 ),
                 Text(
                   "Pvt. Ltd",
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
-                      fontSize: 14.0),
+                      fontSize: 16.0),
                 ),
                 Text("Taking business to new height", style: TextStyle(fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal, fontSize: 12,),),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0),
-                ),
+                
               ],
             ),
+              ])
           ),
         ),
        
+       Center(
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  decoration: new BoxDecoration(
+                          color: const Color(0xFF9C38FF),
+                          
+                           borderRadius: new BorderRadius.circular(5.0),
+                  ),
+                  
+
+                child: Text('Customer Id: '+StaticValue.orgId.toString(),
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal)),
+          
+         ),
+       ),
         
         Container(
           padding: EdgeInsets.only(top: 20),
@@ -63,23 +97,24 @@ class NavBar extends State<Nav> {
               title: Row(
                 children: <Widget>[
                   
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Image(
-                      image: new AssetImage("assets/profile.png"),
-                    ),
-                  ),
                 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(
+                    Icon(
+      Icons.person,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),
+              
+                Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                  
+                    Text(
                       'Profile',
                       style: TextStyle(
                           fontSize: 18,
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.normal),
                     ),
-                  ),
+                  
                 ],
               ),
               onTap: () {
@@ -93,56 +128,97 @@ class NavBar extends State<Nav> {
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Image(
-                    image: new AssetImage("assets/snbiz.png"),
-                    
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 2),
-                    child: Text('About SN Business',
+                   Icon(
+      Icons.info_outline,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),
+                  
+                  
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                   Text('About SN Business',
                         style: TextStyle(
                             fontSize: 18,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.normal)),
-                  ),
+                  
                 ],
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllNotification()));
+                //launch('https://snbiznepal.com');
+    
               }),
         ),
+
         Container(
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Image(
-                      image: new AssetImage("assets/logout.png"),
-                      // height: 30.0,
-                      //width: 30.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25),
-                    child: Text('Logout',
+                  Icon(
+      Icons.phone,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                  
+                    Text('Contact List',
                         style: TextStyle(
                             fontSize: 18,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.normal)),
-                  ),
+                  
                 ],
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Summary()));
+              //   Navigator.push(context,
+              //       MaterialPageRoute(builder: (context) => AllNotification()));
+               }),
+        ),
+
+      
+
+
+        Container(
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
+          child: ListTile(
+              title: Row(
+                children: <Widget>[
+                 Icon(
+      Icons.compare_arrows,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),
+                  
+                  Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                  
+                    Text('Logout',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal)),
+                  
+                ],
+              ),
+              onTap: () async {
+                 await storage.delete(key: "Password"); 
+                // storage.write(key:"Password",value: 
+                 //'        ');
+                 // await storage.delete(key: "Email");
+                 removeStaticValue();
+                 
+                Navigator.pop(context); Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+                 
+                //authenticationBloc.dispatch(LoggedOut()); Navigator.pop(context); Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
               }),
         ),
         Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
+         
           mainAxisAlignment: MainAxisAlignment.start,
 
           children: <Widget>[
