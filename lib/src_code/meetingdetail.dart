@@ -21,8 +21,7 @@ class MeetingDetail extends StatefulWidget {
 }
 
 class MeetingDetailState extends State<MeetingDetail> {
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-    new GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final MeetingInfo details;
   MeetingDetailState(this.details);
@@ -91,6 +90,7 @@ class MeetingDetailState extends State<MeetingDetail> {
                       },
                       fullscreenDialog: true));
                 } else {
+      
                     await _alert(context, "Information", "Sorry you cannot edit this meeting. Only meetings created by yourself can be edited.");
                 }
               },

@@ -2,59 +2,32 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:snbiz/Model_code/UserAccount.dart';
 import 'package:snbiz/Model_code/profile.dart';
 //import 'package:snbiz/Model_code/profilemodel.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
+ final ProfileModel detail;
+ const Profile({Key key, this.detail}):super(key:key);
   
   @override
-  ProfileState createState() => new ProfileState();
+  ProfileState createState() => new ProfileState(this.detail);
+
 }
 
 String url;
 
 class ProfileState extends State<Profile> {
   
-  
- // TextEditingController userName;
-    final userName = new TextEditingController();
-     TextEditingController userContact;
-     TextEditingController userEmail;
 
-    
-
-  void initState(){
-    super.initState();
-  
-  }
-
- 
- 
+  final ProfileModel details;
+  ProfileState(this.details);
+  TextEditingController userName;
+  final userEmail = TextEditingController();
+  final userContact = TextEditingController();
   File _image;
-
-  Future getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    // var image2 = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-     // url = image.path;
-      //  _image= image2;
-    });
-  }
-
-  Future getImage2() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    // var image2 = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    setState(() {
-      _image = image;
-      //  _image= image2;
-    });
-  }
-
   Future<ProfileModel> profile() async {
     try {
       http.Response data = await http.get(
@@ -82,6 +55,47 @@ class ProfileState extends State<Profile> {
     }
   }
 
+  Future<UserAccount> UpdateDetails () async{
+
+     UserAccount userAccount;
+     userAccount.userAccountId = details.userAccountId;
+     userAccount.fullName = details.fullName;
+     userAccount.contactNumber = details.contactNumber;
+     userAccount.email = details.email;
+     userAccount.organizationId = details.organizationId;
+     userAccount.requestTime = details.requestTime;
+     userAccount.changeRequest= details.changeRequest;
+     userAccount.dateCreated = details.dateCreated;
+     userAccount.rowstamp = details.rowstamp;
+     userAccount.isValidated = details.isValidated;
+     userAccount.userTypeId = details.userTypeId;
+     userAccount.password = details.password;
+     userAccount.deleted = details.deleted;
+     
+    String jsonbody = jsonEncode(userAccount);
+
+    try {
+      http.Response data = await http.put(
+          Uri.encodeFull(StaticValue.baseUrl + "api/UserAccoounts/" +
+             details.userAccountId.toString() 
+              ),
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: jsonbody);
+          if(data.statusCode == 500){
+            
+          }
+    } catch (e) {
+      Text("Server error!!");
+    }
+  }
+
+ @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,53 +110,75 @@ class ProfileState extends State<Profile> {
       body: SingleChildScrollView(
           child: Container(
               margin: EdgeInsets.all(8.0),
-              height: size.height,
               width: size.width,
               color: Color(0xFFF4EAEA),
               child: Column(children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(8.0),
-                  height: size.height / 2.2,
+                  height: size.height / 1.7,
                   width: size.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: Color(0xFFFFFFFF)),
                   child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
-                        child: InkWell(
-                          splashColor: Colors.yellow,
-                          onLongPress: () {
-                            _showDialog();
-                          },
-                          child: CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.blueGrey,
-                            child: ClipOval(
-                              child: SizedBox(
-                                height: size.height / 3.5,
-                                width: size.width / 3.5,
-                               child: (_image!=null)?Image.file(_image, fit: BoxFit.cover):(_image==null)? Icon(Icons.person,):Image.network(StaticValue.logo, fit:BoxFit.cover)
-                              ),
-                            ),
+
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                          child: InkWell(
+                            splashColor: Colors.yellow,
+                            
+                            child: CircleAvatar(
+                                radius: 50,
+                                backgroundColor: Colors.blueGrey,
+                                child: ClipOval(
+                                    child: SizedBox(
+                                  height: size.height / 4,
+                                  width: size.width / 4,
+                                  // child: Image.network(StaticValue.logo),
+                                  child: StaticValue.logo == null
+                                      ? Icon(
+                                          Icons.person,
+                                          size: 70,
+                                          color: Colors.white,
+                                        )
+                                      : StaticValue.logo != null
+                                          ? Image.network(StaticValue.logo,
+                                              fit: BoxFit.cover)
+                                          : (Image.file(
+                                              _image,
+                                              fit: BoxFit.cover,
+                                            )),
+                                ))),
                           ),
                         ),
-                      ),
-                      Text("kathmandu codes pvt.ltd",
-                          style: TextStyle(fontSize: 16)),
-                      FutureBuilder(
-                          future: profile(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            print(snapshot.data);
-                            ProfileModel details = snapshot.data;
-                            if (snapshot.data == null) {
-                              return Container(
-                                  child: Center(
-                                      child: CircularProgressIndicator()));
-                            } else {
-                              return Container(
+                        Text("kathmandu codes pvt.ltd",
+                            style: TextStyle(fontSize: 18)),
+                        FutureBuilder(
+                            future: profile(),
+                            builder:
+                                (BuildContext context, AsyncSnapshot snapshot) {
+                              print(snapshot.data);
+                             ProfileModel details = snapshot.data;
+                              if (details== null) {
+                                return Container(
+                                    child: Center(
+                                        child: CircularProgressIndicator()));
+                              } else {
+                                if(userName == null){
+                                    userName = new TextEditingController(text:details.fullName);
+                                    userEmail.text = details.email;
+                                  userContact.text = details.contactNumber;
+                                }
+                                else{
+                                   details.email = userEmail.text;
+                                   details.contactNumber = userContact.text;
+                                  details.fullName = userName.text;
+                                }
+                        
+                                return Container(
 //color: Colors.blueGrey,
 
                                   child: Column(
@@ -211,7 +247,7 @@ class ProfileState extends State<Profile> {
                 ),
                 Container(
                   margin: EdgeInsets.all(8.0),
-                  height: size.height / 2.2,
+                  height: size.height / 1.9,
                   width: size.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
@@ -222,17 +258,13 @@ class ProfileState extends State<Profile> {
                         print(snapshot.data);
                         
                         ProfileModel details = snapshot.data;
-                        userName.text=details.fullName;
-                       //userName.text = details.fullName;
-                       // userEmail.text = details.email;
-                        //userContact.text = details.contactNumber;
-                       // userName.text = details.fullName;
-                      
+                        
                         if (details == null) {
                           return Container(
                               child:
                                   Center(child: CircularProgressIndicator()));
                         } else {
+                        
                           return Container(
 
                             
@@ -382,39 +414,6 @@ class ProfileState extends State<Profile> {
   }
   
 
-  void _showDialog() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: Center(child: new Text("Change Profile Photo")),
-          content: Container(
-            height: 75,
-            width: 50,
-            child: ListView(
-              children: <Widget>[
-                Column(children: <Widget>[
-                  InkWell(
-                      onTap: () {
-                        getImage2();
-                        Navigator.pop(context);
-                      },
-                      child: new Text("Upload from gallery")),
-                  Divider(),
-                  InkWell(
-                      onTap: () {
-                        getImage();
-                        Navigator.pop(context);
-                      },
-                      child: new Text("Upload from Camera"))
-                ])
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 }
+
+
