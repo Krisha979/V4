@@ -79,7 +79,8 @@ class MeetingDetailState extends State<MeetingDetail> {
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: Text("Details"),
+          title: Text("Details",style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+            backgroundColor: const Color(0xFF9C38FF),
           actions: <Widget>[
             InkWell(
               onTap: () async {
@@ -107,7 +108,7 @@ class MeetingDetailState extends State<MeetingDetail> {
             child: Container(
               
               height: size.height,
-              color: Color(0xFFd6d6d6),
+              color: Color(0xFFF4EAEA),
               child: Container(
                 constraints: new BoxConstraints(minHeight: size.height),
                 

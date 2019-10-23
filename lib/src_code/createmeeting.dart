@@ -4,7 +4,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/createMeetings.dart';
-import 'package:date_format/date_format.dart';
 import 'package:snbiz/src_code/static.dart';
 //import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
@@ -70,14 +69,15 @@ class _CreateState extends State<Create> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text("create Meeting"),
+        title: Text("create Meeting", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+         backgroundColor: const Color(0xFF9C38FF),
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
           Container(
            height: size.height,
-                    color: Color(0xFFd6d6d6),
+                    color: Color(0xFFF4EAEA),
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),

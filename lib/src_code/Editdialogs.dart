@@ -74,13 +74,15 @@ class AddEditDialogState extends State<AddEditDialog> {
     Size size = MediaQuery.of(context).size;
     return new Scaffold(
        appBar: AppBar(
-          title: Text("Details"),
+          title: Text("Details",style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+          ),
+           backgroundColor: const Color(0xFF9C38FF),
        ),
         body: SingleChildScrollView(
             child: Center(
                 child: Container(
                     height: size.height,
-                    color: Color(0xFFd6d6d6),
+                    color: Color(0xFFF4EAEA),
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),

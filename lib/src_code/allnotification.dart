@@ -83,31 +83,51 @@ class AllNotificationState extends State<AllNotification> {
               height: size.height / 4.6,
               width: size.width,
               margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white,
-              ),
+              decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(10.0),
+                           boxShadow: [
+                           BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(0.5, 0.5),
+                                ),
+                              ],
+                           ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text("All Notification"),
-                       Text('$notificationNumber'),
-                      //  Text('$invoicenumber'),
-                      Row(
-                        children: <Widget>[
-                          Image(
-                            image: new AssetImage("assets/due.png"),
-                          ),
+                  
+                  
+                     Column(
+                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30),
+                          child: Text("ALL NOTIFICATIONS",style: TextStyle(
+                                fontSize: 18, color: Color(0xFFA19F9F)),),
+                        ),
+                         Text('$notificationNumber'),
+                        //  Text('$invoicenumber'),
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.timer),
 
-                          Text("Last Notification")
-                        ],
-                      ),
-                      Text('$date'),
-                    ],
-                  ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 10
+                              ),
+                              child: Text("Last Notification",style: TextStyle(
+                                  fontSize: 14, color: Color(0xFFA19F9F)),),
+                            )
+                          ],
+                        ),
+                       // Text('$date'),
+                       Text("Date")
+                      ],
+                    ),
+                  
                   Image(
                     image: new AssetImage("assets/notification.png"),
                     height: size.height / 9,
@@ -117,43 +137,45 @@ class AllNotificationState extends State<AllNotification> {
             
             ),
 
-            Container(
-              height: size.height/1.85,
-             // width: size.width,
-              margin: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Colors.white
+            Expanded(
+                    child: Container(
+                
+               // width: size.width,
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                decoration: BoxDecoration(
+                  color: Colors.white
+                ),
+                child: Container(
+                    child: FutureBuilder(
+                        future: getNotifications(),
+                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                          print(snapshot.data);
+                          if (snapshot.data == null) {
+                            return Container(
+                                child: Center(child: CircularProgressIndicator()));
+                          } else {
+                            return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var date = formatDateTime(
+                                      snapshot.data[index].dateCreated);
+                                  var type = "";
+                                  if (StaticValue.latestNotificationId != null &&
+                                      snapshot.data[index].notificationId >
+                                          StaticValue.latestNotificationId) {
+                                    type = "New";
+                                  }
+                                  return Card(
+                                    
+                                      elevation: 5,
+                                          margin: EdgeInsets.fromLTRB(
+                                              10.0, 15.0, 10.0, 0.0),
+                                    child: buildListTile(snapshot, index, date, type));
+                                });
+                          }
+                        })),
               ),
-              child: Container(
-                  child: FutureBuilder(
-                      future: getNotifications(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        print(snapshot.data);
-                        if (snapshot.data == null) {
-                          return Container(
-                              child: Center(child: CircularProgressIndicator()));
-                        } else {
-                          return ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                var date = formatDateTime(
-                                    snapshot.data[index].dateCreated);
-                                var type = "";
-                                if (StaticValue.latestNotificationId != null &&
-                                    snapshot.data[index].notificationId >
-                                        StaticValue.latestNotificationId) {
-                                  type = "New";
-                                }
-                                return Card(
-                                  
-                                    elevation: 5,
-                                        margin: EdgeInsets.fromLTRB(
-                                            10.0, 20.0, 10.0, 0.0),
-                                  child: buildListTile(snapshot, index, date, type));
-                              });
-                        }
-                      })),
             ),
           ],
         ),
@@ -179,9 +201,9 @@ class AllNotificationState extends State<AllNotification> {
                   
                 
                  
-                   Text(snapshot.data[index].notificationBody),
-                  Text(date),
-                  Text(type),
+                  Center(child: Text(snapshot.data[index].notificationBody)),
+                  Center(child: Text(date)),
+                  Center(child: Text(type)),
                 ],
               ),
             ),

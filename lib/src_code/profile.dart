@@ -1,33 +1,22 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:snbiz/Model_code/UserAccount.dart';
 import 'package:snbiz/Model_code/profile.dart';
-//import 'package:snbiz/Model_code/profilemodel.dart';
 import 'package:snbiz/src_code/static.dart';
-import 'package:image_picker/image_picker.dart';
 
 class Profile extends StatefulWidget {
- final ProfileModel detail;
- const Profile({Key key, this.detail}):super(key:key);
-  
   @override
-  ProfileState createState() => new ProfileState(this.detail);
-
+  ProfileState createState() => new ProfileState();
 }
 
-String url;
-
 class ProfileState extends State<Profile> {
-  
-
-  final ProfileModel details;
-  ProfileState(this.details);
+  ProfileModel details;
   TextEditingController userName;
-  final userEmail = TextEditingController();
-  final userContact = TextEditingController();
-  File _image;
+  TextEditingController userEmail;
+  TextEditingController userContact;
+
+
   Future<ProfileModel> profile() async {
     try {
       http.Response data = await http.get(
@@ -41,12 +30,14 @@ class ProfileState extends State<Profile> {
 
       var jsonData = json.decode(data.body);
       ProfileModel _profile;
-      
-      
-
 
       _profile = ProfileModel.fromJson(jsonData);
-
+      setState(() {
+        details = _profile;
+        userName = new TextEditingController(text: details.fullName);
+        userEmail = new TextEditingController(text: details.email);
+        userContact = new TextEditingController(text: details.contactNumber);
+      });
       print(_profile);
       return _profile;
     } catch (e) {
@@ -55,105 +46,109 @@ class ProfileState extends State<Profile> {
     }
   }
 
-  Future<UserAccount> UpdateDetails () async{
+  Future<bool> UpdateDetails() async {
+    UserAccount userAccount = new UserAccount();
+    userAccount.userAccountId = details.userAccountId;
+    userAccount.fullName = userName.text;
+    userAccount.contactNumber = userContact.text;
+    userAccount.email = userEmail.text;
+    userAccount.organizationId = details.organizationId;
+    userAccount.requestTime = details.requestTime;
+    userAccount.changeRequest = details.changeRequest;
+    userAccount.dateCreated = details.dateCreated;
+    userAccount.rowstamp = details.rowstamp;
+    userAccount.isValidated = details.isValidated;
+    userAccount.userTypeId = details.userTypeId;
+    userAccount.password = details.password;
+    userAccount.deleted = details.deleted;
 
-     UserAccount userAccount;
-     userAccount.userAccountId = details.userAccountId;
-     userAccount.fullName = details.fullName;
-     userAccount.contactNumber = details.contactNumber;
-     userAccount.email = details.email;
-     userAccount.organizationId = details.organizationId;
-     userAccount.requestTime = details.requestTime;
-     userAccount.changeRequest= details.changeRequest;
-     userAccount.dateCreated = details.dateCreated;
-     userAccount.rowstamp = details.rowstamp;
-     userAccount.isValidated = details.isValidated;
-     userAccount.userTypeId = details.userTypeId;
-     userAccount.password = details.password;
-     userAccount.deleted = details.deleted;
-     
     String jsonbody = jsonEncode(userAccount);
 
     try {
       http.Response data = await http.put(
-          Uri.encodeFull(StaticValue.baseUrl + "api/UserAccoounts/" +
-             details.userAccountId.toString() 
-              ),
+          Uri.encodeFull(StaticValue.baseUrl +
+              "api/UserAccounts/" +
+              details.userAccountId.toString()),
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json'
           },
           body: jsonbody);
-          if(data.statusCode == 500){
-            
-          }
+      if (data.statusCode == 500) {
+        return false;
+      }
+      return true;
     } catch (e) {
       Text("Server error!!");
+      return false;
     }
   }
 
- @override
+  @override
   void initState() {
     super.initState();
+    profile();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Profile",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
-        backgroundColor: const Color(0xFF9C38FF),
-      ),
-      body: SingleChildScrollView(
+    if (details != null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Profile",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+          backgroundColor: const Color(0xFF9C38FF),
+        ),
+        body: SingleChildScrollView(
           child: Container(
-              margin: EdgeInsets.all(8.0),
-              width: size.width,
+            // margin: EdgeInsets.all(8.0),
+            width: size.width,
+            // height: size.height,
+            margin: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
               color: Color(0xFFF4EAEA),
-              child: Column(children: <Widget>[
+            ),
+            child: Column(
+              children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(8.0),
-                  height: size.height / 1.7,
+                  height: size.height / 1.9,
                   width: size.width,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Color(0xFFFFFFFF)),
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.white,
+                  ),
                   child: Column(
-
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
-                          child: InkWell(
-                            splashColor: Colors.yellow,
-                            
-                            child: CircleAvatar(
-                                radius: 50,
-                                backgroundColor: Colors.blueGrey,
-                                child: ClipOval(
-                                    child: SizedBox(
-                                  height: size.height / 4,
-                                  width: size.width / 4,
-                                  // child: Image.network(StaticValue.logo),
-                                  child: StaticValue.logo == null
-                                      ? Icon(
-                                          Icons.person,
-                                          size: 70,
-                                          color: Colors.white,
-                                        )
-                                      : StaticValue.logo != null
-                                          ? Image.network(StaticValue.logo,
-                                              fit: BoxFit.cover)
-                                          : (Image.file(
-                                              _image,
-                                              fit: BoxFit.cover,
-                                            )),
-                                ))),
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                        child: InkWell(
+                          splashColor: Colors.yellow,
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.blueGrey,
+                            child: ClipOval(
+                              child: SizedBox(
+                                height: size.height / 4,
+                                width: size.width / 4,
+                                // child: Image.network(StaticValue.logo),
+                                child: StaticValue.logo == null
+                                    ? Icon(
+                                        Icons.person,
+                                        size: 70,
+                                        color: Colors.white,
+                                      )
+                                    : StaticValue.logo != null
+                                        ? Image.network(StaticValue.logo,
+                                            fit: BoxFit.cover)
+                                        : Icon(Icons.person)
+                              ),
+                            ),
                           ),
                         ),
+<<<<<<< HEAD
                         Text("kathmandu codes pvt.ltd",
                             style: TextStyle(fontSize: 18)),
                         FutureBuilder(
@@ -242,178 +237,282 @@ class ProfileState extends State<Profile> {
                               ));
                             }
                           })
+=======
+                      ),
+                      Text("Kathmandu codes Pvt.Ltd",
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.bold)),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, right: 100),
+                              child: Text(
+                                "ORGANIZATION PROFILE",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF665959)),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, right: 40),
+                              child: Text(
+                                "Organization Name",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    color: Color(0xFFA19F9F)),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, right: 40),
+                              child: Text(
+                                details.organizationName,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, right: 40),
+                              child: Text(
+                                "Vat/Pan number",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    color: Color(0xFFA19F9F)),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, right: 40),
+                              child: Text(
+                                details.taXPAN,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, right: 60),
+                              child: Text(
+                                "Organization phone",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal,
+                                    color: Color(0xFFA19F9F)),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, right: 60),
+                              child: Text(
+                                details.organizationNumber,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ])
+>>>>>>> 5d6e5ed918078b96924e0655dd8f04483367d536
                     ],
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(8.0),
-                  height: size.height / 1.9,
+                  margin:
+                      EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
+                  height: size.height / 2,
                   width: size.width,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Color(0xFFFFFFFF)),
-                  child: FutureBuilder(
-                      future: profile(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        print(snapshot.data);
-                        
-                        ProfileModel details = snapshot.data;
-                        
-                        if (details == null) {
-                          return Container(
-                              child:
-                                  Center(child: CircularProgressIndicator()));
-                        } else {
-                        
-                          return Container(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                        child: Text(
+                          "USER DETAILS",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF665959)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                        child: Text(
+                          "User Name",
+                          style:
+                              TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: Container(
+                          height: size.height / 20,
+                          width: size.width,
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFFBF4F4)),
+                          child: TextFormField(
+                            decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              contentPadding: EdgeInsets.only(
+                                  left: 15, bottom: 11, top: 11, right: 15),
+                            ),
+                            controller: userName,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                        child: Text(
+                          "Email",
+                          style:
+                              TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Container(
+                          height: size.height / 20,
+                          width: size.width,
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFFBF4F4)),
+                          child: TextFormField(
+                            controller: userEmail,
+                            decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              contentPadding: EdgeInsets.only(
+                                  left: 15, bottom: 11, top: 11, right: 15),
+                            ),
+                            // controller: userContact,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                        child: Container(
+                          child: Text(
+                            "Contact Number",
+                            style: TextStyle(
+                                fontSize: 16, color: Color(0xFFA19F9F)),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Container(
+                          height: size.height / 20,
+                          width: size.width,
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          // color: Colors.white,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Color(0xFFFBF4F4)),
+                          child: TextFormField(
+                            decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              contentPadding: EdgeInsets.only(
+                                  left: 15, bottom: 11, top: 11, right: 15),
+                            ),
+                            controller: userContact,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 15, right: 15),
+                        child: MaterialButton(
+                            height: 40,
+                            onPressed: () async {
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  });
+                              bool success = await UpdateDetails();
+                              if (success == true) {
+                                await _showDialog(
+                                    "Details Updated Successfully!");
+                              } else {
+                                await _showDialog(
+                                    "Sorry! Could not update details");
+                              }
 
-                            
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                  child: Text(
-                                    "User Name",
-                                    
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: Container(
-                                    height: size.height / 20,
-                                    width: size.width,
-                                    margin:
-                                        EdgeInsets.only(left: 20, right: 20),
-                                    // color: Colors.white,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        color: Color(0xFFd6d6d6)),
-                                    child: TextFormField(
-                                      
-                                      decoration: new InputDecoration(
-                                        border: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        contentPadding: EdgeInsets.only(
-                                            left: 15,
-                                            bottom: 11,
-                                            top: 11,
-                                            right: 15),
-                                      ),
-                                      controller: userName,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                  child: Text(
-                                    "Email",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: size.height / 20,
-                                  width: size.width,
-                                  margin: EdgeInsets.only(left: 20, right: 20),
-                                  // color: Colors.white,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Color(0xFFd6d6d6)),
-                                  child: TextFormField(
-                                    controller: userEmail,
-                                    decoration: new InputDecoration(
-                                      border: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      contentPadding: EdgeInsets.only(
-                                          left: 15,
-                                          bottom: 11,
-                                          top: 11,
-                                          right: 15),
-                                    ),
-                                   // controller: userContact,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                  child: Container(
-                                    child: Text(
-                                      "Contact Number",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: size.height / 20,
-                                  width: size.width,
-                                  margin: EdgeInsets.only(left: 20, right: 20),
-                                  // color: Colors.white,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Color(0xFFd6d6d6)),
-                                  child: TextFormField(
-                                    
-                                    decoration: new InputDecoration(
-                                      border: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      contentPadding: EdgeInsets.only(
-                                          left: 15,
-                                          bottom: 11,
-                                          top: 11,
-                                          right: 15),
-                                    ),
-                                    controller: userContact,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, left: 15, right: 15),
-                                  child: MaterialButton(
-                                      height: 40,
-                                      onPressed: () async {
-                                        showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (BuildContext context) {
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              );
-                                            });
-
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-                                      },
-                                      textColor: Colors.white,
-                                      color: Color(0xFFB56AFF),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                      child: Center(
-                                        child: Text('save',
-                                            style: TextStyle(fontSize: 16)),
-                                      )),
-                                ),
-                              ]));
-                        }
-                      }),
+                              Navigator.pop(context);
+//Navigator.pop(context);
+                            },
+                            textColor: Colors.white,
+                            color: Color(0xFFB56AFF),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Center(
+                              child: Text('save',
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal)),
+                            )),
+                      ),
+                    ],
+                  ),
                 )
-              ]))),
-    );
+              ],
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text("Profile",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+            backgroundColor: const Color(0xFF9C38FF),
+          ),
+          body: Container(
+            child: Center(child: CircularProgressIndicator()),
+          ));
+    }
   }
-  
 
+  Future _showDialog(String message) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(message),
+            actions: <Widget>[
+              FlatButton(
+                  child: Text("Ok"),
+                  onPressed: () => Navigator.pop(context, true))
+            ],
+          );
+        });
+  }
 }
-
-
