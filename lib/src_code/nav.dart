@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snbiz/src_code/Summary.dart';
 import 'package:snbiz/src_code/allnotification.dart';
-import 'package:snbiz/src_code/invoice.dart';
 import 'package:snbiz/src_code/profile.dart';
 
 class Nav extends StatefulWidget {
@@ -27,8 +26,8 @@ class NavBar extends State<Nav> {
               children: <Widget>[
                 new Image(
                   image: new AssetImage("assets/mainlogo.png"),
-                  height: 160.0,
-                  width: 160.0,
+                  height: 140.0,
+                  width: 140.0,
                 ),
                 Text(
                   "SN Business Solutions",

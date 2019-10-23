@@ -87,6 +87,7 @@ flutter:
    - assets/contact.png
    - assets/logout.png
    - assets/new_meeting.png
+   - assets/mainlogo.png
    - assets/img.png
    - assets/time.png
    - assets/due.png

@@ -72,7 +72,8 @@ catch(e){
     Size size = MediaQuery.of(context).size;
    
     return Scaffold(
-      appBar: AppBar(title: Text('Task')),
+      appBar: AppBar(title: Text('Task',  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+       backgroundColor: const Color(0xFF9C38FF),),
     body: Container(
                color:Color(0XFFF4EAEA),
         child: Column(
