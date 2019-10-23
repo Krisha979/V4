@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/OrgTask.dart';
 //import 'package:snbiz/Model_code/Task.dart';
 import 'package:snbiz/src_code/TaskDetails.dart';
@@ -18,6 +19,7 @@ class TaskPage extends StatefulWidget {
 
 class TaskState extends State<TaskPage> {
   int count;
+  final RefreshController _refreshController = RefreshController();
 
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
@@ -74,147 +76,156 @@ catch(e){
     return Scaffold(
       appBar: AppBar(title: Text('Task',  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
        backgroundColor: const Color(0xFF9C38FF),),
-    body: Container(
-               color:Color(0XFFF4EAEA),
-        child: Column(
-              children: <Widget>[
-               
-                Container(           
-                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                         padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
-                           decoration: new BoxDecoration(
-                          color: Colors.white,
-                           borderRadius: new BorderRadius.circular(15.0),
-                           boxShadow: [
-                           BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.5, 0.5),
-                                ),
-                              ],
-                           ),
+    body: SmartRefresher(
+      controller: _refreshController,
+      enablePullDown: true,
+      onRefresh: () async {
+        await Future.delayed(Duration(seconds: 2));
+        getTask();
+        _refreshController.refreshCompleted();
+      },
+      child: Container(
+                 color:Color(0XFFF4EAEA),
+          child: Column(
+                children: <Widget>[
 
-                           child: Column(
-                                children: <Widget>[ 
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              
+                  Container(
+                            margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
+                           padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                             decoration: new BoxDecoration(
+                            color: Colors.white,
+                             borderRadius: new BorderRadius.circular(15.0),
+                             boxShadow: [
+                             BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Colors.black.withOpacity(0.5),
+                                    offset: Offset(0.5, 0.5),
+                                  ),
+                                ],
+                             ),
+
+                             child: Column(
+                                  children: <Widget>[
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("All Task"),
+                                    Text('$count'),
+
+
+                                  ],
+
+
+                                ),
+                              Image(
+                                        image: new AssetImage("assets/new_meeting.png"),
+                                        height: size.height / 9,
+                                      ),
+                              ],
+                            ),
+
+
+                          ])),
+            Container(
+           child: FutureBuilder(
+            future: getTask(),
+            builder:(BuildContext context, AsyncSnapshot snapshot){
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+              }else{
+                return Flexible(
+                                child: ListView.builder(
+                     shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index){
+                       var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
+                       var enddate = formatTime(snapshot.data[index].parentTask.endDate);
+                       var name = snapshot.data[index].parentTask.taskName;
+                      return ListTile(
+                        title: InkWell(
+                                                child: new Theme(
+                                                  data: new ThemeData(
+                                  hintColor: Colors.white,
+                                ),
+                                                  child: Container(
+
+                                                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                                    constraints: new BoxConstraints(minWidth: size.width),
+                              width: size.width,
+                              height: size.height/5.5,
+
+                           decoration: new BoxDecoration(
+                           color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+
+                           ),
+                           child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("All Task"),
-                                  Text('$count'),
-                                  
+                                  Text(enddate, textAlign: TextAlign.left,
+                                      style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ),
+                                 Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+
+                                Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+                                Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
 
                                 ],
-                                
 
                               ),
-                            Image(
-                                      image: new AssetImage("assets/new_meeting.png"),
-                                      height: size.height / 9,
-                                    ),
+
+                             ClipOval(
+                                child: Material(
+                                  color: Colors.blue, // button color
+                                  child: InkWell(
+                                    splashColor: Colors.red, // inkwell color
+                                    child: SizedBox(width: 56, height: 56,
+                                     child: Icon(
+                                       Icons.picture_as_pdf,
+                                       color: Colors.white,
+                                       )),
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:
+                                      snapshot.data[index])));
+                                    },
+                                  ),
+                                ),
+                              )
                             ],
                           ),
-
-                        
-                        ])),
-          Container(            
-         child: FutureBuilder(
-          future: getTask(),
-          builder:(BuildContext context, AsyncSnapshot snapshot){
-            print(snapshot.data);
-            if(snapshot.data==null){
-              return Container(
-                child: Center(
-                  
-                child: CircularProgressIndicator()
-               
-                )
-              );
-            }else{
-              return Flexible(
-                              child: ListView.builder(
-                   shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext context, int index){
-                     var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
-                     var enddate = formatTime(snapshot.data[index].parentTask.endDate);
-                     var name = snapshot.data[index].parentTask.taskName;
-                    return ListTile(
-                      title: InkWell(
-                                              child: new Theme(
-                                                data: new ThemeData(
-                                hintColor: Colors.white,
-                              ),
-                                                child: Container(
-                                                  
-                                                  padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                                                  constraints: new BoxConstraints(minWidth: size.width),
-                            width: size.width,
-                            height: size.height/5.5,
-                        
-                         decoration: new BoxDecoration(
-                         color: Colors.white,
-                         borderRadius: new BorderRadius.circular(15.0),
-                        
-                         ),
-                         child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(enddate, textAlign: TextAlign.left, 
-                                    style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ),
-                               Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
-                              
-                              Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
-                              Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                
-                              ],
-
-                            ),
-                    
-                           ClipOval(
-                              child: Material(
-                                color: Colors.blue, // button color
-                                child: InkWell(
-                                  splashColor: Colors.red, // inkwell color
-                                  child: SizedBox(width: 56, height: 56,
-                                   child: Icon(
-                                     Icons.picture_as_pdf,
-                                     color: Colors.white,
-                                     )),
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:                        
-                                    snapshot.data[index])));
-                                  },
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
+                                                ),
+                                                onTap: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:
+                                      snapshot.data[index])));
+                                        },
                         ),
-                        ),
-                                              ),
-                                              onTap: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:                        
-                                    snapshot.data[index])));
-                                      },
+           );
+                    }
                       ),
-         );
-                  }
-                    ),
-              );
+                );
+              }
             }
-          } 
-         )
-      )
+           )
+        )
 
 
-              ]),
-      )
+                ]),
+        ),
+    )
          );     
 
 
