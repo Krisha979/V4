@@ -148,96 +148,6 @@ class ProfileState extends State<Profile> {
                             ),
                           ),
                         ),
-<<<<<<< HEAD
-                        Text("kathmandu codes pvt.ltd",
-                            style: TextStyle(fontSize: 18)),
-                        FutureBuilder(
-                            future: profile(),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              print(snapshot.data);
-                             ProfileModel details = snapshot.data;
-                              if (details== null) {
-                                return Container(
-                                    child: Center(
-                                        child: CircularProgressIndicator()));
-                              } else {
-                                if(userName == null){
-                                    userName = new TextEditingController(text:details.fullName);
-                                    userEmail.text = details.email;
-                                  userContact.text = details.contactNumber;
-                                }
-                                else{
-                                   details.email = userEmail.text;
-                                   details.contactNumber = userContact.text;
-                                  details.fullName = userName.text;
-                                }
-                        
-                                return Container(
-//color: Colors.blueGrey,
-
-                                  child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(10, 15, 0, 0),
-                                    child: Text(
-                                      "ORGANIZATION PROFILE",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(10, 15, 0, 0),
-                                    child: Text("Organization Name"),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(10, 10, 0, 0),
-                                    child: Text(
-                                      details.organizationName,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, right: 28),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text("Vat/Pan number"),
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                    10, 5, 10, 5),
-                                                ),
-                                                Text(details.taXPAN),
-                                              ]),
-                                          Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text("Organization phone"),
-                                                Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      10, 5, 10, 5),
-                                                ),
-                                                Text(
-                                                    details.organizationNumber),
-                                              ])
-                                        ]),
-                                  )
-                                ],
-                              ));
-                            }
-                          })
-=======
                       ),
                       Text("Kathmandu codes Pvt.Ltd",
                           style: TextStyle(
@@ -326,7 +236,6 @@ class ProfileState extends State<Profile> {
                               ),
                             ),
                           ])
->>>>>>> 5d6e5ed918078b96924e0655dd8f04483367d536
                     ],
                   ),
                 ),
