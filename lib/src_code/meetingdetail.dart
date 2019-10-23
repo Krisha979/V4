@@ -13,9 +13,7 @@ class MeetingDetail extends StatefulWidget {
   const MeetingDetail({Key key, this.details}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    if(StaticValue.orgId==details.createdBy){
-      
-    }
+
     return MeetingDetailState(this.details);
   }
 }
