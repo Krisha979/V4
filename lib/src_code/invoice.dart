@@ -64,9 +64,10 @@ class _InvoiceState extends State<Invoice> {
         child: Column(
           children: <Widget>[
             Container(
-              height: size.height / 4.6,
+             // height: size.height / 5.5,
               width: size.width,
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.fromLTRB(10,10,10,0),
+              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.white,
@@ -76,7 +77,7 @@ class _InvoiceState extends State<Invoice> {
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text("All Invoices"),
                                   Text('$invoicenumber'),
@@ -100,82 +101,84 @@ class _InvoiceState extends State<Invoice> {
                           ),
 
             ),
-            Container(
-              height: size.height / 1.7,
-              width: size.width,
-              margin: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                //  borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white,
-              ),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      child: FutureBuilder(
-                          future: getInovoices(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshot) {
-                            print(snapshot.data);
-                            if (snapshot.data == null) {
-                              return Container(
-                                  child: Center(
-                                      child: CircularProgressIndicator()));
-                            } else {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    var name = snapshot.data[index].invoiceName;
-                                    return Container(
-                                      child: Card(
-                                        elevation: 5,
-                                        margin: EdgeInsets.fromLTRB(
-                                            10.0, 10.0, 10.0, 0.0),
-                                        child: ListTile(
-                                          title: Column(
-                                            children: <Widget>[
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: <Widget>[
-                                                  Flexible(
-                                                    child: Text(
-                                                      name,
-                                                      style: TextStyle(
-                                                          fontStyle:
-                                                              FontStyle.normal,
-                                                          fontSize: 16,
-                                                          fontWeight: FontWeight
-                                                              .normal),
+            Flexible(
+              child: Container(
+              //  height: size.height / 1.7,
+                width: size.width,
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                        child: FutureBuilder(
+                            future: getInovoices(),
+                            builder:
+                                (BuildContext context, AsyncSnapshot snapshot) {
+                              print(snapshot.data);
+                              if (snapshot.data == null) {
+                                return Container(
+                                    child: Center(
+                                        child: CircularProgressIndicator()));
+                              } else {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      var name = snapshot.data[index].invoiceName;
+                                      return Container(
+                                        child: Card(
+                                          elevation: 5,
+                                          margin: EdgeInsets.fromLTRB(
+                                              10.0, 10.0, 10.0, 0.0),
+                                          child: ListTile(
+                                            title: Column(
+                                              children: <Widget>[
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: <Widget>[
+                                                    Flexible(
+                                                      child: Text(
+                                                        name,
+                                                        style: TextStyle(
+                                                            fontStyle:
+                                                                FontStyle.normal,
+                                                            fontSize: 17,
+                                                            fontWeight: FontWeight
+                                                                .normal),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.fromLTRB(
-                                                            20, 10, 0, 0),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 20),
-                                                    child: new Image(
-                                                        image: new AssetImage(
-                                                            "assets/invoice1.png"),
-                                                        height:
-                                                            size.height / 12,
-                                                        width: size.width / 12),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              20, 10, 0, 0),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 20),
+                                                      child: new Image(
+                                                          image: new AssetImage(
+                                                              "assets/invoice1.png"),
+                                                          height:
+                                                              size.height / 12,
+                                                          width: size.width / 12),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  });
-                            }
-                          })),
-                ],
+                                      );
+                                    });
+                              }
+                            })),
+                  ],
+                ),
               ),
             )
           ],

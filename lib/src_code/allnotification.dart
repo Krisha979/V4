@@ -90,7 +90,7 @@ class AllNotificationState extends State<AllNotification> {
           child: Column(
             children: <Widget>[
               Container(
-                height: size.height / 4.6,
+                height: size.height / 5.5,
                 width: size.width,
                 margin: EdgeInsets.all(10),
                 decoration: new BoxDecoration(
@@ -100,7 +100,7 @@ class AllNotificationState extends State<AllNotification> {
                              BoxShadow(
                                     blurRadius: 4.0,
                                     color: Colors.black.withOpacity(0.5),
-                                    offset: Offset(0.5, 0.5),
+                                    offset: Offset(0.0, 0.5),
                                   ),
                                 ],
                              ),
@@ -110,11 +110,11 @@ class AllNotificationState extends State<AllNotification> {
 
 
                        Column(
-                       // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.center,
                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top: 30),
+                            padding: const EdgeInsets.only(top: 0),
                             child: Text("ALL NOTIFICATIONS",style: TextStyle(
                                   fontSize: 18, color: Color(0xFFA19F9F)),),
                           ),
@@ -140,7 +140,7 @@ class AllNotificationState extends State<AllNotification> {
 
                     Image(
                       image: new AssetImage("assets/notification.png"),
-                      height: size.height / 9,
+                      height: size.height / 10,
                     ),
                   ],
                 ),
@@ -167,6 +167,7 @@ class AllNotificationState extends State<AllNotification> {
                               return ListView.builder(
                                   shrinkWrap: true,
                                   itemCount: snapshot.data.length,
+
                                   itemBuilder: (BuildContext context, int index) {
                                     var date = formatDateTime(
                                         snapshot.data[index].dateCreated);
@@ -181,6 +182,7 @@ class AllNotificationState extends State<AllNotification> {
                                         elevation: 5,
                                             margin: EdgeInsets.fromLTRB(
                                                 10.0, 15.0, 10.0, 0.0),
+
                                       child: buildListTile(snapshot, index, date, type));
                                   });
                             }
@@ -199,15 +201,16 @@ class AllNotificationState extends State<AllNotification> {
       title: Container(
        // width: 315.0,
         //height: 125.0,
-       
+        padding: EdgeInsets.only(top: 10),
         child: new Row(
         
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Flexible(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-              //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   
                 

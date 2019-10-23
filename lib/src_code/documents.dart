@@ -69,11 +69,11 @@ catch(e){
                            child: Column(
                                 children: <Widget>[ 
                            Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Text("All Task"),
                                  // Text('$count'),
@@ -117,11 +117,11 @@ catch(e){
                                 hintColor: Colors.white,
                               ),
                     child: Container(
-                    margin: EdgeInsets.fromLTRB(2, 5, 2, 5),
+                    margin: EdgeInsets.fromLTRB(2, 2, 2, 2),
                     padding: EdgeInsets.fromLTRB(10, 20, 7, 20),
                      decoration: new BoxDecoration(
                      color: Colors.white,
-                     borderRadius: new BorderRadius.circular(15.0),
+                     borderRadius: new BorderRadius.circular(10.0),
                      boxShadow: [
                      BoxShadow(
                             blurRadius: 4.0,
@@ -131,7 +131,7 @@ catch(e){
                         ],
                      ),
                      child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -149,7 +149,7 @@ catch(e){
                               splashColor: Colors.red, // inkwell color
                               child: SizedBox(
                                 height: size.height/15,
-                                      width: size.width/8,
+                                      width: size.height/15,
                                child: Icon(
                                  Icons.picture_as_pdf,
                                  color: Colors.white,

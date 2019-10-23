@@ -139,7 +139,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
 
                   Container(
                             margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                           padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
+                           padding: EdgeInsets.fromLTRB(20, 10, 25, 5),
                              decoration: new BoxDecoration(
                             color: Colors.white,
                              borderRadius: new BorderRadius.circular(15.0),
@@ -155,12 +155,12 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                              child: Column(
                                   children: <Widget>[
                              Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
 
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text("All Meetings"),
                                     Text('$counts'),
@@ -172,7 +172,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                 ),
                               Image(
                                         image: new AssetImage("assets/new_meeting.png"),
-                                        height: size.height / 9,
+                                        height: size.height / 10,
                                       ),
                               ],
                             ),
@@ -183,7 +183,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                               borderRadius: BorderRadius.circular(10.0),
                               color: Colors.white,
                             ),
-                            margin: EdgeInsets.fromLTRB(14, 8, 12, 5),
+                            margin: EdgeInsets.fromLTRB(14, 8, 12, 2),
 
                           child:  Row(
                             mainAxisAlignment:  MainAxisAlignment.spaceBetween,

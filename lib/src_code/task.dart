@@ -107,11 +107,11 @@ catch(e){
                              child: Column(
                                   children: <Widget>[
                              Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
 
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text("All Task"),
                                     Text('$count'),
