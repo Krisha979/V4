@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/UserAccount.dart';
 import 'package:snbiz/Model_code/profile.dart';
 import 'package:snbiz/src_code/static.dart';
@@ -12,6 +13,7 @@ class Profile extends StatefulWidget {
 
 class ProfileState extends State<Profile> {
   ProfileModel details;
+  final RefreshController _refreshController = RefreshController();
   TextEditingController userName;
   TextEditingController userEmail;
   TextEditingController userContact;
@@ -100,299 +102,308 @@ class ProfileState extends State<Profile> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
           backgroundColor: const Color(0xFF9C38FF),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            // margin: EdgeInsets.all(8.0),
-            width: size.width,
-            // height: size.height,
-            margin: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: Color(0xFFF4EAEA),
-            ),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.all(8.0),
-                  height: size.height / 1.9,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
-                        child: InkWell(
-                          splashColor: Colors.yellow,
-                          child: CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.blueGrey,
-                            child: ClipOval(
-                              child: SizedBox(
-                                height: size.height / 4,
-                                width: size.width / 4,
-                                // child: Image.network(StaticValue.logo),
-                                child: StaticValue.logo == null
-                                    ? Icon(
-                                        Icons.person,
-                                        size: 70,
-                                        color: Colors.white,
-                                      )
-                                    : StaticValue.logo != null
-                                        ? Image.network(StaticValue.logo,
-                                            fit: BoxFit.cover)
-                                        : Icon(Icons.person)
+        body: SmartRefresher(
+          controller: _refreshController,
+          enablePullDown: true,
+          onRefresh: () async {
+            await Future.delayed(Duration(seconds: 2));
+            profile();
+            _refreshController.refreshCompleted();
+          },
+          child: SingleChildScrollView(
+            child: Container(
+              // margin: EdgeInsets.all(8.0),
+              width: size.width,
+              // height: size.height,
+              margin: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Color(0xFFF4EAEA),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(8.0),
+                    height: size.height / 1.9,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                          child: InkWell(
+                            splashColor: Colors.yellow,
+                            child: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.blueGrey,
+                              child: ClipOval(
+                                child: SizedBox(
+                                  height: size.height / 4,
+                                  width: size.width / 4,
+                                  // child: Image.network(StaticValue.logo),
+                                  child: StaticValue.logo == null
+                                      ? Icon(
+                                          Icons.person,
+                                          size: 70,
+                                          color: Colors.white,
+                                        )
+                                      : StaticValue.logo != null
+                                          ? Image.network(StaticValue.logo,
+                                              fit: BoxFit.cover)
+                                          : Icon(Icons.person)
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Text("Kathmandu codes Pvt.Ltd",
-                          style: TextStyle(
-                              fontSize: 17,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.bold)),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10, right: 100),
-                              child: Text(
-                                "ORGANIZATION PROFILE",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF665959)),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10, right: 40),
-                              child: Text(
-                                "Organization Name",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFFA19F9F)),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5, right: 40),
-                              child: Text(
-                                details.organizationName,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10, right: 40),
-                              child: Text(
-                                "Vat/Pan number",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFFA19F9F)),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5, right: 40),
-                              child: Text(
-                                details.taXPAN,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10, right: 60),
-                              child: Text(
-                                "Organization phone",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal,
-                                    color: Color(0xFFA19F9F)),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5, right: 60),
-                              child: Text(
-                                details.organizationNumber,
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                          ])
-                    ],
-                  ),
-                ),
-                Container(
-                  margin:
-                      EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
-                  height: size.height / 2,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.0),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                        child: Text(
-                          "USER DETAILS",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF665959)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                        child: Text(
-                          "User Name",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        child: Container(
-                          height: size.height / 20,
-                          width: size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xFFFBF4F4)),
-                          child: TextFormField(
-                            decoration: new InputDecoration(
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              contentPadding: EdgeInsets.only(
-                                  left: 15, bottom: 11, top: 11, right: 15),
-                            ),
-                            controller: userName,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                        child: Text(
-                          "Email",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Container(
-                          height: size.height / 20,
-                          width: size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xFFFBF4F4)),
-                          child: TextFormField(
-                            controller: userEmail,
-                            decoration: new InputDecoration(
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              contentPadding: EdgeInsets.only(
-                                  left: 15, bottom: 11, top: 11, right: 15),
-                            ),
-                            // controller: userContact,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                        child: Container(
-                          child: Text(
-                            "Contact Number",
+                        Text("Kathmandu codes Pvt.Ltd",
                             style: TextStyle(
-                                fontSize: 16, color: Color(0xFFA19F9F)),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Container(
-                          height: size.height / 20,
-                          width: size.width,
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                          // color: Colors.white,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xFFFBF4F4)),
-                          child: TextFormField(
-                            decoration: new InputDecoration(
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              contentPadding: EdgeInsets.only(
-                                  left: 15, bottom: 11, top: 11, right: 15),
-                            ),
-                            controller: userContact,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 10, left: 15, right: 15),
-                        child: MaterialButton(
-                            height: 40,
-                            onPressed: () async {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) {
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  });
-                              bool success = await UpdateDetails();
-                              if (success == true) {
-                                await _showDialog(
-                                    "Details Updated Successfully!");
-                              } else {
-                                await _showDialog(
-                                    "Sorry! Could not update details");
-                              }
-
-                              Navigator.pop(context);
-//Navigator.pop(context);
-                            },
-                            textColor: Colors.white,
-                            color: Color(0xFFB56AFF),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: Center(
-                              child: Text('save',
+                                fontSize: 17,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.bold)),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, right: 100),
+                                child: Text(
+                                  "ORGANIZATION PROFILE",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF665959)),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, right: 40),
+                                child: Text(
+                                  "Organization Name",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color(0xFFA19F9F)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5, right: 40),
+                                child: Text(
+                                  details.organizationName,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, right: 40),
+                                child: Text(
+                                  "Vat/Pan number",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color(0xFFA19F9F)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5, right: 40),
+                                child: Text(
+                                  details.taXPAN,
                                   style: TextStyle(
                                       fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FontStyle.normal)),
-                            )),
-                      ),
-                    ],
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, right: 60),
+                                child: Text(
+                                  "Organization phone",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color(0xFFA19F9F)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5, right: 60),
+                                child: Text(
+                                  details.organizationNumber,
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ])
+                      ],
+                    ),
                   ),
-                )
-              ],
+                  Container(
+                    margin:
+                        EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
+                    height: size.height / 2,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                          child: Text(
+                            "USER DETAILS",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF665959)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                          child: Text(
+                            "User Name",
+                            style:
+                                TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: Container(
+                            height: size.height / 20,
+                            width: size.width,
+                            margin: EdgeInsets.only(left: 20, right: 20),
+                            // color: Colors.white,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFFBF4F4)),
+                            child: TextFormField(
+                              decoration: new InputDecoration(
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                    left: 15, bottom: 11, top: 11, right: 15),
+                              ),
+                              controller: userName,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                          child: Text(
+                            "Email",
+                            style:
+                                TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Container(
+                            height: size.height / 20,
+                            width: size.width,
+                            margin: EdgeInsets.only(left: 20, right: 20),
+                            // color: Colors.white,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFFBF4F4)),
+                            child: TextFormField(
+                              controller: userEmail,
+                              decoration: new InputDecoration(
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                    left: 15, bottom: 11, top: 11, right: 15),
+                              ),
+                              // controller: userContact,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                          child: Container(
+                            child: Text(
+                              "Contact Number",
+                              style: TextStyle(
+                                  fontSize: 16, color: Color(0xFFA19F9F)),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Container(
+                            height: size.height / 20,
+                            width: size.width,
+                            margin: EdgeInsets.only(left: 20, right: 20),
+                            // color: Colors.white,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFFBF4F4)),
+                            child: TextFormField(
+                              decoration: new InputDecoration(
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                    left: 15, bottom: 11, top: 11, right: 15),
+                              ),
+                              controller: userContact,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 10, left: 15, right: 15),
+                          child: MaterialButton(
+                              height: 40,
+                              onPressed: () async {
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    });
+                                bool success = await UpdateDetails();
+                                if (success == true) {
+                                  await _showDialog(
+                                      "Details Updated Successfully!");
+                                } else {
+                                  await _showDialog(
+                                      "Sorry! Could not update details");
+                                }
+
+                                Navigator.pop(context);
+//Navigator.pop(context);
+                              },
+                              textColor: Colors.white,
+                              color: Color(0xFFB56AFF),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Center(
+                                child: Text('save',
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.normal)),
+                              )),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

@@ -66,7 +66,7 @@ class LoginPage extends StatefulWidget{
         var meetingstatus = MeetingStatus.fromJson(u);
         StaticValue.statuslist.add(meetingstatus);
       }
-      //print(statuslist.length);
+
     } catch (e) {
       print(e);
       return null;
@@ -126,7 +126,10 @@ class LoginPage extends StatefulWidget{
                           }
                       }
                       setState(() {
-                        status();
+                        if(StaticValue.statuslist.isEmpty){
+                          status();
+                        }
+
                                       isLoading = false; 
                                   });
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));

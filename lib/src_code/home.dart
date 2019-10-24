@@ -266,6 +266,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             Image(
                                       image: new AssetImage("assets/new_meeting.png"),
                                       fit: BoxFit.fill,
+                            
                               height: size.height/13,
                                     ),
                             ],

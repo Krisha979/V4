@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/Notification.dart';
 import 'package:snbiz/src_code/static.dart';
 
@@ -16,6 +17,7 @@ class AllNotification extends StatefulWidget {
 
 class AllNotificationState extends State<AllNotification> {
    int notificationNumber;
+   final RefreshController _refreshController = RefreshController();
    String date;
   final storage = new FlutterSecureStorage();
   var latestid;
@@ -73,114 +75,125 @@ class AllNotificationState extends State<AllNotification> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body:  Container(
-        height: size.height * 2,
-        width: size.width,
-        color: Color(0xFFE0CECE),
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: size.height / 4.6,
-              width: size.width,
-              margin: EdgeInsets.all(10),
-              decoration: new BoxDecoration(
-                          color: Colors.white,
-                           borderRadius: new BorderRadius.circular(10.0),
-                           boxShadow: [
-                           BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.5, 0.5),
+        body:  SmartRefresher(
+          controller: _refreshController,
+          enablePullDown: true,
+          onRefresh: () async {
+            await Future.delayed(Duration(seconds: 2));
+            getNotifications();
+            _refreshController.refreshCompleted();
+          },
+          child: Container(
+          height: size.height * 2,
+          width: size.width,
+          color: Color(0xFFE0CECE),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: size.height / 5.5,
+                width: size.width,
+                margin: EdgeInsets.all(10),
+                decoration: new BoxDecoration(
+                            color: Colors.white,
+                             borderRadius: new BorderRadius.circular(10.0),
+                             boxShadow: [
+                             BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Colors.black.withOpacity(0.5),
+                                    offset: Offset(0.0, 0.5),
+                                  ),
+                                ],
+                             ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+
+
+                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0),
+                            child: Text("ALL NOTIFICATIONS",style: TextStyle(
+                                  fontSize: 18, color: Color(0xFFA19F9F)),),
+                          ),
+                           Text('$notificationNumber'),
+                          //  Text('$invoicenumber'),
+                          Row(
+                            children: <Widget>[
+                              Icon(Icons.timer),
+
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 10
                                 ),
-                              ],
-                           ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  
-                  
-                     Column(
-                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: Text("ALL NOTIFICATIONS",style: TextStyle(
-                                fontSize: 18, color: Color(0xFFA19F9F)),),
-                        ),
-                         Text('$notificationNumber'),
-                        //  Text('$invoicenumber'),
-                        Row(
-                          children: <Widget>[
-                            Icon(Icons.timer),
+                                child: Text("Last Notification",style: TextStyle(
+                                    fontSize: 14, color: Color(0xFFA19F9F)),),
+                              )
+                            ],
+                          ),
+                         // Text('$date'),
+                         Text("Date")
+                        ],
+                      ),
 
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 10
-                              ),
-                              child: Text("Last Notification",style: TextStyle(
-                                  fontSize: 14, color: Color(0xFFA19F9F)),),
-                            )
-                          ],
-                        ),
-                       // Text('$date'),
-                       Text("Date")
-                      ],
+                    Image(
+                      image: new AssetImage("assets/notification.png"),
+                      height: size.height / 10,
                     ),
-                  
-                  Image(
-                    image: new AssetImage("assets/notification.png"),
-                    height: size.height / 9,
-                  ),
-                ],
-              ),
-            
-            ),
-
-            Expanded(
-                    child: Container(
-                
-               // width: size.width,
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                decoration: BoxDecoration(
-                  color: Colors.white
+                  ],
                 ),
-                child: Container(
-                    child: FutureBuilder(
-                        future: getNotifications(),
-                        builder: (BuildContext context, AsyncSnapshot snapshot) {
-                          print(snapshot.data);
-                          if (snapshot.data == null) {
-                            return Container(
-                                child: Center(child: CircularProgressIndicator()));
-                          } else {
-                            return ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  var date = formatDateTime(
-                                      snapshot.data[index].dateCreated);
-                                  var type = "";
-                                  if (StaticValue.latestNotificationId != null &&
-                                      snapshot.data[index].notificationId >
-                                          StaticValue.latestNotificationId) {
-                                    type = "New";
-                                  }
-                                  return Card(
-                                    
-                                      elevation: 5,
-                                          margin: EdgeInsets.fromLTRB(
-                                              10.0, 15.0, 10.0, 0.0),
-                                    child: buildListTile(snapshot, index, date, type));
-                                });
-                          }
-                        })),
+
               ),
-            ),
-          ],
-        ),
-      
-    ));
+
+              Expanded(
+                      child: Container(
+
+                 // width: size.width,
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  decoration: BoxDecoration(
+                    color: Colors.white
+                  ),
+                  child: Container(
+                      child: FutureBuilder(
+                          future: getNotifications(),
+                          builder: (BuildContext context, AsyncSnapshot snapshot) {
+                            print(snapshot.data);
+                            if (snapshot.data == null) {
+                              return Container(
+                                  child: Center(child: CircularProgressIndicator()));
+                            } else {
+                              return ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data.length,
+
+                                  itemBuilder: (BuildContext context, int index) {
+                                    var date = formatDateTime(
+                                        snapshot.data[index].dateCreated);
+                                    var type = "";
+                                    if (StaticValue.latestNotificationId != null &&
+                                        snapshot.data[index].notificationId >
+                                            StaticValue.latestNotificationId) {
+                                      type = "New";
+                                    }
+                                    return Card(
+
+                                        elevation: 5,
+                                            margin: EdgeInsets.fromLTRB(
+                                                10.0, 15.0, 10.0, 0.0),
+
+                                      child: buildListTile(snapshot, index, date, type));
+                                  });
+                            }
+                          })),
+                ),
+              ),
+            ],
+          ),
+
+    ),
+        ));
   }
 
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type) {
@@ -188,15 +201,16 @@ class AllNotificationState extends State<AllNotification> {
       title: Container(
        // width: 315.0,
         //height: 125.0,
-       
+        padding: EdgeInsets.only(top: 10),
         child: new Row(
         
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Flexible(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-              //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   
                 
