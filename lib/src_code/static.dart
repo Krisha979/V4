@@ -10,7 +10,6 @@ class StaticValue{
   static String orgRowstamp;
   static int meetingstatusId=3;
   static List<MeetingStatus> statuslist = [];
- // static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
   //static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
   static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
   static List<String> filenames;
@@ -18,4 +17,6 @@ class StaticValue{
   static int meetingScheduledId = 4;
   static bool togglestate;
   static File imgfile;
+  static String facebookurl = "www.facebook.com";
+  static String whatsapp="www.facebook.com";
 }

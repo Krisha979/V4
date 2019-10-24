@@ -84,15 +84,15 @@ class AllNotificationState extends State<AllNotification> {
             _refreshController.refreshCompleted();
           },
           child: Container(
-          height: size.height * 2,
-          width: size.width,
+          
+    
           color: Color(0xFFE0CECE),
           child: Column(
             children: <Widget>[
               Container(
-                height: size.height / 5.5,
-                width: size.width,
-                margin: EdgeInsets.all(10),
+               
+                margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
+                           padding: EdgeInsets.fromLTRB(20, 10, 25, 5),
                 decoration: new BoxDecoration(
                             color: Colors.white,
                              borderRadius: new BorderRadius.circular(10.0),
@@ -147,15 +147,11 @@ class AllNotificationState extends State<AllNotification> {
 
               ),
 
-              Expanded(
-                      child: Container(
+                   Container(
+                     height:size.height,
+                     color: Colors.white,
+                     margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
 
-                 // width: size.width,
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  decoration: BoxDecoration(
-                    color: Colors.white
-                  ),
-                  child: Container(
                       child: FutureBuilder(
                           future: getNotifications(),
                           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -187,8 +183,8 @@ class AllNotificationState extends State<AllNotification> {
                                   });
                             }
                           })),
-                ),
-              ),
+                
+              
             ],
           ),
 
@@ -199,8 +195,7 @@ class AllNotificationState extends State<AllNotification> {
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type) {
     var list = ListTile(
       title: Container(
-       // width: 315.0,
-        //height: 125.0,
+      
         padding: EdgeInsets.only(top: 10),
         child: new Row(
         

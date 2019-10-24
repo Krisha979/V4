@@ -288,13 +288,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
-                           boxShadow: [
-//                           BoxShadow(
-//                                  blurRadius: 4.0,
-//                                  color: Colors.black.withOpacity(0.5),
-//                                  offset: Offset(0.0, 0.5),
-//                                ),
-                              ],
                            ),
 
                            child: Column(

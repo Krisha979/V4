@@ -16,6 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
+  
   TabController controller;
   @override
   void initState() {
@@ -37,6 +38,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       context: context,
        barrierDismissible: false,
       builder: (BuildContext context) {
+        Size size = MediaQuery.of(context).size;
         return AlertDialog(
           
           title: Center(
@@ -45,49 +47,28 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
               )
               ),
           actions: <Widget>[
-            Container(
-              height: 70,
-              width: 280,
-              child:Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
             
-            
-               Container(
-                height: 30,
-                width: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                     color: Color(0xFFCEC0C0),
-                ),
            
-                child: RaisedButton(
+                 RaisedButton(
                   child: Text("Yes", style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
                   onPressed: ()=>Navigator.pop(context,true), 
                    
-                  color:  Color(0xFFCEC0C0),
+                  
                 ),
-              ),
+              
             
            
-               Container(
-                 height: 30,
-                width: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                     color: Color(0xFFCEC0C0),
-                ),
-                child: RaisedButton(
+               RaisedButton(
                   child: Text("No", style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
-                   color:  Color(0xFFCEC0C0),
+                   
                   onPressed: ()=>Navigator.pop(context,false)
                 ),
-              ),
+              
           
             ],
-            ),
-            ),
-             ],
+            
+            
+             
         );
     }
     );

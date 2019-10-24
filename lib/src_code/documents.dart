@@ -61,7 +61,7 @@ catch(e){
                            BoxShadow(
                                   blurRadius: 4.0,
                                   color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.5, 0.5),
+                                  offset: Offset(0.0, 0.5),
                                 ),
                               ],
                            ),
@@ -75,7 +75,7 @@ catch(e){
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Text("All Task"),
+                                  Text("All Documents"),
                                  // Text('$count'),
                                   
 
@@ -122,13 +122,13 @@ catch(e){
                      decoration: new BoxDecoration(
                      color: Colors.white,
                      borderRadius: new BorderRadius.circular(10.0),
-                     boxShadow: [
-                     BoxShadow(
-                            blurRadius: 4.0,
-                            color: Colors.black.withOpacity(0.5),
-                            offset: Offset(0.5, 0.5),
-                          ),
-                        ],
+                    //  boxShadow: [
+                    //  BoxShadow(
+                    //         blurRadius: 4.0,
+                    //         color: Colors.black.withOpacity(0.5),
+                    //         offset: Offset(0.5, 0.5),
+                    //       ),
+                    //     ],
                      ),
                      child: new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

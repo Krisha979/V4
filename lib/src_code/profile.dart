@@ -138,11 +138,11 @@ class ProfileState extends State<Profile> {
                             splashColor: Colors.yellow,
                             child: CircleAvatar(
                               radius: 50,
-                              backgroundColor: Colors.blueGrey,
+                              backgroundColor: Colors.white,
                               child: ClipOval(
                                 child: SizedBox(
                                   height: size.height / 4,
-                                  width: size.width / 4,
+                                  width: size.height / 4,
                                   // child: Image.network(StaticValue.logo),
                                   child: StaticValue.logo == null
                                       ? Icon(
