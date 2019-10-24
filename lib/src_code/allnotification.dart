@@ -15,6 +15,8 @@ class AllNotification extends StatefulWidget {
   }
 }
 
+
+
 class AllNotificationState extends State<AllNotification> {
    int notificationNumber;
    final RefreshController _refreshController = RefreshController();
@@ -39,7 +41,7 @@ class AllNotificationState extends State<AllNotification> {
       }
       print(notifications.length);
       setState(() {
-        notificationNumber = notifications.length;
+        notificationNumber = notifications.length; 
       });
       latestid = notifications[0].notificationId;
       print(latestid);
@@ -84,8 +86,7 @@ class AllNotificationState extends State<AllNotification> {
             _refreshController.refreshCompleted();
           },
           child: Container(
-          height: size.height * 2,
-          width: size.width,
+      
           color: Color(0xFFE0CECE),
           child: Column(
             children: <Widget>[
@@ -161,8 +162,11 @@ class AllNotificationState extends State<AllNotification> {
                           builder: (BuildContext context, AsyncSnapshot snapshot) {
                             print(snapshot.data);
                             if (snapshot.data == null) {
+                            
                               return Container(
-                                  child: Center(child: CircularProgressIndicator()));
+                                
+                                  
+                                 child: Center(child: CircularProgressIndicator()));
                             } else {
                               return ListView.builder(
                                   shrinkWrap: true,
@@ -184,9 +188,13 @@ class AllNotificationState extends State<AllNotification> {
                                                 10.0, 15.0, 10.0, 0.0),
 
                                       child: buildListTile(snapshot, index, date, type));
+                                      
                                   });
                             }
+                            
                           })),
+
+                          
                 ),
               ),
             ],
@@ -236,6 +244,7 @@ class AllNotificationState extends State<AllNotification> {
                 ),
               ),
             )
+            
           ],
         ),
       ),

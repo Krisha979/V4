@@ -224,6 +224,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                            var date = formatDateTime(meetinglist[meetingId].meetingTime);
                            var formattedtime = formatTime(meetinglist[meetingId].meetingTime);
                           return ListTile(
+                            
                           //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
 
                             title: InkWell(

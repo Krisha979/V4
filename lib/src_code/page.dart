@@ -37,6 +37,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       context: context,
        barrierDismissible: false,
       builder: (BuildContext context) {
+        Size size = MediaQuery.of(context).size;
         return AlertDialog(
           
           title: Center(
@@ -46,41 +47,62 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
               ),
           actions: <Widget>[
             Container(
-              height: 70,
-              width: 280,
+             height: size.height/10,
+              width: size.width/1.9,
+             
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
             
             
                Container(
-                height: 30,
+                height: 35,
                 width: 75,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                      color: Color(0xFFCEC0C0),
+                     
                 ),
            
                 child: RaisedButton(
-                  child: Text("Yes", style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
-                  onPressed: ()=>Navigator.pop(context,true), 
+                  child: Text("Yes", style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal, 
+                    fontStyle: FontStyle.normal,fontSize: 16),),
+
+                  //onPressed: ()=>Navigator.pop(context,true), 
+                  
+                  onPressed: (){
+                    Navigator.pop(context, true);
+                    Navigator.pop(context, true);
+                    
+                  //  Navigator.pop(context);
+                  },
                    
                   color:  Color(0xFFCEC0C0),
+                    shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+                    ),
                 ),
               ),
             
            
                Container(
-                 height: 30,
+                 height:35,
                 width: 75,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                      color: Color(0xFFCEC0C0),
                 ),
                 child: RaisedButton(
-                  child: Text("No", style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
+                  child: Text("No", style: TextStyle(color: Colors.black, fontSize: 16,
+                   fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
                    color:  Color(0xFFCEC0C0),
+                   shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+        
+),
                   onPressed: ()=>Navigator.pop(context,false)
+
                 ),
               ),
           
@@ -122,7 +144,9 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                   ),
                 ),
               )
-            ]),
+            
+            ]
+            ),
         drawer: Nav(),
         body: new TabBarView(
           controller: controller,

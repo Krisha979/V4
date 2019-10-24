@@ -159,7 +159,7 @@ class ProfileState extends State<Profile> {
                             ),
                           ),
                         ),
-                        Text("Kathmandu codes Pvt.Ltd",
+                        Text(StaticValue.orgName,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontStyle: FontStyle.normal,
