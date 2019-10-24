@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:snbiz/src_code/Summary.dart';
-import 'package:snbiz/src_code/allnotification.dart';
 import 'package:snbiz/src_code/contact.dart';
-import 'package:snbiz/src_code/invoice.dart';
 import 'package:snbiz/src_code/login.dart';
+import 'package:snbiz/src_code/privacy.dart';
 import 'package:snbiz/src_code/profile.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:snbiz/src_code/webview.dart' ;
 import 'package:url_launcher/url_launcher.dart';
+
+
+ 
 
 class Nav extends StatefulWidget {
   @override
@@ -154,7 +156,10 @@ class NavBar extends State<Nav> {
                 ],
               ),
               onTap: () {
+               
                 //launch('https://snbiznepal.com');
+                Navigator.push(context,
+                   MaterialPageRoute(builder: (context) => WebView()));
     
               }),
         ),
@@ -277,12 +282,19 @@ class NavBar extends State<Nav> {
             color: Colors.black,
           
         ),
-        
-        Padding(padding:EdgeInsets.fromLTRB(10, 10, 10, 10)),
-       Center(child: Text("Privacy Policy | Terms of Use")),
+        Padding(
+          padding: EdgeInsets.only(top: 25),
+        ),
+        InkWell(
+          onTap:(){
+            Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => PrivacyWebView()));
+          },child: Center(child: Text("Privacy Policy | Terms of Use")))
       ]),
         
       ])
     );
   }
+
+  
 }

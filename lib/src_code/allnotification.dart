@@ -15,8 +15,11 @@ class AllNotification extends StatefulWidget {
   }
 }
 
+
+
 class AllNotificationState extends State<AllNotification> {
    int notificationNumber;
+   Future<List<NotificationModel>> _future;
    final RefreshController _refreshController = RefreshController();
    String date;
   final storage = new FlutterSecureStorage();
@@ -39,7 +42,7 @@ class AllNotificationState extends State<AllNotification> {
       }
       print(notifications.length);
       setState(() {
-        notificationNumber = notifications.length;
+        notificationNumber = notifications.length; 
       });
       latestid = notifications[0].notificationId;
       print(latestid);
@@ -57,6 +60,14 @@ class AllNotificationState extends State<AllNotification> {
     }
   }
 
+   @override
+   void initState() {
+     super.initState();
+     setState(() {
+       _future = getNotifications();
+     });
+
+   }
   Future<void> storeLatesId(String id) async {
     await storage.write(key: "LatestNotificationId", value: id);
   }
@@ -75,17 +86,20 @@ class AllNotificationState extends State<AllNotification> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+
         body:  SmartRefresher(
+
           controller: _refreshController,
           enablePullDown: true,
+          enablePullUp: false,
           onRefresh: () async {
             await Future.delayed(Duration(seconds: 2));
             getNotifications();
             _refreshController.refreshCompleted();
           },
           child: Container(
-          
-    
+         // height: size.height * 2,
+          width: size.width,
           color: Color(0xFFE0CECE),
           child: Column(
             children: <Widget>[
@@ -153,15 +167,20 @@ class AllNotificationState extends State<AllNotification> {
                      margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
 
                       child: FutureBuilder(
-                          future: getNotifications(),
+                          future: _future,
                           builder: (BuildContext context, AsyncSnapshot snapshot) {
                             print(snapshot.data);
                             if (snapshot.data == null) {
+                            
                               return Container(
-                                  child: Center(child: CircularProgressIndicator()));
+                                
+                                  
+                                 child: Center(child: CircularProgressIndicator()));
                             } else {
                               return ListView.builder(
                                   shrinkWrap: true,
+                                  physics: const AlwaysScrollableScrollPhysics(),
+
                                   itemCount: snapshot.data.length,
 
                                   itemBuilder: (BuildContext context, int index) {
@@ -175,21 +194,24 @@ class AllNotificationState extends State<AllNotification> {
                                     }
                                     return Card(
 
-                                        elevation: 5,
+                                        elevation: 3,
                                             margin: EdgeInsets.fromLTRB(
                                                 10.0, 15.0, 10.0, 0.0),
 
                                       child: buildListTile(snapshot, index, date, type));
+                                      
                                   });
                             }
+                            
                           })),
-                
-              
+
+                          
             ],
+              ),
+          ),
           ),
 
-    ),
-        ));
+        );
   }
 
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type) {
@@ -231,6 +253,7 @@ class AllNotificationState extends State<AllNotification> {
                 ),
               ),
             )
+            
           ],
         ),
       ),
