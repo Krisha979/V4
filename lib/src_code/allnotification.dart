@@ -161,49 +161,51 @@ class AllNotificationState extends State<AllNotification> {
 
               ),
 
-                   Container(
-                     height:size.height,
-                     color: Colors.white,
-                     margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                   Expanded(
+                                        child: Container(
+                      
+                       color: Colors.white,
+                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
 
-                      child: FutureBuilder(
-                          future: _future,
-                          builder: (BuildContext context, AsyncSnapshot snapshot) {
-                            print(snapshot.data);
-                            if (snapshot.data == null) {
-                            
-                              return Container(
-                                
+                        child: FutureBuilder(
+                            future: _future,
+                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                              print(snapshot.data);
+                              if (snapshot.data == null) {
+                              
+                                return Container(
                                   
-                                 child: Center(child: CircularProgressIndicator()));
-                            } else {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const AlwaysScrollableScrollPhysics(),
+                                    
+                                   child: Center(child: CircularProgressIndicator()));
+                              } else {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: const AlwaysScrollableScrollPhysics(),
 
-                                  itemCount: snapshot.data.length,
+                                    itemCount: snapshot.data.length,
 
-                                  itemBuilder: (BuildContext context, int index) {
-                                    var date = formatDateTime(
-                                        snapshot.data[index].dateCreated);
-                                    var type = "";
-                                    if (StaticValue.latestNotificationId != null &&
-                                        snapshot.data[index].notificationId >
-                                            StaticValue.latestNotificationId) {
-                                      type = "New";
-                                    }
-                                    return Card(
+                                    itemBuilder: (BuildContext context, int index) {
+                                      var date = formatDateTime(
+                                          snapshot.data[index].dateCreated);
+                                      var type = "";
+                                      if (StaticValue.latestNotificationId != null &&
+                                          snapshot.data[index].notificationId >
+                                              StaticValue.latestNotificationId) {
+                                        type = "New";
+                                      }
+                                      return Card(
 
-                                        elevation: 3,
-                                            margin: EdgeInsets.fromLTRB(
-                                                10.0, 15.0, 10.0, 0.0),
+                                          elevation: 3,
+                                              margin: EdgeInsets.fromLTRB(
+                                                  10.0, 15.0, 10.0, 0.0),
 
-                                      child: buildListTile(snapshot, index, date, type));
-                                      
-                                  });
-                            }
-                            
-                          })),
+                                        child: buildListTile(snapshot, index, date, type));
+                                        
+                                    });
+                              }
+                              
+                            })),
+                   ),
 
                           
             ],

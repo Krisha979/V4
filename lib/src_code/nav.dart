@@ -92,8 +92,10 @@ class NavBar extends State<Nav> {
                 child:Row(
                   children: <Widget>[
                  Expanded(
-                                    child: Text('Customer Name: '+StaticValue.orgName.toString(),
+                                    child: Center(
+                                      child: Text(StaticValue.orgName.toString(),
                 style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal)),
+                                    ),
                  ),
           
                   ])),
