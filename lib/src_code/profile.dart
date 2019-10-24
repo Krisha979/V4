@@ -124,7 +124,7 @@ class ProfileState extends State<Profile> {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.all(8.0),
-                    height: size.height / 1.9,
+                    height: size.height / 1.6,
                     width: size.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
@@ -252,7 +252,7 @@ class ProfileState extends State<Profile> {
                   Container(
                     margin:
                         EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
-                    height: size.height / 2,
+                    height: size.height / 1.4,
                     width: size.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5.0),
@@ -276,7 +276,7 @@ class ProfileState extends State<Profile> {
                           child: Text(
                             "User Name",
                             style:
-                                TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
+                                TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
                           ),
                         ),
                         Padding(
@@ -293,8 +293,9 @@ class ProfileState extends State<Profile> {
                               decoration: new InputDecoration(
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.only(
-                                    left: 15, bottom: 11, top: 11, right: 15),
+                                contentPadding: EdgeInsets.all(10)
+
+                                  ,
                               ),
                               controller: userName,
                             ),
@@ -305,13 +306,13 @@ class ProfileState extends State<Profile> {
                           child: Text(
                             "Email",
                             style:
-                                TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
+                                TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Container(
-                            height: size.height / 20,
+
                             width: size.width,
                             margin: EdgeInsets.only(left: 20, right: 20),
                             // color: Colors.white,
@@ -323,8 +324,7 @@ class ProfileState extends State<Profile> {
                               decoration: new InputDecoration(
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.only(
-                                    left: 15, bottom: 11, top: 11, right: 15),
+                                contentPadding: EdgeInsets.all(5),
                               ),
                               // controller: userContact,
                             ),
@@ -336,7 +336,7 @@ class ProfileState extends State<Profile> {
                             child: Text(
                               "Contact Number",
                               style: TextStyle(
-                                  fontSize: 16, color: Color(0xFFA19F9F)),
+                                  fontSize: 14, color: Color(0xFFA19F9F)),
                             ),
                           ),
                         ),
@@ -354,8 +354,7 @@ class ProfileState extends State<Profile> {
                               decoration: new InputDecoration(
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.only(
-                                    left: 15, bottom: 11, top: 11, right: 15),
+                                contentPadding: EdgeInsets.all(10)
                               ),
                               controller: userContact,
                             ),
