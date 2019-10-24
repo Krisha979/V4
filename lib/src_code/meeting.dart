@@ -155,7 +155,8 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                              child: Column(
                                   children: <Widget>[
                              Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               
                               children: [
 
                                 Column(
