@@ -221,15 +221,24 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                 hintColor: Colors.white,
                               ),
                                                 child: Container(
+                                                  
                                                   padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                                                   constraints: new BoxConstraints(minWidth: size.width),
                             width: size.width,
                             height: size.height/5.5,
                           
                              decoration: new BoxDecoration(
+                               
                              color: Colors.white,
                              borderRadius: new BorderRadius.circular(15.0),
-                           
+                             boxShadow: [
+                           BoxShadow(
+                             
+                                  blurRadius:  4.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(0.5, 0.5),
+                                ),
+                              ],
                              ),
                              child: new Row(
                                

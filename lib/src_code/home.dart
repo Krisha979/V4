@@ -117,7 +117,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           color: const Color(0xFFFBF4F4),
                         ),
                         child: Center(
-                          child: Text("UPLOAD OPTIONS", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+                          child: Text("UPLOAD OPTIONS", style: TextStyle(color: Color(0xFF665959), fontSize: 18, fontWeight: FontWeight.bold),)),
                       ),
                       
                     ],
@@ -355,7 +355,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+  
 
     super.didChangeDependencies();
     size = MediaQuery.of(context).size;

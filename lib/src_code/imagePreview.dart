@@ -109,7 +109,7 @@ class PreviewImageState extends State<PreviewImage> {
                     Padding(
                       padding: const EdgeInsets.only(right: 40),
                       child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal),),
+                        fontSize: 18, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10,),
@@ -145,7 +145,7 @@ class PreviewImageState extends State<PreviewImage> {
                               borderRadius: BorderRadius.circular(10.0)),
                           child: Center(
                             child:
-                                Text('Upload', style: TextStyle(fontSize: 16)),
+                                Text('Upload', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                           )),
                     ),
                   ]))

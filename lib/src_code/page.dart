@@ -35,19 +35,59 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   Future<bool> _onBackPressed(){
     return showDialog( 
       context: context,
+       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Do you really want to exit?"),
+          
+          title: Center(
+            child: Text(
+              "Do you want to exit?", style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),
+              )
+              ),
           actions: <Widget>[
-            FlatButton(
-              child: Text("No"),
-              onPressed: ()=>Navigator.pop(context,false),
+            Container(
+              height: 70,
+              width: 280,
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+            
+            
+               Container(
+                height: 30,
+                width: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                     color: Color(0xFFCEC0C0),
+                ),
+           
+                child: RaisedButton(
+                  child: Text("Yes", style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
+                  onPressed: ()=>Navigator.pop(context,true), 
+                   
+                  color:  Color(0xFFCEC0C0),
+                ),
+              ),
+            
+           
+               Container(
+                 height: 30,
+                width: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                     color: Color(0xFFCEC0C0),
+                ),
+                child: RaisedButton(
+                  child: Text("No", style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
+                   color:  Color(0xFFCEC0C0),
+                  onPressed: ()=>Navigator.pop(context,false)
+                ),
+              ),
+          
+            ],
             ),
-            FlatButton(
-              child: Text("Yes"),
-              onPressed: ()=>Navigator.pop(context,true)
-            )
-          ],
+            ),
+             ],
         );
     }
     );
@@ -67,13 +107,6 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
             backgroundColor: const Color(0xFF9C38FF),
             actions: <Widget>[
-              // action button
-              /*IconButton(
-                padding: const EdgeInsets.only(right: 8.0),
-                icon: Icon(Icons.notifications, size: 30.0),
-                onPressed: () {},
-              ),*/
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                 child: GestureDetector(

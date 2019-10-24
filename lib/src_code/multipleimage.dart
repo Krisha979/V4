@@ -84,7 +84,7 @@ class MultipleImageState extends State<MultipleImage> {
             "Preview Image",
             style: TextStyle(
                 fontStyle: FontStyle.normal,
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: FontWeight.normal,
                 color: Colors.white),
           ),
@@ -113,7 +113,7 @@ class MultipleImageState extends State<MultipleImage> {
                     child: Text(
                       "UPLOAD IMAGES & FILES",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xFF665959)),
                     ),
                   ),
                   Flexible(
