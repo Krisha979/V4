@@ -279,7 +279,7 @@ class _CreateState extends State<Create> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(8.0))),
                                         padding: const EdgeInsets.fromLTRB(
-                                            28, 10, 28, 5),
+                                            20, 10, 20, 5),
                                         child: Center(
                                           child: Text('Set Meeting',
                                               style: TextStyle(fontSize: 18)),
@@ -302,7 +302,7 @@ class _CreateState extends State<Create> {
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(8.0))),
                                         padding: const EdgeInsets.fromLTRB(
-                                            28, 10, 28, 5),
+                                            20, 10, 20, 5),
                                         child: Center(
                                           child: Text('Cancel',
                                               style: TextStyle(fontSize: 18)),

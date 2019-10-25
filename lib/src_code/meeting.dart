@@ -162,9 +162,11 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  
                                   children: <Widget>[
-                                    Text("All Meetings"),
-                                    Text('$counts'),
+                                    Text("All Meetings",style: TextStyle(
+                                  fontSize: 18, color: Color(0xFFA19F9F))),
+                                    Text('$counts', style: TextStyle(fontSize: 18),),
 
 
                                   ],
