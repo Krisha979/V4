@@ -21,6 +21,8 @@ class TaskState extends State<TaskPage> {
   int count;
   final RefreshController _refreshController = RefreshController();
 
+  Future<List<OrgTask>> _future;
+
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -68,6 +70,14 @@ catch(e){
 
 }
 }
+
+ @override
+  void initState() {
+    super.initState();
+    _future = getTask();
+       
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +149,7 @@ catch(e){
               ),
             Container(
            child: FutureBuilder(
-            future: getTask(),
+            future: _future,
             builder:(BuildContext context, AsyncSnapshot snapshot){
               print(snapshot.data);
               if(snapshot.data==null){
@@ -153,6 +163,7 @@ catch(e){
               }else{
                 return Flexible(
                                 child: ListView.builder(
+                                  physics: const AlwaysScrollableScrollPhysics(),
                      shrinkWrap: true,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index){

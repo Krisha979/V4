@@ -161,48 +161,84 @@ class AllNotificationState extends State<AllNotification> {
                   ],
                 ),
               ),
-              Expanded(
-                child: Container(
-                    color: Colors.white,
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    child: FutureBuilder(
-                        future: _future,
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          print(snapshot.data);
-                          if (snapshot.data == null) {
-                            return Container(
-                                child:
-                                    Center(child: CircularProgressIndicator()));
-                          } else {
-                            return ListView.builder(
-                                shrinkWrap: true,
-                                physics: const AlwaysScrollableScrollPhysics(),
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  var date = formatDateTime(
-                                      snapshot.data[index].dateCreated);
-                                  var type = "";
-                                  if (StaticValue.latestNotificationId !=
-                                          null &&
-                                      snapshot.data[index].notificationId >
-                                          StaticValue.latestNotificationId) {
-                                    type = "New";
-                                  }
-                                  return Card(
-                                      elevation: 3,
-                                      margin: EdgeInsets.fromLTRB(
-                                          10.0, 15.0, 10.0, 0.0),
-                                      child: buildListTile(
-                                          snapshot, index, date, type));
-                                });
-                          }
-                        })),
-              ),
+
+                   Expanded(
+                      child: Container(
+                      
+                       color: Colors.white,
+                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+
+                        child: FutureBuilder(
+                            future: _future,
+                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                               switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                    return Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+              case ConnectionState.done:
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
+                  child: Center(
+                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              }else{
+                                return ListView.builder(
+                                  
+                                    shrinkWrap: true,
+                                    physics: const AlwaysScrollableScrollPhysics(),
+
+                                    itemCount: snapshot.data.length,
+
+                                    itemBuilder: (BuildContext context, int index) {
+                                      var date = formatDateTime(
+                                          snapshot.data[index].dateCreated);
+                                      var type = "";
+                                      if (StaticValue.latestNotificationId != null &&
+                                          snapshot.data[index].notificationId >
+                                              StaticValue.latestNotificationId) {
+                                        type = "New";
+                                      }
+                                      return Card(
+
+                                          elevation: 3,
+                                              margin: EdgeInsets.fromLTRB(
+                                                  10.0, 15.0, 10.0, 0.0),
+
+                                        child: buildListTile(snapshot, index, date, type));
+                                        
+                                    });
+                              }
+                               }
+                               return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+                              
+                            })),
+                   ),
+
+                          
             ],
+              ),
+            
           ),
         ),
-      ),
+      
     );
   }
 

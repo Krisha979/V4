@@ -12,6 +12,8 @@ class Invoice extends StatefulWidget {
 class _InvoiceState extends State<Invoice> {
   int invoicenumber;
 
+  Future<List<InvoiceModel>> _future;
+
   Future<List<InvoiceModel>> getInovoices() async {
     try {
       http.Response data = await http.get(
@@ -38,6 +40,13 @@ class _InvoiceState extends State<Invoice> {
       print(e);
       return null;
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _future = getInovoices();
+       
   }
 
   @override
@@ -141,16 +150,36 @@ class _InvoiceState extends State<Invoice> {
                   children: <Widget>[
                     Container(
                         child: FutureBuilder(
-                            future: getInovoices(),
+                            future: _future,
                             builder:
                                 (BuildContext context, AsyncSnapshot snapshot) {
-                              print(snapshot.data);
-                              if (snapshot.data == null) {
-                                return Container(
-                                    child: Center(
-                                        child: CircularProgressIndicator()));
-                              } else {
+                              switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                    return Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+              case ConnectionState.done:
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
+                  child: Center(
+                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              }else{
                                 return ListView.builder(
+                                  physics: const AlwaysScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: snapshot.data.length,
                                     itemBuilder:
@@ -202,7 +231,13 @@ class _InvoiceState extends State<Invoice> {
                                         ),
                                       );
                                     });
-                              }
+                              
+                              }}
+                              return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
                             })),
                   ],
                 ),

@@ -14,6 +14,8 @@ class Documents extends StatefulWidget{
 }
 
 class _DocumentsState extends State<Documents> {
+  Future<List<DocumentModel>> _future;
+
   Future<List<DocumentModel>> getDocuments()async{
   try{
   http.Response data = await http.get(
@@ -40,6 +42,13 @@ catch(e){
 
 }
 }
+ @override
+  void initState() {
+    super.initState();
+    _future = getDocuments();
+       
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -95,18 +104,35 @@ catch(e){
               ),
       Container(            
          child: FutureBuilder(
-          future: getDocuments(),
+          future: _future,
           builder:(BuildContext context, AsyncSnapshot snapshot){
-            print(snapshot.data);
-            if(snapshot.data==null){
-              return Container(
-                child: Center(
-                child: CircularProgressIndicator()
-               
-                )
-              );
-            }else{
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                    return Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+              case ConnectionState.done:
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
+                  child: Center(
+                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              }else{
               return ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index){
@@ -175,6 +201,12 @@ catch(e){
                 }
                   );
             }
+            }
+            return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
           } 
          )
       )
