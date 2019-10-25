@@ -35,19 +35,81 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   Future<bool> _onBackPressed(){
     return showDialog( 
       context: context,
+       barrierDismissible: false,
       builder: (BuildContext context) {
+        Size size = MediaQuery.of(context).size;
         return AlertDialog(
-          title: Text("Do you really want to exit?"),
+          
+          title: Center(
+            child: Text(
+              "Do you want to exit?", style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),
+              )
+              ),
           actions: <Widget>[
-            FlatButton(
-              child: Text("No"),
-              onPressed: ()=>Navigator.pop(context,false),
+            Container(
+             height: size.height/10,
+              width: size.width/1.9,
+             
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+            
+            
+               Container(
+                height: 35,
+                width: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                     color: Color(0xFFCEC0C0),
+                     
+                ),
+           
+                child: RaisedButton(
+                  child: Text("Yes", style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal, 
+                    fontStyle: FontStyle.normal,fontSize: 16),),
+
+                  //onPressed: ()=>Navigator.pop(context,true), 
+                  
+                  onPressed: (){
+                    Navigator.pop(context, true);
+                    Navigator.pop(context, true);
+                    
+                  //  Navigator.pop(context);
+                  },
+                   
+                  color:  Color(0xFFCEC0C0),
+                    shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+                    ),
+                ),
+              ),
+            
+           
+               Container(
+                 height:35,
+                width: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                     color: Color(0xFFCEC0C0),
+                ),
+                child: RaisedButton(
+                  child: Text("No", style: TextStyle(color: Colors.black, fontSize: 16,
+                   fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
+                   color:  Color(0xFFCEC0C0),
+                   shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+        
+),
+                  onPressed: ()=>Navigator.pop(context,false)
+
+                ),
+              ),
+          
+            ],
             ),
-            FlatButton(
-              child: Text("Yes"),
-              onPressed: ()=>Navigator.pop(context,true)
-            )
-          ],
+            ),
+             ],
         );
     }
     );
@@ -67,13 +129,6 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
             backgroundColor: const Color(0xFF9C38FF),
             actions: <Widget>[
-              // action button
-              /*IconButton(
-                padding: const EdgeInsets.only(right: 8.0),
-                icon: Icon(Icons.notifications, size: 30.0),
-                onPressed: () {},
-              ),*/
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
                 child: GestureDetector(
@@ -89,7 +144,9 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                   ),
                 ),
               )
-            ]),
+            
+            ]
+            ),
         drawer: Nav(),
         body: new TabBarView(
           controller: controller,

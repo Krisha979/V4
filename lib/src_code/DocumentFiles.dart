@@ -52,22 +52,23 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                 itemBuilder: (BuildContext context, int index) {
                   var url = details.documents[index].documentURL;
                   return Container(
-                    
+                   // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: Card(
                           elevation: 5,
-                          margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
+
                           child: ListTile(
                             title: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Padding(
-                                    padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
-                                  ),
+                                  // Padding(
+                                  //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                  // ),
                                   Flexible(
                                     child: Column(children: <Widget>[
                                       InkWell(
                                         child: Text(
-                                       ( details.documents[index].fileName == null)?details.documents[index].documentURL:
+                                       ( details.documents[index].fileName == null)?details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
                                        details.documents[index].fileName,
 
                                         

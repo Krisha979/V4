@@ -140,7 +140,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           color: const Color(0xFFFBF4F4),
                         ),
                         child: Center(
-                          child: Text("UPLOAD OPTIONS", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+                          child: Text("UPLOAD OPTIONS", style: TextStyle(color: Color(0xFF665959), fontSize: 18, fontWeight: FontWeight.bold),)),
                       ),
                       
                     ],
@@ -311,13 +311,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
-                           boxShadow: [
-//                           BoxShadow(
-//                                  blurRadius: 4.0,
-//                                  color: Colors.black.withOpacity(0.5),
-//                                  offset: Offset(0.0, 0.5),
-//                                ),
-                              ],
                            ),
 
                            child: Column(
@@ -379,7 +372,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
+  
 
     super.didChangeDependencies();
     size = MediaQuery.of(context).size;

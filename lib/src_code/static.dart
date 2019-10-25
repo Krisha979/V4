@@ -17,4 +17,6 @@ class StaticValue{
   static int meetingScheduledId = 4;
   static bool togglestate;
   static File imgfile;
+  static String facebookurl = "http://www.facebook.com";
+  static String whatsapp="http://www.facebook.com";
 }

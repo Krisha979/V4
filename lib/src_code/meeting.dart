@@ -171,12 +171,13 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                              child: Column(
                                   children: <Widget>[
                              Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               
                               children: [
 
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text("All Meetings"),
                                     Text('$counts'),
@@ -241,6 +242,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                            var date = formatDateTime(meetinglist[meetingId].meetingTime);
                            var formattedtime = formatTime(meetinglist[meetingId].meetingTime);
                           return ListTile(
+                            
                           //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
 
                             title: InkWell(

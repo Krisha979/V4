@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:snbiz/src_code/Summary.dart';
-import 'package:snbiz/src_code/allnotification.dart';
-import 'package:snbiz/src_code/invoice.dart';
+import 'package:snbiz/src_code/contact.dart';
 import 'package:snbiz/src_code/login.dart';
+import 'package:snbiz/src_code/privacy.dart';
 import 'package:snbiz/src_code/profile.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:snbiz/src_code/webview.dart' ;
 import 'package:url_launcher/url_launcher.dart';
+
+
+ 
 
 class Nav extends StatefulWidget {
   @override
@@ -28,7 +31,11 @@ class NavBar extends State<Nav> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Drawer(
-      child: ListView(children: <Widget>[
+      child: 
+      ListView(
+        
+        children: <Widget>[
+
         Container(
           height: size.height/3,
           width: size.width,
@@ -46,7 +53,7 @@ class NavBar extends State<Nav> {
                                 Padding(padding: EdgeInsets.only(top: 5),),
                                 
             Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                
                 Text(
@@ -82,11 +89,16 @@ class NavBar extends State<Nav> {
                            borderRadius: new BorderRadius.circular(5.0),
                   ),
                   
-
-                child: Text('Customer Id: '+StaticValue.orgId.toString(),
+                child:Row(
+                  children: <Widget>[
+                 Expanded(
+                                    child: Center(
+                                      child: Text(StaticValue.orgName.toString(),
                 style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal)),
+                                    ),
+                 ),
           
-         ),
+                  ])),
        ),
         
         Container(
@@ -146,7 +158,10 @@ class NavBar extends State<Nav> {
                 ],
               ),
               onTap: () {
+               
                 //launch('https://snbiznepal.com');
+                Navigator.push(context,
+                   MaterialPageRoute(builder: (context) => WebView()));
     
               }),
         ),
@@ -174,8 +189,8 @@ class NavBar extends State<Nav> {
                 ],
               ),
               onTap: () {
-              //   Navigator.push(context,
-              //       MaterialPageRoute(builder: (context) => AllNotification()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Contact()));
                }),
         ),
 
@@ -212,21 +227,31 @@ class NavBar extends State<Nav> {
                  // await storage.delete(key: "Email");
                  removeStaticValue();
                  
-                Navigator.pop(context); Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+               Navigator
+        .of(context)
+        .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {
+      return new LoginPage();
+    }));
                  
                 //authenticationBloc.dispatch(LoggedOut()); Navigator.pop(context); Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
               }),
         ),
+        
+        Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+
+          children: <Widget>[
         Row(
          
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
 
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.fromLTRB(25, 30, 0, 0),
               child: InkWell(
                 splashColor: Colors.red,
-                onTap: () {},
+                onTap: () { launch(StaticValue.facebookurl);},
                 child: Image(
                   image: new AssetImage("assets/facebook.png"),
                   height: 30.0,
@@ -238,20 +263,21 @@ class NavBar extends State<Nav> {
               padding: const EdgeInsets.fromLTRB(10, 30, 0, 0),
               child: InkWell(
                 splashColor: Colors.blue,
-                onTap: () {},
+                onTap: () {
+                  launch(StaticValue.whatsapp);
+                },
                 child: Image(
                   image: new AssetImage("assets/whatsapp.png"),
                   height: 35.0,
                   width: 35.0,
                 ),
+                
               ),
             ),
            
           ],
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 25),
-        ),
+       
         Container(
            height: 1,
            margin: EdgeInsets.only(left: 20, right: 20),
@@ -261,8 +287,16 @@ class NavBar extends State<Nav> {
         Padding(
           padding: EdgeInsets.only(top: 25),
         ),
-        Center(child: Text("Privacy Policy | Terms of Use"))
+        InkWell(
+          onTap:(){
+            Navigator.push(context,
+                     MaterialPageRoute(builder: (context) => PrivacyWebView()));
+          },child: Center(child: Text("Privacy Policy | Terms of Use")))
       ]),
+        
+      ])
     );
   }
+
+  
 }
