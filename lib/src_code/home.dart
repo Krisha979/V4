@@ -38,11 +38,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool showIndicator = false;
   static List<Widget> widgets = [];
   static Size size;
+  DashBoardData data;
   
   Future<DashBoardData> getData() async{      
     try{           
       http.Response response = await http.get(
-      Uri.encodeFull(StaticValue.baseUrl + "api/DashBoardData?Orgid=" + StaticValue.orgId.toString()),
+      Uri.encodeFull(StaticValue.baseUrl + "api/OrganizationDashboard?Orgid=" + StaticValue.orgId.toString()),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -51,9 +52,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
            var jsonData = json.decode(response.body);
   
   
-      var data = DashBoardData.fromJson(jsonData);
-
-     return data;
+      var data1 = DashBoardData.fromJson(jsonData);
+      if(data1 != null){
+          setState(() {
+        data = data1;
+      });
+      
+      }
+     return data1;
 
       }
       catch(e){
@@ -105,6 +111,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     img = imageFile.path;
     StaticValue.imgfile = imageFile;
     call();
+    
   }
 
   TextEditingController _controller = new TextEditingController();
@@ -246,8 +253,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   Future<List<Widget>> listwidget()async {
-
-        var widget1 = new Container(
+        if(data != null){
+                  var widget1 = new Container(
              color:Color(0xffd6d6d6),
              child: Column(
                children: <Widget>[
@@ -277,10 +284,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text("All Meetings"),
-                                  Text("148"),
+                                  Text("Upcoming Meetings"),
+                                  Text(data.upcomingMeetingsCount.toString()),
                                   Icon(Icons.file_upload),
-                                  Text("17th august 2019"),
+                                  Text("Next Meeting"),
+                                  Text(data.meetingTime.toString()),
 
                                 ],
                                 
@@ -323,11 +331,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text("All Tasks"),
-                                  Text("148"),
+                                  Text("Active Tasks"),
+                                  Text(data.activeTaskcount.toString()),
                                   Icon(Icons.file_upload),
-                                  Text("3"),
-
+                                  Text("Latest Running Task"),
+                                  Text(data.taskName),
                                 ],
                                 
 
@@ -349,6 +357,20 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         widgets.add(widget1);
         widgets.add(widget2);
         return widgets;
+
+        }
+        else{
+            var widget =  Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+                widgets.add(widget);
+        return widgets;
+        }
+        
   }
 
 
@@ -366,17 +388,19 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         setState(() {});
       });
     controller.forward();
-   
+       
   }
 
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async{
   
 
     super.didChangeDependencies();
     size = MediaQuery.of(context).size;
+    data = await getData();
       listwidget();
+      
   }
 
 
