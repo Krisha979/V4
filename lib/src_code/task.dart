@@ -121,7 +121,8 @@ catch(e){
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    Text("All Task"),
+                                    Text("All Task",style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
                                     Text('$count'),
 
 

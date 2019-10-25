@@ -179,9 +179,11 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  
                                   children: <Widget>[
-                                    Text("All Meetings"),
-                                    Text('$counts'),
+                                    Text("All Meetings",style: TextStyle(
+                                  fontSize: 18, color: Color(0xFFA19F9F))),
+                                    Text('$counts', style: TextStyle(fontSize: 18),),
 
 
                                   ],
@@ -276,10 +278,16 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
 
                                         Text(formattedtime, textAlign: TextAlign.left,
                                         style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
+<<<<<<< HEAD
                                        Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
 
                                         Flexible(child: Text(snapshot.data[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                                          Flexible(child: Text(snapshot.data[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+=======
+                                        Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+                                        Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                         Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+>>>>>>> 77083f4a9084e02a79e989290089c5456912e2a4
                                       ],
 
                                     ),

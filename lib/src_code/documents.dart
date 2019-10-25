@@ -75,7 +75,8 @@ catch(e){
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Text("All Documents"),
+                                  Text("All Documents",style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
                                  // Text('$count'),
                                   
 

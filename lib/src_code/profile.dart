@@ -99,7 +99,7 @@ class ProfileState extends State<Profile> {
       return Scaffold(
         appBar: AppBar(
           title: Text("Profile",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
           backgroundColor: const Color(0xFF9C38FF),
         ),
         body: SmartRefresher(

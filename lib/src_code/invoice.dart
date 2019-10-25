@@ -65,26 +65,50 @@ class _InvoiceState extends State<Invoice> {
           children: <Widget>[
             Container(
              // height: size.height / 5.5,
-              width: size.width,
+             width: size.width,
               margin: EdgeInsets.fromLTRB(10,10,10,0),
               padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white,
-              ),
+              decoration: new BoxDecoration(
+                            color: Colors.white,
+                             borderRadius: new BorderRadius.circular(10.0),
+                             boxShadow: [
+                             BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Colors.black.withOpacity(0.5),
+                                    offset: Offset(0.0, 0.5),
+                                  ),
+                                ],
+                             ),
            child: Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              //  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("All Invoices"),
-                                  Text('$invoicenumber'),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Text("ALL INVOICES",style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Text('$invoicenumber', style: TextStyle(color: Colors.black),),
+                                  ),
                                  Row(
+                                   
                                    children: <Widget>[
-                                     Image(image: new AssetImage("assets/due.png"),),
-                                     Text("due remaining")
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 25),
+                                       child: Image(image: new AssetImage("assets/due.png"),),
+                                     ),
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 5),
+                                       child: Text("Due Remaining",style: TextStyle(
+                                    fontSize: 14, color: Color(0xFFA19F9F))),
+                                     )
                                    ],
                                  ),
                                   
@@ -93,10 +117,13 @@ class _InvoiceState extends State<Invoice> {
                                 
 
                               ),
-                            Image(
-                                      image: new AssetImage("assets/invoice.png"),
-                                      height: size.height / 9,
-                                    ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Image(
+                                        image: new AssetImage("assets/invoice.png"),
+                                        height: size.height / 10,
+                                      ),
+                            ),
                             ],
                           ),
 

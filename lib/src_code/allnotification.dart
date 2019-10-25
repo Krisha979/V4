@@ -105,9 +105,10 @@ class AllNotificationState extends State<AllNotification> {
             children: <Widget>[
               Container(
                
-                margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                           padding: EdgeInsets.fromLTRB(20, 10, 25, 5),
-                decoration: new BoxDecoration(
+                        width: size.width,
+              margin: EdgeInsets.fromLTRB(10,10,10,0),
+              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              decoration: new BoxDecoration(
                             color: Colors.white,
                              borderRadius: new BorderRadius.circular(10.0),
                              boxShadow: [
@@ -118,51 +119,58 @@ class AllNotificationState extends State<AllNotification> {
                                   ),
                                 ],
                              ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
+                            children: [
+                              
+                              Column(
+                              //  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Text("ALL NOTIFICATIONS",style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Text('$notificationNumber', style: TextStyle(color: Colors.black),),
+                                  ),
+                                 Row(
+                                   
+                                   children: <Widget>[
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 25),
+                                       child: Image(image: new AssetImage("assets/due.png"),),
+                                     ),
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 5),
+                                       child: Text("Last Notification",style: TextStyle(
+                                    fontSize: 14, color: Color(0xFFA19F9F))),
+                                     )
+                                   ],
+                                 ),
+                                  
 
-                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 0),
-                            child: Text("ALL NOTIFICATIONS",style: TextStyle(
-                                  fontSize: 18, color: Color(0xFFA19F9F)),),
-                          ),
-                           Text('$notificationNumber'),
-                          //  Text('$invoicenumber'),
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.timer),
+                                ],
+                                
 
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 10
-                                ),
-                                child: Text("Last Notification",style: TextStyle(
-                                    fontSize: 14, color: Color(0xFFA19F9F)),),
-                              )
+                              ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Image(
+                                        image: new AssetImage("assets/notification.png"),
+                                        height: size.height / 10,
+                                      ),
+                            ),
                             ],
                           ),
-                         // Text('$date'),
-                         Text("Date")
-                        ],
-                      ),
-
-                    Image(
-                      image: new AssetImage("assets/notification.png"),
-                      height: size.height / 10,
-                    ),
-                  ],
-                ),
 
               ),
 
                    Expanded(
-                                        child: Container(
+                      child: Container(
                       
                        color: Colors.white,
                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -229,14 +237,14 @@ class AllNotificationState extends State<AllNotification> {
                           child: Column(
 
 
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   
                 
                  
                   Center(child: Text(snapshot.data[index].notificationBody)),
-                  Center(child: Text(date)),
-                  Center(child: Text(type)),
+                 Text(date),
+                Text(type),
                 ],
               ),
             ),
