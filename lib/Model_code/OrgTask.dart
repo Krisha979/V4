@@ -3,8 +3,9 @@ import 'package:snbiz/Model_code/Task.dart';
 class OrgTask {
   Task parentTask;
   List<Task> childTask;
+  int percentageComplete;
 
-  OrgTask({this.parentTask, this.childTask});
+  OrgTask({this.parentTask, this.childTask, this.percentageComplete});
 
   OrgTask.fromJson(Map<String, dynamic> json) {
     parentTask = json['parentTask'] != null
@@ -16,6 +17,7 @@ class OrgTask {
         childTask.add(new Task.fromJson(v));
       });
     }
+    percentageComplete = json['percentageComplete'];
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,7 @@ class OrgTask {
     if (this.childTask != null) {
       data['childTask'] = this.childTask.map((v) => v.toJson()).toList();
     }
+    data['percentageComplete'] = this.percentageComplete;
     return data;
   }
 }
