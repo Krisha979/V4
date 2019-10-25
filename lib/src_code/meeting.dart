@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -21,19 +22,24 @@ class MeetingState extends State<Meeting>{
   String switchText;
   bool isSwitched = false;
   bool isLoading = false;
-
+  
   final RefreshController _refreshController = RefreshController();
    List <MeetingInfo> meetinglist =[];
+
+  Future<List<MeetingInfo>> _future;
+  Future<List<MeetingInfo>> latestmeetings;
   Future<void>_onSwitchChanged(bool value) async {
     
       
     if(value == true){
             isSwitched = true;
             StaticValue.togglestate = true;
+            _future = upcomingsortedlist(await _future);
     }
     else{
       isSwitched = false;
       StaticValue.togglestate = false;
+      _future = latestsortedlist(await latestmeetings);
     }
     setState(() {
       
@@ -45,9 +51,15 @@ class MeetingState extends State<Meeting>{
 @override
   void initState() {
     super.initState();
-    _meeting();
+    switchText = "Meetings";
+  counts = 0;
+   setState(() {
+      _future = _meeting();
+      latestmeetings = _future;
+    });
   }
 Future<List<MeetingInfo>>_meeting()async{
+  
   try{
   http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl + "api/OrgMeetings?Orgid=" + StaticValue.orgId.toString()), 
@@ -64,19 +76,20 @@ Future<List<MeetingInfo>>_meeting()async{
   }
 print(meeting.length);
 setState(() {
-  counts = meeting.length;
+        counts = meeting.length;
+
 });
 //counts = meeting.length;
 if(StaticValue.togglestate == true){
     isSwitched = true;
     
-    switchText = 'Upcomming Meeting';
+    switchText = 'Upcomming Meetings';
     var sorted = await upcomingsortedlist(meeting);
     return sorted;
 }
 else{
   isSwitched = false;
-  switchText = 'Latest Meeting';
+  switchText = 'All Meetings';
   return meeting;
 }
 
@@ -93,14 +106,15 @@ catch(e){
 
 Future<List<MeetingInfo>> upcomingsortedlist(List<MeetingInfo> meetinginfo) async{
 
-
-    meetinginfo.sort((a,b) => DateTime.now().compareTo(DateTime.parse(a.meetingTime)));
-    print(meetinginfo);
-    return meetinginfo;
+    var filteredmeetings = meetinginfo;
+    filteredmeetings.removeWhere((a)=>DateTime.parse(a.meetingTime).isBefore( DateTime.now()));
+    filteredmeetings.sort((a,b)=> DateTime.parse(a.meetingTime).compareTo(DateTime.parse(b.meetingTime)));
+    print(filteredmeetings);
+    return filteredmeetings;
 }
 
 Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
-    meetinginfo.sort((a,b) => DateTime.parse(b.dateCreated).compareTo(DateTime.parse(a.dateCreated)));
+    meetinginfo.sort((a,b) => DateTime.parse(a.dateCreated).compareTo(DateTime.parse(b.dateCreated)));
     print(meetinginfo);
     return meetinginfo;
 }
@@ -124,7 +138,8 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
     Size size = MediaQuery.of(context).size;
    
     return Scaffold(
-      body:SmartRefresher(
+      body:
+      SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
         onRefresh: () async {
@@ -132,7 +147,8 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
           _meeting();
           _refreshController.refreshCompleted();
         },
-        child: Container(
+        child:
+         Container(
                  color:Color(0XFFF4EAEA),
           child: Column(
                 children: <Widget>[
@@ -162,9 +178,11 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  
                                   children: <Widget>[
-                                    Text("All Meetings",),
-                                    Text('$counts'),
+                                    Text("All Meetings",style: TextStyle(
+                                  fontSize: 18, color: Color(0xFFA19F9F))),
+                                    Text('$counts', style: TextStyle(fontSize: 18),),
 
 
                                   ],
@@ -200,8 +218,9 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                                   ]),
                   ),])),
             Container(
-                child:FutureBuilder(
-                future: _meeting(),
+                child: FutureBuilder(
+                  
+                future: _future,
                 builder:(BuildContext context, AsyncSnapshot snapshot){
                   meetinglist = snapshot.data;
                   //counts= meetinglist.length;
