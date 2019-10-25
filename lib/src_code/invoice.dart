@@ -12,6 +12,8 @@ class Invoice extends StatefulWidget {
 class _InvoiceState extends State<Invoice> {
   int invoicenumber;
 
+  Future<List<InvoiceModel>> _future;
+
   Future<List<InvoiceModel>> getInovoices() async {
     try {
       http.Response data = await http.get(
@@ -38,6 +40,13 @@ class _InvoiceState extends State<Invoice> {
       print(e);
       return null;
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _future = getInovoices();
+       
   }
 
   @override
@@ -141,7 +150,7 @@ class _InvoiceState extends State<Invoice> {
                   children: <Widget>[
                     Container(
                         child: FutureBuilder(
-                            future: getInovoices(),
+                            future: _future,
                             builder:
                                 (BuildContext context, AsyncSnapshot snapshot) {
                               switch (snapshot.connectionState) {

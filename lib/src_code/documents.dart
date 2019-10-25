@@ -14,6 +14,8 @@ class Documents extends StatefulWidget{
 }
 
 class _DocumentsState extends State<Documents> {
+  Future<List<DocumentModel>> _future;
+
   Future<List<DocumentModel>> getDocuments()async{
   try{
   http.Response data = await http.get(
@@ -40,6 +42,13 @@ catch(e){
 
 }
 }
+ @override
+  void initState() {
+    super.initState();
+    _future = getDocuments();
+       
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -95,7 +104,7 @@ catch(e){
               ),
       Container(            
          child: FutureBuilder(
-          future: getDocuments(),
+          future: _future,
           builder:(BuildContext context, AsyncSnapshot snapshot){
             switch (snapshot.connectionState) {
               case ConnectionState.none:
