@@ -51,48 +51,48 @@ catch(e){
         child: Column(
               children: <Widget>[
                
-                Container(           
-                          margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                         padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                           decoration: new BoxDecoration(
-                          color: Colors.white,
-                           borderRadius: new BorderRadius.circular(15.0),
-                           boxShadow: [
-                           BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.0, 0.5),
-                                ),
-                              ],
-                           ),
-
-                           child: Column(
-                                children: <Widget>[ 
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text("All Documents",style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
-                                 // Text('$count'),
-                                  
-
-                                ],
-                                
-
-                              ),
-                            Image(
-                                      image: new AssetImage("assets/new_meeting.png"),
-                                      height: size.height / 11,
-                                    ),
-                            ],
-                          ),
-
+                Container(
+                width: size.width,
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 4.0,
+                      color: Colors.black.withOpacity(0.5),
+                      offset: Offset(0.0, 0.5),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      //  mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30),
+                          child: Text("ALL DOCUMENTS",
+                              style: TextStyle(
+                                  fontSize: 18, color: Color(0xFFA19F9F))),
+                        ),
+                       
                         
-                        ])),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Image(
+                        image: new AssetImage("assets/new_meeting.png"),
+                        height: size.height / 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
       Container(            
          child: FutureBuilder(
           future: getDocuments(),

@@ -20,7 +20,7 @@ class TaskPage extends StatefulWidget {
 class TaskState extends State<TaskPage> {
   int count;
   final RefreshController _refreshController = RefreshController();
-  Future<List<OrgTask>> _future;
+
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -37,14 +37,6 @@ class TaskState extends State<TaskPage> {
     print(time);
    // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
     return time.toString();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _future = getTask();
-    });
   }
 
 Future<List<OrgTask>> getTask()async{
@@ -98,74 +90,65 @@ catch(e){
                 children: <Widget>[
 
                   Container(
-                            margin: EdgeInsets.fromLTRB(9, 7, 9, 7),
-                           padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
-                             decoration: new BoxDecoration(
-                            color: Colors.white,
-                             borderRadius: new BorderRadius.circular(15.0),
-                             boxShadow: [
-                             BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Colors.black.withOpacity(0.5),
-                                    offset: Offset(0.5, 0.5),
-                                  ),
-                                ],
-                             ),
-
-                             child: Column(
-                                  children: <Widget>[
-                             Row(
-                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    Text("All Task",style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
-                                    Text('$count'),
-
-
-                                  ],
-
-
-                                ),
-                              Image(
-                                        image: new AssetImage("assets/new_meeting.png"),
-                                        height: size.height / 9,
-                                      ),
-                              ],
-                            ),
-
-
-                          ])),
+                width: size.width,
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 4.0,
+                      color: Colors.black.withOpacity(0.5),
+                      offset: Offset(0.0, 0.5),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      //  mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30),
+                          child: Text("ALL TASKS",
+                              style: TextStyle(
+                                  fontSize: 18, color: Color(0xFFA19F9F))),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30),
+                          child: Text(
+                            '$count',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                       
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Image(
+                        image: new AssetImage("assets/new_meeting.png"),
+                        height: size.height / 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             Container(
            child: FutureBuilder(
-            future: _future,
+            future: getTask(),
             builder:(BuildContext context, AsyncSnapshot snapshot){
-              switch (snapshot.connectionState) {
-              case ConnectionState.none:
-                  return Container(
-                  child: Center(
-                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
-              case ConnectionState.active:
-              case ConnectionState.waiting:
-                    return Container(
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
                   child: Center(
 
                   child: CircularProgressIndicator()
 
                   )
-                );
-              case ConnectionState.done:
-              print(snapshot.data);
-              if(snapshot.data==null){
-                return Container(
-                  child: Center(
-                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
                 );
               }else{
                 return Flexible(
@@ -176,7 +159,6 @@ catch(e){
                        var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
                        var enddate = formatTime(snapshot.data[index].parentTask.endDate);
                        var name = snapshot.data[index].parentTask.taskName;
-                       var percentage = snapshot.data[index].percentageComplete;
                       return ListTile(
                         title: InkWell(
                                                 child: new Theme(
@@ -207,7 +189,6 @@ catch(e){
 
                                 Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
                                 Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                Flexible(child: Text(percentage.toString() + "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
 
                                 ],
 
@@ -244,12 +225,6 @@ catch(e){
                       ),
                 );
               }
-            }
-            return Container(
-                  child: Center(
-                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
             }
            )
         )
