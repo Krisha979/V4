@@ -1,17 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:carousel_pro/carousel_pro.dart';
-//import 'package:snbiz/Model_code/documents.dart';
+import 'package:snbiz/Model_code/DashBoardData.dart';
 import 'package:snbiz/src_code/createmeeting.dart';
 import 'package:snbiz/src_code/invoice.dart';
 import 'package:snbiz/src_code/static.dart';
-//import 'package:snbiz/src_code/open_camera.dart';
 import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import 'package:snbiz/src_code/multipleImage.dart';
-
-
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:snbiz/src_code/imagePreview.dart';
@@ -39,6 +38,30 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool showIndicator = false;
   static List<Widget> widgets = [];
   static Size size;
+  
+  Future<DashBoardData> getData() async{      
+    try{           
+      http.Response response = await http.get(
+      Uri.encodeFull(StaticValue.baseUrl + "api/DashBoardData?Orgid=" + StaticValue.orgId.toString()),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+              }
+          );
+           var jsonData = json.decode(response.body);
+  
+  
+      var data = DashBoardData.fromJson(jsonData);
+
+     return data;
+
+      }
+      catch(e){
+        print(e);
+        return null;
+        }
+    }
+
   void _openFileExplorer() async {
     if (_pickingType != FileType.CUSTOM || _hasValidMime) {
       setState(() => _loadingPath = true);
