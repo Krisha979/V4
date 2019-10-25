@@ -170,6 +170,7 @@ catch(e){
               }else{
                 return Flexible(
                                 child: ListView.builder(
+                                  physics: const AlwaysScrollableScrollPhysics(),
                      shrinkWrap: true,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index){

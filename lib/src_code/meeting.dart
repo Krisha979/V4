@@ -224,16 +224,31 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                 future: _future,
                 builder:(BuildContext context, AsyncSnapshot snapshot){
                   //counts= meetinglist.length;
-                  print(snapshot.data);
-                  if(snapshot.data==null){
+                 switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
                     return Container(
-                      child: Center(
+                  child: Center(
 
-                      child: CircularProgressIndicator()
+                  child: CircularProgressIndicator()
 
-                      )
-                    );
-                  }else{
+                  )
+                );
+              case ConnectionState.done:
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
+                  child: Center(
+                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              }else{
                     return Flexible(
                                       child: ListView.builder(
 
@@ -317,6 +332,13 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                           ),
                     );
                   }
+                }
+                return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+
                 }
                )
 

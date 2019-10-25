@@ -144,13 +144,33 @@ class _InvoiceState extends State<Invoice> {
                             future: getInovoices(),
                             builder:
                                 (BuildContext context, AsyncSnapshot snapshot) {
-                              print(snapshot.data);
-                              if (snapshot.data == null) {
-                                return Container(
-                                    child: Center(
-                                        child: CircularProgressIndicator()));
-                              } else {
+                              switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                    return Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+              case ConnectionState.done:
+              print(snapshot.data);
+              if(snapshot.data==null){
+                return Container(
+                  child: Center(
+                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              }else{
                                 return ListView.builder(
+                                  physics: const AlwaysScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     itemCount: snapshot.data.length,
                                     itemBuilder:
@@ -202,7 +222,13 @@ class _InvoiceState extends State<Invoice> {
                                         ),
                                       );
                                     });
-                              }
+                              
+                              }}
+                              return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
                             })),
                   ],
                 ),
