@@ -278,16 +278,10 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
 
                                         Text(formattedtime, textAlign: TextAlign.left,
                                         style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
-<<<<<<< HEAD
                                        Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
 
                                         Flexible(child: Text(snapshot.data[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                                          Flexible(child: Text(snapshot.data[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-=======
-                                        Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
-                                        Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                         Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
->>>>>>> 77083f4a9084e02a79e989290089c5456912e2a4
                                       ],
 
                                     ),
