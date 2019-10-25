@@ -24,22 +24,22 @@ class MeetingState extends State<Meeting>{
   bool isLoading = false;
   
   final RefreshController _refreshController = RefreshController();
-   List <MeetingInfo> meetinglist =[];
+   static List <MeetingInfo> meetinglist =[];
 
   Future<List<MeetingInfo>> _future;
-  Future<List<MeetingInfo>> latestmeetings;
+
   Future<void>_onSwitchChanged(bool value) async {
-    
-      
+     var list = meetinglist;
     if(value == true){
             isSwitched = true;
             StaticValue.togglestate = true;
-            _future = upcomingsortedlist(await _future);
+           
+            _future = upcomingsortedlist(list);
     }
     else{
       isSwitched = false;
       StaticValue.togglestate = false;
-      _future = latestsortedlist(await latestmeetings);
+      _future = _meeting();
     }
     setState(() {
       
@@ -55,14 +55,14 @@ class MeetingState extends State<Meeting>{
   counts = 0;
    setState(() {
       _future = _meeting();
-      latestmeetings = _future;
+     
     });
   }
 Future<List<MeetingInfo>>_meeting()async{
   
   try{
   http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl + "api/OrgMeetings?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl + "api/OrgMeetings?Orgid=" + StaticValue.orgId.toString() +"&Page=1&RecordsPerPage=15"), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 
@@ -74,6 +74,7 @@ Future<List<MeetingInfo>>_meeting()async{
       var meetinginfo = MeetingInfo.fromJson(u);
     meeting.add(meetinginfo);
   }
+meetinglist = meeting;
 print(meeting.length);
 setState(() {
         counts = meeting.length;
@@ -220,7 +221,6 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                   
                 future: _future,
                 builder:(BuildContext context, AsyncSnapshot snapshot){
-                  meetinglist = snapshot.data;
                   //counts= meetinglist.length;
                   print(snapshot.data);
                   if(snapshot.data==null){
@@ -235,12 +235,13 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                     return Flexible(
                                       child: ListView.builder(
 
+                          physics: const AlwaysScrollableScrollPhysics(),
 
                         shrinkWrap: true,
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext context, int meetingId){
-                           var date = formatDateTime(meetinglist[meetingId].meetingTime);
-                           var formattedtime = formatTime(meetinglist[meetingId].meetingTime);
+                           var date = formatDateTime(snapshot.data[meetingId].meetingTime);
+                           var formattedtime = formatTime(snapshot.data[meetingId].meetingTime);
                           return ListTile(
                             
                           //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -277,8 +278,8 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                         style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,),
                                        Flexible(child: Text(date, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
 
-                                        Flexible(child: Text(meetinglist[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                         Flexible(child: Text(meetinglist[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                        Flexible(child: Text(snapshot.data[meetingId].location, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                         Flexible(child: Text(snapshot.data[meetingId].statusName, textAlign:TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                                       ],
 
                                     ),
@@ -295,7 +296,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                         splashColor: Colors.red, // inkwell color
                                         onTap: () {
                                           Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:
-                                          meetinglist[meetingId])));
+                                          snapshot.data[meetingId])));
                                         },
                                       ),
 
@@ -305,7 +306,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                )  ),
                                                   onTap: () {
                                           Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:
-                                          meetinglist[meetingId])));
+                                          snapshot.data[meetingId])));
                                         },
 
                             ),
