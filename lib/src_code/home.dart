@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/DashBoardData.dart';
 import 'package:snbiz/src_code/createmeeting.dart';
 import 'package:snbiz/src_code/invoice.dart';
@@ -39,6 +41,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   static List<Widget> widgets = [];
   static Size size;
   DashBoardData data;
+  String uploadeddate,meetingtime,lastinvoicedate;
   
   Future<DashBoardData> getData() async{      
     try{           
@@ -56,6 +59,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       if(data1 != null){
           setState(() {
         data = data1;
+        uploadeddate =  formatTime(data.uploadedDate.toString()) +" "+ formatDateTime(data.uploadedDate.toString()) ;
+        lastinvoicedate = formatTime(data.lastInvoiceDate.toString())+" "+ formatDateTime(data.lastInvoiceDate.toString());
+        meetingtime = formatTime(data.meetingTime.toString())+" "+ formatDateTime(data.meetingTime.toString());
+
       });
       
       }
@@ -254,6 +261,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Future<List<Widget>> listwidget()async {
         if(data != null){
+          widgets.clear();
+
                   var widget1 = new Container(
              color:Color(0xffd6d6d6),
              child: Column(
@@ -288,7 +297,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   Text(data.upcomingMeetingsCount.toString()),
                                   Icon(Icons.file_upload),
                                   Text("Next Meeting"),
-                                  Text(data.meetingTime.toString()),
+                                  Text(meetingtime),
 
                                 ],
                                 
@@ -354,15 +363,114 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                ]
              )
         );
+
+          var widget3 = new Container(
+
+             color:Color(0xffd6d6d6),
+             child: Column(
+               children: <Widget>[
+                 Container(
+                   margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           ),
+
+                           child: Column(
+                             mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                               
+                                  Text("Uploaded Date"),
+                                  Text(uploadeddate.toString()),
+                                  Icon(Icons.file_upload),
+                                  Text("Uploads Today"),
+                                  Text(data.uploadsToday.toString()),
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      fit: BoxFit.fill,
+                                     //width: size.width,
+                              height: size.height/13,
+                                    ),
+                            ],
+                          )
+               ],
+             ),
+        )
+               ]
+             )
+        );
+
+          var widget4 = new Container(
+
+             color:Color(0xffd6d6d6),
+             child: Column(
+               children: <Widget>[
+                 Container(
+                   margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
+                           decoration: new BoxDecoration(
+                          color: Colors.white,
+                           borderRadius: new BorderRadius.circular(15.0),
+                           ),
+
+                           child: Column(
+                             mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[ 
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text("Last Invoice date"),
+                                  Text(lastinvoicedate),
+                                  Icon(Icons.file_upload),
+                                  Text("Total Payment Due"),
+                                  Text(data.totalPaymentDue.toString()),
+                                ],
+                                
+
+                              ),
+                            Image(
+                                      image: new AssetImage("assets/new_meeting.png"),
+                                      fit: BoxFit.fill,
+                                     //width: size.width,
+                              height: size.height/13,
+                                    ),
+                            ],
+                          )
+               ],
+             ),
+        )
+               ]
+             )
+        );
         widgets.add(widget1);
         widgets.add(widget2);
+        widgets.add(widget3);
+        widgets.add(widget4);
+
         return widgets;
 
         }
         else{
+          widgets.clear();
             var widget =  Container(
                   child: Center(
-
+                  
                   child: CircularProgressIndicator()
 
                   )
@@ -372,6 +480,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         }
         
   }
+
+
 
 
   @override
@@ -394,12 +504,24 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   void didChangeDependencies() async{
-  
-
     super.didChangeDependencies();
-    size = MediaQuery.of(context).size;
+     if(data ==null){
+       widgets.clear();
+       var widget =  Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+                widgets.add(widget);
+     }
     data = await getData();
+    
+    size = MediaQuery.of(context).size;
+    widgets.clear();
       listwidget();
+   
       
   }
 
@@ -440,6 +562,20 @@ final carousel1 = CarouselSlider(
     // dotBgColor: Colors.white.withOpacity(1),
   );
 
+ String formatDateTime(String date) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+    DateTime format = (dateFormat.parse(date));
+    DateFormat longdate = DateFormat("EEEE, MMM d, yyyy");
+    date = longdate.format(format);
+    return date;
+  }
+  String formatTime(String time) {
+     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
+    DateTime formattedtime = (dateFormatremoveT.parse(time));
+    DateFormat longtme = DateFormat.jm();
+    time = longtme.format(formattedtime);
+    return time.toString();
+  }
 
   
     
