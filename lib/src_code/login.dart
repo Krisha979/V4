@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget{
     
 
     class LoginPageState extends State<LoginPage> {
-
+      String message;
       final _formKey = GlobalKey<FormState>();
       final emailcontroller = TextEditingController();
       final passwordcontroller = TextEditingController();
@@ -28,6 +28,17 @@ class LoginPage extends StatefulWidget{
       @override
       void initState() {
       super.initState();
+          var currenttime = DateTime.now();
+              int hours = currenttime.hour;
+              if(hours<=12){
+                  message = "Good Morning!";
+              }else if(hours<=16){
+                  message = "Good Afternoon!";
+              }else if(hours<=21){
+                  message = "Good Evening!";
+              }else if(hours<=24){
+                  message = "Good Night!";
+              }
       getfromstorage();
       }
 
@@ -240,9 +251,15 @@ class LoginPage extends StatefulWidget{
                                   borderRadius: new BorderRadius.all(Radius.circular(10.0),)      
                                 ),                                      
                                 child: isLoading? Center(
-                                  child: CircularProgressIndicator(
+                                  child:Column(
+                                        children: <Widget>[
+                                          Text(message,textWidthBasis: TextWidthBasis.parent),
+                                          CircularProgressIndicator(
                                       strokeWidth: 4.0,
                                   ),
+                                  Text("Logging In...")
+                                     ],
+                                  )
                                 ):
 
                               new Column(
