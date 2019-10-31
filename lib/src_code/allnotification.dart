@@ -6,7 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/Notification.dart';
+import 'package:snbiz/src_code/meeting.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:snbiz/src_code/task.dart';
+
+import 'documents.dart';
+import 'invoice.dart';
+import 'page.dart';
 
 class AllNotification extends StatefulWidget {
   @override
@@ -154,7 +160,7 @@ class AllNotificationState extends State<AllNotification> {
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: Image(
-                        image: new AssetImage("assets/notification.png"),
+                        image: new AssetImage("assets/snbiznotification.png"),
                         height: size.height / 10,
                       ),
                     ),
@@ -207,18 +213,46 @@ class AllNotificationState extends State<AllNotification> {
                                       var date = formatDateTime(
                                           snapshot.data[index].dateCreated);
                                       var type = "";
+                                      var icon = "assets/notification.png";
+                                      if(snapshot.data[index].notificationBody.contains("meeting")){
+                                       icon = "assets/new_meeting.png";
+                                          }
+                                          else if(snapshot.data[index].notificationBody.contains("Document")){
+                                            icon = "assets/Document.png";
+                                          }else if(snapshot.data[index].notificationBody.contains("Task")){
+                                            icon = "assets/icon1.png";
+                                          }else if(snapshot.data[index].notificationBody.contains("invoice")){
+                                            icon = "assets/invoice.png";
+                                          }           
                                       if (StaticValue.latestNotificationId != null &&
                                           snapshot.data[index].notificationId >
                                               StaticValue.latestNotificationId) {
                                         type = "New";
                                       }
-                                      return Card(
+                                      return InkWell(
+                                              child:Card(
 
                                           elevation: 3,
                                               margin: EdgeInsets.fromLTRB(
                                                   10.0, 15.0, 10.0, 0.0),
+                                        
+                                        child: buildListTile(snapshot, index, date, type, icon)),
+                                        onTap: (){
+                                          String notificationtype = snapshot.data[index].notificationBody..toString();
+                                          if(notificationtype.contains("meeting")){
+                                           StaticValue.controller.animateTo(1);
+                                          }
+                                          else if(notificationtype.contains("Document")){
+                                              Navigator.push(context,MaterialPageRoute(builder: (context) => Documents()));
+                                          }else if(notificationtype.contains("Task")){
+                                              Navigator.push(context,MaterialPageRoute(builder: (context) => TaskPage()));
 
-                                        child: buildListTile(snapshot, index, date, type));
+                                          }else if(notificationtype.contains("invoice")){
+                                              Navigator.push(context,MaterialPageRoute(builder: (context) => Invoice()));
+                                          }                                         
+                                        },
+                                      );
+                                      
                                         
                                     });
                               }
@@ -242,7 +276,7 @@ class AllNotificationState extends State<AllNotification> {
     );
   }
 
-  ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type) {
+  ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type, String icon) {
     var list = ListTile(
       title: Container(
         padding: EdgeInsets.only(top: 10),
@@ -265,12 +299,15 @@ class AllNotificationState extends State<AllNotification> {
                 child: InkWell(
                   splashColor: Colors.red, // inkwell color
                   child: SizedBox(
-                      width: 56,
-                      height: 56,
-                      child: Icon(
-                        Icons.picture_as_pdf,
-                        color: Colors.white,
-                      )),
+                      width: 50,
+                      height: 50,
+                      child: Image(
+                                    image:
+                                        new AssetImage(icon),
+                                    height: 50,
+                                    width: 50,
+                                  ),
+                )
                 ),
               ),
             )

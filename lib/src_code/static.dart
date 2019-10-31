@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:snbiz/Model_code/meetingStatus.dart';
 
 class StaticValue{
@@ -27,4 +28,5 @@ class StaticValue{
   static String lastInvoiceDate;
   static int uploadsToday;
   static String uploadedDate;
+    static TabController controller;
 }
