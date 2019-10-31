@@ -93,38 +93,49 @@ class _InvoiceState extends State<Invoice> {
 
                             children: [
                               
-                              Column(
-                              //  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 30),
-                                    child: Text("ALL INVOICES",style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 30),
-                                    child: Text('$invoicenumber', style: TextStyle(color: Colors.black),),
-                                  ),
-                                 Row(
-                                   
-                                   children: <Widget>[
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 25),
-                                       child: Image(image: new AssetImage("assets/due.png"),),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 5),
-                                       child: Text("Due Remaining",style: TextStyle(
-                                    fontSize: 14, color: Color(0xFFA19F9F))),
-                                     )
-                                   ],
-                                 ),
+                              Flexible(
+                                                              child: Column(
+                                //  mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 30),
+                                      child: Text("Last invoice date",style: TextStyle(
+                                      fontSize: 18, color: Color(0xFFA19F9F))),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 30),
+                                      child: Text(StaticValue.lastInvoiceDate,style: TextStyle(
+                                      fontSize: 14, color: Color(0xFFA19F9F))),
+                                    ),
+
+                                    
+                                   Row(
+                                     
+                                     children: <Widget>[
+                                       Padding(
+                                         padding: const EdgeInsets.only(left: 25),
+                                         child: Image(image: new AssetImage("assets/due.png"),),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.only(left: 5),
+                                         child: Text("Due Remaining",style: TextStyle(
+                                      fontSize: 14, color: Color(0xFFA19F9F))),
+                                       )
+                                       
+                                     ],
+                                   ),
+                                   Padding(
+                                         padding: const EdgeInsets.only(left: 30),
+                                         child: Text(StaticValue.totalPaymentDue.toString(),style: TextStyle(
+                                      fontSize: 14, color: Colors.black)),
+                                       )
+                                    
+
+                                  ],
                                   
 
-                                ],
-                                
-
+                                ),
                               ),
                             Padding(
                               padding: const EdgeInsets.only(right: 10),

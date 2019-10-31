@@ -149,6 +149,7 @@ class AllNotificationState extends State<AllNotification> {
                             )
                           ],
                         ),
+                        //Text(StaticValue.notificationdate)
                       ],
                     ),
                     Padding(
