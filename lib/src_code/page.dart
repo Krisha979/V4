@@ -160,23 +160,24 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         bottomNavigationBar: new Material(
           color: Color(0xFFBF9b38ff),
           child: Container(
-            height: size.height / 13,
+            height: size.height / 15,
             child: TabBar(
+
               controller: controller,
               tabs: <Tab>[
                 new Tab(
                   icon: new Icon(
                     Icons.home,
-                    size: 25,
+                    size: 30,
                   ),
                 //  text: "Home",
                 ),
                 new Tab(
-                  icon: new Icon(Icons.people, size: 25),
+                  icon: new Icon(Icons.people, size: 30),
                   //text: "Meeting",
                 ),
                 new Tab(
-                  icon: new Icon(Icons.notifications, size: 25),
+                  icon: new Icon(Icons.notifications, size: 30),
                 //  text: "Notification",
                 ),
                
