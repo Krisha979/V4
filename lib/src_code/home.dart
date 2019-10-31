@@ -63,6 +63,17 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         lastinvoicedate = formatTime(data.lastInvoiceDate.toString())+" "+ formatDateTime(data.lastInvoiceDate.toString());
         meetingtime = formatTime(data.meetingTime.toString())+" "+ formatDateTime(data.meetingTime.toString());
 
+        StaticValue.upcomingMeetingsCount = data.upcomingMeetingsCount;
+        StaticValue.meetingTime = meetingtime;
+        StaticValue.activeTaskcount = data.activeTaskcount;
+        StaticValue.taskName = data.taskName;
+        StaticValue.totalPaymentDue = data.totalPaymentDue;
+        StaticValue.lastInvoiceDate = lastinvoicedate;
+        StaticValue.uploadsToday = data.uploadsToday;
+        StaticValue.uploadedDate = uploadeddate;
+
+
+
       });
       
       }
@@ -260,16 +271,17 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   Future<List<Widget>> listwidget()async {
-        if(data != null){
+        if(StaticValue.upcomingMeetingsCount != null){
           widgets.clear();
 
                   var widget1 = new Container(
              color:Color(0xffd6d6d6),
              child: Column(
                children: <Widget>[
-                 Container(           
+                 Container( 
+                   height: size.height/4.5,          
                           margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
+                   padding: EdgeInsets.fromLTRB(20, 12, 25, 10),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -283,7 +295,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                            ),
 
                            child: Column(
-                             mainAxisSize: MainAxisSize.max,
+                             mainAxisSize: MainAxisSize.min,
 
                                 children: <Widget>[ 
                            Row(
@@ -294,10 +306,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text("Upcoming Meetings"),
-                                  Text(data.upcomingMeetingsCount.toString()),
+                                  Text(StaticValue.upcomingMeetingsCount.toString()),
                                   Icon(Icons.file_upload),
                                   Text("Next Meeting"),
-                                  Text(meetingtime),
+                                  Text(StaticValue.meetingTime),
 
                                 ],
                                 
@@ -323,15 +335,16 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
+                   height: size.height/4.5,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
+                   padding: EdgeInsets.fromLTRB(20, 12, 25, 12),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
                            ),
 
                            child: Column(
-                             mainAxisSize: MainAxisSize.max,
+                             mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[ 
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -341,10 +354,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   Text("Active Tasks"),
-                                  Text(data.activeTaskcount.toString()),
+                                  Text(StaticValue.activeTaskcount.toString()),
                                   Icon(Icons.file_upload),
                                   Text("Latest Running Task"),
-                                  Text(data.taskName),
+                                  Text(StaticValue.taskName),
                                 ],
                                 
 
@@ -370,18 +383,20 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
+                   height: size.height/4.5,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
+                   padding: EdgeInsets.fromLTRB(20, 12, 25, 12),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
                            ),
 
                            child: Column(
-                             mainAxisSize: MainAxisSize.max,
+                             mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[ 
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               
                               Column(
@@ -389,10 +404,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 children: <Widget>[
                                
                                   Text("Uploaded Date"),
-                                  Text(uploadeddate.toString()),
+                                  Text(StaticValue.uploadedDate.toString()),
                                   Icon(Icons.file_upload),
                                   Text("Uploads Today"),
-                                  Text(data.uploadsToday.toString()),
+                                  Text(StaticValue.uploadsToday.toString()),
                                 ],
                                 
 
@@ -418,15 +433,16 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
+                   height: size.height/4.5,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 25, 25, 25),
+                   padding: EdgeInsets.fromLTRB(20, 15, 25, 12),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
                            ),
 
                            child: Column(
-                             mainAxisSize: MainAxisSize.max,
+                             mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[ 
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -434,12 +450,13 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                         
                                 children: <Widget>[
                                   Text("Last Invoice date"),
-                                  Text(lastinvoicedate),
+                                  Text(StaticValue.lastInvoiceDate),
                                   Icon(Icons.file_upload),
                                   Text("Total Payment Due"),
-                                  Text(data.totalPaymentDue.toString()),
+                                  Text(StaticValue.totalPaymentDue.toString()),
                                 ],
                                 
 
@@ -516,9 +533,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 );
                 widgets.add(widget);
      }
-    data = await getData();
+     if(StaticValue.upcomingMeetingsCount == null){
+            data = await getData();
+     }
     
     size = MediaQuery.of(context).size;
+    
     widgets.clear();
       listwidget();
    
@@ -536,7 +556,7 @@ final carousel1 = CarouselSlider(
    reverse: false,
    autoPlay: true,
    enlargeCenterPage: false,
-   autoPlayInterval: Duration(seconds: 3),
+   autoPlayInterval: Duration(seconds: 5),
    autoPlayAnimationDuration: Duration(milliseconds: 2000),
    pauseAutoPlayOnTouch: Duration(seconds: 4),
    scrollDirection: Axis.horizontal,
@@ -745,13 +765,15 @@ final carousel1 = CarouselSlider(
                 onTap: () {}, // code hack do nothing
                 child: Wrap(
                   children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
-                      height: size.height / 4.6,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: carousel1),
-                    ),
+                   
+                         Container(
+                           height: size.height/4.5,
+                        margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0.0),
+                            child: carousel1),
+                      ),
+                    
                   ],
                 ),
               ),

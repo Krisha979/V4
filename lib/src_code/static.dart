@@ -19,4 +19,12 @@ class StaticValue{
   static File imgfile;
   static String facebookurl = "http://www.facebook.com";
   static String whatsapp="http://www.facebook.com";
+  static int upcomingMeetingsCount;
+  static String meetingTime;
+  static int activeTaskcount;
+  static String taskName;
+  static int totalPaymentDue;
+  static String lastInvoiceDate;
+  static int uploadsToday;
+  static String uploadedDate;
 }
