@@ -22,7 +22,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   @override
   void initState() {
     super.initState();
-    StaticValue.controller = new TabController(
+    StaticValue.controller = new  TabController(
       vsync: this,
       length: 3,
     );
