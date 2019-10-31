@@ -9,6 +9,7 @@ import 'allnotification.dart' as third;
 import 'home.dart' as first;
 
 class MainPage extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() {
     return MainPageState();
@@ -16,11 +17,12 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
-  TabController controller;
+
+  static final myTabbedPageKey = new GlobalKey<MainPageState>();
   @override
   void initState() {
     super.initState();
-    controller = new TabController(
+    StaticValue.controller = new  TabController(
       vsync: this,
       length: 3,
     );
@@ -28,7 +30,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
   @override
   void dispose() {
-    controller.dispose();
+    StaticValue.controller.dispose();
     super.dispose();
   }
 
@@ -149,7 +151,8 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
             ),
         drawer: Nav(),
         body: new TabBarView(
-          controller: controller,
+          controller: StaticValue.controller,
+          key: myTabbedPageKey,
           children: <Widget>[
             new first.Home(),
             new second.Meeting(),
@@ -162,8 +165,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
           child: Container(
             height: size.height / 15,
             child: TabBar(
-
-              controller: controller,
+              controller: StaticValue.controller,
               tabs: <Tab>[
                 new Tab(
                   icon: new Icon(

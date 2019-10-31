@@ -94,6 +94,9 @@ flutter:
    - assets/due.png
    - assets/snbizlogo.png
    - assets/about.png
+   - assets/snbiznotification.png
+   - assets/snbizrunning-web.png
+   - assets/acceptedtick-web.png
    
    - assets/notification.png
 
