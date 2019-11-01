@@ -90,7 +90,7 @@ setState(() {
 if(StaticValue.togglestate == true){
     isSwitched = true;
     
-    switchText = 'Upcomming Meetings';
+    switchText = 'Upcoming Meetings';
     var sorted = await upcomingsortedlist(meeting);
     return sorted;
 }
@@ -190,7 +190,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                     children: <Widget>[
                                     //   Text("All Meetings",style: TextStyle(
                                     // fontSize: 18, color: Color(0xFFA19F9F))),
-                                    Text("Upcomming Meetings",style: TextStyle(
+                                    Text("Upcoming Meetings",style: TextStyle(
                                     fontSize: 18, color: Color(0xFFA19F9F),
                                     fontWeight:FontWeight.bold )),
 

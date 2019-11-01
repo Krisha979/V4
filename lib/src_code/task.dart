@@ -160,7 +160,7 @@ catch(e){
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: Image(
-                        image: new AssetImage("assets/icon1.png"),
+                        image: new AssetImage("assets/snbiztasks.png"),
                         height: size.height / 10,
                       ),
                     ),

@@ -120,7 +120,7 @@ Padding(
                     Padding(
                       padding: const EdgeInsets.only(right: 15),
                       child: Image(
-                        image: new AssetImage("assets/Document.png"),
+                        image: new AssetImage("assets/snbizcircledocument.png"),
                         height: size.height / 10,
                       ),
                     ),
@@ -203,7 +203,7 @@ Padding(
                                 height: size.height/15,
                                       width: size.height/15,
                                child:Image(
-                        image: new AssetImage("assets/Document.png"),
+                        image: new AssetImage("assets/snbizvaticon.png"),
                         height: size.height / 12,
                       ),),
                               onTap: () {

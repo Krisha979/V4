@@ -144,7 +144,7 @@ class _InvoiceState extends State<Invoice> {
                             Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: Image(
-                                        image: new AssetImage("assets/invoice.png"),
+                                        image: new AssetImage("assets/snbizinvoice.png"),
                                         height: size.height / 10,
                                       ),
                             ),
@@ -233,7 +233,7 @@ class _InvoiceState extends State<Invoice> {
                                                               left: 20),
                                                       child: new Image(
                                                           image: new AssetImage(
-                                                              "assets/invoice1.png"),
+                                                              "assets/snbizinvoice.png"),
                                                           height:
                                                               size.height / 12,
                                                           width: size.width / 12),

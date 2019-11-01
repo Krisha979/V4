@@ -38,6 +38,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    
   return Scaffold(
         appBar: AppBar(
         backgroundColor: Color(0xFF9C38FF),
@@ -48,6 +49,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
         body: Container(
           color: Color(0XFFE0CECE),
             child: ListView.builder(
+              
                 itemCount: details.documents.length,
                 itemBuilder: (BuildContext context, int index) {
                   var url = details.documents[index].documentURL;
@@ -65,7 +67,9 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                   //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
                                   // ),
                                   Flexible(
-                                    child: Column(children: <Widget>[
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
                                       InkWell(
                                         child: Text(
                                        ( details.documents[index].fileName == null)?details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
@@ -82,6 +86,12 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                           launch('$url');
                                         },
                                       ),
+                                      Text(formatDateTime(details.documents[index].dateCreated),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFA19F9F),
+                                        fontSize: 14
+                                      ),),
                                     ]),
                                   ),
                                 ],
