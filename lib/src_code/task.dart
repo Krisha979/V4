@@ -220,6 +220,7 @@ catch(e){
 
                                 Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
                                 Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                Flexible(child: Text(snapshot.data[index].percentageComplete.toString() + "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
 
                                 ],
 

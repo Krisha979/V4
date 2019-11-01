@@ -316,7 +316,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/new_meeting.png"),
+                                      image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
                             
                               height: size.height/13,
@@ -363,7 +363,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/new_meeting.png"),
+                                      image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
                                      //width: size.width,
                               height: size.height/13,
@@ -413,7 +413,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/new_meeting.png"),
+                                      image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
                                      //width: size.width,
                               height: size.height/13,
@@ -462,7 +462,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/new_meeting.png"),
+                                      image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
                                      //width: size.width,
                               height: size.height/13,
@@ -654,8 +654,8 @@ final carousel1 = CarouselSlider(
                                      Navigator.push(context, MaterialPageRoute(builder: (context) => TaskPage()));
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/icon1.png"),
-                                    height: size.height / 13,
+                                    image: new AssetImage("assets/snbiztasks.png"),
+                                    height: size.height / 12,
                                   ),
                                 ),
                                 Padding(
@@ -673,8 +673,8 @@ final carousel1 = CarouselSlider(
                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Invoice()));
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/invoice.png"),
-                                    height: size.height / 13,
+                                    image: new AssetImage("assets/snbizinvoice.png"),
+                                    height: size.height / 12,
                                   ),
                                 ),
                                 Padding(
@@ -693,8 +693,8 @@ final carousel1 = CarouselSlider(
                                   },
                                   child: Image(
                                     image:
-                                        new AssetImage("assets/Document.png"),
-                                    height: size.height / 13,
+                                        new AssetImage("assets/snbizcircledocument.png"),
+                                    height: size.height / 12,
                                   ),
                                 ),
                                 Padding(
@@ -724,8 +724,8 @@ final carousel1 = CarouselSlider(
                                      Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/time.png"),
-                                    height: size.height / 13,
+                                    image: new AssetImage("assets/snbizmeeting.png"),
+                                    height: size.height / 12,
                                   ),
                                 ),
                                 Padding(
@@ -743,8 +743,8 @@ final carousel1 = CarouselSlider(
                                      addpopup();
                                   },
                                   child: Image(
-                                    image: new AssetImage("assets/icon3.png"),
-                                    height: size.height / 13,
+                                    image: new AssetImage("assets/snbizuploads.png"),
+                                    height: size.height / 12,
                                   ),
                                 ),
                                 Padding(
