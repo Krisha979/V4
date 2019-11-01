@@ -212,7 +212,7 @@ fontWeight: FontWeight.bold),),
                                   ),
                                 ),
                               Image(
-                                        image: new AssetImage("assets/new_meeting.png"),
+                                        image: new AssetImage("assets/snbizmeetings.png"),
                                         height: size.height / 10,
                                       ),
                               ],
@@ -328,7 +328,7 @@ fontWeight: FontWeight.bold),),
 
                                         child: Image(
                                     alignment: Alignment.centerRight,
-                                        image: new AssetImage("assets/new_meeting.png"),
+                                        image: new AssetImage("assets/snbizmeetings.png"),
                                        height: size.height /12,
                                       ),
                                         splashColor: Colors.red, // inkwell color
