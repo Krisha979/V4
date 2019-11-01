@@ -190,6 +190,11 @@ catch(e){
                        var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
                        var enddate = formatTime(snapshot.data[index].parentTask.endDate);
                        var name = snapshot.data[index].parentTask.taskName;
+                       var icon = "assets/snbizrunning-web.png";
+                       if(snapshot.data[index].percentageComplete == 100){
+                         icon = "assets/acceptedtick-web.png";
+                         }
+                       
                       return ListTile(
                         title: InkWell(
                                                 child: new Theme(
@@ -233,7 +238,7 @@ catch(e){
                                     splashColor: Colors.red, // inkwell color
                                     child: SizedBox(width: 56, height: 56,
                                      child: Image(
-                        image: new AssetImage("assets/snbiztasks.png"),
+                        image: new AssetImage(icon),
                         height: size.height / 12,
                       ),),
                                     onTap: () {

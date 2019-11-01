@@ -95,6 +95,19 @@ catch(e){
                   
                   itemCount: details.childTask.length,
                   itemBuilder: (BuildContext context, int index){
+                    var statusname = details.childTask[index].statusName;
+                    var icon = "assets/snbiztasks.png";
+                                      if(statusname.contains("Running")){
+                                       icon = "assets/snbizrunning.png";
+                                          }
+                                          else if(statusname.contains("Started")){
+                                            icon = "assets/snbiztasks.png";
+                                          }
+                                          else if(statusname.contains("Completed")){
+                                            icon = "assets/acceptedtick-web.png";
+                                          }else{
+                                            icon = "assets/snbizcircledocument.png";
+                                          }  
                     return Container(
                       child: Card(
                         elevation: 5,
@@ -124,11 +137,12 @@ catch(e){
                                       height: size.height/15,
                                       width: size.width/8,
                                       
-                                     child: Icon(
-                                       Icons.picture_as_pdf,
-                                       
-                                       color: Colors.white,
-                                       )),
+                                      
+                                      
+                                     child:Image(
+                        image: new AssetImage(icon),
+                        height: size.height / 15,
+                      ), ),
                                     
                                   ),
                                 ),

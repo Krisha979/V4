@@ -6,13 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/Notification.dart';
-import 'package:snbiz/src_code/meeting.dart';
+
 import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/task.dart';
 
 import 'documents.dart';
 import 'invoice.dart';
-import 'page.dart';
+
 
 class AllNotification extends StatefulWidget {
   @override
@@ -130,7 +130,7 @@ class AllNotificationState extends State<AllNotification> {
                           padding: const EdgeInsets.only(left: 30),
                           child: Text("ALL NOTIFICATIONS",
                               style: TextStyle(
-                                  fontSize: 18, color: Color(0xFFA19F9F),
+                                  fontSize: 16, color: Color(0xFFA19F9F),
                                   fontWeight: FontWeight.bold)),
                         ),
                         Padding(
@@ -141,24 +141,7 @@ class AllNotificationState extends State<AllNotification> {
                             fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(left: 25),
-                              child: Image(
-                                image: new AssetImage("assets/due.png"),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text("Last Notification",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Color(0xFFA19F9F),
-                                      fontWeight: FontWeight.bold)),
-                            )
-                          ],
-                          
-                        ),
+                       
                         // Text(StaticValue.notificationdate,
                         // style: TextStyle(
                         // fontWeight:FontWeight.bold,
@@ -296,7 +279,8 @@ class AllNotificationState extends State<AllNotification> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Center(child: Text(snapshot.data[index].notificationBody)),
-                  Text(date),
+                  Text(date,style: TextStyle(
+                  color: Color(0xFFA19F9F))),
                   Text(type),
                 ],
               ),
