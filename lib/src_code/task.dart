@@ -126,36 +126,41 @@ catch(e){
                             padding: const EdgeInsets.only(left: 30),
                             child: Text("Active TASKS",
                                 style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                    fontSize: 18, color: Color(0xFFA19F9F),
+                                    fontWeight: FontWeight.bold)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 30),
                             child: Text(StaticValue.activeTaskcount.toString(),
                                 style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                    fontSize: 18, color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 30),
                             child: Text(
                               'Latest Running Task',
-                              style: TextStyle(color: Colors.black),
-                            ),
+                              style: TextStyle(color: Color(0xFFA19F9F),
+                              fontWeight: FontWeight.bold,
+                                                        )),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 30),
                             child: Text(
                               StaticValue.taskName,
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold
                             ),
                           ),
                          
-                        ],
+                          )],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: Image(
-                        image: new AssetImage("assets/new_meeting.png"),
+                        image: new AssetImage("assets/icon1.png"),
                         height: size.height / 10,
                       ),
                     ),
@@ -226,10 +231,10 @@ catch(e){
                                   child: InkWell(
                                     splashColor: Colors.red, // inkwell color
                                     child: SizedBox(width: 56, height: 56,
-                                     child: Icon(
-                                       Icons.picture_as_pdf,
-                                       color: Colors.white,
-                                       )),
+                                     child: Image(
+                        image: new AssetImage("assets/icon1.png"),
+                        height: size.height / 12,
+                      ),),
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:
                                       snapshot.data[index])));

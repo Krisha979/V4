@@ -87,26 +87,30 @@ catch(e){
                             padding: const EdgeInsets.only(left: 30),
                             child: Text("Uploaded Date",
                                 style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                    fontSize: 18, color: Color(0xFFA19F9F),
+                                    fontWeight: FontWeight.bold)),
                           ),
                          Padding(
                             padding: const EdgeInsets.only(left: 30),
                             child: Text(StaticValue.uploadedDate,
                                 style: TextStyle(
-                                    fontSize: 14, color: Colors.black)),
+                                    fontSize: 14, color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
                           ),
                          
 Padding(
                             padding: const EdgeInsets.only(left: 30),
                             child: Text("Uploads today",
                                 style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                    fontSize: 18, color: Color(0xFFA19F9F),
+                                    fontWeight: FontWeight.bold)),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 30),
                             child: Text(StaticValue.uploadsToday.toString(),
                                 style: TextStyle(
-                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                                    fontSize: 14, color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
                           ),
                          
                           
@@ -116,7 +120,7 @@ Padding(
                     Padding(
                       padding: const EdgeInsets.only(right: 15),
                       child: Image(
-                        image: new AssetImage("assets/new_meeting.png"),
+                        image: new AssetImage("assets/Document.png"),
                         height: size.height / 10,
                       ),
                     ),
@@ -198,10 +202,10 @@ Padding(
                               child: SizedBox(
                                 height: size.height/15,
                                       width: size.height/15,
-                               child: Icon(
-                                 Icons.picture_as_pdf,
-                                 color: Colors.white,
-                                 )),
+                               child:Image(
+                        image: new AssetImage("assets/Document.png"),
+                        height: size.height / 12,
+                      ),),
                               onTap: () {
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:                        
                                 snapshot.data[index])));

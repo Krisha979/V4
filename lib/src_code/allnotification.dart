@@ -151,11 +151,16 @@ class AllNotificationState extends State<AllNotification> {
                               padding: const EdgeInsets.only(left: 5),
                               child: Text("Last Notification",
                                   style: TextStyle(
-                                      fontSize: 14, color: Color(0xFFA19F9F))),
+                                      fontSize: 14, color: Color(0xFFA19F9F),
+                                      fontWeight: FontWeight.bold)),
                             )
                           ],
+                          
                         ),
-                        //Text(StaticValue.notificationdate)
+                        // Text(StaticValue.notificationdate,
+                        // style: TextStyle(
+                        // fontWeight:FontWeight.bold,
+                        // ))
                       ],
                     ),
                     Padding(

@@ -101,12 +101,14 @@ class _InvoiceState extends State<Invoice> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 30),
                                       child: Text("Last invoice date",style: TextStyle(
-                                      fontSize: 18, color: Color(0xFFA19F9F))),
+                                      fontSize: 18, color: Color(0xFFA19F9F),
+                                      fontWeight: FontWeight.bold)),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 30),
                                       child: Text(StaticValue.lastInvoiceDate,style: TextStyle(
-                                      fontSize: 14, color: Color(0xFFA19F9F))),
+                                      fontSize: 14, color: Colors.black,
+                                      fontWeight: FontWeight.bold)),
                                     ),
 
                                     
@@ -120,7 +122,8 @@ class _InvoiceState extends State<Invoice> {
                                        Padding(
                                          padding: const EdgeInsets.only(left: 5),
                                          child: Text("Due Remaining",style: TextStyle(
-                                      fontSize: 14, color: Color(0xFFA19F9F))),
+                                      fontSize: 14, color: Color(0xFFA19F9F),
+                                      fontWeight: FontWeight.bold)),
                                        )
                                        
                                      ],
@@ -128,7 +131,8 @@ class _InvoiceState extends State<Invoice> {
                                    Padding(
                                          padding: const EdgeInsets.only(left: 30),
                                          child: Text(StaticValue.totalPaymentDue.toString(),style: TextStyle(
-                                      fontSize: 14, color: Colors.black)),
+                                      fontSize: 14, color: Colors.black,
+                                      fontWeight: FontWeight.bold)),
                                        )
                                     
 
