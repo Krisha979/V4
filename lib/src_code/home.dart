@@ -279,9 +279,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container( 
-                   height: size.height/4.5,          
+                   height: size.height/4.8,          
                           margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 12, 25, 10),
+                   padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -345,9 +345,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.5,
+                   height: size.height/4.8,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 12, 25, 12),
+                   padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -403,9 +403,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.5,
+                   height: size.height/4.8,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 12, 25, 12),
+                   padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -462,9 +462,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.5,
+                   height: size.height/4.8,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                   padding: EdgeInsets.fromLTRB(20, 15, 25, 12),
+                   padding: EdgeInsets.fromLTRB(20, 15, 25, 5),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(15.0),
@@ -668,7 +668,7 @@ final carousel1 = CarouselSlider(
 
                 child: Wrap(children: <Widget>[
                   Container(
-                    height: size.height / 2.3,
+                    height: size.height / 2.27,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white),
@@ -804,7 +804,7 @@ final carousel1 = CarouselSlider(
                   children: <Widget>[
                    
                          Container(
-                           height: size.height/4.5,
+                           height: size.height/4.8,
                         margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(0.0),
