@@ -184,7 +184,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           Column(
                             children: <Widget>[
                               GestureDetector(
-                                                          child: Image(
+                             child: Image(
                                    image: new AssetImage("assets/file.png"),
                         height: size.height /8,
                         width: size.width/5),
@@ -674,7 +674,7 @@ final carousel1 = CarouselSlider(
                         color: Colors.white),
                     margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
                     // color: Colors.white,
-                    padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                    padding: EdgeInsets.fromLTRB(30, 30, 30, 28),
                     //color: Colors.black,
                     // width: size.width,
                     child: Column(

@@ -255,9 +255,13 @@ class LoginPage extends StatefulWidget{
                                         children: <Widget>[
                                           Text(message,textWidthBasis: TextWidthBasis.parent),
                                           CircularProgressIndicator(
-                                      strokeWidth: 4.0,
+                                      strokeWidth: 3.0,
+                                      backgroundColor: Colors.lightBlue,
                                   ),
-                                  Text("Logging In...")
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: Text("Logging In..."),
+                                  )
                                      ],
                                   )
                                 ):
