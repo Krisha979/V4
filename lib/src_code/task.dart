@@ -160,7 +160,7 @@ catch(e){
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: Image(
-                        image: new AssetImage("assets/icon1.png"),
+                        image: new AssetImage("assets/snbiztasks.png"),
                         height: size.height / 10,
                       ),
                     ),
@@ -233,7 +233,7 @@ catch(e){
                                     splashColor: Colors.red, // inkwell color
                                     child: SizedBox(width: 56, height: 56,
                                      child: Image(
-                        image: new AssetImage("assets/icon1.png"),
+                        image: new AssetImage("assets/snbiztasks.png"),
                         height: size.height / 12,
                       ),),
                                     onTap: () {

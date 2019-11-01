@@ -130,13 +130,15 @@ class AllNotificationState extends State<AllNotification> {
                           padding: const EdgeInsets.only(left: 30),
                           child: Text("ALL NOTIFICATIONS",
                               style: TextStyle(
-                                  fontSize: 18, color: Color(0xFFA19F9F))),
+                                  fontSize: 18, color: Color(0xFFA19F9F),
+                                  fontWeight: FontWeight.bold)),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: Text(
                             '$notificationNumber',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: Colors.black,
+                            fontWeight: FontWeight.bold),
                           ),
                         ),
                         Row(
@@ -219,16 +221,16 @@ class AllNotificationState extends State<AllNotification> {
                                       var date = formatDateTime(
                                           snapshot.data[index].dateCreated);
                                       var type = "";
-                                      var icon = "assets/notification.png";
+                                      var icon = "assets/snbiznotification.png";
                                       if(snapshot.data[index].notificationBody.contains("meeting")){
-                                       icon = "assets/new_meeting.png";
+                                       icon = "assets/snbizmeetings.png";
                                           }
                                           else if(snapshot.data[index].notificationBody.contains("Document")){
-                                            icon = "assets/Document.png";
+                                            icon = "assets/snbizuploads.png";
                                           }else if(snapshot.data[index].notificationBody.contains("Task")){
-                                            icon = "assets/icon1.png";
+                                            icon = "assets/snbiztasks.png";
                                           }else if(snapshot.data[index].notificationBody.contains("invoice")){
-                                            icon = "assets/invoice.png";
+                                            icon = "assets/snbizinvoice.png";
                                           }           
                                       if (StaticValue.latestNotificationId != null &&
                                           snapshot.data[index].notificationId >

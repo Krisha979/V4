@@ -303,13 +303,23 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("Upcoming Meetings"),
-                                  Text(StaticValue.upcomingMeetingsCount.toString()),
-                                  Icon(Icons.file_upload),
-                                  Text("Next Meeting"),
-                                  Text(StaticValue.meetingTime),
+                                  Text("Upcoming Meetings",
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))
+                                  ,),
+                                  Text(StaticValue.upcomingMeetingsCount.toString(),
+                                  style: TextStyle(color: Colors.black,
+                                  fontWeight: FontWeight.bold),),
+                                  
+                                  Text("Next Meeting",
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.meetingTime,
+                                  style: TextStyle(color: Colors.black,
+                                  fontWeight: FontWeight.bold)),
 
                                 ],
                                 
@@ -319,7 +329,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
                             
-                              height: size.height/13,
+                              height: size.height/12,
                                     ),
                             ],
                           )
@@ -351,22 +361,32 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("Active Tasks"),
-                                  Text(StaticValue.activeTaskcount.toString()),
-                                  Icon(Icons.file_upload),
-                                  Text("Latest Running Task"),
-                                  Text(StaticValue.taskName),
+                                  Text("Active Tasks",
+                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.activeTaskcount.toString(),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  ),),
+                                  
+                                  Text("Latest Running Task",
+                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.taskName,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  )
+                                  ),
                                 ],
                                 
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/snbizmeetings.png"),
+                                      image: new AssetImage("assets/snbiztasks.png"),
                                       fit: BoxFit.fill,
                                      //width: size.width,
-                              height: size.height/13,
+                              height: size.height/12,
                                     ),
                             ],
                           )
@@ -400,23 +420,32 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                
-                                  Text("Uploaded Date"),
-                                  Text(StaticValue.uploadedDate.toString()),
-                                  Icon(Icons.file_upload),
-                                  Text("Uploads Today"),
-                                  Text(StaticValue.uploadsToday.toString()),
+                                  Text("Uploaded Date",
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.uploadedDate.toString(),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.black),),
+                                  
+                                  Text("Uploads Today",
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.uploadsToday.toString(),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.black),),
                                 ],
                                 
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/snbizmeetings.png"),
+                                      image: new AssetImage("assets/snbizuploads.png"),
                                       fit: BoxFit.fill,
                                      //width: size.width,
-                              height: size.height/13,
+                              height: size.height/12,
                                     ),
                             ],
                           )
@@ -449,23 +478,31 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             children: [
                               
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                         
+                               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                         crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("Last Invoice date"),
-                                  Text(StaticValue.lastInvoiceDate),
-                                  Icon(Icons.file_upload),
-                                  Text("Total Payment Due"),
-                                  Text(StaticValue.totalPaymentDue.toString()),
+                                  Text("Last Invoice date",
+                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.lastInvoiceDate,
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                                  
+                                  Text("Total Payment Due",
+                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.totalPaymentDue.toString(),
+                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
                                 ],
                                 
 
                               ),
                             Image(
-                                      image: new AssetImage("assets/snbizmeetings.png"),
+                                      image: new AssetImage("assets/snbizinvoice.png"),
                                       fit: BoxFit.fill,
                                      //width: size.width,
-                              height: size.height/13,
+                              height: size.height/12,
                                     ),
                             ],
                           )
