@@ -97,7 +97,16 @@ flutter:
    - assets/snbiznotification.png
    - assets/snbizrunning-web.png
    - assets/acceptedtick-web.png
+<<<<<<< HEAD
    - assets/invoice1.png
+=======
+   - assets/snbizmeetings.png
+   - assets/snbiztasks.png
+   - assets/snbizmeeting.png
+   - assets/snbizinvoice.png
+   - assets/snbizuploads.png
+   - assets/snbizcircledocument.png
+>>>>>>> 58f3ced977ab23fe9be54e5a8d81f01595ea515a
    - assets/notification.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

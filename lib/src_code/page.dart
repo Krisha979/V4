@@ -127,6 +127,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
           child: Scaffold(
         appBar: AppBar(
             //centerTitle: true,
+
             title: Text(StaticValue.orgName,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
             backgroundColor: const Color(0xFF9C38FF),
@@ -165,6 +166,10 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
           child: Container(
             height: size.height / 15,
             child: TabBar(
+              unselectedLabelColor: Colors.white70,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorPadding: EdgeInsets.all(5.0),
+              indicatorColor: Colors.white,
               controller: StaticValue.controller,
               tabs: <Tab>[
                 new Tab(

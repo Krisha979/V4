@@ -117,25 +117,40 @@ catch(e){
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      //  mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Text("ALL TASKS",
-                              style: TextStyle(
-                                  fontSize: 18, color: Color(0xFFA19F9F))),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Text(
-                            '$count',
-                            style: TextStyle(color: Colors.black),
+                    Flexible(
+                                          child: Column(
+                        //  mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text("Active TASKS",
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
                           ),
-                        ),
-                       
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text(StaticValue.activeTaskcount.toString(),
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text(
+                              'Latest Running Task',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text(
+                              StaticValue.taskName,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                         
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 10),

@@ -78,19 +78,40 @@ catch(e){
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      //  mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Text("ALL DOCUMENTS",
-                              style: TextStyle(
-                                  fontSize: 18, color: Color(0xFFA19F9F))),
-                        ),
-                       
-                        
-                      ],
+                    Flexible (
+                                          child: Column(
+                        //  mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text("Uploaded Date",
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                          ),
+                         Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text(StaticValue.uploadedDate,
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.black)),
+                          ),
+                         
+Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text("Uploads today",
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Text(StaticValue.uploadsToday.toString(),
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F))),
+                          ),
+                         
+                          
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 15),

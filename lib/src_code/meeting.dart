@@ -8,6 +8,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:snbiz/src_code/meetingdetail.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:snbiz/src_code/static.dart' as prefix0;
 
 class Meeting extends StatefulWidget{
   @override
@@ -48,6 +49,9 @@ class MeetingState extends State<Meeting>{
     
     }
   
+    //var mt =  StaticValue.meetingTime.replaceFirst(',', '\n');
+    
+  
 @override
   void initState() {
     super.initState();
@@ -57,6 +61,8 @@ class MeetingState extends State<Meeting>{
       _future = _meeting();
      
     });
+    //var mt = StaticValue.meetingTime.replaceAll(new RegExp(r", "),"\n\n");
+    
   }
 Future<List<MeetingInfo>>_meeting()async{
   
@@ -176,22 +182,37 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
                                
                               children: [
 
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  
-                                  children: <Widget>[
-                                    Text("All Meetings",style: TextStyle(
-                                  fontSize: 18, color: Color(0xFFA19F9F))),
-                                    Text('$counts', style: TextStyle(fontSize: 18),),
+                                Flexible(
+                                                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    
+                                    children: <Widget>[
+                                    //   Text("All Meetings",style: TextStyle(
+                                    // fontSize: 18, color: Color(0xFFA19F9F))),
+                                    Text("Upcomming Meetings",style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F),
+                                    fontWeight:FontWeight.bold )),
+
+                                    Text(StaticValue.upcomingMeetingsCount.toString(),  
+                                    style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 17),),
+                                   
+                                    
+Text("Next Meetings",style: TextStyle(
+                                    fontSize: 18, color: Color(0xFFA19F9F,
+                                    ), fontWeight: FontWeight.w600)),
+                                      //Text( StaticValue.meetingTime, style: TextStyle(fontSize: 14),),
+Text( StaticValue.meetingTime, style: TextStyle(fontSize: 14, 
+fontWeight: FontWeight.bold),),
+
+                                    ],
 
 
-                                  ],
-
-
+                                  ),
                                 ),
                               Image(
-                                        image: new AssetImage("assets/new_meeting.png"),
+                                        image: new AssetImage("assets/snbizmeetings.png"),
                                         height: size.height / 10,
                                       ),
                               ],
@@ -307,7 +328,7 @@ Future<List<MeetingInfo>> latestsortedlist(List<MeetingInfo> meetinginfo) async{
 
                                         child: Image(
                                     alignment: Alignment.centerRight,
-                                        image: new AssetImage("assets/new_meeting.png"),
+                                        image: new AssetImage("assets/snbizmeetings.png"),
                                        height: size.height /12,
                                       ),
                                         splashColor: Colors.red, // inkwell color
