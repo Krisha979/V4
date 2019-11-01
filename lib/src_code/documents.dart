@@ -162,6 +162,15 @@ Padding(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index){
                   var name = snapshot.data[index].documents[0].fileTypeName;
+                  var icon = "assets/snbizcircledocument.png";
+                                      if(name.contains("VAT Billssss")){
+                                       icon = "assets/snbizvaticon.png";
+                                          }
+                                          else if(name.contains("Instant")){
+                                            icon = "assets/snbizinstantupload.png";
+                                          }else{
+                                            icon = "assets/snbizcircledocument.png";
+                                          }  
                   return ListTile(
                       title: InkWell(
                                               child: new Theme(
@@ -174,19 +183,13 @@ Padding(
                      decoration: new BoxDecoration(
                      color: Colors.white,
                      borderRadius: new BorderRadius.circular(10.0),
-                    //  boxShadow: [
-                    //  BoxShadow(
-                    //         blurRadius: 4.0,
-                    //         color: Colors.black.withOpacity(0.5),
-                    //         offset: Offset(0.5, 0.5),
-                    //       ),
-                    //     ],
+                   
                      ),
                      child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                         crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                           Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
                             
@@ -203,7 +206,7 @@ Padding(
                                 height: size.height/15,
                                       width: size.height/15,
                                child:Image(
-                        image: new AssetImage("assets/snbizvaticon.png"),
+                        image: new AssetImage(icon),
                         height: size.height / 12,
                       ),),
                               onTap: () {

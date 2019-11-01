@@ -26,18 +26,18 @@ class DocumentFilesState extends State<DocumentFilesPage> {
 
   String formatTime(String time) {
     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
-    // DateFormat dateFormat = DateFormat.yMd().add_jm();
+    
     DateTime formattedtime = (dateFormatremoveT.parse(time));
     DateFormat longtme = DateFormat.jm();
     time = longtme.format(formattedtime);
     print(time);
-    // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
+    
     return time.toString();
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     
   return Scaffold(
         appBar: AppBar(

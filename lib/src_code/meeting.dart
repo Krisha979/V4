@@ -8,7 +8,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:snbiz/src_code/meetingdetail.dart';
 import 'package:snbiz/src_code/static.dart';
-import 'package:snbiz/src_code/static.dart' as prefix0;
 
 class Meeting extends StatefulWidget{
   @override
