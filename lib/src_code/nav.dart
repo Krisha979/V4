@@ -24,6 +24,7 @@ class NavBar extends State<Nav> {
    StaticValue.logo==null;
    StaticValue.userRowstamp==null;
    StaticValue.orgRowstamp==null;
+   StaticValue.wasloggedout = true;
  //  StaticValue.meetingstatusId=3;
         }
 

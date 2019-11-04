@@ -564,8 +564,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 );
                 widgets.add(widget);
      }
-     if(StaticValue.upcomingMeetingsCount == null){
+     if(StaticValue.wasloggedout == true || StaticValue.wasloggedout == null){
             data = await getData();
+            StaticValue.wasloggedout = false;
      }
     
     size = MediaQuery.of(context).size;
