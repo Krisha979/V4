@@ -32,11 +32,13 @@ class MeetingState extends State<Meeting> {
     var list = meetinglist;
     if (value == true) {
       isSwitched = true;
+     switchText = 'Upcoming Meetings';
       StaticValue.togglestate = true;
 
       _future = upcomingsortedlist(list);
     } else {
       isSwitched = false;
+      switchText = 'All Meetings';
       StaticValue.togglestate = false;
       _future = _meeting();
     }

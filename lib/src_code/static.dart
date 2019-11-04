@@ -28,5 +28,6 @@ class StaticValue{
   static String lastInvoiceDate;
   static int uploadsToday;
   static String uploadedDate;
-    static TabController controller;
+  static TabController controller;
+  static bool wasloggedout;
 }
