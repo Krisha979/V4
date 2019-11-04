@@ -31,8 +31,12 @@ class MeetingDetailState extends State<MeetingDetail> {
   List<MeetingStatus> statuslist = [];
   String _selectedvalue;
   int _statusid;
+ 
+   
+
   Future<void> editData() async {
     details.statusId = _statusid;
+     _selectedvalue = details.statusName;
     String jsonbody = jsonEncode(details);
     try {
       http.Response data = await http.put(
