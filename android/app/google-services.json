@@ -38,6 +38,13 @@
             {
               "client_id": "29175609869-rnfbi004o64o0dq7r42ntkldi8qqob0k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "29175609869-lrsl2fo0r4pmada23j4pni2t26he7peb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.snbiz"
+              }
             }
           ]
         }
@@ -67,6 +74,49 @@
             {
               "client_id": "29175609869-rnfbi004o64o0dq7r42ntkldi8qqob0k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "29175609869-lrsl2fo0r4pmada23j4pni2t26he7peb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.snbiz"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29175609869:android:456e79f83eaf553ffab344",
+        "android_client_info": {
+          "package_name": "com.kathmanducodes.snbiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29175609869-rnfbi004o64o0dq7r42ntkldi8qqob0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3gSjRMHj1COMefvYzo0jsYjn_Nn0JezE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29175609869-rnfbi004o64o0dq7r42ntkldi8qqob0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "29175609869-lrsl2fo0r4pmada23j4pni2t26he7peb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.snbiz"
+              }
             }
           ]
         }

@@ -1,4 +1,4 @@
-package com.example.snbiz
+package com.kathmanducodes.snbiz
 
 import android.os.Bundle
 
