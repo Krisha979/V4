@@ -223,7 +223,7 @@ class MeetingState extends State<Meeting> {
                                 fontWeight: FontWeight.bold, fontSize: 17),
                           ),
 
-                          Text("Next Meetings",
+                          Text("Next Meeting",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color(
@@ -333,13 +333,13 @@ class MeetingState extends State<Meeting> {
                                           }else if(snapshot.data[meetingId].statusName.contains("Accepted")){
                                             icon = "assets/acceptedtick-web.png";
                                           }else if(snapshot.data[meetingId].statusName.contains("Cancelled")){
-                                            icon = "assets/acceptedtick-web.png";
+                                            icon = "assets/snbizcancel-web.png";
                                           }else if(snapshot.data[meetingId].statusName.contains("Concluded")){
                                             icon = "assets/acceptedtick-web.png";
                                           } else if(snapshot.data[meetingId].statusName.contains("Declined")){
                                             icon = "assets/snbizdeclinedicon.png";
                                           }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
-                                            icon = "assets/acceptedtick-web.png";
+                                            icon = "assets/assets/snbizscheduled.png";
                                           }    
                                         
                                         

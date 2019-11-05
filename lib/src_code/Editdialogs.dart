@@ -117,7 +117,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                 ]),
                                   Image(
                                     image: new AssetImage(
-                                        "assets/new_meeting.png"),
+                                        "assets/snbizmeetings.png"),
                                     height: size.height / 9,
                                   ),
                                 ]),

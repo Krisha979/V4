@@ -145,22 +145,17 @@ class _InvoiceState extends State<Invoice> {
                                     ),
 
                                     
-                                   Row(
-                                     
-                                     children: <Widget>[
+                                 
+                                       
                                        Padding(
-                                         padding: const EdgeInsets.only(left: 25),
-                                         child: Image(image: new AssetImage("assets/due.png"),),
-                                       ),
-                                       Padding(
-                                         padding: const EdgeInsets.only(left: 5),
+                                         padding: const EdgeInsets.only(left: 30),
                                          child: Text("Due Remaining",style: TextStyle(
                                       fontSize: 14, color: Color(0xFFA19F9F),
                                       fontWeight: FontWeight.bold)),
-                                       )
+                                       ),
                                        
-                                     ],
-                                   ),
+                                    
+                                   
                                    Padding(
                                          padding: const EdgeInsets.only(left: 30),
                                          child: Text(StaticValue.totalPaymentDue.toString(),style: TextStyle(
@@ -250,14 +245,16 @@ class _InvoiceState extends State<Invoice> {
                                       var name = snapshot.data[index].invoiceName;
                                       return Container(
                                         child: Card(
+                                          
                                           elevation: 5,
+                                          
                                           margin: EdgeInsets.fromLTRB(
                                               10.0, 10.0, 10.0, 0.0),
                                           child: ListTile(
                                             title: Column(
                                               children: <Widget>[
                                                 Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: <Widget>[
                                                     Flexible(
                                                       child: Text(
@@ -273,7 +270,7 @@ class _InvoiceState extends State<Invoice> {
                                                     Padding(
                                                       padding:
                                                           EdgeInsets.fromLTRB(
-                                                              20, 10, 0, 0),
+                                                              0, 20, 0, 20),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -282,9 +279,9 @@ class _InvoiceState extends State<Invoice> {
                                                       child: new Image(
                                                           image: new AssetImage(
                                                               "assets/snbizinvoice.png"),
-                                                          height:
-                                                              size.height / 12,
-                                                          width: size.width / 12),
+                                                          height: 60,
+                                                              
+                                                          width: 60),
                                                     ),
                                                   ],
                                                 ),

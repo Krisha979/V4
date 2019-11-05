@@ -126,7 +126,7 @@ catch(e){
       enablePullDown: true,
       onRefresh: () async {
         await Future.delayed(Duration(seconds: 2));
-        getTask();
+        _future = getTask();
         _refreshController.refreshCompleted();
       },
       child: Container(

@@ -652,7 +652,7 @@ final carousel1 = CarouselSlider(
                 child: Column(
                   children: <Widget>[
                     new Image(
-                        image: new AssetImage("assets/img.png"),
+                        image: new AssetImage("assets/new-dashboard.png"),
                         height: size.height / 4.8,
                         fit: BoxFit.fill,
                         width: size.width),
@@ -691,6 +691,7 @@ final carousel1 = CarouselSlider(
                                     height: size.height / 12,
                                   ),
                                 ),
+                                
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),

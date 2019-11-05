@@ -53,6 +53,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                 itemCount: details.documents.length,
                 itemBuilder: (BuildContext context, int index) {
                   var url = details.documents[index].documentURL;
+<<<<<<< HEAD
                   
                   return Container(
                    // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
@@ -78,6 +79,30 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           
+=======
+                  return GestureDetector(
+                    onTap: (){
+                       launch('$url');
+
+                    },
+                                      child: Container(
+                     // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                        child: Card(
+                            elevation: 5,
+                            margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
+
+                            child: ListTile(
+                              title: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    // Padding(
+                                    //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                    // ),
+                                    Flexible(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+>>>>>>> 3e7bb3767b592943efcb88a246f241358313ec62
                                         InkWell(
                                           child: Text(
                                          ( details.documents[index].fileName == null)?details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
@@ -109,21 +134,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                         SizedBox(
                                   height: size.height / 12,
                                   width: size.height / 12,
-                                  //  child: Image.network(details.documents[index].documentURL,
-                                  //             fit: BoxFit.cover,
-                                  //           )
-
-
-                                  // child: url.contains(".jpeg") == 
-                                  //     ? Icon(
-                                  //         Icons.person,
-                                  //         size: 70,
-                                  //         color: Colors.white,
-                                  //       )
-                                  //     : StaticValue.logo != null
-                                  //         ? Image.network(StaticValue.logo,
-                                  //             fit: BoxFit.cover)
-                                  //         : Icon(Icons.person)
+                                  
 
                           child: url.contains(".jpeg") 
                                           ? Image.network(details.documents[index].documentURL,

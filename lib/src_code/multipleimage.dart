@@ -105,14 +105,18 @@ Future<bool> checkConnectivity()  async{
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(right: 100, top: 20),
-                    child: Text(
-                      "UPLOAD IMAGES & FILES",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Color(0xFF665959)),
+                  
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Text(
+                          "UPLOAD IMAGES & FILES",
+                          style:
+                              TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),
+                        ),
+                      ),
                     ),
-                  ),
+                  
                   Flexible(
                     child: ListView.builder(
                         shrinkWrap: true,
@@ -125,12 +129,12 @@ Future<bool> checkConnectivity()  async{
                                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 20),
+                                      padding: const EdgeInsets.only(left: 20,bottom: 15),
                                       child: new Image(
                                           image:
-                                              new AssetImage("assets/pdf.png"),
-                                          height: size.height / 8,
-                                          width: size.width / 8),
+                                              new AssetImage("assets/snbizsfiles-web.png"),
+                                          height:60,
+                                          width: 60),
                                     ),
                                     Padding(
                                       padding:
@@ -176,7 +180,7 @@ Future<bool> checkConnectivity()  async{
             ),
             Container(
               // color: Colors.white,
-              height: 90,
+              height: 95,
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -188,8 +192,11 @@ Future<bool> checkConnectivity()  async{
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    padding: const EdgeInsets.only(left: 15, right: 15,bottom: 10),
                     child: MaterialButton(
+                       height: 50,
+
+                      
                         onPressed: () async {
                           showDialog(
                               context: context,
@@ -235,7 +242,7 @@ Future<bool> checkConnectivity()  async{
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
                         child: Center(
-                          child: Text('Upload', style: TextStyle(fontSize: 16)),
+                          child: Text('Upload', style: TextStyle(fontSize: 20)),
                         )),
                   ),
                 ],

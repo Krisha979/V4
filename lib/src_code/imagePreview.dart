@@ -115,11 +115,13 @@ Future<bool> _checkConnectivity()  async{
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(right: 40),
-                        child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
-                      ),
+                     
+                        
+                         Center(
+                          child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
+                        ),
+                      
                       Padding(
                         padding: const EdgeInsets.only(top: 10,),
                         child: Image.file(File(url),
@@ -132,7 +134,7 @@ Future<bool> _checkConnectivity()  async{
                         padding:
                             const EdgeInsets.only(top: 10, left: 15, right: 15),
                         child: MaterialButton(
-                            height: 40,
+                            height: 50,
                             onPressed: () async {
 bool con = await _checkConnectivity();
                                 if(con == true){
@@ -186,7 +188,7 @@ bool con = await _checkConnectivity();
                                 borderRadius: BorderRadius.circular(10.0)),
                             child: Center(
                               child:
-                                  Text('Upload', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                  Text('Upload', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                             )),
                       ),
                     ])),

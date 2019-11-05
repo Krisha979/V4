@@ -126,10 +126,12 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
           child: Scaffold(
         appBar: AppBar(
+          
+      
             //centerTitle: true,
 
             title: Text(StaticValue.orgName,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
             backgroundColor: const Color(0xFF9C38FF),
             actions: <Widget>[
               Padding(
@@ -164,11 +166,11 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         bottomNavigationBar: new Material(
           color: Color(0xFFBF9b38ff),
           child: Container(
-            height: size.height / 15,
+            height: size.height / 16,
             child: TabBar(
               unselectedLabelColor: Colors.white70,
               indicatorSize: TabBarIndicatorSize.tab,
-              indicatorPadding: EdgeInsets.all(5.0),
+              indicatorPadding: EdgeInsets.all(1.0),
               indicatorColor: Colors.white,
               controller: StaticValue.controller,
               tabs: <Tab>[
