@@ -22,7 +22,7 @@ class AllNotification extends StatefulWidget {
 }
 
 class AllNotificationState extends State<AllNotification> {
-  int notificationNumber;
+  int notificationNumber=0;
   Future<List<NotificationModel>> _future;
   final RefreshController _refreshController = RefreshController();
   String date;
@@ -278,10 +278,10 @@ class AllNotificationState extends State<AllNotification> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Center(child: Text(snapshot.data[index].notificationBody)),
+                  Text(snapshot.data[index].notificationBody),
                   Text(date,style: TextStyle(
                   color: Color(0xFFA19F9F))),
-                  Text(type),
+                  Text(type, style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
                 ],
               ),
             ),
