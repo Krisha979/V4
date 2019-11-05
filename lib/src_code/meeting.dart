@@ -105,6 +105,7 @@ class MeetingState extends State<Meeting> {
         (a) => DateTime.parse(a.meetingTime).isBefore(DateTime.now()));
     filteredmeetings.sort((a, b) =>
         DateTime.parse(a.meetingTime).compareTo(DateTime.parse(b.meetingTime)));
+        filteredmeetings.removeWhere((a) => a.statusName == "Concluded" || a.statusName == "Cancelled");
     print(filteredmeetings);
     return filteredmeetings;
   }
@@ -143,7 +144,7 @@ class MeetingState extends State<Meeting> {
       enablePullDown: true,
       onRefresh: () async {
         await Future.delayed(Duration(seconds: 2));
-        _meeting();
+        _future = _meeting();
         _refreshController.refreshCompleted();
       },
       child: Container(
@@ -238,31 +239,44 @@ class MeetingState extends State<Meeting> {
                       case ConnectionState.none:
                         return Container(
                             child: Center(
-                          child: Flexible(
                               child: Text("Try Loading Again.",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.normal))),
-                        ));
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
                       case ConnectionState.active:
                       case ConnectionState.waiting:
                         return Container(
                             child: Center(child: CircularProgressIndicator()));
                       case ConnectionState.done:
                         print(snapshot.data);
-                        if (snapshot.data == null) {
+                        if (!snapshot.hasData) {
                           return Container(
-                              child: Center(
-                            child: Flexible(
-                                child: Text("No records Available.",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal))),
-                          ));
+                            child: Center(
+                              child: Text("Try Loading Again.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
                         } else {
-                          return Flexible(
+                          if(snapshot.data.length == 0){
+                            return Flexible(
+                            child: Center(
+                              child: Text("No Records Available.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );}
+                         return Flexible(
                             child: ListView.builder(
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 shrinkWrap: true,
@@ -291,10 +305,9 @@ class MeetingState extends State<Meeting> {
                                           }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
                                             icon = "assets/acceptedtick-web.png";
                                           }    
-
-                                     
-
-
+                                        
+                                        
+                                        
                                   return ListTile(
                                     //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
 
