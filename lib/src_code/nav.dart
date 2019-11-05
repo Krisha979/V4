@@ -20,10 +20,18 @@ class NavBar extends State<Nav> {
         final storage = new FlutterSecureStorage();
         removeStaticValue(){
   // StaticValue.orgId==null;
-   StaticValue.orgName==null;
-   StaticValue.logo==null;
-   StaticValue.userRowstamp==null;
-   StaticValue.orgRowstamp==null;
+   StaticValue.orgName=null;
+   StaticValue.logo=null;
+   StaticValue.userRowstamp=null;
+   StaticValue.orgRowstamp=null;
+   StaticValue.upcomingMeetingsCount= null; 
+    StaticValue.meetingTime = null;
+  StaticValue.activeTaskcount = null;
+  StaticValue.taskName = null ;
+  StaticValue.totalPaymentDue = null;
+  StaticValue.lastInvoiceDate = null;
+  StaticValue.uploadsToday = null;
+  StaticValue.uploadedDate = null;
    StaticValue.wasloggedout = true;
  //  StaticValue.meetingstatusId=3;
         }

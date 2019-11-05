@@ -95,7 +95,7 @@ class AllNotificationState extends State<AllNotification> {
         enablePullUp: false,
         onRefresh: () async {
           await Future.delayed(Duration(seconds: 2));
-          getNotifications();
+          _future = getNotifications();
           _refreshController.refreshCompleted();
         },
         child: Container(
