@@ -94,61 +94,64 @@ class PreviewImageState extends State<PreviewImage> {
           width: size.width,
           color: Color(0xFFE0CECE),
             child: Column(children: <Widget>[
-          new Container(
-              height: size.height-100,
-              width: size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Color(0xFFFFFFFF),
-              ),
-              
-              margin: EdgeInsets.all(8.0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(right: 40),
-                      child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10,),
-                      child: Image.file(File(url),
-                          width: size.width
-                          , height: size.height/1.5),
-                    ),
-              
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 15, right: 15),
-                      child: MaterialButton(
-                          height: 40,
-                          onPressed: () async {
-                            showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (BuildContext context) {
-                                  return Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                });
-                            if (StaticValue.imgfile.path == url) {
-                              await upload(StaticValue.imgfile);
-                            }
+          Expanded(
+                      child: new Container(
+                height: size.height,
+                width: size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: Color(0xFFFFFFFF),
+                ),
+                
+                margin: EdgeInsets.all(8.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right: 40),
+                        child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10,),
+                        child: Image.file(File(url),
+                            width: size.width,
+                            height: size.height/1.5
+                            ),
+                      ),
+                
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 15, right: 15),
+                        child: MaterialButton(
+                            height: 40,
+                            onPressed: () async {
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  });
+                              if (StaticValue.imgfile.path == url) {
+                                await upload(StaticValue.imgfile);
+                              }
 
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                          },
-                          textColor: Colors.white,
-                          color: Color(0xFFB56AFF),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: Center(
-                            child:
-                                Text('Upload', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                          )),
-                    ),
-                  ]))
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            },
+                            textColor: Colors.white,
+                            color: Color(0xFFB56AFF),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Center(
+                              child:
+                                  Text('Upload', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                            )),
+                      ),
+                    ])),
+          )
         ])));
   }
 }

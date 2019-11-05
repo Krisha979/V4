@@ -164,25 +164,26 @@ class MeetingState extends State<Meeting> {
                   ),
                 ],
               ),
-              child: Column(children: <Widget>[
+              child: Column(
+                children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                       
 
                         children: <Widget>[
-                          //   Text("All Meetings",style: TextStyle(
-                          // fontSize: 18, color: Color(0xFFA19F9F))),
+                          
                           Text("Upcoming Meetings",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color(0xFFA19F9F),
                                   fontWeight: FontWeight.bold)),
 
-                          Text(
+                          Text(          
+                            (StaticValue.upcomingMeetingsCount.toString()== null)?'not found':
                             StaticValue.upcomingMeetingsCount.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 17),
@@ -195,9 +196,9 @@ class MeetingState extends State<Meeting> {
                                     0xFFA19F9F,
                                   ),
                                   fontWeight: FontWeight.w600)),
-                          //Text( StaticValue.meetingTime, style: TextStyle(fontSize: 14),),
                           Text(
-                            StaticValue.meetingTime,
+                           ( StaticValue.meetingTime== null)?'not found':
+                           StaticValue.meetingTime,
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold),
                           ),

@@ -142,8 +142,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
            Size size = MediaQuery.of(context).size;
 
           return Dialog(
-           // shape: RoundedRectangleBorder(
-             //   borderRadius: BorderRadius.circular(20.0)),
+           
             child: Container(
               height: size.height/3.4,
              width: size.width/1.2,
@@ -176,11 +175,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
 
-                       
-
-                          
-                       
-                          
                           Column(
                             children: <Widget>[
                               GestureDetector(

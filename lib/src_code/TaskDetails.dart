@@ -134,15 +134,17 @@ catch(e){
                                   child: InkWell(
                                     splashColor: Colors.red, // inkwell color
                                     child: SizedBox(
-                                      height: size.height/15,
+                                      height: size.width/8,
                                       width: size.width/8,
                                       
                                       
                                       
                                      child:Image(
                         image: new AssetImage(icon),
-                        height: size.height / 15,
-                      ), ),
+                        height: size.width / 8,
+                        width: size.width/8
+                      ),
+                       ),
                                     
                                   ),
                                 ),

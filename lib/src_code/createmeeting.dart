@@ -119,7 +119,7 @@ class _CreateState extends State<Create> {
                                 ]),
                                   Image(
                                     image: new AssetImage(
-                                        "assets/new_meeting.png"),
+                                        "assets/snbizmeetings.png"),
                                     height: size.height / 9,
                                   ),
                                 ]),
