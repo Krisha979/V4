@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class MeetingState extends State<Meeting> {
   String switchText;
   bool isSwitched = false;
   bool isLoading = false;
-
+ final _scaffoldKey = GlobalKey<ScaffoldState>();
   final RefreshController _refreshController = RefreshController();
   static List<MeetingInfo> meetinglist = [];
 
@@ -32,21 +33,24 @@ class MeetingState extends State<Meeting> {
     var list = meetinglist;
     if (value == true) {
       isSwitched = true;
-     switchText = 'Upcoming Meetings';
       StaticValue.togglestate = true;
 
       _future = upcomingsortedlist(list);
     } else {
       isSwitched = false;
-      switchText = 'All Meetings';
       StaticValue.togglestate = false;
       _future = _meeting();
     }
     setState(() {});
   }
 
-  //var mt =  StaticValue.meetingTime.replaceFirst(',', '\n');
-
+  Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        }
   @override
   void initState() {
     super.initState();
@@ -57,8 +61,31 @@ class MeetingState extends State<Meeting> {
     });
     //var mt = StaticValue.meetingTime.replaceAll(new RegExp(r", "),"\n\n");
   }
-
   Future<List<MeetingInfo>> _meeting() async {
+    bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                       StaticValue.controller.animateTo(0);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
@@ -76,6 +103,7 @@ class MeetingState extends State<Meeting> {
         meeting.add(meetinginfo);
       }
       meetinglist = meeting;
+     // _future = meetinglist as Future<List<MeetingInfo>>;
       print(meeting.length);
       setState(() {
         counts = meeting.length;
@@ -96,6 +124,9 @@ class MeetingState extends State<Meeting> {
       print(e);
       return null;
     }
+                                          }
+                                         
+                                           
   }
 
   Future<List<MeetingInfo>> upcomingsortedlist(
@@ -143,8 +174,9 @@ class MeetingState extends State<Meeting> {
       enablePullDown: true,
       onRefresh: () async {
         await Future.delayed(Duration(seconds: 2));
-        _meeting();
+        await _meeting();
         _refreshController.refreshCompleted();
+
       },
       child: Container(
         color: Color(0XFFF4EAEA),
@@ -195,6 +227,7 @@ class MeetingState extends State<Meeting> {
                                     0xFFA19F9F,
                                   ),
                                   fontWeight: FontWeight.w600)),
+                          //Text( StaticValue.meetingTime, style: TextStyle(fontSize: 14),),
                           Text(
                            ( StaticValue.meetingTime== null)?'not found':
                            StaticValue.meetingTime,
@@ -240,28 +273,38 @@ class MeetingState extends State<Meeting> {
                         return Container(
                             child: Center(
                           child: Flexible(
-                              child: Text("Try Loading Again.",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal))),
+                              child: Row(
+                                                              children:<Widget>[ Text("Try Loading Again.",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal)),
+                                        Icon(Icons.refresh,
+                                        color:Colors.black),
+                                        ]
+                              )),
                         ));
                       case ConnectionState.active:
                       case ConnectionState.waiting:
                         return Container(
                             child: Center(child: CircularProgressIndicator()));
                       case ConnectionState.done:
-                        print(snapshot.data);
+                    
+                      
+                      
                         if (snapshot.data == null) {
+            
+             
                           return Container(
                               child: Center(
-                            child: Flexible(
+                            child: Container(     
                                 child: Text("No records Available.",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal))),
                           ));
+           
                         } else {
                           return Flexible(
                             child: ListView.builder(
@@ -416,11 +459,12 @@ class MeetingState extends State<Meeting> {
                                   );
                                 }),
                           );
-                        }
-                    }
+                        
+                      }}
+                    
                     return Container(
                         child: Center(
-                      child: Flexible(
+                      child: Container(
                           child: Text("Try Loading Again.",
                               textAlign: TextAlign.left,
                               style: TextStyle(

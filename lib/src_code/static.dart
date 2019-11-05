@@ -21,13 +21,13 @@ class StaticValue{
   static String facebookurl = "http://www.facebook.com";
   static String whatsapp="http://www.facebook.com";
   static int upcomingMeetingsCount;
-  static String meetingTime;
+  static String meetingTime='not found';
   static int activeTaskcount;
-  static String taskName;
+  static String taskName='not found';
   static int totalPaymentDue;
-  static String lastInvoiceDate;
+  static String lastInvoiceDate='not found';
   static int uploadsToday;
-  static String uploadedDate;
+  static String uploadedDate='not found';
   static TabController controller;
   static bool wasloggedout;
 }

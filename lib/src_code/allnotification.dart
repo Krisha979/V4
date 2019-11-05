@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -28,8 +29,40 @@ class AllNotificationState extends State<AllNotification> {
   String date;
   final storage = new FlutterSecureStorage();
   var latestid;
+   Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        }
   Future<List<NotificationModel>> getNotifications() async {
+    bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                       StaticValue.controller.animateTo(0);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else {
     try {
+   
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
               "api/RecentNotifications?Orgid=" +
@@ -62,6 +95,7 @@ class AllNotificationState extends State<AllNotification> {
       print(e);
       return null;
     }
+      }
   }
 
   @override
@@ -185,11 +219,11 @@ class AllNotificationState extends State<AllNotification> {
                   )
                 );
               case ConnectionState.done:
-              print(snapshot.data);
+              
               if(snapshot.data==null){
                 return Container(
                   child: Center(
-                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                      child:Container(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                   )  
                 );
               }else{

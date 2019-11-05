@@ -150,9 +150,10 @@ Padding(
               case ConnectionState.done:
               print(snapshot.data);
               if(snapshot.data==null){
+                
                 return Container(
                   child: Center(
-                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                      child:Container(child: Text("No details Avaliable", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                   )  
                 );
               }else{

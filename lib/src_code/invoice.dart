@@ -189,7 +189,7 @@ class _InvoiceState extends State<Invoice> {
               if(snapshot.data==null){
                 return Container(
                   child: Center(
-                      child:Flexible(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                      child:Container(child: Text("Try loading again", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                   )  
                 );
               }else{
