@@ -41,7 +41,7 @@ class AllNotificationState extends State<AllNotification> {
       if(connection == false){
                    showDialog(
                  context: context,
-                 
+                 barrierDismissible: false,
                  builder: (BuildContext context){
                    return AlertDialog(
                      title: Text("Please, check your internet connection",
@@ -220,13 +220,29 @@ class AllNotificationState extends State<AllNotification> {
                 );
               case ConnectionState.done:
               
-              if(snapshot.data==null){
-                return Container(
-                  child: Center(
-                      child:Container(child: Text("No records Available.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
-              }else{
+              if (!snapshot.hasData) {
+                          return Container(
+                            child: Center(
+                              child: Text("Try Loading Again.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
+                        } else {
+                          if(snapshot.data.length == 0){
+                            return Flexible(
+                            child: Center(
+                              child: Text("No Records Available.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );}
                                 return ListView.builder(
                                   
                                     shrinkWrap: true,

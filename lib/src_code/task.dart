@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -40,8 +41,41 @@ class TaskState extends State<TaskPage> {
    // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
     return time.toString();
   }
+   Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        }
 
 Future<List<OrgTask>> getTask()async{
+  bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                       
+                        Navigator.pop(context);
+                         Navigator.pop(context);
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else {
   try{
   http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl + "api/AllOrgTasks?Orgid=" + StaticValue.orgId.toString()), 
@@ -69,6 +103,7 @@ catch(e){
   return null;
 
 }
+      }
 }
 
  @override
@@ -171,16 +206,47 @@ catch(e){
            child: FutureBuilder(
             future: _future,
             builder:(BuildContext context, AsyncSnapshot snapshot){
-              print(snapshot.data);
-              if(snapshot.data==null){
-                return Container(
+              switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                    return Container(
                   child: Center(
 
                   child: CircularProgressIndicator()
 
                   )
                 );
-              }else{
+              case ConnectionState.done:
+              
+              if (!snapshot.hasData) {
+                          return Container(
+                            child: Center(
+                              child: Text("Try Loading Again.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
+                        } else {
+                          if(snapshot.data.length == 0){
+                            return Flexible(
+                            child: Center(
+                              child: Text("No Records Available.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );}
                 return Flexible(
                                 child: ListView.builder(
                                   physics: const AlwaysScrollableScrollPhysics(),
@@ -262,6 +328,7 @@ catch(e){
                       ),
                 );
               }
+            }
             }
            )
         )

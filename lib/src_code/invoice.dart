@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:snbiz/Model_code/InvoiceModel.dart';
@@ -13,8 +14,39 @@ class _InvoiceState extends State<Invoice> {
   int invoicenumber;
 
   Future<List<InvoiceModel>> _future;
+  Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        }
 
   Future<List<InvoiceModel>> getInovoices() async {
+    bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
@@ -40,6 +72,7 @@ class _InvoiceState extends State<Invoice> {
       print(e);
       return null;
     }
+  }
   }
 
   @override
@@ -185,14 +218,29 @@ class _InvoiceState extends State<Invoice> {
                   )
                 );
               case ConnectionState.done:
-              print(snapshot.data);
-              if(snapshot.data==null){
-                return Container(
-                  child: Center(
-                      child:Container(child: Text("Try loading again", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
-              }else{
+             if (!snapshot.hasData) {
+                          return Container(
+                            child: Center(
+                              child: Text("Try Loading Again.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
+                        } else {
+                          if(snapshot.data.length == 0){
+                            return Flexible(
+                            child: Center(
+                              child: Text("No Records Available.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );}
                                 return ListView.builder(
                                   physics: const AlwaysScrollableScrollPhysics(),
                                     shrinkWrap: true,

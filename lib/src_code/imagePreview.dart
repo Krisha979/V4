@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:convert';
 // import 'package:dio/dio.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
@@ -24,7 +25,14 @@ class PreviewImageState extends State<PreviewImage> {
   File imageFile;
   String url;
   PreviewImageState(this.url);
-
+Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        return true;
+                        }
   Future<void> upload(File files) async {
     List<File> docs = new List();
     // if (files.isNotEmpty) {
@@ -126,6 +134,8 @@ class PreviewImageState extends State<PreviewImage> {
                         child: MaterialButton(
                             height: 40,
                             onPressed: () async {
+bool con = await _checkConnectivity();
+                                if(con == true){
                               showDialog(
                                   context: context,
                                   barrierDismissible: false,
@@ -135,7 +145,36 @@ class PreviewImageState extends State<PreviewImage> {
                                     );
                                   });
                               if (StaticValue.imgfile.path == url) {
-                                await upload(StaticValue.imgfile);
+                                
+                                  await upload(StaticValue.imgfile);
+                                Navigator.pop(context);
+                                
+                              }
+                              else{
+                                showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
+                              }
+                                
+                                //await upload(StaticValue.imgfile);
                               }
 
                               Navigator.pop(context);

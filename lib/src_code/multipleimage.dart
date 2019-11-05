@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // import 'package:dio/dio.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
@@ -25,6 +26,7 @@ class MultipleImageState extends State<MultipleImage> {
   List<String> names;
 
   Future<void> upload(Map<String, String> files) async {
+    
     List<File> docs = new List();
     if (files.isNotEmpty) {
       files.forEach((k, v) => docs.add(new File(v)));
@@ -60,19 +62,14 @@ class MultipleImageState extends State<MultipleImage> {
     });
   }
 
-  // Future<void> uploadFiles(File file) async {
-  //   BaseOptions options = new BaseOptions(
-  //       baseUrl: "https://s-nbiz.conveyor.cloud/api",
-  //       connectTimeout: 10000,
-  //       receiveTimeout: 30000,
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //         'Accept': 'application/json',
-  //       });
-  //   FormData formdata = new FormData();
-  //   formdata.add("files", new UploadFileInfo(file, basename(file.path)));
-  // }
+Future<bool> checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+                         return false;
+                        }
+                        return true;
+                        }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -202,9 +199,36 @@ class MultipleImageState extends State<MultipleImage> {
                                   child: CircularProgressIndicator(),
                                 );
                               });
-                          await upload(url);
-                          Navigator.pop(context);
-                          Navigator.pop(context);
+                              bool con = await checkConnectivity();
+                              if(con == true){
+                                  await upload(url);
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              }
+                              else{
+                                showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
+                              }
+                          
                         },
                         textColor: Colors.white,
                         color: Color(0xFFB56AFF),

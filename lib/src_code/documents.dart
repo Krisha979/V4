@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/Model_code/DocumentModel.dart';
 import 'package:http/http.dart' as http;
@@ -15,8 +16,40 @@ class Documents extends StatefulWidget{
 
 class _DocumentsState extends State<Documents> {
   Future<List<DocumentModel>> _future;
-
+  
+ Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        }
   Future<List<DocumentModel>> getDocuments()async{
+    bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                       Navigator.pop(context);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else {
+
   try{
   http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl+ "api/OrgDocumentsList?Orgid=" + StaticValue.orgId.toString()), 
@@ -41,6 +74,7 @@ catch(e){
   return null;
 
 }
+  }
 }
  @override
   void initState() {
@@ -148,15 +182,29 @@ Padding(
                   )
                 );
               case ConnectionState.done:
-              print(snapshot.data);
-              if(snapshot.data==null){
-                
-                return Container(
-                  child: Center(
-                      child:Container(child: Text("No details Avaliable", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
-              }else{
+             if (!snapshot.hasData) {
+                          return Container(
+                            child: Center(
+                              child: Text("Try Loading Again.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
+                        } else {
+                          if(snapshot.data.length == 0){
+                            return Flexible(
+                            child: Center(
+                              child: Text("No Records Available.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );}
               return ListView.builder(
                 physics: const AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
