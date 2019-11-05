@@ -112,6 +112,7 @@ flutter:
    - assets/snbizspostponed.png
    - assets/snbizsfiles-web.png
    - assets/snbizcancel-web.png
+   - assets/new-dashboard.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
