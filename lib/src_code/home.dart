@@ -690,6 +690,7 @@ final carousel1 = CarouselSlider(
                                     height: size.height / 12,
                                   ),
                                 ),
+                                
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
