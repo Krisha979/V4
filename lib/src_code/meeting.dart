@@ -298,13 +298,13 @@ class MeetingState extends State<Meeting> {
                                           }else if(snapshot.data[meetingId].statusName.contains("Accepted")){
                                             icon = "assets/acceptedtick-web.png";
                                           }else if(snapshot.data[meetingId].statusName.contains("Cancelled")){
-                                            icon = "assets/acceptedtick-web.png";
+                                            icon = "assets/snbizcancel-web.png";
                                           }else if(snapshot.data[meetingId].statusName.contains("Concluded")){
                                             icon = "assets/acceptedtick-web.png";
                                           } else if(snapshot.data[meetingId].statusName.contains("Declined")){
                                             icon = "assets/snbizdeclinedicon.png";
                                           }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
-                                            icon = "assets/acceptedtick-web.png";
+                                            icon = "assets/assets/snbizscheduled.png";
                                           }    
                                         
                                         

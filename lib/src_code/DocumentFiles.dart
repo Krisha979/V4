@@ -53,51 +53,57 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                 itemCount: details.documents.length,
                 itemBuilder: (BuildContext context, int index) {
                   var url = details.documents[index].documentURL;
-                  return Container(
-                   // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                      child: Card(
-                          elevation: 5,
-                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
+                  return GestureDetector(
+                    onTap: (){
+                       launch('$url');
 
-                          child: ListTile(
-                            title: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  // Padding(
-                                  //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
-                                  // ),
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                      InkWell(
-                                        child: Text(
-                                       ( details.documents[index].fileName == null)?details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
-                                       details.documents[index].fileName,
+                    },
+                                      child: Container(
+                     // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                        child: Card(
+                            elevation: 5,
+                            margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
 
-                                        
-                                          textAlign: TextAlign.left,
+                            child: ListTile(
+                              title: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    // Padding(
+                                    //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                    // ),
+                                    Flexible(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                        InkWell(
+                                          child: Text(
+                                         ( details.documents[index].fileName == null)?details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
+                                         details.documents[index].fileName,
+
+                                          
+                                            textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                                 fontStyle: FontStyle.normal,
+                                                 fontSize: 14,
+                                                 fontWeight: FontWeight.normal),
+                                           ),
+                                          onTap: () {
+                                            launch('$url');
+                                          },
+                                        ),
+                                        Text(formatDateTime(details.documents[index].dateCreated),
                                         style: TextStyle(
-                                               fontStyle: FontStyle.normal,
-                                               fontSize: 14,
-                                               fontWeight: FontWeight.normal),
-                                         ),
-                                        onTap: () {
-                                          launch('$url');
-                                        },
-                                      ),
-                                      Text(formatDateTime(details.documents[index].dateCreated),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        color: Color(0xFFA19F9F),
-                                        fontSize: 14
-                                      ),),
-                                    ]),
-                                  ),
-                                ],
-                              ),
-                            
-                          )));
+                                          fontWeight: FontWeight.normal,
+                                          color: Color(0xFFA19F9F),
+                                          fontSize: 14
+                                        ),),
+                                      ]),
+                                    ),
+                                  ],
+                                ),
+                              
+                            ))),
+                  );
                 })));
   }
 }
