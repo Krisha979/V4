@@ -86,7 +86,7 @@ class MeetingDetailState extends State<MeetingDetail> {
           actions: <Widget>[
             InkWell(
               onTap: () async {
-                if (StaticValue.orgId == details.createdBy) {
+                if (StaticValue.orgId == details.createdBy || details.statusName == "Concluded") {
                   Navigator.of(context).push(new MaterialPageRoute<Null>(
                       builder: (BuildContext context) {
                         return new AddEditDialog(details: details);

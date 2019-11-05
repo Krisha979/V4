@@ -189,7 +189,7 @@ class MeetingState extends State<Meeting> {
                                 fontWeight: FontWeight.bold, fontSize: 17),
                           ),
 
-                          Text("Next Meetings",
+                          Text("Next Meeting",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color(
