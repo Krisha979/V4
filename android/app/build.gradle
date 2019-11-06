@@ -13,12 +13,12 @@ def flutterRoot = localProperties.getProperty('flutter.sdk')
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '2.0'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '2.0'
+    flutterVersionName = '2.2'
 }
 
 apply plugin: 'com.android.application'
@@ -48,6 +48,7 @@ android {
         applicationId "com.kathmanducodes.snbiz"
         minSdkVersion 21
         targetSdkVersion 28
+
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

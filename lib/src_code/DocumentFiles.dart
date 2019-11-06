@@ -37,7 +37,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     
   return Scaffold(
         appBar: AppBar(
@@ -67,6 +67,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                             child: ListTile(
                               title: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     // Padding(
                                     //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
@@ -97,44 +98,13 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                           color: Color(0xFFA19F9F),
                                           fontSize: 14
                                         ),),
-                                   
-                                          ]),
-                                      ),
-                                        Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        SizedBox(
-                                  height: size.height / 12,
-                                  width: size.height / 12,
-                                  
-
-                          child: url.contains(".jpeg") 
-                                          ? Image.network(details.documents[index].documentURL,
-                                             fit: BoxFit.cover,
-                                             )
-                                             :  Image(
-                        image: new AssetImage("assets/pdf.png"),
-                        height: size.height / 10,
-                      ),
-
-                                      
-                                        
-
-                                     )
-                                    
-                                        
-                                      ]
-                                      )
-                                      ]
-                                      )
-                                  ),
-                        ),
-                              ),
-                  ); 
-                }
-            )
-            )
-                          );
-  
+                                      ]),
+                                    ),
+                                  ],
+                                ),
+                              
+                            ))),
+                  );
+                }))); 
   }
 }

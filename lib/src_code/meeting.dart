@@ -79,9 +79,9 @@ class MeetingState extends State<Meeting> {
                      actions: <Widget>[
                        FlatButton(child: Text("OK"),
                        onPressed: (){
-                       
+                         StaticValue.controller.animateTo(0);
                         Navigator.pop(context);
-                         Navigator.pop(context);
+//                         Navigator.pop(context);
 
                        })
                      ],
