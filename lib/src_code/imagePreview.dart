@@ -136,22 +136,23 @@ Future<bool> _checkConnectivity()  async{
                         child: MaterialButton(
                             height: 50,
                             onPressed: () async {
-bool con = await _checkConnectivity();
-                                if(con == true){
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) {
+                              bool con = await _checkConnectivity();
+                              if(con == true){
+                                    showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context) {
                                     return Center(
-                                      child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(),
                                     );
-                                  });
-                              if (StaticValue.imgfile.path == url) {
-                                
-                                  await upload(StaticValue.imgfile);
-                                Navigator.pop(context);
-                                
-                              }
+                                    });
+                                    if (StaticValue.imgfile.path == url) {
+
+                                    await upload(StaticValue.imgfile);
+                                    Navigator.pop(context);
+
+                                    }
+                                    }
                               else{
                                 showDialog(
                  context: context,
@@ -177,10 +178,10 @@ bool con = await _checkConnectivity();
                               }
                                 
                                 //await upload(StaticValue.imgfile);
-                              }
+
 
                               Navigator.pop(context);
-                              Navigator.pop(context);
+//                              Navigator.pop(context);
                             },
                             textColor: Colors.white,
                             color: Color(0xFFB56AFF),
