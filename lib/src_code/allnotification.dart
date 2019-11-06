@@ -65,7 +65,7 @@ class AllNotificationState extends State<AllNotification> {
    
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/RecentNotifications?Orgid=" +
+              "api/RecentOrgNotifications?Orgid=" +
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',

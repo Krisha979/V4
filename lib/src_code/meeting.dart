@@ -34,11 +34,13 @@ class MeetingState extends State<Meeting> {
     if (value == true) {
       isSwitched = true;
       StaticValue.togglestate = true;
+      switchText = 'Upcoming Meetings';
 
       _future = upcomingsortedlist(list);
     } else {
       isSwitched = false;
       StaticValue.togglestate = false;
+      switchText = 'All Meetings';
       _future = _meeting();
     }
     setState(() {});
