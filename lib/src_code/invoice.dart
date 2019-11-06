@@ -158,7 +158,7 @@ class _InvoiceState extends State<Invoice> {
                                    
                                    Padding(
                                          padding: const EdgeInsets.only(left: 30),
-                                         child: Text(StaticValue.totalPaymentDue.toString(),style: TextStyle(
+                                         child: Text(StaticValue.totalPaymentDue,style: TextStyle(
                                       fontSize: 14, color: Colors.black,
                                       fontWeight: FontWeight.bold)),
                                        )

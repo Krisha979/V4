@@ -24,14 +24,14 @@ class NavBar extends State<Nav> {
    StaticValue.logo=null;
    StaticValue.userRowstamp=null;
    StaticValue.orgRowstamp=null;
-   StaticValue.upcomingMeetingsCount= null; 
-    StaticValue.meetingTime = null;
-  StaticValue.activeTaskcount = null;
-  StaticValue.taskName = null ;
-  StaticValue.totalPaymentDue = null;
-  StaticValue.lastInvoiceDate = null;
-  StaticValue.uploadsToday = null;
-  StaticValue.uploadedDate = null;
+   StaticValue.upcomingMeetingsCount= "-"; 
+    StaticValue.meetingTime = "- - -";
+  StaticValue.activeTaskcount = "-";
+  StaticValue.taskName = "- - -" ;
+  StaticValue.totalPaymentDue = "-";
+  StaticValue.lastInvoiceDate = "- - -";
+  StaticValue.uploadsToday = "-";
+  StaticValue.uploadedDate = "- - -";
    StaticValue.wasloggedout = true;
  //  StaticValue.meetingstatusId=3;
         }

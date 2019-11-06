@@ -64,13 +64,13 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         lastinvoicedate = formatTime(data.lastInvoiceDate.toString())+" "+ formatDateTime(data.lastInvoiceDate.toString());
         meetingtime = formatTime(data.meetingTime.toString())+" "+ formatDateTime(data.meetingTime.toString());
 
-        StaticValue.upcomingMeetingsCount = data.upcomingMeetingsCount;
+        StaticValue.upcomingMeetingsCount = data.upcomingMeetingsCount.toString();
         StaticValue.meetingTime = meetingtime;
-        StaticValue.activeTaskcount = data.activeTaskcount;
+        StaticValue.activeTaskcount = data.activeTaskcount.toString();
         StaticValue.taskName = data.taskName;
-        StaticValue.totalPaymentDue = data.totalPaymentDue;
+        StaticValue.totalPaymentDue = data.totalPaymentDue.toString();
         StaticValue.lastInvoiceDate = lastinvoicedate;
-        StaticValue.uploadsToday = data.uploadsToday;
+        StaticValue.uploadsToday = data.uploadsToday.toString();
         StaticValue.uploadedDate = uploadeddate;
 
 
@@ -305,7 +305,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Color(0xFFA19F9F))
                                   ,),
-                                  Text(StaticValue.upcomingMeetingsCount.toString(),
+                                  Text(StaticValue.upcomingMeetingsCount,
                                   style: TextStyle(color: Colors.black,
                                   fontWeight: FontWeight.bold),),
                                   
@@ -362,7 +362,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   Text("Active Tasks",
                                    style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.activeTaskcount.toString(),
+                                  Text(StaticValue.activeTaskcount,
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   ),),
                                   
@@ -487,7 +487,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   Text("Total Payment Due",
                                    style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.totalPaymentDue.toString(),
+                                  Text(StaticValue.totalPaymentDue,
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Colors.black)),
                                 ],

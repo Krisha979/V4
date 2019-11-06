@@ -141,7 +141,7 @@ Padding(
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 30),
-                            child: Text(StaticValue.uploadsToday.toString(),
+                            child: Text(StaticValue.uploadsToday,
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.black,
                                     fontWeight: FontWeight.bold)),
