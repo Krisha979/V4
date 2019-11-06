@@ -418,7 +418,13 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                               
+
+                                  Text("Uploads Today",
+                                      style: TextStyle(fontWeight: FontWeight.bold,
+                                          color: Color(0xFFA19F9F))),
+                                  Text(StaticValue.uploadsToday.toString(),
+                                    style: TextStyle(fontWeight: FontWeight.bold,
+                                        color: Colors.black),),
                                   Text("Uploaded Date",
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Color(0xFFA19F9F))),
@@ -426,12 +432,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Colors.black),),
                                   
-                                  Text("Uploads Today",
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.uploadsToday.toString(),
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  color: Colors.black),),
+
                                 ],
                                 
 

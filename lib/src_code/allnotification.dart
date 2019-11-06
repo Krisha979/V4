@@ -254,6 +254,7 @@ class AllNotificationState extends State<AllNotification> {
                                       var date = formatDateTime(
                                           snapshot.data[index].dateCreated);
                                       var type = "";
+                                      int color =0xFFA19F9F;
                                       var icon = "assets/snbiznotification.png";
                                       if(snapshot.data[index].notificationBody.contains("meeting")){
                                        icon = "assets/snbizmeetings.png";
@@ -268,7 +269,9 @@ class AllNotificationState extends State<AllNotification> {
                                       if (StaticValue.latestNotificationId != null &&
                                           snapshot.data[index].notificationId >
                                               StaticValue.latestNotificationId) {
+
                                         type = "New";
+                                        color = 0xFFEFF0F1;
                                       }
                                       return InkWell(
                                               child:Card(
@@ -277,7 +280,7 @@ class AllNotificationState extends State<AllNotification> {
                                               margin: EdgeInsets.fromLTRB(
                                                   10.0, 15.0, 10.0, 0.0),
                                         
-                                        child: buildListTile(snapshot, index, date, type, icon)),
+                                        child: buildListTile(snapshot, index, date, type, icon,color)),
                                         onTap: (){
                                           String notificationtype = snapshot.data[index].notificationBody..toString();
                                           if(notificationtype.contains("meeting")){
@@ -317,10 +320,12 @@ class AllNotificationState extends State<AllNotification> {
     );
   }
 
-  ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type, String icon) {
+  ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type, String icon, int color) {
     var list = ListTile(
+
       title: Container(
-        padding: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: 10),
+         // color: Color(color),
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -331,7 +336,8 @@ class AllNotificationState extends State<AllNotification> {
                   Text(snapshot.data[index].notificationBody),
                   Text(date,style: TextStyle(
                   color: Color(0xFFA19F9F))),
-                  Text(type, style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+
+                  Text(type, style: TextStyle(color:Color(color), fontWeight: FontWeight.bold),),
                 ],
               ),
             ),

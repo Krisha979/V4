@@ -67,6 +67,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                             child: ListTile(
                               title: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     // Padding(
                                     //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
