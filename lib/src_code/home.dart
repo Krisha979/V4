@@ -652,7 +652,7 @@ final carousel1 = CarouselSlider(
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: Color(0xFFd6d6d6),
+           color: Color(0XFFF4EAEA),
           child: Column(
             children: <Widget>[
               Container(

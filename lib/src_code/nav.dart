@@ -257,7 +257,7 @@ class NavBar extends State<Nav> {
 
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.fromLTRB(25, 30, 0, 0),
+              padding: const EdgeInsets.fromLTRB(25, 20, 0, 0),
               child: InkWell(
                 splashColor: Colors.red,
                 onTap: () => launch(StaticValue.facebookurl ),
@@ -269,14 +269,14 @@ class NavBar extends State<Nav> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 30, 0, 0),
+              padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
               child: InkWell(
                 splashColor: Colors.blue,
                 onTap: () => launch(StaticValue.whatsapp),
                 child: Image(
                   image: new AssetImage("assets/whatsapp.png"),
-                  height: 35.0,
-                  width: 35.0,
+                  height: 33.0,
+                  width: 33.0,
                 ),
                 
               ),

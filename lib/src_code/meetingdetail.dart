@@ -118,7 +118,7 @@ class MeetingDetailState extends State<MeetingDetail> {
   ),
                 
                // height: size.height,
-                color: Color(0xFFF4EAEA),
+                color: Color(0XFFF4EAEA),
                 child: Wrap(
                                  children: <Widget>[  Container(
 
@@ -215,6 +215,7 @@ class MeetingDetailState extends State<MeetingDetail> {
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
+                              
                               borderRadius: BorderRadius.circular(10.0),
                               color: Color(0xFFFBF4F4),
                             ),

@@ -135,7 +135,7 @@ class AllNotificationState extends State<AllNotification> {
         child: Container(
           // height: size.height * 2,
           width: size.width,
-          color: Color(0xFFE0CECE),
+            color: Color(0XFFF4EAEA),
           child: Column(
             children: <Widget>[
               Container(

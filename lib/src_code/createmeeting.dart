@@ -81,7 +81,7 @@ class _CreateState extends State<Create> {
                          constraints:  new BoxConstraints(
     minHeight: size.height,
     
-    maxHeight: size.height*2,
+    maxHeight: size.height,
   
   ),
                       //   height: size.height,
@@ -167,7 +167,9 @@ class _CreateState extends State<Create> {
                                         child: TextFormField(
                                           
                                           keyboardType: TextInputType.multiline,
-                                          maxLines: null,
+                                          maxLines: 6,
+                                          maxLength: 300,
+                                         
                                           controller: meetingAgenda,
                                           decoration: new InputDecoration(
 
@@ -206,8 +208,11 @@ class _CreateState extends State<Create> {
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                                         child: TextFormField(
+                                         // maxLength: 150,
+                                         maxLines: 3,
+                                          maxLength: 150,
                                           keyboardType: TextInputType.multiline,
-                                          maxLines: null,
+                                          
                                           controller: meetingLocation,
                                           decoration: new InputDecoration(
                                             fillColor: Color(0xFFFBF4F4),
