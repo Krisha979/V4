@@ -203,9 +203,19 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     height: size.height /8,
                         width: size.width/5
                                    ),
-                                   onTap: (){
-                                      openCamera(context);
-                                        Navigator.pop(context);
+                                   onTap: () async {
+                                      // openCamera(context);
+                                      //   Navigator.pop(context);
+                                                         
+                            
+                    await openCamera(context);
+                    showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return Center(child: CircularProgressIndicator(),);
+                              });
+                              
+                              Navigator.pop(context); 
                                    },
                                  
 

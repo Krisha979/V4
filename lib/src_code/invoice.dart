@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_money_formatter/flutter_money_formatter.dart';
+//import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/InvoiceModel.dart';
 import 'package:snbiz/src_code/static.dart';
 
@@ -86,8 +88,20 @@ class _InvoiceState extends State<Invoice> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //Size size = MediaQuery.of(context).size;
+    var time = double.parse(StaticValue.totalPaymentDue);
 
-    return Scaffold(
+    String fmf = FlutterMoneyFormatter(
+      amount: time,
+      settings: MoneyFormatterSettings(
+        thousandSeparator: ',',
+        decimalSeparator: '.',
+      //  symbolAndNumberSeparator: ' ',
+        fractionDigits: 2,
+        //compactFormatType: CompactFormatType.sort
+    )
+    
+).output.nonSymbol;
+return Scaffold(
       appBar: (AppBar(
         title: Text(
           'Invoice',
@@ -158,7 +172,7 @@ class _InvoiceState extends State<Invoice> {
                                    
                                    Padding(
                                          padding: const EdgeInsets.only(left: 30),
-                                         child: Text(StaticValue.totalPaymentDue,style: TextStyle(
+                                         child: Text('Rs '+ fmf,style: TextStyle(
                                       fontSize: 14, color: Colors.black,
                                       fontWeight: FontWeight.bold)),
                                        )
