@@ -439,7 +439,8 @@ class MeetingState extends State<Meeting> {
                                                   ),
                                                   splashColor: Colors
                                                       .red, // inkwell color
-                                                  onTap: () {
+                                                  onTap: ()  {
+                                      
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
@@ -453,6 +454,7 @@ class MeetingState extends State<Meeting> {
                                               ],
                                             ),
                                           )),
+                                          
                                       onTap: () {
                                         Navigator.push(
                                             context,

@@ -99,15 +99,15 @@ catch(e){
                     var statusname = details.childTask[index].statusName;
                     var icon = "assets/snbiztasks.png";
                                       if(statusname.contains("Running")){
-                                       icon = "assets/snbizrunning.png";
+                                       icon = "assets/snbizrunning-web.png";
                                           }
                                           else if(statusname.contains("Started")){
-                                            icon = "assets/snbiztasks.png";
+                                            icon = "assets/snbizrunning-web.png";
                                           }
                                           else if(statusname.contains("Completed")){
                                             icon = "assets/acceptedtick-web.png";
                                           }else{
-                                            icon = "assets/snbizcircledocument.png";
+                                            icon = "assets/snbizrunning-web.png";
                                           }  
                     return Container(
                       child: Card(

@@ -152,11 +152,22 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   color: Color(0xFFFBF4F4)),
               child: Column(
                 children: <Widget>[
-                  Stack(
-                    children: <Widget>[
+                 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          
+                          InkWell(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Icon(Icons.close, color: Color(0xFF665959))
+                            )
+                        ],
+                      ),
                      // Container(height: 150.0),
                       Container(
-                        margin: EdgeInsets.only(top: 15),
+                      //  margin: EdgeInsets.only(top: 15),
                         height: size.height/13,
                         width: size.width,
                         decoration: BoxDecoration(
@@ -168,8 +179,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           child: Text("UPLOAD OPTIONS", style: TextStyle(color: Color(0xFF665959), fontSize: 18, fontWeight: FontWeight.bold),)),
                       ),
                       
-                    ],
-                  ),
+                    
+                  
                 
                  
                     Row(
@@ -270,7 +281,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
           widgets.clear();
 
                   var widget1 = new Container(
-             color:Color(0xffd6d6d6),
+ color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
                  Container( 
@@ -302,7 +313,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text("Upcoming Meetings",
-                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))
                                   ,),
                                   Text(StaticValue.upcomingMeetingsCount,
@@ -310,7 +321,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   fontWeight: FontWeight.bold),),
                                   
                                   Text("Next Meeting",
-                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.meetingTime,
                                   style: TextStyle(color: Colors.black,
@@ -336,7 +347,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         );
         var widget2 = new Container(
 
-             color:Color(0xffd6d6d6),
+              color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
                  Container(
@@ -360,14 +371,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text("Active Tasks",
-                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.activeTaskcount,
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   ),),
                                   
                                   Text("Latest Running Task",
-                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.taskName,
                                   style: TextStyle(fontWeight: FontWeight.bold,
@@ -394,7 +405,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
           var widget3 = new Container(
 
-             color:Color(0xffd6d6d6),
+              color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
                  Container(
@@ -420,13 +431,13 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 children: <Widget>[
 
                                   Text("Uploads Today",
-                                      style: TextStyle(fontWeight: FontWeight.bold,
+                                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                           color: Color(0xFFA19F9F))),
                                   Text(StaticValue.uploadsToday.toString(),
                                     style: TextStyle(fontWeight: FontWeight.bold,
                                         color: Colors.black),),
                                   Text("Uploaded Date",
-                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.uploadedDate.toString(),
                                   style: TextStyle(fontWeight: FontWeight.bold,
@@ -454,7 +465,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
           var widget4 = new Container(
 
-             color:Color(0xffd6d6d6),
+              color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
                  Container(
@@ -478,14 +489,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                          crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text("Last Invoice date",
-                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.lastInvoiceDate,
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Colors.black)),
                                   
                                   Text("Total Payment Due",
-                                   style: TextStyle(fontWeight: FontWeight.bold,
+                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.totalPaymentDue,
                                   style: TextStyle(fontWeight: FontWeight.bold,
@@ -696,7 +707,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Tasks"),
+                                  child: Text("Tasks",style: TextStyle(fontSize: 16)),
                                 )
                               ],
                             ),
@@ -715,7 +726,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Invoice"),
+                                  child: Text("Invoice",style: TextStyle(fontSize: 16)),
                                 )
                               ],
                             ),
@@ -735,7 +746,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Documents"),
+                                  child: Text("Documents",style: TextStyle(fontSize: 16)),
                                 )
                               ],
                             ),
@@ -766,7 +777,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Set Meetings"),
+                                  child: Text("Set Meetings",style: TextStyle(fontSize: 16)),
                                 )
                               ],
                             ),
@@ -776,6 +787,7 @@ final carousel1 = CarouselSlider(
                                   splashColor: Colors.red,
                                   onTap: () {
                                      addpopup();
+                                     
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/snbizuploads.png"),
@@ -785,7 +797,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Upload"),
+                                  child: Text("Instant Upload", style: TextStyle(fontSize: 16),),
                                 )
                               ],
                             ),

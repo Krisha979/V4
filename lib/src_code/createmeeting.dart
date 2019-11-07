@@ -112,6 +112,7 @@ class _CreateState extends State<Create> {
                                    Padding(
                                      padding: const EdgeInsets.only(top:10),
                                      child: Column(
+                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                        
                     children: <Widget>[
                         Row(
@@ -305,12 +306,13 @@ class _CreateState extends State<Create> {
                                                 else{
                             showDialog(
                               context: context,
+                              barrierDismissible: false,
                               builder: (BuildContext context){
                                 return Center(child: CircularProgressIndicator(),);
                               });
                     await createMeeting();
                             Navigator.pop(context);  
-                              Navigator.pop(context); 
+                             // Navigator.pop(context); 
                              }
                           },
                                             
