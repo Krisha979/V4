@@ -125,7 +125,12 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       onWillPop: _onBackPressed,
 
           child: Scaffold(
-        appBar: AppBar(
+             appBar: PreferredSize(
+          preferredSize: Size.fromHeight(size.height/14), // here the desired height
+          child: AppBar(
+      
+          
+        
           
       
             //centerTitle: true,
@@ -142,7 +147,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                         MaterialPageRoute(builder: (context) => Profile()));
                   },
                   child: CircleAvatar(
-                    radius: 20,
+                    radius: 19,
                     backgroundImage: NetworkImage(
                       StaticValue.logo,
                     ),
@@ -152,6 +157,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
             
             ]
             ),
+             ),
         drawer: Nav(),
         body: new TabBarView(
           controller: StaticValue.controller,
@@ -166,7 +172,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         bottomNavigationBar: new Material(
           color: Color(0xFFBF9b38ff),
           child: Container(
-            height: size.height / 16,
+            height: size.height / 14,
             child: TabBar(
               unselectedLabelColor: Colors.white70,
               indicatorSize: TabBarIndicatorSize.tab,

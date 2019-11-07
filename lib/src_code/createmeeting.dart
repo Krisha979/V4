@@ -168,6 +168,7 @@ class _CreateState extends State<Create> {
                                           
                                           keyboardType: TextInputType.multiline,
                                           maxLines: null,
+                                          maxLength: 400,
                                           controller: meetingAgenda,
                                           decoration: new InputDecoration(
 
@@ -206,6 +207,7 @@ class _CreateState extends State<Create> {
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                                         child: TextFormField(
+                                          maxLength: 150,
                                           keyboardType: TextInputType.multiline,
                                           maxLines: null,
                                           controller: meetingLocation,

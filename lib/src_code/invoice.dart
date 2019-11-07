@@ -102,7 +102,7 @@ class _InvoiceState extends State<Invoice> {
       body: Container(
         height: size.height,
         width: size.width,
-        color: Color(0xFFE0CECE),
+          color: Color(0XFFF4EAEA),
         child: Column(
           children: <Widget>[
             Container(

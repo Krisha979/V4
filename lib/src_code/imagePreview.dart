@@ -129,6 +129,8 @@ Future<bool> _checkConnectivity()  async{
                             height: size.height/1.5
                             ),
                       ),
+
+                      
                 
                       Padding(
                         padding:

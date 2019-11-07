@@ -130,7 +130,7 @@ catch(e){
         _refreshController.refreshCompleted();
       },
       child: Container(
-                 color:Color(0XFFF4EAEA),
+                 color: Color(0XFFF4EAEA),
           child: Column(
                 children: <Widget>[
 
