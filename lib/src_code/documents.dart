@@ -80,6 +80,7 @@ catch(e){
   void initState() {
     super.initState();
     _future = getDocuments();
+
        
   }
 
@@ -161,133 +162,151 @@ Padding(
                   ],
                 ),
               ),
-      Container(            
-         child: FutureBuilder(
-          future: _future,
-          builder:(BuildContext context, AsyncSnapshot snapshot){
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-                  return Container(
-                  child: Center(
-                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
-              case ConnectionState.active:
-              case ConnectionState.waiting:
+      Expanded(
+        child: Container(
+           child: FutureBuilder(
+            future: _future,
+            builder:(BuildContext context, AsyncSnapshot snapshot){
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
                     return Container(
-                  child: Center(
+                    child: Center(
+                        child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                    )
+                  );
+                case ConnectionState.active:
+                case ConnectionState.waiting:
+                      return Container(
+                    child: Center(
 
-                  child: CircularProgressIndicator()
+                    child: CircularProgressIndicator()
 
-                  )
-                );
-              case ConnectionState.done:
-             if (!snapshot.hasData) {
-                          return Container(
-                            child: Center(
-                              child: Text("Try Loading Again.",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal)
-                                        )
-                        )
-                        );
-                        } else {
-                          if(snapshot.data.length == 0){
-                            return Flexible(
-                            child: Center(
-                              child: Text("No Records Available.",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal)
-                                        )
-                        )
-                        );}
-              return ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index){
-                  var name = snapshot.data[index].documents[0].fileTypeName;
-                  var icon = "assets/snbizcircledocument.png";
-                                      if(name.contains("VAT Billssss")){
-                                       icon = "assets/snbizvaticon.png";
-                                          }
-                                          else if(name.contains("Instant")){
-                                            icon = "assets/snbizinstantupload.png";
-                                          }else{
-                                            icon = "assets/snbizcircledocument.png";
-                                          }  
-                  return ListTile(
-                      title: InkWell(
-                                              child: new Theme(
-                                                data: new ThemeData(
-                                hintColor: Colors.white,
-                              ),
-                    child: Container(
-                    margin: EdgeInsets.fromLTRB(2, 2, 2, 2),
-                    padding: EdgeInsets.fromLTRB(10, 20, 7, 20),
-                     decoration: new BoxDecoration(
-                     color: Colors.white,
-                     borderRadius: new BorderRadius.circular(10.0),
-                   
-                     ),
-                     child: new Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                          Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
-                            
-                          ],
+                    )
+                  );
+                case ConnectionState.done:
+               if (!snapshot.hasData) {
+                            return Container(
+                              child: Center(
+                                child: Text("Try Loading Again.",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal)
+                                          )
+                          )
+                          );
+                          } else {
+                            if(snapshot.data.length == 0){
+                              return Flexible(
+                              child: Center(
+                                child: Text("No Records Available.",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal)
+                                          )
+                          )
+                          );}
+                return ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index){
+                    var name = snapshot.data[index].documents[0].fileTypeName;
+                    var icon = "assets/snbizcircledocument.png";
+                                        if(name.contains("VAT Billssss")){
+                                         icon = "assets/snbizvaticon.png";
+                                            }
+                                            else if(name.contains("Instant")){
+                                              icon = "assets/snbizinstantupload.png";
+                                            }
+                                            else if(name.contains("Legals")){
+                                             icon = "assets/legals.png";
+                                             }
+                                        else if(name.contains("Registration")){
+                                          icon = "assets/registration-web.png";
+                                        }
+                                        else if(name.contains("Expense")){
+                                          icon = "assets/expense-web.png";
+                                        }
+                                        else if(name.contains("Income")){
+                                          icon = "assets/income-web.png";
+                                        }
+                                        else if(name.contains("Profit")){
+                                          icon = "assets/profit-web.png";
+                                        }
+                                              else{
+                                              icon = "assets/snbizcircledocument.png";
+                                            }
+                    return ListTile(
+                        title: InkWell(
+                                                child: new Theme(
+                                                  data: new ThemeData(
+                                  hintColor: Colors.white,
+                                ),
+                      child: Container(
+                      margin: EdgeInsets.fromLTRB(2, 2, 2, 2),
+                      padding: EdgeInsets.fromLTRB(10, 20, 7, 20),
+                       decoration: new BoxDecoration(
+                       color: Colors.white,
+                       borderRadius: new BorderRadius.circular(10.0),
 
-                        ),
-                  
-                       ClipOval(
-                          child: Material(
-                            color: Colors.blue, // button color
-                            child: InkWell(
-                              splashColor: Colors.red, // inkwell color
-                              child: SizedBox(
-                                height: size.height/15,
-                                      width: size.height/15,
-                               child:Image(
-                        image: new AssetImage(icon),
-                        height: size.height / 12,
-                      ),),
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:                        
-                                snapshot.data[index])));
-                              },
-                            ),
+                       ),
+                       child: new Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                            Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
+
+                            ],
+
                           ),
-                        )
-                      ],
-                    ),
-                    ),
-         ),
-        onTap: () {
- Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:                        
-                                snapshot.data[index])));
-                                      },
-         )
-         );
-                }
+
+                         ClipOval(
+                            child: Material(
+                              color: Colors.blue, // button color
+                              child: InkWell(
+                                splashColor: Colors.red, // inkwell color
+                                child: SizedBox(
+                                  height: size.height/15,
+                                        width: size.height/15,
+                                 child:Image(
+                          image: new AssetImage(icon),
+                          height: size.height / 12,
+                        ),),
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:
+                                  snapshot.data[index])));
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      ),
+           ),
+          onTap: () {
+ Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:
+                                  snapshot.data[index])));
+                                        },
+           )
+           );
+                  }
+                    );
+              }
+              }
+              return Container(
+                    child: Center(
+                        child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                    )
                   );
             }
-            }
-            return Container(
-                  child: Center(
-                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
-                );
-          } 
-         )
+           )
+        ),
       )
-                ])  ));     
+                ])  ));
 
 
 
