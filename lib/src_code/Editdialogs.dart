@@ -138,9 +138,11 @@ class AddEditDialogState extends State<AddEditDialog> {
                                 hintColor: Color(0xFFFBF4F4),
                               ),
                               child: TextFormField(
+                              
                                 keyboardType: TextInputType.multiline,
-                                maxLines: null,
-                                maxLength: 400,
+                                maxLines: 6,
+                                maxLength: 300,
+                              
                                 controller: meetingAgenda,
                                 decoration: new InputDecoration(
                                    errorText: _validate ? 'Value Can\'t Be Empty' : null,
@@ -174,8 +176,9 @@ class AddEditDialogState extends State<AddEditDialog> {
                               ),
                               child: TextFormField(
                                 keyboardType: TextInputType.multiline,
-                                maxLines: null,
+                                maxLines: 3,
                                 maxLength: 150,
+                              
                                 controller: meetingLocation,
                                 decoration: new InputDecoration(
                                   fillColor: Color(0xFFFBF4F4),
