@@ -84,23 +84,39 @@ class _InvoiceState extends State<Invoice> {
        
   }
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //Size size = MediaQuery.of(context).size;
-    var time = double.parse(StaticValue.totalPaymentDue);
+    
+    String fmfamount ;
+    if(StaticValue.totalPaymentDue.contains('-')){
+fmfamount="0";
+}
+else{
+  var time = double.parse(StaticValue.totalPaymentDue);
+  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
 
-    String fmf = FlutterMoneyFormatter(
-      amount: time,
-      settings: MoneyFormatterSettings(
+    amount:time,
+    settings: MoneyFormatterSettings(
+        
         thousandSeparator: ',',
         decimalSeparator: '.',
-      //  symbolAndNumberSeparator: ' ',
+        symbolAndNumberSeparator: ' ',
         fractionDigits: 2,
         //compactFormatType: CompactFormatType.sort
     )
-    
-).output.nonSymbol;
+);
+if(fmf.output.fractionDigitsOnly.toString().contains("00"))
+{
+fmfamount = fmf.output.withoutFractionDigits.toString();
+}else{
+fmfamount = fmf.output.nonSymbol.toString();
+
+}
+}
+//print(fmf);
+
 return Scaffold(
       appBar: (AppBar(
         title: Text(
@@ -172,7 +188,7 @@ return Scaffold(
                                    
                                    Padding(
                                          padding: const EdgeInsets.only(left: 30),
-                                         child: Text('Rs '+ fmf,style: TextStyle(
+                                         child: Text('Rs '+ fmfamount ,style: TextStyle(
                                       fontSize: 14, color: Colors.black,
                                       fontWeight: FontWeight.bold)),
                                        )
