@@ -81,7 +81,6 @@ class AddEditDialogState extends State<AddEditDialog> {
         body: SingleChildScrollView(
             child: Center(
                 child: Container(
-                    height: size.height,
                     color: Color(0xFFF4EAEA),
                     child: Container(
                         decoration: BoxDecoration(
