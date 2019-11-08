@@ -82,7 +82,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                    
                   color:  Color(0xFFCEC0C0),
                     shape: RoundedRectangleBorder(
-        borderRadius: new BorderRadius.circular(10.0),
+           borderRadius: new BorderRadius.circular(10.0),
                     ),
                 ),
               ),
