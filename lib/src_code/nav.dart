@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:snbiz/src_code/contact.dart';
@@ -33,6 +35,7 @@ class NavBar extends State<Nav> {
   StaticValue.uploadsToday = "-";
   StaticValue.uploadedDate = "- - -";
    StaticValue.wasloggedout = true;
+   StaticValue.orgUserId = null;
  //  StaticValue.meetingstatusId=3;
         }
 
@@ -230,11 +233,10 @@ class NavBar extends State<Nav> {
                 ],
               ),
               onTap: () async {
-                 await storage.delete(key: "Password"); 
-                // storage.write(key:"Password",value: 
-                 //'        ');
-                 // await storage.delete(key: "Email");
-                 removeStaticValue();
+                var appDir = (Directory.systemTemp.path);
+                new Directory(appDir).delete(recursive: true);
+                await storage.delete(key: "Password");
+                removeStaticValue();
                  
                Navigator
         .of(context)
@@ -304,6 +306,7 @@ class NavBar extends State<Nav> {
       ])
     );
   }
+
 
   
 }

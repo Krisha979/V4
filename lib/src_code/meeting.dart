@@ -98,7 +98,9 @@ class MeetingState extends State<Meeting> {
               "&Page=1&RecordsPerPage=15"),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
           });
       var jsonData = json.decode(data.body);
       List<MeetingInfo> meeting = [];

@@ -81,8 +81,10 @@ Future<List<OrgTask>> getTask()async{
           Uri.encodeFull(StaticValue.baseUrl + "api/AllOrgTasks?Orgid=" + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
-        'Accept': 'application/json' 
-        }
+        'Accept': 'application/json',
+        'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
+  }
       );
 
   var jsonData = json.decode(data.body);

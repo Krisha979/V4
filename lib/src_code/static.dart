@@ -7,6 +7,7 @@ class StaticValue{
   static int orgId;
   static String orgName;
   static String logo;
+  static int orgUserId;
   static String userRowstamp;
   static String orgRowstamp;
   static int meetingstatusId=3;

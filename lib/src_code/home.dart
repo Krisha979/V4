@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:date_format/date_format.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_pro/carousel_pro.dart';
@@ -51,7 +51,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
-              }
+       // 'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
+      }
           );
            var jsonData = json.decode(response.body);
   
@@ -267,7 +269,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Future<List<Widget>> listwidget()async {
         if(StaticValue.upcomingMeetingsCount != null){
-          widgets.clear();
+         setState(() {
+           widgets.clear();
+         });
+
 
                   var widget1 = new Container(
              color:Color(0xffd6d6d6),
@@ -517,7 +522,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
         }
         else{
-          widgets.clear();
+          setState(() {
+            widgets.clear();
+          });
+
             var widget =  Container(
                   child: Center(
                   

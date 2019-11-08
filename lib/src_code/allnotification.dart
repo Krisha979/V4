@@ -69,7 +69,9 @@ class AllNotificationState extends State<AllNotification> {
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
           });
       var jsonData = json.decode(data.body);
       List<NotificationModel> notifications = [];
@@ -246,10 +248,9 @@ class AllNotificationState extends State<AllNotification> {
                                 return ListView.builder(
                                   
                                     shrinkWrap: true,
-                                    physics: const AlwaysScrollableScrollPhysics(),
 
+                                    physics:  AlwaysScrollableScrollPhysics(),
                                     itemCount: snapshot.data.length,
-
                                     itemBuilder: (BuildContext context, int index) {
                                       var date = formatDateTime(
                                           snapshot.data[index].dateCreated);
@@ -276,9 +277,10 @@ class AllNotificationState extends State<AllNotification> {
                                       return InkWell(
                                               child:Card(
 
-                                          elevation: 3,
+                                          elevation: 1,
                                               margin: EdgeInsets.fromLTRB(
                                                   10.0, 15.0, 10.0, 0.0),
+
                                         
                                         child: buildListTile(snapshot, index, date, type, icon,color)),
                                         onTap: (){
@@ -323,7 +325,7 @@ class AllNotificationState extends State<AllNotification> {
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type, String icon, int color) {
     var list = ListTile(
 
-      title: Container(
+        title: Container(
           padding: EdgeInsets.only(top: 10),
          // color: Color(color),
         child: new Row(

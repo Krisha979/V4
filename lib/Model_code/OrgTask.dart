@@ -3,7 +3,7 @@ import 'package:snbiz/Model_code/Task.dart';
 class OrgTask {
   Task parentTask;
   List<Task> childTask;
-  int percentageComplete;
+  double percentageComplete;
 
   OrgTask({this.parentTask, this.childTask, this.percentageComplete});
 
