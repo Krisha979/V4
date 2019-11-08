@@ -339,7 +339,8 @@ class AllNotificationState extends State<AllNotification> {
                   Text(date,style: TextStyle(
                   color: Color(0xFFA19F9F))),
 
-                  Text(type, style: TextStyle(color:Color(color), fontWeight: FontWeight.bold),),
+                  Text(type, style: TextStyle(color:Colors.red, fontWeight: FontWeight.bold),),
+                  
                 ],
               ),
             ),

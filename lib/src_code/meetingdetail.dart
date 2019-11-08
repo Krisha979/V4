@@ -111,9 +111,9 @@ class MeetingDetailState extends State<MeetingDetail> {
               children: <Widget>[
                            Container(
                               constraints:  new BoxConstraints(
-    minHeight: size.height,
+ //   minHeight: size.height,
     
-    maxHeight: size.height*2,
+    maxHeight: size.height,
   
   ),
                 
@@ -123,9 +123,9 @@ class MeetingDetailState extends State<MeetingDetail> {
                                  children: <Widget>[  Container(
 
                                     constraints:  new BoxConstraints(
-    minHeight: size.height,
+  //  minHeight: size.height,
     
-    maxHeight: size.height*2,
+    maxHeight: size.height,
   
   ),
                     //constraints: new BoxConstraints(minHeight: size.height),

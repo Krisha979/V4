@@ -221,8 +221,8 @@ class MeetingState extends State<Meeting> {
                                   fontWeight: FontWeight.bold)),
 
                           Text(          
-                            (StaticValue.upcomingMeetingsCount.toString()== null)?'not found':
-                            StaticValue.upcomingMeetingsCount.toString(),
+                            (StaticValue.upcomingMeetingsCount== null)?'not found':
+                            StaticValue.upcomingMeetingsCount,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 17),
                           ),
@@ -441,7 +441,8 @@ class MeetingState extends State<Meeting> {
                                                   ),
                                                   splashColor: Colors
                                                       .red, // inkwell color
-                                                  onTap: () {
+                                                  onTap: ()  {
+                                      
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
@@ -455,6 +456,7 @@ class MeetingState extends State<Meeting> {
                                               ],
                                             ),
                                           )),
+                                          
                                       onTap: () {
                                         Navigator.push(
                                             context,

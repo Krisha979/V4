@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_money_formatter/flutter_money_formatter.dart';
+//import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/InvoiceModel.dart';
 import 'package:snbiz/src_code/static.dart';
 
@@ -84,12 +86,40 @@ class _InvoiceState extends State<Invoice> {
        
   }
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     //Size size = MediaQuery.of(context).size;
+    
+    String fmfamount ;
+    if(StaticValue.totalPaymentDue.contains('-')){
+fmfamount="0";
+}
+else{
+  var time = double.parse(StaticValue.totalPaymentDue);
+  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
 
-    return Scaffold(
+    amount:time,
+    settings: MoneyFormatterSettings(
+        
+        thousandSeparator: ',',
+        decimalSeparator: '.',
+        symbolAndNumberSeparator: ' ',
+        fractionDigits: 2,
+        //compactFormatType: CompactFormatType.sort
+    )
+);
+if(fmf.output.fractionDigitsOnly.toString().contains("00"))
+{
+fmfamount = fmf.output.withoutFractionDigits.toString();
+}else{
+fmfamount = fmf.output.nonSymbol.toString();
+
+}
+}
+//print(fmf);
+
+return Scaffold(
       appBar: (AppBar(
         title: Text(
           'Invoice',
@@ -160,7 +190,7 @@ class _InvoiceState extends State<Invoice> {
                                    
                                    Padding(
                                          padding: const EdgeInsets.only(left: 30),
-                                         child: Text(StaticValue.totalPaymentDue,style: TextStyle(
+                                         child: Text('Rs '+ fmfamount ,style: TextStyle(
                                       fontSize: 14, color: Colors.black,
                                       fontWeight: FontWeight.bold)),
                                        )

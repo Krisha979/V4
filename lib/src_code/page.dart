@@ -125,40 +125,42 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       onWillPop: _onBackPressed,
 
           child: Scaffold(
-             appBar: PreferredSize(
-          preferredSize: Size.fromHeight(size.height/14), // here the desired height
-          child: AppBar(
-      
           
+          // here the desired height
+          
+            appBar: AppBar(
+      
+            
         
-          
+            
       
-            //centerTitle: true,
+              //centerTitle: true,
 
-            title: Text(StaticValue.orgName,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
-            backgroundColor: const Color(0xFF9C38FF),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Profile()));
-                  },
-                  child: CircleAvatar(
-                    radius: 19,
-                    backgroundImage: NetworkImage(
-                      StaticValue.logo,
+              title: Text(StaticValue.orgName,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+              backgroundColor: const Color(0xFF9C38FF),
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Profile()));
+                    },
+                    child: CircleAvatar(
+                      radius: 19,
+                      backgroundImage: NetworkImage(
+                        StaticValue.logo,
+                      ),
                     ),
                   ),
-                ),
-              )
-            
-            ]
-            ),
+                )
+              
+              ]
+              
+          
              ),
-        drawer: Nav(),
+        drawer:  Nav(),
         body: new TabBarView(
           controller: StaticValue.controller,
           key: myTabbedPageKey,
