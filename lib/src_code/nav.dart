@@ -236,6 +236,7 @@ class NavBar extends State<Nav> {
                 var appDir = (Directory.systemTemp.path);
                 new Directory(appDir).delete(recursive: true);
                 await storage.delete(key: "Password");
+                await storage.delete(key: "fcmtoken");
                 removeStaticValue();
                  
                Navigator
