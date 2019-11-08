@@ -289,7 +289,7 @@ class NavBar extends State<Nav> {
           padding: const EdgeInsets.only(top: 10),
           child: Container(
              height: 0.5,
-             margin: EdgeInsets.only(left: 20, right: 20),
+             margin: EdgeInsets.only(left: 20, right: 40),
               color: Color(0xFFA19F9F),
             
           ),
@@ -301,7 +301,12 @@ class NavBar extends State<Nav> {
           onTap:(){
             Navigator.push(context,
                      MaterialPageRoute(builder: (context) => PrivacyWebView()));
-          },child: Center(child: Text("Privacy Policy | Terms of Use")))
+          },child: Center(
+           
+                child:Text(
+                  "Privacy Policy |Terms of Use"),
+              
+            ))
       ]),
         
       ])
