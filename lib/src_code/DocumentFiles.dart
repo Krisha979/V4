@@ -42,12 +42,14 @@ class DocumentFilesState extends State<DocumentFilesPage> {
   return Scaffold(
         appBar: AppBar(
         backgroundColor: Color(0xFF9C38FF),
-          title: Text('Documents', style: TextStyle(
+          title: Text(details.documents[0].fileTypeName, style: TextStyle(
           color: Colors.white, fontStyle: FontStyle.normal,
            fontWeight: FontWeight.normal, fontSize: 19),),
         ),
         body: Container(
+
           color: Color(0XFFE0CECE),
+          
             child: ListView.builder(
               
                 itemCount: details.documents.length,
@@ -58,7 +60,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                        launch('$url');
 
                     },
-                                      child: Container(
+                    child: Container(
                      // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: Card(
                             elevation: 5,
@@ -85,7 +87,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                             textAlign: TextAlign.left,
                                           style: TextStyle(
                                                  fontStyle: FontStyle.normal,
-                                                 fontSize: 14,
+                                                 fontSize: 16,
                                                  fontWeight: FontWeight.normal),
                                            ),
                                           onTap: () {

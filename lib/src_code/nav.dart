@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:snbiz/src_code/contact.dart';
@@ -33,6 +35,7 @@ class NavBar extends State<Nav> {
   StaticValue.uploadsToday = "-";
   StaticValue.uploadedDate = "- - -";
    StaticValue.wasloggedout = true;
+   StaticValue.orgUserId = null;
  //  StaticValue.meetingstatusId=3;
         }
 
@@ -230,11 +233,11 @@ class NavBar extends State<Nav> {
                 ],
               ),
               onTap: () async {
-                 await storage.delete(key: "Password"); 
-                // storage.write(key:"Password",value: 
-                 //'        ');
-                 // await storage.delete(key: "Email");
-                 removeStaticValue();
+                var appDir = (Directory.systemTemp.path);
+                new Directory(appDir).delete(recursive: true);
+                await storage.delete(key: "Password");
+                await storage.delete(key: "fcmtoken");
+                removeStaticValue();
                  
                Navigator
         .of(context)
@@ -285,11 +288,14 @@ class NavBar extends State<Nav> {
           ],
         ),
        
-        Container(
-           height: 1,
-           margin: EdgeInsets.only(left: 20, right: 20),
-            color: Colors.black,
-          
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Container(
+             height: 0.5,
+             margin: EdgeInsets.only(left: 20, right: 40),
+              color: Color(0xFFA19F9F),
+            
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 25),
@@ -298,12 +304,18 @@ class NavBar extends State<Nav> {
           onTap:(){
             Navigator.push(context,
                      MaterialPageRoute(builder: (context) => PrivacyWebView()));
-          },child: Center(child: Text("Privacy Policy | Terms of Use")))
+          },child: Center(
+           
+                child:Text(
+                  "Privacy Policy |Terms of Use"),
+              
+            ))
       ]),
         
       ])
     );
   }
+
 
   
 }

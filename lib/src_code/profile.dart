@@ -27,7 +27,9 @@ class ProfileState extends State<Profile> {
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
           });
 
       var jsonData = json.decode(data.body);
@@ -249,158 +251,161 @@ class ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  Container(
-                    margin:
-                        EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
-                    height: size.height / 1.4,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                          child: Text(
-                            "USER DETAILS",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF665959)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                          child: Text(
-                            "User Name",
-                            style:
-                                TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                          child: Container(
-                            height: size.height / 20,
-                            width: size.width,
-                            margin: EdgeInsets.only(left: 20, right: 20),
-                            // color: Colors.white,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFFFBF4F4)),
-                            child: TextFormField(
-                              decoration: new InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.all(10)
-
-                                  ,
-                              ),
-                              controller: userName,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                          child: Text(
-                            "Email",
-                            style:
-                                TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-
-                            width: size.width,
-                            margin: EdgeInsets.only(left: 20, right: 20),
-                            // color: Colors.white,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFFFBF4F4)),
-                            child: TextFormField(
-                              controller: userEmail,
-                              decoration: new InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.all(5),
-                              ),
-                              // controller: userContact,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                          child: Container(
+                  Wrap(
+                    children: <Widget>[
+                                      Container(
+                      margin:
+                          EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
+                    //  height: size.height / 1.4,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
                             child: Text(
-                              "Contact Number",
+                              "USER DETAILS",
                               style: TextStyle(
-                                  fontSize: 14, color: Color(0xFFA19F9F)),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF665959)),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                            height: size.height / 20,
-                            width: size.width,
-                            margin: EdgeInsets.only(left: 20, right: 20),
-                            // color: Colors.white,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFFFBF4F4)),
-                            child: TextFormField(
-                              decoration: new InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.all(10)
-                              ),
-                              controller: userContact,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            child: Text(
+                              "User Name",
+                              style:
+                                  TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: 10, left: 15, right: 15),
-                          child: MaterialButton(
-                              height: 40,
-                              onPressed: () async {
-                                showDialog(
-                                    context: context,
-                                    barrierDismissible: false,
-                                    builder: (BuildContext context) {
-                                      return Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    });
-                                bool success = await UpdateDetails();
-                                if (success == true) {
-                                  await _showDialog(
-                                      "Details Updated Successfully!");
-                                } else {
-                                  await _showDialog(
-                                      "Sorry! Could not update details");
-                                }
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            child: Container(
+                              height: size.height / 20,
+                              width: size.width,
+                              margin: EdgeInsets.only(left: 20, right: 20),
+                              // color: Colors.white,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xFFFBF4F4)),
+                              child: TextFormField(
+                                decoration: new InputDecoration(
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(10)
 
-                                Navigator.pop(context);
+                                    ,
+                                ),
+                                controller: userName,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            child: Text(
+                              "Email",
+                              style:
+                                  TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+
+                              width: size.width,
+                              margin: EdgeInsets.only(left: 20, right: 20),
+                              // color: Colors.white,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xFFFBF4F4)),
+                              child: TextFormField(
+                                controller: userEmail,
+                                decoration: new InputDecoration(
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(5),
+                                ),
+                                // controller: userContact,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            child: Container(
+                              child: Text(
+                                "Contact Number",
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFFA19F9F)),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              height: size.height / 20,
+                              width: size.width,
+                              margin: EdgeInsets.only(left: 20, right: 20),
+                              // color: Colors.white,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xFFFBF4F4)),
+                              child: TextFormField(
+                                decoration: new InputDecoration(
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.all(10)
+                                ),
+                                controller: userContact,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 10, left: 15, right: 15),
+                            child: MaterialButton(
+                                height: 40,
+                                onPressed: () async {
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      });
+                                  bool success = await UpdateDetails();
+                                  if (success == true) {
+                                    await _showDialog(
+                                        "Details Updated Successfully!");
+                                  } else {
+                                    await _showDialog(
+                                        "Sorry! Could not update details");
+                                  }
+
+                                  Navigator.pop(context);
 //Navigator.pop(context);
-                              },
-                              textColor: Colors.white,
-                              color: Color(0xFFB56AFF),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              child: Center(
-                                child: Text('save',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FontStyle.normal)),
-                              )),
-                        ),
-                      ],
+                                },
+                                textColor: Colors.white,
+                                color: Color(0xFFB56AFF),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Center(
+                                  child: Text('save',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle: FontStyle.normal)),
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
-                  )
+                    ])
                 ],
               ),
             ),

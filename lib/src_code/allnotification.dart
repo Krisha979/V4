@@ -69,7 +69,9 @@ class AllNotificationState extends State<AllNotification> {
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
           });
       var jsonData = json.decode(data.body);
       List<NotificationModel> notifications = [];
@@ -195,8 +197,7 @@ class AllNotificationState extends State<AllNotification> {
 
                    Expanded(
                       child: Container(
-                      
-                       color: Colors.white,
+                     color: Color(0XFF),
                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
 
                         child: FutureBuilder(
@@ -274,13 +275,26 @@ class AllNotificationState extends State<AllNotification> {
                                         color = 0xFFEFF0F1;
                                       }
                                       return InkWell(
-                                              child:Card(
+                                              child:Wrap(
+                                                children: <Widget>[
+                                                       Container(
+                                                  margin: EdgeInsets.fromLTRB(
+                                                      0.0, 5.0, 0.0, 0.0),
+                                                 padding: EdgeInsets.fromLTRB(
+                                                  15, 10, 15, 10),
+                                            constraints: new BoxConstraints(
+                                                  minWidth: size.width),
+                                            width: size.width,
 
-                                          elevation: 3,
-                                              margin: EdgeInsets.fromLTRB(
-                                                  10.0, 15.0, 10.0, 0.0),
+                                            decoration: new BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        5.0),
+                                            ),
                                         
                                         child: buildListTile(snapshot, index, date, type, icon,color)),
+                                                ]),
                                         onTap: (){
                                           String notificationtype = snapshot.data[index].notificationBody..toString();
                                           if(notificationtype.contains("meeting")){
@@ -323,7 +337,7 @@ class AllNotificationState extends State<AllNotification> {
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type, String icon, int color) {
     var list = ListTile(
 
-      title: Container(
+        title: Container(
           padding: EdgeInsets.only(top: 10),
          // color: Color(color),
         child: new Row(
@@ -333,9 +347,9 @@ class AllNotificationState extends State<AllNotification> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(snapshot.data[index].notificationBody),
+                  Text(snapshot.data[index].notificationBody, style: TextStyle(fontSize: 16),),
                   Text(date,style: TextStyle(
-                  color: Color(0xFFA19F9F))),
+                  color: Color(0xFFA19F9F), fontSize: 16)),
 
                   Text(type, style: TextStyle(color:Colors.red, fontWeight: FontWeight.bold),),
                   

@@ -79,26 +79,22 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                             color: Colors.black, fontWeight: FontWeight.normal, 
                             fontStyle: FontStyle.normal,fontSize: 16),),
 
-                          //onPressed: ()=>Navigator.pop(context,true), 
-                          
-                          onPressed: (){
-                            Navigator.pop(context, true);
-                            Navigator.pop(context, true);
-                            
-                          //  Navigator.pop(context);
-                          },
-                           
-                          color:  Color(0xFFCEC0C0),
-                            shape: RoundedRectangleBorder(
-        borderRadius: new BorderRadius.circular(10.0),
-                            ),
-                        ),
-                  ),
+                  //onPressed: ()=>Navigator.pop(context,true), 
+                  
+                  onPressed: (){
+                    Navigator.pop(context, true);
+                    Navigator.pop(context, true);
+                    
+                  //  Navigator.pop(context);
+                  },
                    
-                   Padding(
-            padding: EdgeInsets.all(5),
-          ),
-                
+                  color:  Color(0xFFCEC0C0),
+                    shape: RoundedRectangleBorder(
+           borderRadius: new BorderRadius.circular(10.0),
+                    ),
+                ),
+              ),
+            
            
                   Container(
                        height:35,

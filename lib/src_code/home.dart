@@ -1,4 +1,6 @@
 import 'dart:convert';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:http/http.dart' as http;
@@ -151,11 +153,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   color: Color(0xFFFBF4F4)),
               child: Column(
                 children: <Widget>[
-                 
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          
+
                           InkWell(
                             onTap: (){
                               Navigator.pop(context);
@@ -178,8 +180,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           child: Text("UPLOAD OPTIONS", style: TextStyle(color: Color(0xFF665959), fontSize: 18, fontWeight: FontWeight.bold),)),
                       ),
                       
-                    
-                  
+
+
                 
                  
                     Row(
@@ -216,16 +218,16 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                    onTap: () async {
                                       // openCamera(context);
                                       //   Navigator.pop(context);
-                                                         
-                            
+
+
                     await openCamera(context);
                     showDialog(
                               context: context,
                               builder: (BuildContext context){
                                 return Center(child: CircularProgressIndicator(),);
                               });
-                              
-                              Navigator.pop(context); 
+
+                              Navigator.pop(context);
                                    },
                                  
 
@@ -287,7 +289,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Future<List<Widget>> listwidget()async {
         if(StaticValue.upcomingMeetingsCount != null){
-          widgets.clear();
+         setState(() {
+           widgets.clear();
+         });
+
 
                   var widget1 = new Container(
  color: Color(0XFFF4EAEA),
@@ -478,13 +483,13 @@ fmfamount="0";
 else{
 
 var money = double.parse(StaticValue.totalPaymentDue);
-    
-  
+
+
   FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
 
     amount:money,
     settings: MoneyFormatterSettings(
-        
+
         thousandSeparator: ',',
         decimalSeparator: '.',
         symbolAndNumberSeparator: ' ',
@@ -565,7 +570,10 @@ fmfamount = fmf.output.nonSymbol.toString();
 
         }
         else{
-          widgets.clear();
+          setState(() {
+            widgets.clear();
+          });
+
             var widget =  Container(
                   child: Center(
                   
@@ -824,7 +832,7 @@ final carousel1 = CarouselSlider(
                                   splashColor: Colors.red,
                                   onTap: () {
                                      addpopup();
-                                     
+
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/snbizuploads.png"),

@@ -9,6 +9,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+
 class LoginPage extends StatefulWidget{
         @override
         State createState()=> new LoginPageState();
@@ -62,13 +63,16 @@ class LoginPage extends StatefulWidget{
           }
       }
       Future<void> status() async {
+
+
     try {
+
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl + "api/childstatus?id=" +
               StaticValue.meetingstatusId.toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
           });
 
       var jsonData = json.decode(data.body);
@@ -88,6 +92,7 @@ class LoginPage extends StatefulWidget{
       print(e);
       return null;
     }
+
   }
 
 
@@ -107,16 +112,21 @@ class LoginPage extends StatefulWidget{
           return false;
       }
 
-  Future<void> checkCredentials(String email, String password) async{                 
-      http.Response response = await http.get(
+  Future<void> checkCredentials(String email, String password) async{
+    var client = new http.Client();
+
+      http.Response response = await client.get(
       Uri.encodeFull(StaticValue.baseUrl + "api/UserAuthentication"),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
         "email": email,
-        "password" : password
+        "password" : password,
+        'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
       }
       );
+
 
       if(response.statusCode == 200){
           print(response.body);
@@ -128,6 +138,7 @@ class LoginPage extends StatefulWidget{
                       StaticValue.orgName = user.organizationName;
                       StaticValue.logo = user.logo;
                       StaticValue.userRowstamp=user.userRowstamp;
+                      StaticValue.orgUserId=user.userAccountId;
                       StaticValue.orgRowstamp = user.orgRowstamp;
                       await storage.write(key: "Email", value: email);
                       await storage.write(key: "Password", value: password);
@@ -145,7 +156,7 @@ class LoginPage extends StatefulWidget{
                       setState(() {
                         if(StaticValue.statuslist.isEmpty){
                           status();
-
+                          client.close();
                         }
 
                        

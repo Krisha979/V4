@@ -41,7 +41,7 @@ class _CreateState extends State<Create> {
     meeting.statusId = StaticValue.meetingScheduledId;
     meeting.reminderTime = (DateTime.parse(meetingTime.text).add(new Duration(hours: -1))).toString();
     meeting.dateCreated = DateTime.now().toString();
-    meeting.createdBy = StaticValue.orgId;
+    meeting.createdBy = StaticValue.orgUserId;
     meeting.deleted = false;
 
 
@@ -52,7 +52,8 @@ class _CreateState extends State<Create> {
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+
           },
           body: jsonbody);
           print(response);
@@ -79,9 +80,9 @@ class _CreateState extends State<Create> {
             children: <Widget>[
                        Container(
                          constraints:  new BoxConstraints(
-    minHeight: size.height,
+   // minHeight: size.height,
     
-    maxHeight: size.height,
+   // maxHeight: size.height,
   
   ),
                       //   height: size.height,
@@ -90,9 +91,9 @@ class _CreateState extends State<Create> {
                         children: <Widget>[
                                             Container(
                          constraints:  new BoxConstraints(
-    minHeight: size.height,
+  //  minHeight: size.height,
     
-    maxHeight: size.height*2,
+   // maxHeight: size.height*2,
   
   ),
                             decoration: BoxDecoration(
