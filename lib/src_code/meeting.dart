@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/gestures.dart';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -317,159 +318,163 @@ class MeetingState extends State<Meeting> {
                         )
                         );}
                          return Flexible(
-                            child: ListView.builder(
-                                physics: const AlwaysScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: snapshot.data.length,
-                                itemBuilder: (BuildContext context, int meetingId) {
-                                  var date = formatDateTime(
-                                      snapshot.data[meetingId].meetingTime);
-                                  var formattedtime = formatTime(
-                                      snapshot.data[meetingId].meetingTime);
+                           child: Scrollbar(
+                              child: ListView.builder(
 
-                                       
-                                      var icon = "assets/snbizmeetings.png";
-                                      if(snapshot.data[meetingId].statusName.contains("Schedule")){
-                                       icon = "assets/snbizscheduled.png";
-                                       }
-                                          else if(snapshot.data[meetingId].statusName.contains("Postponned")){
-                                            icon = "assets/snbizspostponed.png";
-                                          }else if(snapshot.data[meetingId].statusName.contains("Accepted")){
-                                            icon = "assets/acceptedtick-web.png";
-                                          }else if(snapshot.data[meetingId].statusName.contains("Cancelled")){
-                                            icon = "assets/snbizcancel-web.png";
-                                          }else if(snapshot.data[meetingId].statusName.contains("Concluded")){
-                                            icon = "assets/concludebluecheck.png";
-                                          } else if(snapshot.data[meetingId].statusName.contains("Declined")){
-                                            icon = "assets/snbizdeclinedicon.png";
-                                          }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
-                                            icon = "assets/assets/snbizscheduled.png";
-                                          }    
-                                        
-                                        
-                                        
-                                  return ListTile(
-                                    //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  physics: const AlwaysScrollableScrollPhysics(),
 
-                                    title: InkWell(
-                                      child: new Theme(
-                                          data: new ThemeData(
-                                            hintColor: Colors.white,
-                                          ),
-                                          child: Container(
-                                            padding: EdgeInsets.fromLTRB(
-                                                15, 10, 15, 10),
-                                            constraints: new BoxConstraints(
-                                                minWidth: size.width),
-                                            width: size.width,
-                                            height: size.height / 5.5,
-                                            decoration: new BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      15.0),
-                                            ),
-                                            child: new Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: <Widget>[
-                                                Flexible(
-                                                  child: Column( crossAxisAlignment: CrossAxisAlignment .start,
-                                                    children: <Widget>[
-                                                      Text(
-                                                        formattedtime,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      Flexible(
-                                                          child: Text(
-                                                        date,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal),
-                                                      )),
-                                                      Flexible(
-                                                          child: Text(
-                                                              snapshot
-                                                                  .data[
-                                                                      meetingId]
-                                                                  .location,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal))),
-                                                      Flexible(
-                                                          child: Text(
-                                                              snapshot
-                                                                  .data[
-                                                                      meetingId]
-                                                                  .statusName,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal))),
-                                                    ],
-                                                  ),
-                                                ),
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (BuildContext context, int meetingId) {
+                                    var date = formatDateTime(
+                                        snapshot.data[meetingId].meetingTime);
+                                    var formattedtime = formatTime(
+                                        snapshot.data[meetingId].meetingTime);
 
-                                                // button color
-                                                InkWell(
-                                                  child: Image(
-                                                    alignment:
-                                                        Alignment.centerRight,
-                                                    image: new AssetImage(
-                                                        icon),
-                                                    height: size.height / 12,
-                                                  ),
-                                                  splashColor: Colors
-                                                      .red, // inkwell color
-                                                  onTap: ()  {
-                                      
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                MeetingDetail(
-                                                                    details: snapshot
-                                                                            .data[
-                                                                        meetingId])));
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          )),
+                                         
+                                        var icon = "assets/snbizmeetings.png";
+                                        if(snapshot.data[meetingId].statusName.contains("Schedule")){
+                                         icon = "assets/snbizscheduled.png";
+                                         }
+                                            else if(snapshot.data[meetingId].statusName.contains("Postponned")){
+                                              icon = "assets/snbizspostponed.png";
+                                            }else if(snapshot.data[meetingId].statusName.contains("Accepted")){
+                                              icon = "assets/acceptedtick-web.png";
+                                            }else if(snapshot.data[meetingId].statusName.contains("Cancelled")){
+                                              icon = "assets/snbizcancel-web.png";
+                                            }else if(snapshot.data[meetingId].statusName.contains("Concluded")){
+                                              icon = "assets/concludebluecheck.png";
+                                            } else if(snapshot.data[meetingId].statusName.contains("Declined")){
+                                              icon = "assets/snbizdeclinedicon.png";
+                                            }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
+                                              icon = "assets/assets/snbizscheduled.png";
+                                            }    
                                           
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MeetingDetail(
-                                                        details: snapshot
-                                                            .data[meetingId])));
-                                      },
-                                    ),
-                                  );
-                                }),
-                          );
+                                          
+                                          
+                                    return ListTile(
+                                      //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+
+                                      title: InkWell(
+                                        child: new Theme(
+                                            data: new ThemeData(
+                                              hintColor: Colors.white,
+                                            ),
+                                            child: Container(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  15, 10, 15, 10),
+                                              constraints: new BoxConstraints(
+                                                  minWidth: size.width),
+                                              width: size.width,
+                                              height: size.height / 5.5,
+                                              decoration: new BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        15.0),
+                                              ),
+                                              child: new Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  Flexible(
+                                                    child: Column( crossAxisAlignment: CrossAxisAlignment .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          formattedtime,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontSize: 20,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Flexible(
+                                                            child: Text(
+                                                          date,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal),
+                                                        )),
+                                                        Flexible(
+                                                            child: Text(
+                                                                snapshot
+                                                                    .data[
+                                                                        meetingId]
+                                                                    .location,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                style: TextStyle(
+                                                                    fontSize: 16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal))),
+                                                        Flexible(
+                                                            child: Text(
+                                                                snapshot
+                                                                    .data[
+                                                                        meetingId]
+                                                                    .statusName,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                style: TextStyle(
+                                                                    fontSize: 16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal))),
+                                                      ],
+                                                    ),
+                                                  ),
+
+                                                  // button color
+                                                  InkWell(
+                                                    child: Image(
+                                                      alignment:
+                                                          Alignment.centerRight,
+                                                      image: new AssetImage(
+                                                          icon),
+                                                      height: size.height / 12,
+                                                    ),
+                                                    splashColor: Colors
+                                                        .red, // inkwell color
+                                                    onTap: ()  {
+                                        
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  MeetingDetail(
+                                                                      details: snapshot
+                                                                              .data[
+                                                                          meetingId])));
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
+                                            
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MeetingDetail(
+                                                          details: snapshot
+                                                              .data[meetingId])));
+                                        },
+                                      ),
+                                    );
+                                  }),
+                            ),
+                         );
                         
                       }}
                     
