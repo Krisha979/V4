@@ -28,6 +28,7 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   String _fileName;
+
   String _path;
   Map<String, String> _paths;
   String _extension="";
