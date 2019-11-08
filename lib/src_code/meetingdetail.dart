@@ -29,12 +29,11 @@ class MeetingDetailState extends State<MeetingDetail> {
   TextEditingController meetingreminderTime;
 
   List<MeetingStatus> statuslist = [];
-  String _selectedvalue;
+String _selectedvalue;
   int _statusid;
  
-   
 
-  Future<void> editData() async {
+ Future<void> editData() async {
     details.statusId = _statusid;
      _selectedvalue = details.statusName;
     String jsonbody = jsonEncode(details);
@@ -241,6 +240,8 @@ class MeetingDetailState extends State<MeetingDetail> {
                             Padding(
                               padding: EdgeInsets.only(left: 35),
                             ),
+                            
+                          
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
@@ -248,34 +249,39 @@ class MeetingDetailState extends State<MeetingDetail> {
                               ),
                               margin: EdgeInsets.fromLTRB(0, 0, 0,0),
                               padding: EdgeInsets.fromLTRB(35, 5, 35, 5),
-                              child: DropdownButton(
-                                icon: Icon(Icons.arrow_downward),
-                                iconSize: 24,
-                                elevation: 16,
-                                style: TextStyle(color: Colors.deepPurple),
-                                underline: Container(
-                                  height: 2,
-                                  color: Colors.deepPurpleAccent,
-                                ),
-                                items: StaticValue.statuslist.map((list) {
-                                  return DropdownMenuItem<String>(
-                                    value: list.statusName,
-                                    child: Text(list.statusName),
-                                  );
-                                }).toList(),
-                                onChanged: (newvalue) {
-                                  setState(() {
-                                    _selectedvalue = newvalue.toString();
-                                    for (MeetingStatus items
-                                        in StaticValue.statuslist) {
-                                      if (items.statusName == _selectedvalue) {
-                                        _statusid = items.statusId;
+                              
+
+                              child: Center(
+                                child: DropdownButton(
+                                  icon: Icon(Icons.arrow_downward),
+                                  iconSize: 24,
+                                  elevation: 16,
+                                  style: TextStyle(color: Colors.deepPurple),
+                                  underline: Container(
+                                    height: 2,
+                                    color: Colors.deepPurpleAccent,
+                                  ),
+                                  items: StaticValue.statuslist.map((list) {
+                                    return DropdownMenuItem<String>(
+                                      
+                                      value: list.statusName,
+                                      child: Text(list.statusName),
+                                    );
+                                  }).toList(),
+                                  onChanged: (newvalue) {
+                                    setState(() {
+                                      _selectedvalue = newvalue.toString();
+                                      for (MeetingStatus items
+                                          in StaticValue.statuslist) {
+                                        if (items.statusName == _selectedvalue) {
+                                          _statusid = items.statusId;
+                                        }
                                       }
-                                    }
-                                  });
-                                },
-                                value: _selectedvalue,
-                                hint: Text(details.statusName),
+                                    });
+                                  },
+                                  value: _selectedvalue,
+                                  hint: Text(details.statusName),
+                                ),
                               ),
                             )
                           ]),

@@ -74,8 +74,14 @@ class LoginPage extends StatefulWidget{
       var jsonData = json.decode(data.body);
 
       for (var u in jsonData) {
+        
         var meetingstatus = MeetingStatus.fromJson(u);
-        StaticValue.statuslist.add(meetingstatus);
+        if(!meetingstatus.statusName.contains("Concluded"))
+        {
+         StaticValue.statuslist.add(meetingstatus);
+
+          }
+        
       }
 
     } catch (e) {
@@ -139,7 +145,10 @@ class LoginPage extends StatefulWidget{
                       setState(() {
                         if(StaticValue.statuslist.isEmpty){
                           status();
+
                         }
+
+                       
 
                                       isLoading = false; 
                                   });

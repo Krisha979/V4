@@ -42,76 +42,92 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         Size size = MediaQuery.of(context).size;
         return AlertDialog(
           
-          title: Center(
-            child: Text(
-              "Do you want to exit?", style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),
-              )
-              ),
-          actions: <Widget>[
-            Container(
-             height: size.height/10,
-              width: size.width/1.9,
-             
-              child:Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-            
-            
-               Container(
-                height: 35,
-                width: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                     color: Color(0xFFCEC0C0),
-                     
-                ),
-           
-                child: RaisedButton(
-                  child: Text("Yes", style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.normal, 
-                    fontStyle: FontStyle.normal,fontSize: 16),),
-
-                  //onPressed: ()=>Navigator.pop(context,true), 
-                  
-                  onPressed: (){
-                    Navigator.pop(context, true);
-                    Navigator.pop(context, true);
+          title: Container(
+            height: size.height/7,
+           child: Column(
                     
-                  //  Navigator.pop(context);
-                  },
-                   
-                  color:  Color(0xFFCEC0C0),
-                    shape: RoundedRectangleBorder(
-        borderRadius: new BorderRadius.circular(10.0),
-                    ),
-                ),
-              ),
+                    children: <Widget>[
             
-           
-               Container(
-                 height:35,
-                width: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                     color: Color(0xFFCEC0C0),
+
+              Center(
+              child: Text(
+                "Do you want to exit?", style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),
+                )
                 ),
-                child: RaisedButton(
-                  child: Text("No", style: TextStyle(color: Colors.black, fontSize: 16,
-                   fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
-                   color:  Color(0xFFCEC0C0),
-                   shape: RoundedRectangleBorder(
+          Padding(
+            padding: EdgeInsets.all(14),
+          ),
+          
+          
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                    
+                    children: <Widget>[
+                
+                
+                  Container(
+                        height: 35,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                             color: Color(0xFFCEC0C0),
+                             
+                        ),
+           
+                        child: RaisedButton(
+                          child: Text("Yes", style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.normal, 
+                            fontStyle: FontStyle.normal,fontSize: 16),),
+
+                          //onPressed: ()=>Navigator.pop(context,true), 
+                          
+                          onPressed: (){
+                            Navigator.pop(context, true);
+                            Navigator.pop(context, true);
+                            
+                          //  Navigator.pop(context);
+                          },
+                           
+                          color:  Color(0xFFCEC0C0),
+                            shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+                            ),
+                        ),
+                  ),
+                   
+                   Padding(
+            padding: EdgeInsets.all(5),
+          ),
+                
+           
+                  Container(
+                       height:35,
+                      width: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                           color: Color(0xFFCEC0C0),
+                      ),
+                      child: RaisedButton(
+                        child: Text("No", style: TextStyle(color: Colors.black, fontSize: 16,
+                         fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
+                         color:  Color(0xFFCEC0C0),
+                         shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(10.0),
         
 ),
-                  onPressed: ()=>Navigator.pop(context,false)
+                        onPressed: ()=>Navigator.pop(context,false)
 
-                ),
-              ),
+                      ),
+                  ),
+                   
           
-            ],
-            ),
-            ),
-             ],
+                ],
+                ),
+            
+            
+          
+             
+                    ]))
         );
     }
     );

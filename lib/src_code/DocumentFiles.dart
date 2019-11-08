@@ -112,6 +112,9 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                           child: url.contains(".jpeg") 
                                           ? Image.network(details.documents[index].documentURL,
                                              fit: BoxFit.cover,
+                                             ): url.contains(".webp") 
+                                          ? Image.network(details.documents[index].documentURL,
+                                             fit: BoxFit.cover,
                                              )
                                              :  Image(
                         image: new AssetImage("assets/pdf.png"),
