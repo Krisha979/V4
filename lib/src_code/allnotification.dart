@@ -69,7 +69,9 @@ class AllNotificationState extends State<AllNotification> {
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+
           });
       var jsonData = json.decode(data.body);
       List<NotificationModel> notifications = [];
@@ -283,7 +285,7 @@ class AllNotificationState extends State<AllNotification> {
                                             constraints: new BoxConstraints(
                                                   minWidth: size.width),
                                             width: size.width,
-                                            
+
                                             decoration: new BoxDecoration(
                                                 color: Colors.white,
                                                 borderRadius:
@@ -335,7 +337,7 @@ class AllNotificationState extends State<AllNotification> {
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type, String icon, int color) {
     var list = ListTile(
 
-      title: Container(
+        title: Container(
           padding: EdgeInsets.only(top: 10),
          // color: Color(color),
         child: new Row(

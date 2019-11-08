@@ -9,7 +9,7 @@
     <!--  Gradient Bg for listrow -->
     <gradient
         android:type ="linear"
-        android:startColor="#1500FF"
+        android:startColor="#9C38FF"
         android:endColor="#8551F8"
         android:angle="-90" />
     <corners android:radius="10dp" />
