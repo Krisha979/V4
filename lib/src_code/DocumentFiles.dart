@@ -42,7 +42,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
   return Scaffold(
         appBar: AppBar(
         backgroundColor: Color(0xFF9C38FF),
-          title: Text('Documents', style: TextStyle(
+          title: Text(details.documents[0].fileTypeName, style: TextStyle(
           color: Colors.white, fontStyle: FontStyle.normal,
            fontWeight: FontWeight.normal, fontSize: 19),),
         ),

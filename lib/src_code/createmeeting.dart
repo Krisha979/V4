@@ -79,9 +79,9 @@ class _CreateState extends State<Create> {
             children: <Widget>[
                        Container(
                          constraints:  new BoxConstraints(
-    minHeight: size.height,
+   // minHeight: size.height,
     
-    maxHeight: size.height,
+   // maxHeight: size.height,
   
   ),
                       //   height: size.height,
@@ -90,9 +90,9 @@ class _CreateState extends State<Create> {
                         children: <Widget>[
                                             Container(
                          constraints:  new BoxConstraints(
-    minHeight: size.height,
+  //  minHeight: size.height,
     
-    maxHeight: size.height*2,
+   // maxHeight: size.height*2,
   
   ),
                             decoration: BoxDecoration(

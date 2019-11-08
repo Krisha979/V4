@@ -285,11 +285,14 @@ class NavBar extends State<Nav> {
           ],
         ),
        
-        Container(
-           height: 1,
-           margin: EdgeInsets.only(left: 20, right: 20),
-            color: Colors.black,
-          
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Container(
+             height: 0.5,
+             margin: EdgeInsets.only(left: 20, right: 20),
+              color: Color(0xFFA19F9F),
+            
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: 25),
