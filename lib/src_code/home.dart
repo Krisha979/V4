@@ -52,7 +52,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
-              }
+        'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+      }
           );
            var jsonData = json.decode(response.body);
   
@@ -288,14 +289,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   Future<List<Widget>> listwidget()async {
-        if(StaticValue.upcomingMeetingsCount != null){
-         setState(() {
-           widgets.clear();
-         });
+        if(StaticValue.upcomingMeetingsCount != null)
 
-
+        {
+             setState(() {
+               widgets.clear();
+             });
                   var widget1 = new Container(
- color: Color(0XFFF4EAEA),
+              color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
                  Container( 
@@ -561,6 +562,7 @@ fmfamount = fmf.output.nonSymbol.toString();
                ]
              )
         );
+        widgets.clear();
         widgets.add(widget1);
         widgets.add(widget2);
         widgets.add(widget3);
@@ -569,21 +571,22 @@ fmfamount = fmf.output.nonSymbol.toString();
         return widgets;
 
         }
-        else{
-          setState(() {
-            widgets.clear();
-          });
-
-            var widget =  Container(
-                  child: Center(
-                  
-                  child: CircularProgressIndicator()
-
-                  )
-                );
-                widgets.add(widget);
-        return widgets;
-        }
+//        else{
+//
+//          setState(() {
+//            widgets.clear();
+//          });
+//
+//            var widget =  Container(
+//                  child: Center(
+//
+//                  child: CircularProgressIndicator()
+//
+//                  )
+//                );
+//                widgets.add(widget);
+//        return widgets;
+//        }
         
   }
 
@@ -612,7 +615,10 @@ fmfamount = fmf.output.nonSymbol.toString();
   void didChangeDependencies() async{
     super.didChangeDependencies();
      if(data ==null){
-       widgets.clear();
+       setState(() {
+         widgets.clear();
+       });
+
        var widget =  Container(
                   child: Center(
 
@@ -626,10 +632,11 @@ fmfamount = fmf.output.nonSymbol.toString();
             data = await getData();
             StaticValue.wasloggedout = false;
      }
-    
-    size = MediaQuery.of(context).size;
-    
-    widgets.clear();
+      size = MediaQuery.of(context).size;
+    setState(() {
+      widgets.clear();
+    });
+
       listwidget();
    
       

@@ -5,6 +5,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 //import 'package:snbiz/src_code/profile.dart' as prefix0;
@@ -70,6 +71,17 @@ Future<bool> _checkConnectivity()  async{
   }
 
 
+    // 2. compress file and get file.
+    Future<File> testCompressAndGetFile(File file, String targetPath) async {
+      var result = await FlutterImageCompress.compressAndGetFile(
+        file.absolute.path, targetPath,
+        quality: 40,
+        rotate: 0,
+      );
+      StaticValue.imgfile = result;
+      await upload(StaticValue.imgfile);
+    }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -132,9 +144,10 @@ Future<bool> _checkConnectivity()  async{
                                     child: CircularProgressIndicator(),
                                     );
                                     });
-                                    if (StaticValue.imgfile.path == url) {
 
-                                    await upload(StaticValue.imgfile);
+                                    if (StaticValue.imgfile.path == url) {
+                                    await testCompressAndGetFile(StaticValue.imgfile, StaticValue.imgfile.path);
+                                    Navigator.pop(context);
                                     Navigator.pop(context);
 
                                     }
@@ -183,3 +196,4 @@ Future<bool> _checkConnectivity()  async{
         ])));
   }
 }
+

@@ -143,7 +143,7 @@ class MeetingState extends State<Meeting> {
         (a) => DateTime.parse(a.meetingTime).isBefore(DateTime.now()));
     filteredmeetings.sort((a, b) =>
         DateTime.parse(a.meetingTime).compareTo(DateTime.parse(b.meetingTime)));
-        filteredmeetings.removeWhere((a) => a.statusName == "Concluded" || a.statusName == "Cancelled");
+        filteredmeetings.removeWhere((a) => a.statusName == "Concluded" || a.statusName == "Cancelled" || a.statusName=="Declined");
     print(filteredmeetings);
     return filteredmeetings;
   }
@@ -321,7 +321,7 @@ class MeetingState extends State<Meeting> {
                            child: Scrollbar(
                               child: ListView.builder(
 
-                                  physics: const AlwaysScrollableScrollPhysics(),
+                               //   physics: const AlwaysScrollableScrollPhysics(),
 
                                   shrinkWrap: true,
                                   itemCount: snapshot.data.length,
