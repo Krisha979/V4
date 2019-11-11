@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
@@ -449,7 +450,7 @@ class MeetingState extends State<Meeting> {
                                         
                                                       Navigator.push(
                                                           context,
-                                                          MaterialPageRoute(
+                                                          CupertinoPageRoute(
                                                               builder: (context) =>
                                                                   MeetingDetail(
                                                                       details: snapshot
@@ -464,7 +465,7 @@ class MeetingState extends State<Meeting> {
                                         onTap: () {
                                           Navigator.push(
                                               context,
-                                              MaterialPageRoute(
+                                              CupertinoPageRoute(
                                                   builder: (context) =>
                                                       MeetingDetail(
                                                           details: snapshot

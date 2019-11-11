@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:http/http.dart' as http;
@@ -215,19 +216,18 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     height: size.height /8,
                         width: size.width/5
                                    ),
-                                   onTap: () async {
+                                   onTap: ()  {
                                       // openCamera(context);
                                       //   Navigator.pop(context);
 
 
-                    await openCamera(context);
-                    showDialog(
-                              context: context,
-                              builder: (BuildContext context){
-                                return Center(child: CircularProgressIndicator(),);
-                              });
+                     openCamera(context);
+                    
 
                               Navigator.pop(context);
+                            
+                              
+                           
                                    },
                                  
 
@@ -278,12 +278,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       String names = _paths.toString();
       StaticValue.filenames= names.split(',');
                       Navigator.push(context,
-    MaterialPageRoute(builder: (context) => MultipleImage(url:_paths )));
+    CupertinoPageRoute(builder: (context) => MultipleImage(url:_paths )));
   }
   void call() {
     if (img.isNotEmpty) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => PreviewImage(url:img)));
+          CupertinoPageRoute(builder: (context) => PreviewImage(url:img)));
     }
   }
 
@@ -741,7 +741,7 @@ final carousel1 = CarouselSlider(
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.push(context, MaterialPageRoute(builder: (context) => TaskPage()));
+                                     Navigator.push(context, CupertinoPageRoute(builder: (context) => TaskPage()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/snbiztasks.png"),
@@ -761,7 +761,7 @@ final carousel1 = CarouselSlider(
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.push(context, MaterialPageRoute(builder: (context) => Invoice()));
+                                     Navigator.push(context, CupertinoPageRoute(builder: (context) => Invoice()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/snbizinvoice.png"),
@@ -780,7 +780,7 @@ final carousel1 = CarouselSlider(
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.push(context, MaterialPageRoute(builder: (context) => Documents()));
+                                     Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents()));
                                   },
                                   child: Image(
                                     image:
@@ -812,7 +812,7 @@ final carousel1 = CarouselSlider(
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
+                                     Navigator.push(context, CupertinoPageRoute(builder: (context) => Create()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/snbizmeeting.png"),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:snbiz/Model_code/meetingStatus.dart';
@@ -163,7 +164,7 @@ class LoginPage extends StatefulWidget{
 
                                       isLoading = false; 
                                   });
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
+                      Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainPage()));
                   }
                   else{
                     setState(() {
@@ -212,8 +213,8 @@ class LoginPage extends StatefulWidget{
                 height: size.height,
                 decoration:new BoxDecoration(
                   gradient: new LinearGradient(colors:[
-                    const Color(0xFF1500ff),
-                    const Color(0xFFA551F8),
+                    const Color(0xFF9C38FF),
+                    const Color(0xFF8551F8),
                   ],
                   begin: FractionalOffset.topLeft,
                   end: FractionalOffset.bottomRight,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -247,7 +248,7 @@ class AllNotificationState extends State<AllNotification> {
                                 return ListView.builder(
                                   
                                     shrinkWrap: true,
-                                    physics: const AlwaysScrollableScrollPhysics(),
+                                    
 
                                     itemCount: snapshot.data.length,
 
@@ -274,7 +275,7 @@ class AllNotificationState extends State<AllNotification> {
                                         type = "New";
                                         color = 0xFFEFF0F1;
                                       }
-                                      return InkWell(
+                                      return GestureDetector(
                                               child:Wrap(
                                                 children: <Widget>[
                                                        Container(
@@ -301,12 +302,12 @@ class AllNotificationState extends State<AllNotification> {
                                            StaticValue.controller.animateTo(1);
                                           }
                                           else if(notificationtype.contains("Document")){
-                                              Navigator.push(context,MaterialPageRoute(builder: (context) => Documents()));
+                                              Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents()));
                                           }else if(notificationtype.contains("Task")){
-                                              Navigator.push(context,MaterialPageRoute(builder: (context) => TaskPage()));
+                                              Navigator.push(context,CupertinoPageRoute(builder: (context) => TaskPage()));
 
                                           }else if(notificationtype.contains("invoice")){
-                                              Navigator.push(context,MaterialPageRoute(builder: (context) => Invoice()));
+                                              Navigator.push(context,CupertinoPageRoute(builder: (context) => Invoice()));
                                           }                                         
                                         },
                                       );

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 // import 'package:dio/dio.dart';
@@ -9,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 //import 'package:snbiz/src_code/profile.dart' as prefix0;
 import 'package:snbiz/src_code/static.dart';
+
 //import 'package:snbiz/Model_code/File_type.dart';
 //import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
@@ -22,6 +24,24 @@ class PreviewImage extends StatefulWidget {
 }
 
 class PreviewImageState extends State<PreviewImage> {
+
+ int counter = 0;
+ bool bottondisable;
+
+ @override
+ void initState() {
+   super.initState();
+   bottondisable = false;
+ }
+
+void _incrementCounter(){
+  setState(() {
+    bottondisable = true;
+    counter++;
+  });
+}
+
+
   File imageFile;
   String url;
   PreviewImageState(this.url);
@@ -70,11 +90,24 @@ Future<bool> _checkConnectivity()  async{
   }
 
 
+/*@override
+void initState(){
+  super.initState();
+
+  timer = Timer.periodic(Duration(seconds: 5), (Timer t) => upload(StaticValue.imgfile));
+}
+
+@override
+void dispose(){
+  timer?.cancel();
+  super.dispose();
+}
+*/
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: (AppBar(title: Text('Image', style: TextStyle(
+        appBar: (AppBar(title: Text('Instant Upload', style: TextStyle(
           color: Colors.white, fontStyle: FontStyle.normal,
            fontWeight: FontWeight.normal, fontSize: 19),
            ),
@@ -120,8 +153,13 @@ Future<bool> _checkConnectivity()  async{
                         padding:
                             const EdgeInsets.only(top: 10, left: 15, right: 15),
                         child: MaterialButton(
+                          
                             height: 50,
+                            
                             onPressed: () async {
+                              
+                              
+                              
                               bool con = await _checkConnectivity();
                               if(con == true){
                                     showDialog(
@@ -129,13 +167,23 @@ Future<bool> _checkConnectivity()  async{
                                     barrierDismissible: false,
                                     builder: (BuildContext context) {
                                     return Center(
-                                    child: CircularProgressIndicator(),
+                                    child: Theme(
+                                      data: new ThemeData(
+                                        hintColor: Colors.white,
+                                      ),
+                                     child: CircularProgressIndicator(
+                                         strokeWidth: 3.0,
+                                          backgroundColor: Colors.white
+                                      ),
+                                    ),
                                     );
                                     });
                                     if (StaticValue.imgfile.path == url) {
 
                                     await upload(StaticValue.imgfile);
                                     Navigator.pop(context);
+                                    
+                                    
 
                                     }
                                     }
@@ -163,7 +211,7 @@ Future<bool> _checkConnectivity()  async{
                );
                               }
                                 
-                                //await upload(StaticValue.imgfile);
+                               
 
 
                               Navigator.pop(context);

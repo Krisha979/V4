@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -310,7 +311,7 @@ catch(e){
                         height: size.height / 12,
                       ),),
                                     onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:
+                                      Navigator.push(context, CupertinoPageRoute(builder: (context)=> TaskDetailsPage(details:
                                       snapshot.data[index])));
                                     },
                                   ),
@@ -321,7 +322,7 @@ catch(e){
                           ),
                                                 ),
                                                 onTap: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetailsPage(details:
+                                          Navigator.push(context, CupertinoPageRoute(builder: (context)=> TaskDetailsPage(details:
                                       snapshot.data[index])));
                                         },
                         ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/createMeetings.dart';
 import 'package:snbiz/src_code/static.dart';
@@ -15,6 +16,7 @@ class Create extends StatefulWidget {
 
 class _CreateState extends State<Create> {
   DateTime meeting;
+   final todayDate = DateTime.now();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
   final meetingTime = TextEditingController();
@@ -70,7 +72,7 @@ class _CreateState extends State<Create> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text("create Meeting", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+        title: Text("Create Meeting", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
          backgroundColor: const Color(0xFF9C38FF),
       ),
       body: ListView(
@@ -121,8 +123,8 @@ class _CreateState extends State<Create> {
                                             MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
                                            Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
                                             "Schedule a",
@@ -266,7 +268,7 @@ class _CreateState extends State<Create> {
                                         onShowPicker: (context, currentValue) async {
                                             final date = await showDatePicker(
                                                 context: context,
-                                                firstDate: DateTime(1900),
+                                                firstDate: DateTime.now(),
                                                 initialDate:
                                                     currentValue ?? DateTime.now(),
                                                 lastDate: DateTime(2100));
@@ -295,6 +297,7 @@ class _CreateState extends State<Create> {
                                             padding: const EdgeInsets.only(top: 30, bottom: 30),
                                             child: RaisedButton(
                                                onPressed: () async{
+                                            
                              if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
                                                meetingLocation.text.isEmpty){
                                                    showDialog(
@@ -304,7 +307,7 @@ class _CreateState extends State<Create> {
             content: new Text("Please enter all the values."),);});
                                                 
                                                 }
-                                                else{
+                                          else{
                             showDialog(
                               context: context,
                               barrierDismissible: false,
