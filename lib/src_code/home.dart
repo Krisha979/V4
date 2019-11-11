@@ -759,7 +759,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Tasks",style: TextStyle(fontSize: 16)),
+                                  child: Text("Tasks",style: TextStyle(fontSize: 14)),
                                 )
                               ],
                             ),
@@ -778,7 +778,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Invoice",style: TextStyle(fontSize: 16)),
+                                  child: Text("Invoice",style: TextStyle(fontSize: 14)),
                                 )
                               ],
                             ),
@@ -798,7 +798,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Documents",style: TextStyle(fontSize: 16)),
+                                  child: Text("Documents",style: TextStyle(fontSize: 14)),
                                 )
                               ],
                             ),
@@ -829,7 +829,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Set Meetings",style: TextStyle(fontSize: 16)),
+                                  child: Text("Set Meetings",style: TextStyle(fontSize: 14)),
                                 )
                               ],
                             ),
@@ -849,7 +849,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Instant Upload", style: TextStyle(fontSize: 16),),
+                                  child: Text("Instant Upload", style: TextStyle(fontSize: 14),),
                                 )
                               ],
                             ),
