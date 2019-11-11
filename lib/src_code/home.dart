@@ -181,11 +181,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         child: Center(
                           child: Text("UPLOAD OPTIONS", style: TextStyle(color: Color(0xFF665959), fontSize: 18, fontWeight: FontWeight.bold),)),
                       ),
-                      
-
-
-                
-                 
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
@@ -759,7 +754,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Tasks",style: TextStyle(fontSize: 14)),
+                                  child: Text("Tasks",style: TextStyle(fontSize: 12)),
                                 )
                               ],
                             ),
@@ -778,7 +773,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Invoice",style: TextStyle(fontSize: 14)),
+                                  child: Text("Invoice",style: TextStyle(fontSize: 12)),
                                 )
                               ],
                             ),
@@ -798,7 +793,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Documents",style: TextStyle(fontSize: 14)),
+                                  child: Text("Documents",style: TextStyle(fontSize: 12)),
                                 )
                               ],
                             ),
@@ -829,7 +824,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Set Meetings",style: TextStyle(fontSize: 14)),
+                                  child: Text("Set Meetings",style: TextStyle(fontSize: 12)),
                                 )
                               ],
                             ),
@@ -849,7 +844,7 @@ final carousel1 = CarouselSlider(
                                 Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Instant Upload", style: TextStyle(fontSize: 14),),
+                                  child: Text("Instant Upload", style: TextStyle(fontSize: 12),),
                                 )
                               ],
                             ),
