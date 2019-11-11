@@ -47,7 +47,9 @@ class DocumentFilesState extends State<DocumentFilesPage> {
            fontWeight: FontWeight.normal, fontSize: 19),),
         ),
         body: Container(
+
           color: Color(0XFFE0CECE),
+          
             child: ListView.builder(
               
                 itemCount: details.documents.length,
@@ -58,7 +60,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                        launch('$url');
 
                     },
-                                      child: Container(
+                    child: Container(
                      // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: Card(
                             elevation: 5,
@@ -85,7 +87,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                             textAlign: TextAlign.left,
                                           style: TextStyle(
                                                  fontStyle: FontStyle.normal,
-                                                 fontSize: 14,
+                                                 fontSize: 16,
                                                  fontWeight: FontWeight.normal),
                                            ),
                                           onTap: () {
@@ -110,6 +112,9 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                   
 
                           child: url.contains(".jpeg") 
+                                          ? Image.network(details.documents[index].documentURL,
+                                             fit: BoxFit.cover,
+                                             ): url.contains(".webp") 
                                           ? Image.network(details.documents[index].documentURL,
                                              fit: BoxFit.cover,
                                              )
