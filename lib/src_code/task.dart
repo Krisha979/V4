@@ -208,6 +208,7 @@ catch(e){
             Container(
            child: FutureBuilder(
             future: _future,
+            // ignore: missing_return
             builder:(BuildContext context, AsyncSnapshot snapshot){
               switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -264,6 +265,7 @@ catch(e){
                          icon = "assets/acceptedtick-web.png";
                          }
                        
+                      // ignore: missing_return, missing_return
                       return ListTile(
                         title: InkWell(
                                                 child: new Theme(
@@ -289,12 +291,12 @@ catch(e){
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(enddate, textAlign: TextAlign.left,
-                                      style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ),
-                                 Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
+                                      style:TextStyle(fontSize: 17, fontWeight: FontWeight.bold) ),
+                                 Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
 
-                                Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),)),
-                                Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                Flexible(child: Text(snapshot.data[index].percentageComplete.toString() + "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
+                                Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal))),
+                                Flexible(child: Text(snapshot.data[index].percentageComplete.toString() + "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal))),
 
                                 ],
 
