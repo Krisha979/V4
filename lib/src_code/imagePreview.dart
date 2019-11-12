@@ -91,7 +91,9 @@ Future<bool> _checkConnectivity()  async{
   }
 
 
-  
+
+
+    // 2. compress file and get file.
     Future<File> testCompressAndGetFile(File file, String targetPath) async {
       var result = await FlutterImageCompress.compressAndGetFile(
         file.absolute.path, targetPath,
@@ -181,10 +183,6 @@ Future<bool> _checkConnectivity()  async{
                                     if (StaticValue.imgfile.path == url) {
                                     await testCompressAndGetFile(StaticValue.imgfile, StaticValue.imgfile.path);
                                     Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    
-                                    
-
                                     }
                                     }
                               else{
@@ -201,7 +199,6 @@ Future<bool> _checkConnectivity()  async{
                      actions: <Widget>[
                        FlatButton(child: Text("OK"),
                        onPressed: (){
-                        Navigator.pop(context);
                         Navigator.pop(context);
                        })
                      ],

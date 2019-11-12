@@ -65,7 +65,7 @@ class MeetingState extends State<Meeting> {
     });
     //var mt = StaticValue.meetingTime.replaceAll(new RegExp(r", "),"\n\n");
   }
-  Future<List<MeetingInfo>> _meeting() async {
+   Future<List<MeetingInfo>> _meeting() async {
     bool connection = await _checkConnectivity();
       if(connection == false){
                    showDialog(
@@ -345,7 +345,7 @@ class MeetingState extends State<Meeting> {
                                             } else if(snapshot.data[meetingId].statusName.contains("Declined")){
                                               icon = "assets/snbizdeclinedicon.png";
                                             }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
-                                              icon = "assets/assets/snbizscheduled.png";
+                                              icon = "assets/snbizscheduled.png";
                                             }    
                                           
                                           

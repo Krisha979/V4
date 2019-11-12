@@ -185,6 +185,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
 
+
                           Column(
                             children: <Widget>[
                               GestureDetector(
@@ -711,9 +712,9 @@ final carousel1 = CarouselSlider(
                 child: Column(
                   children: <Widget>[
                     new Image(
-                        image: new AssetImage("assets/new-dashboard.png"),
+                        image: new AssetImage("assets/bannerpicturehome.jpg"),
                         height: size.height / 4.8,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         width: size.width),
                   ],
                 ),

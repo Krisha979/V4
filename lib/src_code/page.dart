@@ -56,7 +56,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                 )
                 ),
           Padding(
-            padding: EdgeInsets.all(14),
+            padding: EdgeInsets.only(top: 14,bottom: 0,right: 14,left: 14),
           ),
           
           
@@ -69,7 +69,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Container(
-                          height: 35,
+                          height: 40,
                           width: 75,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
@@ -105,7 +105,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Container(
-                         height:35,
+                         height:40,
                         width: 75,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),

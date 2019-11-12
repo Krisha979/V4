@@ -303,8 +303,13 @@ String _selectedvalue;
                                                   );
                                                 });
                                             await editData();
-                                            Navigator.pop(context);
-                                            Navigator.pop(context);
+
+                                            Navigator.pop(context, () {
+                                              setState(() {});
+                                            });
+                                            Navigator.pop(context, () {
+                                              setState(() {});
+                                            });
                                           },
                             textColor: Colors.white,
                             padding: const EdgeInsets.all(0.0),
