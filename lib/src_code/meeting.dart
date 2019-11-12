@@ -63,7 +63,6 @@ class MeetingState extends State<Meeting> {
     setState(() {
       _future = _meeting();
     });
-    //var mt = StaticValue.meetingTime.replaceAll(new RegExp(r", "),"\n\n");
   }
    Future<List<MeetingInfo>> _meeting() async {
     bool connection = await _checkConnectivity();
