@@ -78,7 +78,7 @@ Future<bool> checkConnectivity()  async{
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Preview Image",
+            "Files",
             style: TextStyle(
                 fontStyle: FontStyle.normal,
                 fontSize: 20,

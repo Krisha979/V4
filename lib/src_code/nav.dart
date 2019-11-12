@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:snbiz/src_code/contact.dart';
@@ -143,7 +144,7 @@ class NavBar extends State<Nav> {
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Profile()));
+CupertinoPageRoute(builder: (context) => Profile()));
               }),
         ),
         Container(
@@ -173,7 +174,7 @@ class NavBar extends State<Nav> {
                
                 //launch('https://snbiznepal.com');
                 Navigator.push(context,
-                   MaterialPageRoute(builder: (context) => WebView()));
+                   CupertinoPageRoute(builder: (context) => WebView()));
     
               }),
         ),
@@ -202,7 +203,7 @@ class NavBar extends State<Nav> {
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Contact()));
+                   CupertinoPageRoute(builder: (context) => Contact()));
                }),
         ),
 
@@ -241,7 +242,7 @@ class NavBar extends State<Nav> {
                  
                Navigator
         .of(context)
-        .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {
+        .pushReplacement(new CupertinoPageRoute(builder: (BuildContext context) {
       return new LoginPage();
     }));
                  
@@ -303,7 +304,7 @@ class NavBar extends State<Nav> {
         InkWell(
           onTap:(){
             Navigator.push(context,
-                     MaterialPageRoute(builder: (context) => PrivacyWebView()));
+                    CupertinoPageRoute(builder: (context) => PrivacyWebView()));
           },child: Center(
            
                 child:Text(

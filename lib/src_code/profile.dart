@@ -124,133 +124,136 @@ class ProfileState extends State<Profile> {
               ),
               child: Column(
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(8.0),
-                    height: size.height / 1.6,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
-                          child: InkWell(
-                            splashColor: Colors.yellow,
-                            child: CircleAvatar(
-                              radius: 50,
-                              backgroundColor: Colors.white,
-                              child: ClipOval(
-                                child: SizedBox(
-                                  height: size.height / 4,
-                                  width: size.height / 4,
-                                  // child: Image.network(StaticValue.logo),
-                                  child: StaticValue.logo == null
-                                      ? Icon(
-                                          Icons.person,
-                                          size: 70,
-                                          color: Colors.white,
-                                        )
-                                      : StaticValue.logo != null
-                                          ? Image.network(StaticValue.logo,
-                                              fit: BoxFit.cover)
-                                          : Icon(Icons.person)
+                  Wrap(
+                    children: <Widget>[
+                                       Container(
+                      margin: EdgeInsets.all(8.0),
+                    //  height: size.height / 1.6,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
+                            child: InkWell(
+                              splashColor: Colors.yellow,
+                              child: CircleAvatar(
+                                radius: 50,
+                                backgroundColor: Colors.white,
+                                child: ClipOval(
+                                  child: SizedBox(
+                                    height: size.height / 4,
+                                    width: size.height / 4,
+                                    // child: Image.network(StaticValue.logo),
+                                    child: StaticValue.logo == null
+                                        ? Icon(
+                                            Icons.person,
+                                            size: 70,
+                                            color: Colors.white,
+                                          )
+                                        : StaticValue.logo != null
+                                            ? Image.network(StaticValue.logo,
+                                                fit: BoxFit.cover)
+                                            : Icon(Icons.person)
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Text(StaticValue.orgName,
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.bold)),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, right: 100),
-                                child: Text(
-                                  "ORGANIZATION PROFILE",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF665959)),
+                          Text(StaticValue.orgName,
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontStyle: FontStyle.normal,
+                                  fontWeight: FontWeight.bold)),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, right: 100),
+                                  child: Text(
+                                    "ORGANIZATION PROFILE",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF665959)),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, right: 40),
-                                child: Text(
-                                  "Organization Name",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      color: Color(0xFFA19F9F)),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, right: 40),
+                                  child: Text(
+                                    "Organization Name",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFA19F9F)),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5, right: 40),
-                                child: Text(
-                                  details.organizationName,
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5, right: 40),
+                                  child: Text(
+                                    details.organizationName,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, right: 40),
-                                child: Text(
-                                  "Vat/Pan number",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      color: Color(0xFFA19F9F)),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, right: 40),
+                                  child: Text(
+                                    "Vat/Pan number",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFA19F9F)),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5, right: 40),
-                                child: Text(
-                                  details.taXPAN,
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5, right: 40),
+                                  child: Text(
+                                    details.taXPAN,
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, right: 60),
-                                child: Text(
-                                  "Organization phone",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal,
-                                      color: Color(0xFFA19F9F)),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, right: 60),
+                                  child: Text(
+                                    "Organization phone",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal,
+                                        color: Color(0xFFA19F9F)),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5, right: 60),
-                                child: Text(
-                                  details.organizationNumber,
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.normal),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5, right: 60),
+                                  child: Text(
+                                    details.organizationNumber,
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontStyle: FontStyle.normal,
+                                        fontWeight: FontWeight.normal),
+                                  ),
                                 ),
-                              ),
-                            ])
-                      ],
+                              ])
+                        ],
+                      ),
                     ),
-                  ),
+                    ]),
                   Wrap(
                     children: <Widget>[
                                       Container(

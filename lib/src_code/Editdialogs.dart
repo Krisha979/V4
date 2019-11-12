@@ -281,7 +281,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                           color: Colors.black),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: 50),
+                                      padding: EdgeInsets.only(left: 30),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(

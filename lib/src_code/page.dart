@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/src_code/profile.dart';
 import 'package:snbiz/src_code/static.dart';
@@ -43,7 +44,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         return AlertDialog(
           
           title: Container(
-            height: size.height/7,
+            height: size.height/6.4,
            child: Column(
                     
                     children: <Widget>[
@@ -51,7 +52,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
               Center(
               child: Text(
-                "Do you want to exit?", style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),
+                "Do you want to exit?", style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.normal, fontSize: 17),
                 )
                 ),
           Padding(
@@ -65,55 +66,63 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                     children: <Widget>[
                 
                 
-                  Container(
-                        height: 35,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Container(
+                          height: 35,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                               color: Color(0xFFCEC0C0),
+                               
+                          ),
+           
+                          child: RaisedButton(
+                            child: Text("Yes", style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.normal, 
+                              fontStyle: FontStyle.normal,fontSize: 16),),
+
+                    //onPressed: ()=>Navigator.pop(context,true), 
+                    
+                    onPressed: (){
+                      Navigator.pop(context, true);
+                      Navigator.pop(context, true);
+                      
+                    //  Navigator.pop(context);
+                    },
+                     
+                    color:  Color(0xFFCEC0C0),
+                      shape: RoundedRectangleBorder(
+           borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                ),
+              ),
+                  ),
+
+              Padding(padding: EdgeInsets.all(15)),
+            
+           
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Container(
+                         height:35,
                         width: 75,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                              color: Color(0xFFCEC0C0),
-                             
                         ),
-           
                         child: RaisedButton(
-                          child: Text("Yes", style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.normal, 
-                            fontStyle: FontStyle.normal,fontSize: 16),),
-
-                  //onPressed: ()=>Navigator.pop(context,true), 
-                  
-                  onPressed: (){
-                    Navigator.pop(context, true);
-                    Navigator.pop(context, true);
-                    
-                  //  Navigator.pop(context);
-                  },
-                   
-                  color:  Color(0xFFCEC0C0),
-                    shape: RoundedRectangleBorder(
-           borderRadius: new BorderRadius.circular(10.0),
-                    ),
-                ),
-              ),
-            
-           
-                  Container(
-                       height:35,
-                      width: 75,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                           color: Color(0xFFCEC0C0),
-                      ),
-                      child: RaisedButton(
-                        child: Text("No", style: TextStyle(color: Colors.black, fontSize: 16,
-                         fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
-                         color:  Color(0xFFCEC0C0),
-                         shape: RoundedRectangleBorder(
+                          child: Text("No", style: TextStyle(color: Colors.black, fontSize: 16,
+                           fontWeight: FontWeight.normal, fontStyle: FontStyle.normal),),
+                           color:  Color(0xFFCEC0C0),
+                           shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(10.0),
         
 ),
-                        onPressed: ()=>Navigator.pop(context,false)
+                          onPressed: ()=>Navigator.pop(context,false)
 
-                      ),
+                        ),
+                    ),
                   ),
                    
           
@@ -157,7 +166,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Profile()));
+                         CupertinoPageRoute(builder: (context) => Profile()));
                     },
                     child: CircleAvatar(
                       radius: 19,

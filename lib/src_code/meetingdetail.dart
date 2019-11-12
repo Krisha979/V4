@@ -86,7 +86,7 @@ String _selectedvalue;
             InkWell(
               onTap: () async {
                 if (StaticValue.orgId == details.createdBy || details.statusName == "Concluded") {
-                  Navigator.of(context).push(new MaterialPageRoute<Null>(
+                  Navigator.of(context).push(new CupertinoPageRoute<Null>(
                       builder: (BuildContext context) {
                         return new AddEditDialog(details: details);
                       },

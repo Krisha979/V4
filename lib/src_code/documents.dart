@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/Model_code/DocumentModel.dart';
 import 'package:http/http.dart' as http;
@@ -279,7 +280,7 @@ Padding(
                           height: size.height / 12,
                         ),),
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:
+                                  Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
                                   snapshot.data[index])));
                                 },
                               ),
@@ -290,7 +291,7 @@ Padding(
                       ),
            ),
           onTap: () {
- Navigator.push(context, MaterialPageRoute(builder: (context)=> DocumentFilesPage(details:
+ Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
                                   snapshot.data[index])));
                                         },
            )
