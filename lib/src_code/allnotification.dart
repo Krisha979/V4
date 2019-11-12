@@ -197,51 +197,56 @@ class AllNotificationState extends State<AllNotification> {
                   ],
                 ),
               ),
-              Expanded(
-                child: Container(
-                    color: Color(0XFF),
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    child: FutureBuilder(
-                        future: _future,
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          switch (snapshot.connectionState) {
-                            case ConnectionState.none:
-                              return Container(
-                                  child: Center(
-                                child: Flexible(
-                                    child: Text("Try Loading Again.",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.normal))),
-                              ));
-                            case ConnectionState.active:
-                            case ConnectionState.waiting:
-                              return Container(
-                                  child: Center(
-                                      child: CircularProgressIndicator()));
-                            case ConnectionState.done:
-                              if (!snapshot.hasData) {
-                                return Container(
-                                    child: Center(
-                                        child: Text("Try Loading Again.",
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight:
-                                                    FontWeight.normal))));
-                              } else {
-                                if (snapshot.data.length == 0) {
-                                  return Flexible(
-                                      child: Center(
-                                          child: Text("No Records Available.",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight:
-                                                      FontWeight.normal))));
-                                }
+
+                   Expanded(
+                      child: Container(
+                     color: Color(0XFF),
+                       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+
+                        child: FutureBuilder(
+                            future: _future,
+                            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                               switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                  return Container(
+                  child: Center(
+                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                  )  
+                );
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                    return Container(
+                  child: Center(
+
+                  child: CircularProgressIndicator()
+
+                  )
+                );
+              case ConnectionState.done:
+              
+              if (!snapshot.hasData) {
+                          return Container(
+                            child: Center(
+                              child: Text("Try Loading Again.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );
+                        } else {
+                          if(snapshot.data.length == 0){
+                            return Container(
+                            child: Center(
+                              child: Text("No Records Available.",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal)
+                                        )
+                        )
+                        );}
                                 return ListView.builder(
                                    // shrinkWrap: true,
                                     itemCount: snapshot.data.length,

@@ -319,28 +319,30 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               
-                              Column(
-                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text("Upcoming Meetings",
-                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))
-                                  ,),
-                                  Text(StaticValue.upcomingMeetingsCount,
-                                  style: TextStyle(color: Colors.black,
-                                  fontWeight: FontWeight.bold),),
+                              Flexible(
+                                                              child: Column(
+                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("Upcoming Meetings",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                    color: Color(0xFFA19F9F))
+                                    ,),
+                                    Text(StaticValue.upcomingMeetingsCount,
+                                    style: TextStyle(color: Colors.black,
+                                    fontWeight: FontWeight.bold),),
+                                    
+                                    Text("Next Meeting",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                    color: Color(0xFFA19F9F))),
+                                    Text(StaticValue.meetingTime,
+                                    style: TextStyle(color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+
+                                  ],
                                   
-                                  Text("Next Meeting",
-                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.meetingTime,
-                                  style: TextStyle(color: Colors.black,
-                                  fontWeight: FontWeight.bold)),
 
-                                ],
-                                
-
+                                ),
                               ),
                             Image(
                                       image: new AssetImage("assets/snbizmeetings.png"),
@@ -377,27 +379,29 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               
-                              Column(
-                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text("Active Tasks",
-                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.activeTaskcount,
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  ),),
+                              Flexible(
+                                                              child: Column(
+                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text("Active Tasks",
+                                     style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                    color: Color(0xFFA19F9F))),
+                                    Text(StaticValue.activeTaskcount,
+                                    style: TextStyle(fontWeight: FontWeight.bold,
+                                    ),),
+                                    
+                                    Text("Latest Running Task",
+                                     style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                    color: Color(0xFFA19F9F))),
+                                    Text(StaticValue.taskName,
+                                    style: TextStyle(fontWeight: FontWeight.bold,
+                                    )
+                                    ),
+                                  ],
                                   
-                                  Text("Latest Running Task",
-                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.taskName,
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  )
-                                  ),
-                                ],
-                                
 
+                                ),
                               ),
                             Image(
                                       image: new AssetImage("assets/snbiztasks.png"),
@@ -436,28 +440,30 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                              crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               
-                              Column(
-                                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
+                              Flexible(
+                                                              child: Column(
+                                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
 
-                                  Text("Uploads Today",
-                                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                          color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.uploadsToday.toString(),
+                                    Text("Uploads Today",
+                                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                            color: Color(0xFFA19F9F))),
+                                    Text(StaticValue.uploadsToday.toString(),
+                                      style: TextStyle(fontWeight: FontWeight.bold,
+                                          color: Colors.black),),
+                                    Text("Uploaded Date",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                    color: Color(0xFFA19F9F))),
+                                    Text(StaticValue.uploadedDate.toString(),
                                     style: TextStyle(fontWeight: FontWeight.bold,
-                                        color: Colors.black),),
-                                  Text("Uploaded Date",
-                                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.uploadedDate.toString(),
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  color: Colors.black),),
+                                    color: Colors.black),),
+                                    
+
+                                  ],
                                   
 
-                                ],
-                                
-
+                                ),
                               ),
                             Image(
                                       image: new AssetImage("assets/snbizuploads.png"),
