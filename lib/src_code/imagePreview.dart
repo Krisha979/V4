@@ -62,10 +62,7 @@ Future<bool> _checkConnectivity()  async{
     docs.add(files);
     // string to uri
     var uri = Uri.parse(StaticValue.baseUrl +
-        "api/UploadDocuments?Orgid=" +
-        StaticValue.orgId.toString() +
-        "&OrgName=" +
-        StaticValue.orgName);
+        "api/UploadDocuments?Orgid=" +StaticValue.orgId.toString() +"&OrgName=" +StaticValue.orgName);
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
     for (File file in docs) {
@@ -84,29 +81,17 @@ Future<bool> _checkConnectivity()  async{
     // send
     var response = await request.send();
     print(response.statusCode);
+    
     // listen for response
     response.stream.transform(utf8.decoder).listen((value) {
       print(value);
+
+      
     });
   }
 
 
-<<<<<<< HEAD
-/*@override
-void initState(){
-  super.initState();
-
-  timer = Timer.periodic(Duration(seconds: 5), (Timer t) => upload(StaticValue.imgfile));
-}
-
-@override
-void dispose(){
-  timer?.cancel();
-  super.dispose();
-}
-*/
-=======
-    // 2. compress file and get file.
+  
     Future<File> testCompressAndGetFile(File file, String targetPath) async {
       var result = await FlutterImageCompress.compressAndGetFile(
         file.absolute.path, targetPath,
@@ -117,7 +102,6 @@ void dispose(){
       await upload(StaticValue.imgfile);
     }
 
->>>>>>> 8c9c36dba80ce094f26a9a21d8bcc99a5a2ac6bd
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
