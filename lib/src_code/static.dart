@@ -20,7 +20,7 @@ class StaticValue{
   static bool togglestate;
   static File imgfile;
   static String facebookurl = "http://www.facebook.com";
-  static String whatsapp="http://www.facebook.com";
+  static String whatsapp="http://api.whatsapp.com/send?phone=+977-9803373555";
   static String upcomingMeetingsCount='-';
   static String meetingTime='-';
   static String activeTaskcount='-';

@@ -63,9 +63,8 @@ class MeetingState extends State<Meeting> {
     setState(() {
       _future = _meeting();
     });
-    //var mt = StaticValue.meetingTime.replaceAll(new RegExp(r", "),"\n\n");
   }
-  Future<List<MeetingInfo>> _meeting() async {
+   Future<List<MeetingInfo>> _meeting() async {
     bool connection = await _checkConnectivity();
       if(connection == false){
                    showDialog(
@@ -322,9 +321,6 @@ class MeetingState extends State<Meeting> {
                            child: Scrollbar(
                               child: ListView.builder(
 
-                               //   physics: const AlwaysScrollableScrollPhysics(),
-
-                                  shrinkWrap: true,
                                   itemCount: snapshot.data.length,
                                   itemBuilder: (BuildContext context, int meetingId) {
                                     var date = formatDateTime(
