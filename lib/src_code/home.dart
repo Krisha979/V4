@@ -184,6 +184,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
 
+
                           Column(
                             children: <Widget>[
                               GestureDetector(
