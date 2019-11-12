@@ -62,10 +62,7 @@ Future<bool> _checkConnectivity()  async{
     docs.add(files);
     // string to uri
     var uri = Uri.parse(StaticValue.baseUrl +
-        "api/UploadDocuments?Orgid=" +
-        StaticValue.orgId.toString() +
-        "&OrgName=" +
-        StaticValue.orgName);
+        "api/UploadDocuments?Orgid=" +StaticValue.orgId.toString() +"&OrgName=" +StaticValue.orgName);
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
     for (File file in docs) {
@@ -84,9 +81,12 @@ Future<bool> _checkConnectivity()  async{
     // send
     var response = await request.send();
     print(response.statusCode);
+    
     // listen for response
     response.stream.transform(utf8.decoder).listen((value) {
       print(value);
+
+      
     });
   }
 

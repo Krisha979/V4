@@ -321,9 +321,6 @@ class MeetingState extends State<Meeting> {
                            child: Scrollbar(
                               child: ListView.builder(
 
-                               //   physics: const AlwaysScrollableScrollPhysics(),
-
-                                  shrinkWrap: true,
                                   itemCount: snapshot.data.length,
                                   itemBuilder: (BuildContext context, int meetingId) {
                                     var date = formatDateTime(
