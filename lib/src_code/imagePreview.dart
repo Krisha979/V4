@@ -91,21 +91,8 @@ Future<bool> _checkConnectivity()  async{
   }
 
 
-<<<<<<< HEAD
-/*@override
-void initState(){
-  super.initState();
 
-  timer = Timer.periodic(Duration(seconds: 5), (Timer t) => upload(StaticValue.imgfile));
-}
 
-@override
-void dispose(){
-  timer?.cancel();
-  super.dispose();
-}
-*/
-=======
     // 2. compress file and get file.
     Future<File> testCompressAndGetFile(File file, String targetPath) async {
       var result = await FlutterImageCompress.compressAndGetFile(
@@ -117,7 +104,6 @@ void dispose(){
       await upload(StaticValue.imgfile);
     }
 
->>>>>>> 8c9c36dba80ce094f26a9a21d8bcc99a5a2ac6bd
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -197,10 +183,6 @@ void dispose(){
                                     if (StaticValue.imgfile.path == url) {
                                     await testCompressAndGetFile(StaticValue.imgfile, StaticValue.imgfile.path);
                                     Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    
-                                    
-
                                     }
                                     }
                               else{
@@ -217,7 +199,6 @@ void dispose(){
                      actions: <Widget>[
                        FlatButton(child: Text("OK"),
                        onPressed: (){
-                        Navigator.pop(context);
                         Navigator.pop(context);
                        })
                      ],
