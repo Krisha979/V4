@@ -74,6 +74,15 @@ var responsecode;
       print(value);
     });
   }
+  var ctx;
+
+
+  Future<bool> _onBackPressed() async {
+    Navigator.pop(ctx);
+    Navigator.pop(ctx);
+    // Your back press code here...
+    //CommonUtils.showToast(context, "Back presses");
+  }
 
 Future<bool> checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
@@ -215,8 +224,14 @@ Future<bool> checkConnectivity()  async{
                               context: context,
                               barrierDismissible: false,
                               builder: (BuildContext context) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
+                                ctx = context;
+                                return new WillPopScope(
+
+                                  onWillPop: _onBackPressed,
+
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
                                 );
                               });
                               bool con = await checkConnectivity();

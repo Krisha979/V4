@@ -145,10 +145,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-           Size size = MediaQuery.of(context).size;
-
+          Size size = MediaQuery.of(context).size;
           return Dialog(
-           
             child: Container(
               height: size.height/3.4,
              width: size.width/1.2,
@@ -719,8 +717,7 @@ final carousel1 = CarouselSlider(
         _refreshController.refreshCompleted();
         listwidget();
 
-     //   Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainPage()));
-
+     //   Navigator.pushReplacement(context,  MaterialPageRoute(builder: (BuildContext context) { return MainPage(); }));
 
       });
 
