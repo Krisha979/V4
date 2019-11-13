@@ -43,6 +43,9 @@ void _incrementCounter(){
 }
 
 
+  var responsecode;
+  
+
   File imageFile;
   String url;
   PreviewImageState(this.url);
@@ -65,6 +68,9 @@ Future<bool> _checkConnectivity()  async{
         "api/UploadDocuments?Orgid=" +StaticValue.orgId.toString() +"&OrgName=" +StaticValue.orgName);
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
+
+
+    
     for (File file in docs) {
       // open a bytestream
       var stream = new http.ByteStream(DelegatingStream.typed(file.openRead()));
@@ -80,21 +86,27 @@ Future<bool> _checkConnectivity()  async{
     }
     // send
     var response = await request.send();
-    print(response.statusCode);
+   // print(response.statusCode );
+        responsecode = response.statusCode;
+        
+      
+    
     
     // listen for response
-    response.stream.transform(utf8.decoder).listen((value) {
-      print(value);
-
-      
-    });
+    response.stream.transform(utf8.decoder).listen((value) { 
+      print(value);  
+    }); 
+    
   }
+
+  
 
 
 
 
     // 2. compress file and get file.
     Future<File> testCompressAndGetFile(File file, String targetPath) async {
+
       var result = await FlutterImageCompress.compressAndGetFile(
         file.absolute.path, targetPath,
         quality: 40,
@@ -103,10 +115,10 @@ Future<bool> _checkConnectivity()  async{
       StaticValue.imgfile = result;
       await upload(StaticValue.imgfile);
     }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+   
     return Scaffold(
         appBar: (AppBar(title: Text('Instant Upload', style: TextStyle(
           color: Colors.white, fontStyle: FontStyle.normal,
@@ -159,8 +171,6 @@ Future<bool> _checkConnectivity()  async{
                             
                             onPressed: () async {
                               
-                              
-                              
                               bool con = await _checkConnectivity();
                               if(con == true){
                                     showDialog(
@@ -182,10 +192,69 @@ Future<bool> _checkConnectivity()  async{
 
                                     if (StaticValue.imgfile.path == url) {
                                     await testCompressAndGetFile(StaticValue.imgfile, StaticValue.imgfile.path);
-                                    Navigator.pop(context);
+                                    
+                                    if(responsecode==200){
+
+                                        showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Image has been uploaded",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+
+                                    }
+
+                                    else {
+                                        showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Pleasse, Check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        
+
+//                         Navigator.pop(context);
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+
                                     }
                                     }
-                              else{
+                                    }
+                 if(con==false){
                                 showDialog(
                  context: context,
                  barrierDismissible: false,
@@ -200,6 +269,10 @@ Future<bool> _checkConnectivity()  async{
                        FlatButton(child: Text("OK"),
                        onPressed: (){
                         Navigator.pop(context);
+                        Navigator.pop(context);
+                        
+                        
+                        
                        })
                      ],
                    );
@@ -207,12 +280,9 @@ Future<bool> _checkConnectivity()  async{
 
                );
                               }
-                                
                                
-
-
-                              Navigator.pop(context);
-//                              Navigator.pop(context);
+                                     
+                                
                             },
                             textColor: Colors.white,
                             color: Color(0xFFB56AFF),

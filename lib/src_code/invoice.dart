@@ -258,7 +258,7 @@ return Scaffold(
                         );
                         } else {
                           if(snapshot.data.length == 0){
-                            return Flexible(
+                            return Container(
                             child: Center(
                               child: Text("No Records Available.",
                                   textAlign: TextAlign.left,

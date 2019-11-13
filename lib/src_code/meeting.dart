@@ -96,7 +96,7 @@ class MeetingState extends State<Meeting> {
           Uri.encodeFull(StaticValue.baseUrl +
               "api/OrgMeetings?Orgid=" +
               StaticValue.orgId.toString() +
-              "&Page=1&RecordsPerPage=15"),
+              "&Page=1&RecordsPerPage=50"),
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
@@ -307,7 +307,7 @@ class MeetingState extends State<Meeting> {
                         );
                         } else {
                           if(snapshot.data.length == 0){
-                            return Flexible(
+                            return Container(
                             child: Center(
                               child: Text("No Records Available.",
                                   textAlign: TextAlign.left,
