@@ -54,30 +54,39 @@ class AddEditDialogState extends State<AddEditDialog> {
             
           // }
           if(data.statusCode == 204){
-              showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("Meeting has been Edited",
+              showGeneralDialog(
+                barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
+                transitionBuilder: (context, a1, a2, widget) {
+                  return Center(
+                    child: Container(
+                      height: 100.0 * a1.value,  // USE PROVIDED ANIMATION
+                      width: 100.0 * a1.value,
+                      color: Colors.transparent,
+                      child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
+                      
+
+                    ),
+                  );
+                },
+                transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
+                barrierDismissible: true,
+                barrierLabel: 'LABEL',
+                context: context,
+                pageBuilder: (context, animation1, animation2) {
+                  return Text('PAGE BUILDER');
+
                   
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){               
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                         Navigator.pop(context);
-
-                       })
-                     ],
-                   );
-                 }
-
-               );
+                });
+                 Future.delayed(const Duration(milliseconds:1000),(){
+                   setState(() {
+                Navigator.pop(context);
+                Navigator.pop(context);
+                 Navigator.pop(context);
+                  Navigator.pop(context);
+                
+                   });
+               
+                 });
 
           }
     } catch (e) 
@@ -416,14 +425,20 @@ class AddEditDialogState extends State<AddEditDialog> {
 
                                       onWillPop: _onBackPressed,
                                       child: Center(
-                                      child: Theme(
+                                     
+                                                
+                                                  child: Theme(
                                         data: new ThemeData(
                                           hintColor: Colors.white,
                                         ),
-                                                child: Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                        )))  );
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
+                                       ) );
                                               });
                                            editData();
                                           }

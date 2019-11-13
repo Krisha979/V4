@@ -426,8 +426,17 @@ Future<bool> _checkConnectivity()  async{
                                           hintColor: Colors.white,
                                         ),
                                                 child: Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
+                                                  child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
                                        ))) );
                                               });
                                           createMeeting();
