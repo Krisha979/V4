@@ -16,6 +16,16 @@ class Create extends StatefulWidget {
 
 class _CreateState extends State<Create> {
   DateTime meeting;
+  var ctx;
+  Future<bool> _onBackPressed() async {
+   Navigator.pop(ctx);
+   Navigator.pop(ctx);
+  
+     
+
+   // Your back press code here...
+   //CommonUtils.showToast(context, "Back presses");
+ }
   final todayDate = DateTime.now();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final format = DateFormat("yyyy-MM-dd HH:mm");
@@ -64,7 +74,7 @@ class _CreateState extends State<Create> {
                         
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        Navigator.pop(context);
+                       
 
                        })
                      ],
@@ -90,33 +100,38 @@ class _CreateState extends State<Create> {
       print(response);
 
       if (response.statusCode == 201){
-        showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("Meeting has been Created",
+        showGeneralDialog(
+                barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
+                transitionBuilder: (context, a1, a2, widget) {
+                  return Center(
+                    child: Container(
+                      height: 100.0 * a1.value,  // USE PROVIDED ANIMATION
+                      width: 100.0 * a1.value,
+                      color: Colors.transparent,
+                      child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
+                      
+
+                    ),
+                  );
+                },
+                transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
+                barrierDismissible: true,
+                barrierLabel: 'LABEL',
+                context: context,
+                pageBuilder: (context, animation1, animation2) {
+                  return Text('PAGE BUILDER');
+
                   
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        
-
-//                         Navigator.pop(context);
-
-                       })
-                     ],
-                   );
-                 }
-
-               );
+                });
+                 Future.delayed(const Duration(milliseconds:1000),(){
+                   setState(() {
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                   });
+               
+                 });
+               
 
       }
 
@@ -138,8 +153,7 @@ class _CreateState extends State<Create> {
                         
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        Navigator.pop(context);
-                        
+
 
 //                         Navigator.pop(context);
 
@@ -156,7 +170,7 @@ class _CreateState extends State<Create> {
   }}
 
 
-
+ 
 
 
 Future<bool> _checkConnectivity()  async{
@@ -402,44 +416,32 @@ Future<bool> _checkConnectivity()  async{
                                               context: context,
                                               barrierDismissible: false,
                                               builder: (BuildContext context) {
-                                                return Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                );
+                                                ctx = context;
+                                    return new WillPopScope(
+
+                                      onWillPop: _onBackPressed,
+                                      child: Center(
+                                      child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                                child: Center(
+                                                  child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
+                                       ))) );
                                               });
-                                          await createMeeting();
+                                          createMeeting();
                                         
-                                         // Navigator.pop(context);
-                                         /* showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("Meeting has been Created",
-                  
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        
-
-//                         Navigator.pop(context);
-
-                       })
-                     ],
-                   );
-                 }
-
-               );*/
-
-                                          
-                                          // Navigator.pop(context);
+                                      
                                         }
                                       },
                                       textColor: Colors.white,

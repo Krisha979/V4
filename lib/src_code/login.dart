@@ -275,10 +275,17 @@ class LoginPage extends StatefulWidget{
                                   child:Column(
                                         children: <Widget>[
                                           Text(message,textWidthBasis: TextWidthBasis.parent),
-                                          CircularProgressIndicator(
-                                      strokeWidth: 3.0,
-                                      backgroundColor: Colors.lightBlue,
-                                  ),
+                                         Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: Text("Logging In..."),

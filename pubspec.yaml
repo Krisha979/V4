@@ -27,6 +27,7 @@ dependencies:
   flutter_secure_storage: ^3.3.1
   file_picker: 
   flutter_datetime_picker: 1.2.5
+  angles: ^1.2.1
   dio: 
   multi_image_picker: 
   carousel_pro: ^1.0.0
