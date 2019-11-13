@@ -35,7 +35,7 @@ String _selectedvalue;
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
-   Navigator.pop(ctx);
+
   
      
 
@@ -60,7 +60,45 @@ String _selectedvalue;
           body: jsonbody);
           if(data.statusCode == 500){
 
+            Navigator.pop(context);
+            Navigator.pop(context);
           }
+
+      if (data.statusCode == 204){
+        showGeneralDialog(
+            barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
+            transitionBuilder: (context, a1, a2, widget) {
+              return Center(
+                child: Container(
+                  height: 100.0 * a1.value,  // USE PROVIDED ANIMATION
+                  width: 100.0 * a1.value,
+                  color: Colors.transparent,
+                  child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
+
+
+                ),
+              );
+            },
+            transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
+            barrierDismissible: true,
+            barrierLabel: 'LABEL',
+            context: context,
+            pageBuilder: (context, animation1, animation2) {
+              return Text('PAGE BUILDER');
+
+
+            });
+        Future.delayed(const Duration(milliseconds:1000),(){
+
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+
+
+        });
+
+
+      }
     } catch (e) {
       Text("Server error!!");
     }
@@ -308,42 +346,27 @@ String _selectedvalue;
                                               barrierDismissible: false,
                                                 context: context,
                                                 builder: (BuildContext context) {
-                                                  return Center(
-                                                    child: Theme(
-                                        data: new ThemeData(
-                                          hintColor: Colors.white,
-                                        ),
-                                       child: CircularProgressIndicator(
-
-                                            strokeWidth: 3.0,
-                                            backgroundColor: Colors.white
-                                        ),
-
-                                      ),
-                                                  );
                                                      ctx = context;
                                     return new WillPopScope(
 
                                       onWillPop: _onBackPressed,
                                       child: Center(
                                       child: Theme(
-                                        data: new ThemeData(
+                                                         data: new ThemeData(
                                           hintColor: Colors.white,
                                         ),
 
                                                   child: Center(
                                                     child:
-                                                        CircularProgressIndicator(),
+                                                        CircularProgressIndicator(
+                                                            strokeWidth: 3.0,
+                                                            backgroundColor: Colors.white
+                                                        ),
                                         ) ) )  );
                                                 });
                                             editData();
 
-                                            Navigator.pop(context, () {
-                                              setState(() {});
-                                            });
-                                            Navigator.pop(context, () {
-                                              setState(() {});
-                                            });
+
                                           },
                             textColor: Colors.white,
                             padding: const EdgeInsets.all(0.0),
