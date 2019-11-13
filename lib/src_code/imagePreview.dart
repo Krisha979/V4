@@ -9,6 +9,7 @@ import 'package:async/async.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
+import 'package:snbiz/src_code/page.dart';
 //import 'package:snbiz/src_code/profile.dart' as prefix0;
 import 'package:snbiz/src_code/static.dart';
 
@@ -27,6 +28,7 @@ class PreviewImage extends StatefulWidget {
 class PreviewImageState extends State<PreviewImage> {
 
  int counter = 0;
+ var ctx;
  bool bottondisable;
 
  @override
@@ -70,7 +72,7 @@ Future<bool> _checkConnectivity()  async{
     var request = new http.MultipartRequest("POST", uri);
 
 
-    
+
     for (File file in docs) {
       // open a bytestream
       var stream = new http.ByteStream(DelegatingStream.typed(file.openRead()));
@@ -88,21 +90,26 @@ Future<bool> _checkConnectivity()  async{
     var response = await request.send();
    // print(response.statusCode );
         responsecode = response.statusCode;
-        
-      
-    
-    
+
+
+
+
     // listen for response
-    response.stream.transform(utf8.decoder).listen((value) { 
-      print(value);  
-    }); 
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+    });
     
   }
 
-  
 
 
 
+ Future<bool> _onBackPressed() async {
+   Navigator.pop(ctx);
+   Navigator.pop(ctx);
+   // Your back press code here...
+   //CommonUtils.showToast(context, "Back presses");
+ }
 
     // 2. compress file and get file.
     Future<File> testCompressAndGetFile(File file, String targetPath) async {
@@ -175,18 +182,26 @@ Future<bool> _checkConnectivity()  async{
                               if(con == true){
                                     showDialog(
                                     context: context,
+
                                     barrierDismissible: false,
                                     builder: (BuildContext context) {
-                                    return Center(
-                                    child: Theme(
-                                      data: new ThemeData(
-                                        hintColor: Colors.white,
+                                      ctx = context;
+                                    return new WillPopScope(
+
+                                      onWillPop: _onBackPressed,
+                                      child: Center(
+                                      child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
                                       ),
-                                     child: CircularProgressIndicator(
-                                         strokeWidth: 3.0,
-                                          backgroundColor: Colors.white
                                       ),
-                                    ),
                                     );
                                     });
 
@@ -221,21 +236,17 @@ Future<bool> _checkConnectivity()  async{
                  builder: (BuildContext context){
                    return AlertDialog(
                      title: Text("Pleasse, Check your internet connection",
-                  
+
                      style: TextStyle(color:Color(0xFFA19F9F,),
                      fontSize: 15,
                      fontWeight: FontWeight.normal),),
                      actions: <Widget>[
                        FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        
+                       onPressed: ()
+                       {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        
-
-//                         Navigator.pop(context);
-
                        })
                      ],
                    );
