@@ -7,9 +7,11 @@ import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/DashBoardData.dart';
 import 'package:snbiz/src_code/createmeeting.dart';
 import 'package:snbiz/src_code/invoice.dart';
+import 'package:snbiz/src_code/page.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
@@ -44,8 +46,9 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   static Size size;
   DashBoardData data;
   String uploadeddate,meetingtime,lastinvoicedate;
-  
-  
+  final RefreshController _refreshController = RefreshController();
+
+
   Future<DashBoardData> getData() async{      
     try{           
       http.Response response = await http.get(
@@ -75,7 +78,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         StaticValue.lastInvoiceDate = lastinvoicedate;
         StaticValue.uploadsToday = data.uploadsToday.toString();
         StaticValue.uploadedDate = uploadeddate;
-
 
 
       });
@@ -143,10 +145,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-           Size size = MediaQuery.of(context).size;
-
+          Size size = MediaQuery.of(context).size;
           return Dialog(
-           
             child: Container(
               height: size.height/3.4,
              width: size.width/1.2,
@@ -700,188 +700,208 @@ final carousel1 = CarouselSlider(
     
   @override
 
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     Size size = MediaQuery.of(context).size;
     //double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-           color: Color(0XFFF4EAEA),
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white),
-                child: Column(
-                  children: <Widget>[
-                    new Image(
-                        image: new AssetImage("assets/bannerpicturehome.jpg"),
-                        height: size.height / 4.8,
-                        fit: BoxFit.cover,
-                        width: size.width),
-                  ],
-                ),
-              ),
-              Container(
-                //color: Colors.black,
 
-                child: Wrap(children: <Widget>[
-                  Container(
-                    height: size.height / 2.27,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white),
-                    margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                    // color: Colors.white,
-                    padding: EdgeInsets.fromLTRB(30, 30, 30, 28),
-                    //color: Colors.black,
-                    // width: size.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                InkWell(
-                                  splashColor: Colors.red,
-                                  onTap: () {
-                                     Navigator.push(context, CupertinoPageRoute(builder: (context) => TaskPage()));
-                                  },
-                                  child: Image(
-                                    image: new AssetImage("assets/snbiztasks.png"),
-                                    height: size.height / 12,
-                                  ),
-                                ),
-                                
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Tasks",style: TextStyle(fontSize: 12)),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: <Widget>[
-                                InkWell(
-                                  splashColor: Colors.red,
-                                  onTap: () {
-                                     Navigator.push(context, CupertinoPageRoute(builder: (context) => Invoice()));
-                                  },
-                                  child: Image(
-                                    image: new AssetImage("assets/snbizinvoice.png"),
-                                    height: size.height / 12,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Invoice",style: TextStyle(fontSize: 12)),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: <Widget>[
-                                InkWell(
-                                  splashColor: Colors.red,
-                                  onTap: () {
-                                     Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents()));
-                                  },
-                                  child: Image(
-                                    image:
-                                        new AssetImage("assets/snbizcircledocument.png"),
-                                    height: size.height / 12,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Documents",style: TextStyle(fontSize: 12)),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
+       body: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        onRefresh: () async {
+      await Future.delayed(Duration(seconds: 2));
+      setState(() async{
+        await getData();
+        _refreshController.refreshCompleted();
+        listwidget();
 
-                        //  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                        Divider(
-                          color: Colors.grey,
-                          height: 50.0,
-                        ),
+     //   Navigator.pushReplacement(context,  MaterialPageRoute(builder: (BuildContext context) { return MainPage(); }));
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                InkWell(
-                                  splashColor: Colors.red,
-                                  onTap: () {
-                                     Navigator.push(context, CupertinoPageRoute(builder: (context) => Create()));
-                                  },
-                                  child: Image(
-                                    image: new AssetImage("assets/snbizmeeting.png"),
-                                    height: size.height / 12,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Set Meetings",style: TextStyle(fontSize: 12)),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: <Widget>[
-                                InkWell(
-                                  splashColor: Colors.red,
-                                  onTap: () {
-                                     addpopup();
+      });
 
-                                  },
-                                  child: Image(
-                                    image: new AssetImage("assets/snbizuploads.png"),
-                                    height: size.height / 12,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                  child: Text("Instant Upload", style: TextStyle(fontSize: 12),),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+
+
+    },
+         child: SingleChildScrollView(
+          child: Container(
+             color: Color(0XFFF4EAEA),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white),
+                  child: Column(
+                    children: <Widget>[
+                      new Image(
+                          image: new AssetImage("assets/bannerpicturehome.jpg"),
+                          height: size.height / 4.8,
+                          fit: BoxFit.cover,
+                          width: size.width),
+                    ],
                   ),
-                ]),
-              ),
-              GestureDetector(
-                onTap: () {}, // code hack do nothing
-                child: Wrap(
-                  children: <Widget>[
-                   
-                         Container(
-                           height: size.height/4.8,
-                        margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(0.0),
-                            child: carousel1),
-                      ),
-                    
-                  ],
                 ),
-              ),
-            ],
+                Container(
+                  //color: Colors.black,
+
+                  child: Wrap(children: <Widget>[
+                    Container(
+                      height: size.height / 2.27,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.white),
+                      margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                      // color: Colors.white,
+                      padding: EdgeInsets.fromLTRB(30, 30, 30, 28),
+                      //color: Colors.black,
+                      // width: size.width,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  InkWell(
+                                    splashColor: Colors.red,
+                                    onTap: () {
+                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => TaskPage()));
+                                    },
+                                    child: Image(
+                                      image: new AssetImage("assets/snbiztasks.png"),
+                                      height: size.height / 12,
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Text("Tasks",style: TextStyle(fontSize: 12)),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  InkWell(
+                                    splashColor: Colors.red,
+                                    onTap: () {
+                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => Invoice()));
+                                    },
+                                    child: Image(
+                                      image: new AssetImage("assets/snbizinvoice.png"),
+                                      height: size.height / 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Text("Invoice",style: TextStyle(fontSize: 12)),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  InkWell(
+                                    splashColor: Colors.red,
+                                    onTap: () {
+                                       Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents()));
+                                    },
+                                    child: Image(
+                                      image:
+                                          new AssetImage("assets/snbizcircledocument.png"),
+                                      height: size.height / 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Text("Documents",style: TextStyle(fontSize: 12)),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          //  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                          Divider(
+                            color: Colors.grey,
+                            height: 50.0,
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  InkWell(
+                                    splashColor: Colors.red,
+                                    onTap: () {
+                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => Create()));
+                                    },
+                                    child: Image(
+                                      image: new AssetImage("assets/snbizmeeting.png"),
+                                      height: size.height / 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Text("Set Meetings",style: TextStyle(fontSize: 12)),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  InkWell(
+                                    splashColor: Colors.red,
+                                    onTap: () {
+                                       addpopup();
+
+                                    },
+                                    child: Image(
+                                      image: new AssetImage("assets/snbizuploads.png"),
+                                      height: size.height / 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Text("Instant Upload", style: TextStyle(fontSize: 12),),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ),
+                GestureDetector(
+                  onTap: () {}, // code hack do nothing
+                  child: Wrap(
+                    children: <Widget>[
+
+                           Container(
+                             height: size.height/4.8,
+                          margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: carousel1),
+                        ),
+
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
       ),
+       ),
     );
     
   }

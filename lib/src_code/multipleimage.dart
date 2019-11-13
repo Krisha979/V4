@@ -25,7 +25,11 @@ class MultipleImageState extends State<MultipleImage> {
   MultipleImageState(this.url);
   List<String> names;
 
+
+var responsecode;
   Future<void> upload(Map<String, String> files) async {
+
+    
     
     List<File> docs = new List();
     if (files.isNotEmpty) {
@@ -33,13 +37,14 @@ class MultipleImageState extends State<MultipleImage> {
     }
 
     // string to uri
-    var uri = Uri.parse(StaticValue.baseUrl +
-        "api/UploadDocuments?Orgid=" +
-        StaticValue.orgId.toString() +
-        "&OrgName=" +
-        StaticValue.orgName);
+    var uri = Uri.parse(StaticValue.baseUrl + "api/UploadDocuments?Orgid=" + StaticValue.orgId.toString() +  "&OrgName=" + StaticValue.orgName);
+
+
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
+    
+    
+
     for (File file in docs) {
       // open a bytestream
       var stream = new http.ByteStream(DelegatingStream.typed(file.openRead()));
@@ -55,11 +60,28 @@ class MultipleImageState extends State<MultipleImage> {
     }
     // send
     var response = await request.send();
-    print(response.statusCode);
+    //print(response.statusCode);
+     responsecode = response.statusCode;
+
+     
+
+    
+
+     
+
     // listen for response
     response.stream.transform(utf8.decoder).listen((value) {
       print(value);
     });
+  }
+  var ctx;
+
+
+  Future<bool> _onBackPressed() async {
+    Navigator.pop(ctx);
+    Navigator.pop(ctx);
+    // Your back press code here...
+    //CommonUtils.showToast(context, "Back presses");
   }
 
 Future<bool> checkConnectivity()  async{
@@ -202,16 +224,57 @@ Future<bool> checkConnectivity()  async{
                               context: context,
                               barrierDismissible: false,
                               builder: (BuildContext context) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
+                                ctx = context;
+                                return new WillPopScope(
+
+                                  onWillPop: _onBackPressed,
+
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
                                 );
                               });
                               bool con = await checkConnectivity();
                               if(con == true){
                                   await upload(url);
                                 Navigator.pop(context);
-                                Navigator.pop(context);
+                               
+
+                                 if(responsecode==200){
+                                                showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Image has been uploaded",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        
+                        Navigator.pop(context);
+                       
+                         Navigator.pop(context);
+                       
+                        
+                       
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+
+       }
+
                               }
+
+               
+                             
                               else{
                                 showDialog(
                  context: context,
@@ -228,6 +291,7 @@ Future<bool> checkConnectivity()  async{
                        onPressed: (){
                         Navigator.pop(context);
                         Navigator.pop(context);
+                         Navigator.pop(context);
                        })
                      ],
                    );
