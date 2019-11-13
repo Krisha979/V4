@@ -100,6 +100,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
       vibrationPattern[0] = 200;
     }
 
+
       var android = new AndroidNotificationDetails('channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
       priority: Priority.High,importance: Importance.Max
           ,vibrationPattern: vibrationPattern
