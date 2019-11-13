@@ -31,7 +31,17 @@ class MeetingDetailState extends State<MeetingDetail> {
   List<MeetingStatus> statuslist = [];
 String _selectedvalue;
   int _statusid;
- 
+  var ctx;
+  Future<bool> _onBackPressed() async {
+   Navigator.pop(ctx);
+   Navigator.pop(ctx);
+   Navigator.pop(ctx);
+  
+     
+
+   // Your back press code here...
+   //CommonUtils.showToast(context, "Back presses");
+ }
 
  Future<void> editData() async {
     details.statusId = _statusid;
@@ -297,12 +307,22 @@ String _selectedvalue;
                                             showDialog(
                                                 context: context,
                                                 builder: (BuildContext context) {
-                                                  return Center(
+                                                     ctx = context;
+                                    return new WillPopScope(
+
+                                      onWillPop: _onBackPressed,
+                                      child: Center(
+                                      child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+
+                                                  child: Center(
                                                     child:
                                                         CircularProgressIndicator(),
-                                                  );
+                                        ) ) )  );
                                                 });
-                                            await editData();
+                                            editData();
 
                                             Navigator.pop(context, () {
                                               setState(() {});

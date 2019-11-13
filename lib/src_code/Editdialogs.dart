@@ -16,6 +16,7 @@ class AddEditDialog extends StatefulWidget {
 }
 
 class AddEditDialogState extends State<AddEditDialog> {
+   var ctx;
   bool _validate = false;
   DateTime meetingdate;
   final MeetingInfo details;
@@ -79,10 +80,46 @@ class AddEditDialogState extends State<AddEditDialog> {
                );
 
           }
-    } catch (e) {
-      Text("Server error!!");
-    }
+    } catch (e) 
+    {
+      // showDialog(
+      //            context: context,
+      //            barrierDismissible: false,
+      //            builder: (BuildContext context){
+      //              return AlertDialog(
+      //                title: Text("Server error!!",
+                  
+      //                style: TextStyle(color:Color(0xFFA19F9F,),
+      //                fontSize: 15,
+      //                fontWeight: FontWeight.normal),),
+      //                actions: <Widget>[
+      //                  FlatButton(child: Text("OK"),
+      //                  onPressed: (){
+                      
+      //                   Navigator.pop(context);
+      //                   Navigator.pop(context);
+                       
+
+      //                  })
+      //                ],
+      //              );
+      //            }
+
+      //          );
+
+    } 
   }
+
+  Future<bool> _onBackPressed() async {
+   Navigator.pop(ctx);
+   Navigator.pop(ctx);
+   Navigator.pop(ctx);
+  
+     
+
+   // Your back press code here...
+   //CommonUtils.showToast(context, "Back presses");
+ }
 
   @override
   void initState() {
@@ -363,34 +400,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                         onPressed: () async {
                                           if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
                                           meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty){
-
-
-                                            /*showDialog(
-                                              context: context,
-                                               barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("",
-                  
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        
-                        Navigator.pop(context);
-
-                       })
-                     ],
-                   );
-                 }
-
-                                            );*/
-
-
-                                      
-                 }
+                                           }
 
                  else if (details.meetingTime == meetingTime.text && details.location == meetingLocation.text
                   && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){
@@ -401,17 +411,21 @@ class AddEditDialogState extends State<AddEditDialog> {
                                               context: context,
                                               barrierDismissible:false ,
                                               builder: (BuildContext context) {
-                                                return Center(
+                                                 ctx = context;
+                                    return new WillPopScope(
+
+                                      onWillPop: _onBackPressed,
+                                      child: Center(
+                                      child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                                child: Center(
                                                   child:
                                                       CircularProgressIndicator(),
-                                                );
+                                        )))  );
                                               });
-                                          await editData();
-                                          // Navigator.pop(context);
-                                          // Navigator.pop(context);
-                                          // Navigator.pop(context);
-                                         
-                                         
+                                           editData();
                                           }
 
                                         },
