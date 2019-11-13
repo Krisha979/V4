@@ -1,5 +1,7 @@
 
 
+import 'dart:typed_data';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,8 +82,27 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
     // }
 
     showNotification(Map<String,dynamic> message) async {
+      var vibrationPattern;
+    if(message.toString().contains("due")){
+      vibrationPattern= new Int64List(10);
+      vibrationPattern[0] = 500;
+      vibrationPattern[1] = 1000;
+      vibrationPattern[2] = 500;
+      vibrationPattern[3] = 1000;
+      vibrationPattern[4] = 500;
+      vibrationPattern[5] = 1000;
+      vibrationPattern[6] = 500;
+      vibrationPattern[7] = 200;
+      vibrationPattern[8] = 100;
+      vibrationPattern[9] = 2000;
+    }else{
+      vibrationPattern= new Int64List(10);
+      vibrationPattern[0] = 200;
+    }
+
       var android = new AndroidNotificationDetails('channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
       priority: Priority.High,importance: Importance.Max
+          ,vibrationPattern: vibrationPattern
       );
       var iOS = new IOSNotificationDetails();
       var platform = new NotificationDetails(android, iOS);
@@ -100,6 +121,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
      _fcm.configure(
           onMessage: (Map<String, dynamic> message) async {
             print("onMessage: $message");
+
             showNotification(message);
         },
         onLaunch: (Map<String, dynamic> message) async {
