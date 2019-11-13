@@ -64,7 +64,7 @@ class _CreateState extends State<Create> {
                         
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        Navigator.pop(context);
+                       
 
                        })
                      ],
@@ -140,7 +140,7 @@ class _CreateState extends State<Create> {
                         
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        Navigator.pop(context);
+                     
                         
 
 //                         Navigator.pop(context);
@@ -158,7 +158,7 @@ class _CreateState extends State<Create> {
   }}
 
 
-
+ 
 
 
 Future<bool> _checkConnectivity()  async{

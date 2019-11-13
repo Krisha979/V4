@@ -49,8 +49,35 @@ class AddEditDialogState extends State<AddEditDialog> {
             'Accept': 'application/json'
           },
           body: jsonbody);
-          if(data.statusCode == 500){
+          // if(data.statusCode == 500){
             
+          // }
+          if(data.statusCode == 204){
+              showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Meeting has been Edited",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){               
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                         Navigator.pop(context);
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+
           }
     } catch (e) {
       Text("Server error!!");
@@ -348,9 +375,9 @@ class AddEditDialogState extends State<AddEditDialog> {
                                                 );
                                               });
                                           await editData();
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
+                                          // Navigator.pop(context);
+                                          // Navigator.pop(context);
+                                          // Navigator.pop(context);
                                          
                                          
                                           }
