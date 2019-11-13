@@ -291,7 +291,17 @@ class MeetingState extends State<Meeting> {
                       case ConnectionState.active:
                       case ConnectionState.waiting:
                         return Container(
-                            child: Center(child: CircularProgressIndicator()));
+                            child:  Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),);
                       case ConnectionState.done:
                         print(snapshot.data);
                         if (!snapshot.hasData) {

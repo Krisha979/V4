@@ -90,33 +90,38 @@ class _CreateState extends State<Create> {
       print(response);
 
       if (response.statusCode == 201){
-        showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("Meeting has been Created",
+        showGeneralDialog(
+                barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
+                transitionBuilder: (context, a1, a2, widget) {
+                  return Center(
+                    child: Container(
+                      height: 100.0 * a1.value,  // USE PROVIDED ANIMATION
+                      width: 100.0 * a1.value,
+                      color: Colors.transparent,
+                      child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
+                      
+
+                    ),
+                  );
+                },
+                transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
+                barrierDismissible: true,
+                barrierLabel: 'LABEL',
+                context: context,
+                pageBuilder: (context, animation1, animation2) {
+                  return Text('PAGE BUILDER');
+
                   
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        
-
-//                         Navigator.pop(context);
-
-                       })
-                     ],
-                   );
-                 }
-
-               );
+                });
+                 Future.delayed(const Duration(milliseconds:1000),(){
+                   setState(() {
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                   });
+               
+                 });
+               
 
       }
 
@@ -403,8 +408,17 @@ Future<bool> _checkConnectivity()  async{
                                               barrierDismissible: false,
                                               builder: (BuildContext context) {
                                                 return Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
+                                                  child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
                                                 );
                                               });
                                           await createMeeting();

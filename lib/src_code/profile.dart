@@ -378,7 +378,17 @@ class ProfileState extends State<Profile> {
                                       barrierDismissible: false,
                                       builder: (BuildContext context) {
                                         return Center(
-                                          child: CircularProgressIndicator(),
+                                          child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
                                         );
                                       });
                                   bool success = await UpdateDetails();
@@ -423,8 +433,20 @@ class ProfileState extends State<Profile> {
             backgroundColor: const Color(0xFF9C38FF),
           ),
           body: Container(
-            child: Center(child: CircularProgressIndicator()),
-          ));
+            child:Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: Center(
+                                         child: CircularProgressIndicator(
+
+                                              strokeWidth: 3.0,
+                                              backgroundColor: Colors.white
+                                          ),
+                                       ),
+
+                                      ),),
+          );
     }
   }
 

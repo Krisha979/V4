@@ -222,7 +222,17 @@ catch(e){
                     return Container(
                   child: Center(
 
-                  child: CircularProgressIndicator()
+                  child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
 
                   )
                 );

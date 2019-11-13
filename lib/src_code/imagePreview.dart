@@ -9,23 +9,21 @@ import 'package:async/async.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-import 'package:snbiz/src_code/page.dart';
-//import 'package:snbiz/src_code/profile.dart' as prefix0;
 import 'package:snbiz/src_code/static.dart';
-
-//import 'package:snbiz/Model_code/File_type.dart';
-//import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-
 class PreviewImage extends StatefulWidget {
-  //final String imageFile;
-
   final String url;
-  const PreviewImage({Key key, this.url}) : super(key: key);
+
+  
+  const PreviewImage({Key key, this.url,}) : super(key: key);
+  
+
+
   @override
   State createState() => PreviewImageState(url);
 }
 
-class PreviewImageState extends State<PreviewImage> {
+class PreviewImageState extends State<PreviewImage>{
+  
 
  int counter = 0;
  var ctx;
@@ -43,6 +41,11 @@ void _incrementCounter(){
     counter++;
   });
 }
+
+
+
+
+
 
 
   var responsecode;
@@ -90,6 +93,8 @@ Future<bool> _checkConnectivity()  async{
     var response = await request.send();
    // print(response.statusCode );
         responsecode = response.statusCode;
+
+
 
 
 
@@ -210,24 +215,73 @@ Future<bool> _checkConnectivity()  async{
                                     
                                     if(responsecode==200){
 
-                                        showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                    
-                     actions: <Widget>[
-                      Center(
-                        child: Image(image: AssetImage("assets/acceptedtick-web.png",
-                        ), height: 100, width: 100,),
-                      ),
-                     ],
-                   );
-                 }
+                                      showGeneralDialog(
+                barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
+                transitionBuilder: (context, a1, a2, widget) {
+                  return Center(
+                    child: Container(
+                      height: 100.0 * a1.value,  // USE PROVIDED ANIMATION
+                      width: 100.0 * a1.value,
+                      color: Colors.transparent,
+                      child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
+                      
 
-               );
+                    ),
+                  );
+                },
+                transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
+                barrierDismissible: true,
+                barrierLabel: 'LABEL',
+                context: context,
+                pageBuilder: (context, animation1, animation2) {
+                  return Text('PAGE BUILDER');
 
+                  
+                });
+                 Future.delayed(const Duration(milliseconds:1000),(){
+                   setState(() {
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                   });
+               
+                 });
+               
+
+
+                                      
+    //                 showGeneralDialog(
+    // barrierColor: Colors.black.withOpacity(0.5),
+    // transitionBuilder: (context, a1, a2, widget) {
+    //   return Transform.scale(
+    //     scale: a1.value,
+    //     child: Opacity(
+    //       opacity: a1.value,
+    //       child: AlertDialog(
+    //         shape: OutlineInputBorder(
+    //             borderRadius: BorderRadius.circular(16.0)),
+    //         title: Image(
+    //           image: AssetImage("assets/acceptedtick-web.png"), height: 100, width: 100,
+    //         )
+    //       ),
+    //     ),
+    //   );
+    // },
+    // transitionDuration: Duration(milliseconds: 1000),
+    // barrierDismissible: false,
+    // barrierLabel: '',
+    // context: context,
+    // pageBuilder: (context, animation1, animation2) {
+
+    // });
                                     }
+                      
+                
+                 
+
+               
+
+                                    
 
                                     else {
                                         showDialog(

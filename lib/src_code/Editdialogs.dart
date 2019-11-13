@@ -375,8 +375,17 @@ class AddEditDialogState extends State<AddEditDialog> {
                                               barrierDismissible:false ,
                                               builder: (BuildContext context) {
                                                 return Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
+                                                   child: Theme(
+                                        data: new ThemeData(
+                                          hintColor: Colors.white,
+                                        ),
+                                       child: CircularProgressIndicator(
+
+                                            strokeWidth: 3.0,
+                                            backgroundColor: Colors.white
+                                        ),
+
+                                      ),
                                                 );
                                               });
                                           await editData();
