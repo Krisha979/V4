@@ -336,8 +336,40 @@ class AddEditDialogState extends State<AddEditDialog> {
                                         onPressed: () async {
                                           if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
                                           meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty){
-                                          }
-                                          else{
+
+
+                                            /*showDialog(
+                                              context: context,
+                                               barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        
+                        Navigator.pop(context);
+
+                       })
+                     ],
+                   );
+                 }
+
+                                            );*/
+
+
+                                      
+                 }
+
+                 else if (details.meetingTime == meetingTime.text && details.location == meetingLocation.text
+                  && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){
+
+                 }
+                  else{
                                           showDialog(
                                               context: context,
                                               barrierDismissible:false ,
@@ -349,8 +381,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                               });
                                           await editData();
                                           Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
+                                         
                                          
                                          
                                           }

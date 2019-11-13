@@ -200,20 +200,12 @@ Future<bool> _checkConnectivity()  async{
                  barrierDismissible: false,
                  builder: (BuildContext context){
                    return AlertDialog(
-                     title: Text("Image has been uploaded",
-                  
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
+                    
                      actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      
-
-                       })
+                      Center(
+                        child: Image(image: AssetImage("assets/acceptedtick-web.png",
+                        ), height: 100, width: 100,),
+                      ),
                      ],
                    );
                  }
