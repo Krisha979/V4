@@ -120,13 +120,15 @@ catch(e){
                            child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Column(
-                                 mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                 Text(details.childTask[index].taskName, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
-                                
-                                ],
+                              Flexible(
+                                                              child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                   Text(details.childTask[index].taskName, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
+                                    Text(statusname,style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)
+                                  ],
 
+                                ),
                               ),
                         
                              ClipOval(
