@@ -341,6 +341,7 @@ class LoginPage extends StatefulWidget{
                                           child: new Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
                                       ),
                                     )
+
                                   ),
                                   obscureText: _obscureText,
                                 ),
