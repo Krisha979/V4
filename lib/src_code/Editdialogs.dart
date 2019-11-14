@@ -320,16 +320,22 @@ class AddEditDialogState extends State<AddEditDialog> {
                                   onShowPicker: (context, currentValue) async {
                                       final date = await showDatePicker(
                                           context: context,
-                                          firstDate: DateTime(1900),
+                                          firstDate: DateTime.now(),
+                                          
                                           initialDate:
                                               currentValue ?? DateTime.now(),
                                           lastDate: DateTime(2100));
                                       if (date != null) {
                                         final time = await showTimePicker(
                                           context: context,
-                                          initialTime: TimeOfDay.fromDateTime(
-                                              currentValue ?? DateTime.now()),
+                                          
+                                          initialTime: TimeOfDay.now(),
+                                          
+                                          // initialTime: TimeOfDay.fromDateTime(
+                                          //     currentValue ?? DateTime.now()),
                                         );
+
+                                        
                                         return DateTimeField.combine(date, time);
                                        
                                       } else {
@@ -415,6 +421,30 @@ class AddEditDialogState extends State<AddEditDialog> {
                   && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){
 
                  }
+                 else if (DateTime.now().isAfter(DateTime.parse(meetingTime.text))){
+                    showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("please check your date time",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        Navigator.pop(context);
+                       
+                       })
+                     ],
+                   );
+
+                 }
+                                );
+                 }
+                 
                   else{
                                           showDialog(
                                               context: context,

@@ -299,7 +299,7 @@ class LoginPage extends StatefulWidget{
                             children: <Widget>[
                               SizedBox(),
                               TextFormField(
-                                enableInteractiveSelection: false,
+                               // enableInteractiveSelection: false,
                                 controller: emailcontroller,
                                 validator: (value) {
                                 if (value.isEmpty) {

@@ -411,7 +411,30 @@ Future<bool> _checkConnectivity()  async{
                                                       "Please enter all the values."),
                                                 );
                                               });
-                                        } else {
+                                        }
+                    else if (DateTime.now().isAfter(DateTime.parse(meetingTime.text))){
+                    showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("please check your date time",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                        Navigator.pop(context);
+                       
+                       })
+                     ],
+                   );
+
+                 }
+                                );
+                 } else {
                                           showDialog(
                                               context: context,
                                               barrierDismissible: false,
