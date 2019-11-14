@@ -230,33 +230,26 @@ class LoginPage extends StatefulWidget{
                           children: <Widget>[
                             new Image(
                               image: new AssetImage("assets/logo.jpg"),
-                              height: 180.0,
-                              width: 180.0,
+                              height: 120.0,
+                              width: 120.0,
                             ),
 
                           Padding(
                             padding: EdgeInsets.only(top: 4.0),
                           ),
                           Text(
-                           "SN Business Solutions", 
+                           "Log In", 
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white,
-                              fontSize: 15.0
+                              fontSize: 30.0
                               ),
                           ),
 
-                          Text(
-                            "Pvt. Ltd",
-                            style: TextStyle(
-                              fontWeight:FontWeight.w400,
-                              color: Colors.white,
-                              fontSize: 15.0
-                            ),
-                          ),
+                          
                               
                           Padding(
-                            padding: EdgeInsets.only(top: 20.0),
+                            padding: EdgeInsets.only(top: 40.0),
                           ),
                                 
                           Form(
@@ -264,11 +257,11 @@ class LoginPage extends StatefulWidget{
                             child:  Wrap(
                               children:<Widget>[
                                 new Container(
-                                  margin: EdgeInsets.all(5.0),
-                                  padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-                                  width: size.width * 0.85,
+                                  margin: EdgeInsets.only(left: 40, right: 40, top: 40),
+                                 // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
+                                //  width: size.width * 0.85,
                                   decoration: new BoxDecoration(
-                                    color: Colors.grey[300],
+                                  // color: Colors.grey[100].withOpacity(0.2),
                                     borderRadius: new BorderRadius.all(Radius.circular(10.0),)      
                                   ),                                      
                                   child: isLoading? Center(
@@ -297,31 +290,54 @@ class LoginPage extends StatefulWidget{
                                 new Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                SizedBox(),
-                                TextFormField(
-                                 enableInteractiveSelection: false,
-                                  controller: emailcontroller,
-                                  validator: (value) {
-                                  if (value.isEmpty) {
-                                  return 'Please enter some text';
-                                  }
-                                  if(!value.contains("@")){
-                                  return 'please enter valid email';
-                                  }
-                                  return null;
-                                  },
-                                  decoration: InputDecoration(
-                                    labelText: 'Username',
-                                    prefixIcon: const Icon(
-                                      Icons.email,
-                                      color: Colors.lightBlue, 
-                                      size: 20.0,
-                                    ),   
+                
+                                Theme(
+                                 data: new ThemeData(
+                                   hintColor: Colors.white
+                                 ),
+                                                                  child: TextFormField(
+                                    style: TextStyle(color: Colors.white, fontSize: 15),
+                                    
+                                   enableInteractiveSelection: false,
+                                    controller: emailcontroller,
+                                    validator: (value,) {
+                                    if (value.isEmpty) {
+                                    return 'Please enter some text';
+                                    }
+                                    if(!value.contains("@")){
+                                    return 'please enter valid email';
+                                    }
+                                    return null;
+                                    },
+                                    maxLines: 1,
+                                    decoration: InputDecoration(
+                                    
+                                      
+                                      contentPadding: EdgeInsets.only(bottom: 10),
+                                      enabledBorder: UnderlineInputBorder(      
+                      borderSide: BorderSide(color: Colors.white),   
+                      ),  
+              focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                   ),  
+                                      
+                                      labelText: 'Username',  labelStyle: TextStyle(color: Colors.white, fontSize: 17),
+                                      prefixIcon: Padding(
+                                        padding: const EdgeInsets.only(left: 0, right: 20),
+                                        child: const Icon(
+                                          Icons.person,
+                                          
+                                          color: Colors.white, 
+                                          size: 20.0,
+                                        ),
+                                      ),   
+                                    ),
                                   ),
                                 ),
-
-                                SizedBox(),
                                 TextFormField(
+                                   style: TextStyle(color: Colors.white, fontSize: 15),
+                                   
+                                  
                                   controller: passwordcontroller,
                                     validator: (value) {
                                   if (value.isEmpty) {
@@ -331,59 +347,72 @@ class LoginPage extends StatefulWidget{
                                   return null;
                                   },
                                   decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(      
+                      borderSide: BorderSide(color: Colors.white),   
+                      ),  
+              focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                   ),  
                                     labelText: 'Password',
-                                    prefixIcon: const Icon(Icons.lock, color: Colors.lightBlue, size: 20.0),
+                                    labelStyle: TextStyle(color: Colors.white, fontSize: 17),
+                                    prefixIcon: Padding(
+                                       padding: const EdgeInsets.only(left: 0, right: 20),
+                                      child: const Icon(Icons.lock, color: Colors.white, size: 20.0),
+                                    ),
                                     suffixIcon: new GestureDetector(
                                       child: new FlatButton(
                                         onPressed: _toggle,
-                                          child: new Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+                                          child: new Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white,),
                                       ),
                                     )
                                   ),
                                   obscureText: _obscureText,
                                 ),
+                               
                                 Padding(
-                                  padding: EdgeInsets.only(top: 30.0),
-                                ),
-                                SizedBox(
-                                  child: FlatButton(
-                                    color: Colors.blue,
-                                    textColor: Colors.white,
-                                    disabledColor: Colors.grey,
-                                    disabledTextColor: Colors.black,
-                                    padding: EdgeInsets.all(9.0),
-                                    splashColor: Colors.blueAccent,
-                                    shape:RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0)
-                                    ),
-                                    
-                                    onPressed: () async {
-                                        if (_formKey.currentState.validate())
-                                         {
+                                  padding: const EdgeInsets.only(top: 80),
+                                  child: SizedBox(
+                                    height: 45,
+                                    width: 150,
+                                    child: FlatButton(
+                                      color: Colors.white,
+                                      textColor: Colors.black,
+                                      disabledColor: Colors.grey,
+                                      disabledTextColor: Colors.black,
+                                      padding: EdgeInsets.all(9.0),
+                                      splashColor: Colors.blueAccent,
+                                      shape:RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0)
+                                      ),
                                       
-                                            bool connection = await _checkConnectivity();
-                                            if(connection == true)
-                                            {
-                                                setState(() {
-                                                isLoading = true; 
-                                                });
-                                                
-                                                var useremail = emailcontroller.text;
-                                                var password = passwordcontroller.text;
-                                                  try{
-                                                      await storage.write(key: "Email", value: useremail);
-                                                      await storage.write(key: "Password", value: password);
-                                                }catch(e)
-                                                {
-                                                    print(e.toString());
-                                                }
-                                                await checkCredentials(useremail,password);
-                                            }  
-                                          }
-                                     },
-                                    child: Text("Sign in", 
-                                    style: TextStyle(color: Colors.white)),
-                                 ),
+                                      onPressed: () async {
+                                          if (_formKey.currentState.validate())
+                                           {
+                                        
+                                              bool connection = await _checkConnectivity();
+                                              if(connection == true)
+                                              {
+                                                  setState(() {
+                                                  isLoading = true; 
+                                                  });
+                                                  
+                                                  var useremail = emailcontroller.text;
+                                                  var password = passwordcontroller.text;
+                                                    try{
+                                                        await storage.write(key: "Email", value: useremail);
+                                                        await storage.write(key: "Password", value: password);
+                                                  }catch(e)
+                                                  {
+                                                      print(e.toString());
+                                                  }
+                                                  await checkCredentials(useremail,password);
+                                              }  
+                                            }
+                                       },
+                                      child: Text("Sign In", 
+                                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.normal)),
+                                   ),
+                                  ),
                                 ),   
                                 ]
                                 ),
