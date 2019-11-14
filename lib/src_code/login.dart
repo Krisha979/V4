@@ -235,7 +235,7 @@ class LoginPage extends StatefulWidget{
                           ),
 
                         Padding(
-                          padding: EdgeInsets.only(top: 5.0),
+                          padding: EdgeInsets.only(top: 4.0),
                         ),
                         Text(
                          "SN Business Solutions", 
