@@ -230,8 +230,8 @@ class LoginPage extends StatefulWidget{
                         children: <Widget>[
                           new Image(
                             image: new AssetImage("assets/logo.jpg"),
-                            height: 140.0,
-                            width: 160.0,
+                            height: 220.0,
+                            width: 220.0,
                           ),
 
                         Padding(
