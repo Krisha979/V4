@@ -164,7 +164,10 @@ String _selectedvalue;
                       },
                       fullscreenDialog: true));
 
-             }},child:Icon(Icons.edit, color: Colors.white)):  Container()
+             }},child:Padding(
+               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+               child: Icon(Icons.edit, color: Colors.white),
+             )):  Container()
          
           ],
         ),
