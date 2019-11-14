@@ -117,16 +117,16 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                              ): url.contains(".webp") 
                                           ? Image.network(details.documents[index].documentURL,
                                              fit: BoxFit.cover,
-                                             )
+                                             ): url.contains(".mp4")
+                                             ? Image(
+                        image: new AssetImage("assets/mp4-icon.jpg"),
+                        height: size.height / 10,
+                      )
                                              :  Image(
                         image: new AssetImage("assets/pdf.png"),
                         height: size.height / 10,
                       ),
-
-                                      
-                                        
-
-                                     )
+ )
                                     
                                         
                                       ]

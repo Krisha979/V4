@@ -131,25 +131,41 @@ String _selectedvalue;
           title: Text("Details",style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
             backgroundColor: const Color(0xFF9C38FF),
           actions: <Widget>[
-            InkWell(
-              onTap: () async {
-                if (StaticValue.orgId == details.createdBy || details.statusName == "Concluded") {
-                  Navigator.of(context).push(new CupertinoPageRoute<Null>(
-                      builder: (BuildContext context) {
-                        return new AddEditDialog(details: details);
+            // InkWell(
+            //   onTap: () async {
+            //     if (StaticValue.orgId == details.createdBy || details.statusName == "Concluded") {
+            //       Navigator.of(context).push(new CupertinoPageRoute<Null>(
+            //           builder: (BuildContext context) {
+            //             return new AddEditDialog(details: details);
+            //           },
+            //           fullscreenDialog: true));
+            //     } else  {
+      
+
+
+                   
+            //     }
+            //   },
+            //   child: Icon(
+            //     Icons.edit,
+            //     color: Colors.white,
+            //     size: 30.0,
+            //   ),
+
+
+            // ),
+             StaticValue.orgId == details.createdBy ? 
+             InkWell(onTap:() async{
+               if (StaticValue.orgId == details.createdBy || details.statusName == "Concluded"){
+
+               Navigator.of(context).push(new CupertinoPageRoute<Null>(
+                       builder: (BuildContext context) {
+                       return new AddEditDialog(details: details);
                       },
                       fullscreenDialog: true));
-                } else {
-      
-                    await _alert(context, "Information", "Sorry you cannot edit this meeting. Only meetings created by yourself can be edited.");
-                }
-              },
-              child: Icon(
-                Icons.edit,
-                color: Colors.white,
-                size: 30.0,
-              ),
-            ),
+
+             }},child:Icon(Icons.edit, color: Colors.white)):  Container()
+         
           ],
         ),
         body: SingleChildScrollView(
@@ -365,7 +381,6 @@ String _selectedvalue;
                                         ) ) )  );
                                                 });
                                             editData();
-
 
                                           },
                             textColor: Colors.white,
