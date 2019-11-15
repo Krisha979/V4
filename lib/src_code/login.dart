@@ -259,7 +259,7 @@ class LoginPage extends StatefulWidget{
                             child:  Wrap(
                               children:<Widget>[
                                 new Container(
-                                  margin: EdgeInsets.only(left: 40, right: 40, top: 40),
+                                  margin: EdgeInsets.only(left: 45, right: 45, top: 40),
                                  // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
                                 //  width: size.width * 0.85,
                                   decoration: new BoxDecoration(
@@ -269,7 +269,10 @@ class LoginPage extends StatefulWidget{
                                   child: isLoading? Center(
                                     child:Column(
                                           children: <Widget>[
-                                            Text(message,textWidthBasis: TextWidthBasis.parent),
+                                            Padding(
+                                              padding: const EdgeInsets.only(bottom: 15),
+                                              child: Text(message,textWidthBasis: TextWidthBasis.parent,style: TextStyle(color: Colors.white, fontSize: 15)),
+                                            ),
                                            Theme(
                                           data: new ThemeData(
                                             hintColor: Colors.white,
@@ -283,7 +286,8 @@ class LoginPage extends StatefulWidget{
                                         ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 20),
-                                      child: Text("Logging In..."),
+                                      child: Text("Logging In...",style: TextStyle(color: Colors.white, fontSize: 15)),
+
                                     )
                                        ],
                                     )
@@ -368,6 +372,7 @@ class LoginPage extends StatefulWidget{
                                           child: new Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white,),
                                       ),
                                     )
+
                                   ),
                                   obscureText: _obscureText,
                                 ),
@@ -375,8 +380,8 @@ class LoginPage extends StatefulWidget{
                                 Padding(
                                   padding: const EdgeInsets.only(top: 80),
                                   child: SizedBox(
-                                    height: 45,
-                                    width: 150,
+                                    height: 40,
+                                    width: 170,
                                     child: FlatButton(
                                       color: Colors.white,
                                       textColor: Colors.black,
@@ -413,7 +418,7 @@ class LoginPage extends StatefulWidget{
                                             }
                                        },
                                       child: Text("Sign In", 
-                                      style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.normal)),
+                                      style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal)),
                                    ),
                                   ),
                                 ),   
