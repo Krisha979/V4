@@ -49,8 +49,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final RefreshController _refreshController = RefreshController();
 
 
-  Future<DashBoardData> getData() async{      
-    try{           
+  Future<DashBoardData> getData() async{
+    try{
       http.Response response = await http.get(
       Uri.encodeFull(StaticValue.baseUrl + "api/OrganizationDashboard?Orgid=" + StaticValue.orgId.toString()),
       headers: {
@@ -60,8 +60,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       }
           );
            var jsonData = json.decode(response.body);
-  
-  
+
+
       var data1 = DashBoardData.fromJson(jsonData);
       if(data1 != null){
           setState(() {
@@ -81,7 +81,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
       });
-      
+
       }
      return data1;
 
@@ -124,7 +124,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
- 
+
  File imageFile;
 
  String img;
@@ -135,7 +135,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     img = imageFile.path;
     StaticValue.imgfile = imageFile;
     call();
-    
+
   }
 
   TextEditingController _controller = new TextEditingController();
@@ -193,11 +193,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                    image: new AssetImage("assets/file.png"),
                         height: size.height /8,
                         width: size.width/5),
-                        
+
                         onTap: (){
                                _openFileExplorer();
                                Navigator.pop(context);
-                               
+
 
                         },
                               ),
@@ -219,23 +219,23 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
                      openCamera(context);
-                    
+
 
                               Navigator.pop(context);
-                            
-                              
-                           
+
+
+
                                    },
-                                 
+
 
 
                           ),
                           Text("Camera")
                              ],
                            ),
-                          
 
-                         
+
+
 
                          /* FloatingActionButton(
                             //child: Icon(Icons.sd_storage),
@@ -253,14 +253,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                         ],
                         ),
-                  
+
                 ],
               ),
             ),
           );
-              
-          
-        
+
+
+
         },
       );
     }
@@ -268,7 +268,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     void image1(){
   if(_paths.isNotEmpty){
      findnames();
-    
+
   }
 }
   void findnames(){
@@ -295,8 +295,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
               color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
-                 Container( 
-                   height: size.height/4.8,          
+                 Container(
+                   height: size.height/4.8,
                           margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                    padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
@@ -314,11 +314,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                            child: Column(
                              mainAxisSize: MainAxisSize.min,
 
-                                children: <Widget>[ 
+                                children: <Widget>[
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              
+
                               Flexible(
                                                               child: Column(
                                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -331,7 +331,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     Text(StaticValue.upcomingMeetingsCount,
                                     style: TextStyle(color: Colors.black,
                                     fontWeight: FontWeight.bold),),
-                                    
+
                                     Text("Next Meeting",
                                     style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                     color: Color(0xFFA19F9F))),
@@ -340,14 +340,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     fontWeight: FontWeight.bold)),
 
                                   ],
-                                  
+
 
                                 ),
                               ),
                             Image(
                                       image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
-                            
+
                               height: size.height/12,
                                     ),
                             ],
@@ -374,11 +374,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                            child: Column(
                              mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[ 
+                                children: <Widget>[
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              
+
                               Flexible(
                                                               child: Column(
                                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -390,7 +390,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     Text(StaticValue.activeTaskcount,
                                     style: TextStyle(fontWeight: FontWeight.bold,
                                     ),),
-                                    
+
                                     Text("Latest Running Task",
                                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                     color: Color(0xFFA19F9F))),
@@ -399,7 +399,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     )
                                     ),
                                   ],
-                                  
+
 
                                 ),
                               ),
@@ -434,12 +434,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                            child: Column(
                              mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[ 
+                                children: <Widget>[
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              
+
                               Flexible(
                                                               child: Column(
                                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -458,10 +458,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     Text(StaticValue.uploadedDate.toString(),
                                     style: TextStyle(fontWeight: FontWeight.bold,
                                     color: Colors.black),),
-                                    
+
 
                                   ],
-                                  
+
 
                                 ),
                               ),
@@ -524,31 +524,28 @@ fmfamount = fmf.output.nonSymbol.toString();
 
                            child: Column(
                              mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[ 
+                                children: <Widget>[
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              
+
                               Column(
                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                          crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  Text("Total Payment Due",
+                                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                          color: Color(0xFFA19F9F))),
+                                  Text('Rs '+fmfamount,
+                                      style: TextStyle(fontWeight: FontWeight.bold,
+                                          color: Colors.black)),
                                   Text("Last Invoice date",
                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text(StaticValue.lastInvoiceDate,
                                   style: TextStyle(fontWeight: FontWeight.bold,
                                   color: Colors.black)),
-                                  
-                                  Text("Total Payment Due",
-                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))),
-                                  Text('Rs '+fmfamount,
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
                                 ],
-                                
-
                               ),
                             Image(
                                       image: new AssetImage("assets/snbizinvoice.png"),
@@ -589,7 +586,7 @@ fmfamount = fmf.output.nonSymbol.toString();
 //                widgets.add(widget);
 //        return widgets;
 //        }
-        
+
   }
 
 
@@ -609,7 +606,7 @@ fmfamount = fmf.output.nonSymbol.toString();
         setState(() {});
       });
     controller.forward();
-       
+
   }
 
 
@@ -650,10 +647,18 @@ fmfamount = fmf.output.nonSymbol.toString();
     });
 
       listwidget();
-   
-      
+
+
   }
 
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+
+    return result;
+  }
 
 final carousel1 = CarouselSlider(
   items: widgets,
@@ -669,7 +674,9 @@ final carousel1 = CarouselSlider(
    autoPlayAnimationDuration: Duration(milliseconds: 2000),
    pauseAutoPlayOnTouch: Duration(seconds: 4),
    scrollDirection: Axis.horizontal,
+
 );
+
 
 
   final carousel2 = Carousel(
@@ -706,8 +713,8 @@ final carousel1 = CarouselSlider(
     return time.toString();
   }
 
-  
-    
+
+  int _current=0;
   @override
 
   Widget build(BuildContext context)
@@ -790,7 +797,7 @@ final carousel1 = CarouselSlider(
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Tasks",style: TextStyle(fontSize: 12)),
+                                    child: Text("Tasks",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
                                   )
                                 ],
                               ),
@@ -809,7 +816,7 @@ final carousel1 = CarouselSlider(
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Invoice",style: TextStyle(fontSize: 12)),
+                                    child: Text("Invoice",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
                                   )
                                 ],
                               ),
@@ -829,7 +836,7 @@ final carousel1 = CarouselSlider(
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Documents",style: TextStyle(fontSize: 12)),
+                                    child: Text("Documents",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
                                   )
                                 ],
                               ),
@@ -860,7 +867,7 @@ final carousel1 = CarouselSlider(
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Set Meetings",style: TextStyle(fontSize: 12)),
+                                    child: Text("Set Meetings",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
                                   )
                                 ],
                               ),
@@ -880,7 +887,7 @@ final carousel1 = CarouselSlider(
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Instant Upload", style: TextStyle(fontSize: 12),),
+                                    child: Text("Instant Upload", style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54),),
                                   )
                                 ],
                               ),
@@ -901,7 +908,49 @@ final carousel1 = CarouselSlider(
                           margin: EdgeInsets.fromLTRB(2, 3, 2, 0),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(0.0),
-                              child: carousel1),
+                              child: Stack(
+                                children: <Widget>[CarouselSlider(
+                                  items: widgets,
+                                  height:400,
+                                  aspectRatio: 16/9,
+                                  viewportFraction: 0.99,
+                                  initialPage: 0,
+                                  enableInfiniteScroll: true,
+                                  reverse: false,
+                                  autoPlay: true,
+                                  enlargeCenterPage: false,
+                                  autoPlayInterval: Duration(seconds: 5),
+                                  autoPlayAnimationDuration: Duration(milliseconds: 2000),
+                                  pauseAutoPlayOnTouch: Duration(seconds: 4),
+                                  scrollDirection: Axis.horizontal,
+                                  onPageChanged: (index) {
+                                    setState(() {
+                                      _current = index;
+                                    });
+                                  },
+                                ),
+                                  Positioned(
+
+                                      bottom: 10.0,
+                                      left: 0.0,
+                                      right: 0.0,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: map<Widget>(widgets, (index, url) {
+                                          return Container(
+                                            width: 8.0,
+                                            height: 8.0,
+                                            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: _current == index ? Color.fromRGBO(21, 0, 255, 0.7) : Color.fromRGBO(0, 0, 0, 0.2)
+                                            ),
+                                          );
+                                        }),
+                                      )
+                                  )
+                                ],
+                              )),
                         ),
 
                     ],
@@ -910,6 +959,7 @@ final carousel1 = CarouselSlider(
               ],
             ),
           ),
+
       ),
        ),
     );
