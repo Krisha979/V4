@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/DocumentModel.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 class DocumentFilesPage extends StatefulWidget {
   final DocumentModel details;
   const DocumentFilesPage({Key key, this.details}) : super(key: key);
@@ -118,6 +117,10 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                           ? Image.network(details.documents[index].documentURL,
                                              fit: BoxFit.cover,
                                              ): url.contains(".mp4")
+                                             ? Image(
+                        image: new AssetImage("assets/mp4-icon.jpg"),
+                        height: size.height / 10,
+                      ): url.contains(".mp3")
                                              ? Image(
                         image: new AssetImage("assets/mp4-icon.jpg"),
                         height: size.height / 10,

@@ -660,43 +660,43 @@ fmfamount = fmf.output.nonSymbol.toString();
     return result;
   }
 
-final carousel1 = CarouselSlider(
-  items: widgets,
-   height:400,
-  aspectRatio: 16/9,
-   viewportFraction: 0.99,
-   initialPage: 0,
-   enableInfiniteScroll: true,
-   reverse: false,
-   autoPlay: true,
-   enlargeCenterPage: false,
-   autoPlayInterval: Duration(seconds: 5),
-   autoPlayAnimationDuration: Duration(milliseconds: 2000),
-   pauseAutoPlayOnTouch: Duration(seconds: 4),
-   scrollDirection: Axis.horizontal,
+// final carousel1 = CarouselSlider(
+//   items: widgets,
+//    height:400,
+//   aspectRatio: 16/9,
+//    viewportFraction: 0.99,
+//    initialPage: 0,
+//    enableInfiniteScroll: true,
+//    reverse: false,
+//    autoPlay: true,
+//    enlargeCenterPage: false,
+//    autoPlayInterval: Duration(seconds: 5),
+//    autoPlayAnimationDuration: Duration(milliseconds: 2000),
+//    pauseAutoPlayOnTouch: Duration(seconds: 4),
+//    scrollDirection: Axis.horizontal,
 
-);
+// );
 
 
 
-  final carousel2 = Carousel(
-    boxFit: BoxFit.cover,
-    animationCurve: Curves.fastOutSlowIn,
-    animationDuration: Duration(milliseconds: 2000),
-    dotSize: 2.0,
-    dotIncreasedColor: Color(0xFFFFFFFF),
-    dotBgColor: Colors.black.withOpacity(0),
-    autoplayDuration: Duration(seconds: 5),
-    images: [
-      AssetImage(
-        'assets/image1.png',
-      ),
-      AssetImage('assets/image2.png'),
-      AssetImage('assets/image3.png'),
-      AssetImage('assets/image4.png'),
-    ],
-    // dotBgColor: Colors.white.withOpacity(1),
-  );
+  // final carousel2 = Carousel(
+  //   boxFit: BoxFit.cover,
+  //   animationCurve: Curves.fastOutSlowIn,
+  //   animationDuration: Duration(milliseconds: 2000),
+  //   dotSize: 2.0,
+  //   dotIncreasedColor: Color(0xFFFFFFFF),
+  //   dotBgColor: Colors.black.withOpacity(0),
+  //   autoplayDuration: Duration(seconds: 5),
+  //   images: [
+  //     AssetImage(
+  //       'assets/image1.png',
+  //     ),
+  //     AssetImage('assets/image2.png'),
+  //     AssetImage('assets/image3.png'),
+  //     AssetImage('assets/image4.png'),
+  //   ],
+  //   // dotBgColor: Colors.white.withOpacity(1),
+  // );
 
  String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
