@@ -302,9 +302,10 @@ class LoginPage extends StatefulWidget{
                                     
                                    enableInteractiveSelection: false,
                                     controller: emailcontroller,
-                                    validator: (value,) {
+                                    validator: (value) {
                                     if (value.isEmpty) {
                                     return 'Please enter some text';
+                                    
                                     }
                                     if(!value.contains("@")){
                                     return 'please enter valid email';
