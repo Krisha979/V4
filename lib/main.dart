@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 //import 'package:snbiz/src_code/home.dart';
 import 'package:snbiz/src_code/login.dart';
+import 'package:snbiz/src_code/tutorial.dart';
 
 void main() {
   runApp(new AppStart());
@@ -36,50 +37,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
             );
     }
 
-    // Future scheduleNotification(int time, int channelid) async{
-    //           var scheduledNotificationDateTime =
-    //           new DateTime.now().add(new Duration(seconds: time));
-    //           var currenttime = DateTime.now();
-    //           String message;
-    //           int hours = currenttime.hour;
-    //           if(hours<=12){
-    //               message = "Good Morning!";
-    //           }else if(hours<=16){
-    //               message = "Good Afternoon!";
-    //           }else if(hours<=21){
-    //               message = "Good Evening!";
-    //           }else if(hours<=24){
-    //               message = "Good Night!";
-    //           }
-            
-    //           var vibrationPattern = new Int64List(10);
-    //             vibrationPattern[0] = 0;
-    //             vibrationPattern[1] = 100
-    //             ;
-    //             // vibrationPattern[2] = 500;
-    //             // vibrationPattern[3] = 1000;
-    //             // vibrationPattern[4] = 500;
-    //             // vibrationPattern[5] = 1000;
-    //             // vibrationPattern[6] = 500;
-    //             // vibrationPattern[7] = 200;
-    //             // vibrationPattern[8] = 100;
-    //             // vibrationPattern[9] = 200;
-
-    //   var androidPlatformChannelSpecifics =
-    //       new AndroidNotificationDetails('channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
-    //   priority: Priority.High,importance: Importance.Max, vibrationPattern: vibrationPattern
-    //   );
-    //   var iOSPlatformChannelSpecifics =
-    //       new IOSNotificationDetails();
-    //   NotificationDetails platformChannelSpecifics = new NotificationDetails(
-    //       androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    //   await flutterLocalNotificationsPlugin.schedule(
-    //       channelid,
-    //       'S.N Business',
-    //       message,
-    //       scheduledNotificationDateTime,
-    //       platformChannelSpecifics);
-    // }
+    
 
     showNotification(Map<String,dynamic> message) async {
       var vibrationPattern;
@@ -147,7 +105,8 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
       ),
     debugShowCheckedModeBanner: false,
    
-    home: LoginPage(),
+    home: Tutorial(),
+    //LoginPage(),
     );
   }
 }
