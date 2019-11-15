@@ -7,7 +7,7 @@
     <item   android:height="300dp"
             android:width="400dp"
             android:gravity="center_horizontal|center_vertical"
-            android:drawable="@drawable/splash">
+            android:drawable="@drawable/splashnew">
 
     </item>
 </layer-list>
