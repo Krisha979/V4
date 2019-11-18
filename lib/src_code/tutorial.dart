@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:snbiz/src_code/login.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -15,26 +16,17 @@ class Tutorial extends StatefulWidget{
 }
 
 class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin {
+  //final storage = new FlutterSecureStorage();
+
+
 
 
   static List<Widget> imageList = [];
   static Size size;
-   // =  [
-  //   //  "assets/tutorial1.png",
-  //   //  "assets/tutorial2.png",
-  //   //  "assets/tutorial3.png",
-  //   //  "assets/tutorial4.png",
-  //   //  "assets/tutorial5.png"
-    
-  // ];
-int _current=0;
+  //bool firstlogin = false;
 
-void initState(){
-  super.initState();
-  
    
-}
-
+int _current=0;
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -43,46 +35,6 @@ static List<T> map<T>(List list, Function handler) {
 
     return result;
   }
-
-
-
-// final List child = map<Widget>(
-//   imageList,
-//   (index, i) {
-//     return Container(
-//       margin: EdgeInsets.all(5.0),
-//       child: ClipRRect(
-//         borderRadius: BorderRadius.all(Radius.circular(5.0)),
-//         child: Stack(children: <Widget>[
-//           Image.network(i, fit: BoxFit.cover, width: 1000.0),
-//           Positioned(
-//             bottom: 10.0,
-//             left: 0.0,
-//             right: 0.0,
-//             child: Container(
-//               decoration: BoxDecoration(
-//                 gradient: LinearGradient(
-//                   colors: [Color.fromARGB(200, 0, 0, 0), Color.fromARGB(0, 0, 0, 0)],
-//                   begin: Alignment.bottomCenter,
-//                   end: Alignment.topCenter,
-//                 ),
-//               ),
-//               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-//               child: Text(
-//                 'No. $index image',
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 20.0,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ]),
-//       ),
-//     );
-//   },
-// ).toList();
 
  Future<List<Widget>> listwidget()async {
      
@@ -106,9 +58,17 @@ static List<T> map<T>(List list, Function handler) {
                children: <Widget>[
                  
                                          Image(image: AssetImage("assets/transparent.png"),
-                    height: size.height,
-                    width: size.width
+                    
                      ),
+                Row(
+               children: <Widget>[
+                    GestureDetector(
+                      onTap: (){
+                           Navigator.push(context, 
+            MaterialPageRoute(builder: (context)=> LoginPage()));
+                      },
+                      child: Text("Skip"))
+               ])
                    
                ]
              )
