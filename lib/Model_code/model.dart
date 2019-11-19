@@ -11,7 +11,7 @@ class UserData {
  String organizationName;
  String logo;
  String orgRowstamp;
-                          
+ String vatCredit;  
 
 UserData(
  {this.userAccountId,
@@ -25,7 +25,8 @@ UserData(
  this.organizationEmail,
  this.organizationName,
  this.logo,
- this.orgRowstamp});
+ this.orgRowstamp,
+ this.vatCredit});
  
  UserData.fromJson(Map<String, dynamic> json) {
  userAccountId = json['userAccountId'];
@@ -40,6 +41,7 @@ UserData(
  organizationName = json['organizationName'];
  logo = json['logo'];
  orgRowstamp = json['orgRowstamp'];
+  vatCredit = json['vatCredit'];
  }
  
  Map<String, dynamic> toJson() {
@@ -56,6 +58,7 @@ UserData(
  data['organizationName'] = this.organizationName;
  data['logo'] = this.logo;
  data['orgRowstamp'] = this.orgRowstamp;
+ data['vatCredit'] = this.vatCredit;
  return data;
  }
 }

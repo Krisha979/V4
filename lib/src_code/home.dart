@@ -43,6 +43,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   DashBoardData data;
   String uploadeddate,meetingtime,lastinvoicedate;
   final RefreshController _refreshController = RefreshController();
+  var date = DateTime.now().toString();
+  String formatDateTime12(String date) {
+    DateFormat dateFormat = DateFormat("yyyy-MM");
+    DateTime format = (dateFormat.parse(date));
+    DateFormat longdate = DateFormat("MMMM, yyyy");
+    date = longdate.format(format);
+    return date;
+  }
 
 
   Future<DashBoardData> getData() async{
@@ -70,10 +78,12 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         StaticValue.meetingTime = meetingtime;
         StaticValue.activeTaskcount = data.activeTaskcount.toString();
         StaticValue.taskName = data.taskName;
-        StaticValue.totalPaymentDue = data.totalPaymentDue.toString();
+        StaticValue.vATCredit = data.totalPaymentDue.toString();
         StaticValue.lastInvoiceDate = lastinvoicedate;
         StaticValue.uploadsToday = data.uploadsToday.toString();
         StaticValue.uploadedDate = uploadeddate;
+        //StaticValue.vATCredit = data.vatCredit;
+
 
 
       });
@@ -475,13 +485,16 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                ]
              )
         );
-        String fmfamount ;
-if(StaticValue.totalPaymentDue.contains('-')){
+ String fmfamount ;
+if(StaticValue.vATCredit.contains('-')){
 fmfamount="0";
+}
+else if(StaticValue.vATCredit==null){
+  fmfamount="0";
 }
 else{
 
-var money = double.parse(StaticValue.totalPaymentDue);
+var money = double.parse(StaticValue.vATCredit);
 
 
   FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
@@ -529,18 +542,17 @@ fmfamount = fmf.output.nonSymbol.toString();
                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                          crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("Total Payment Due",
+                                  Text("Vat Credit",
                                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                           color: Color(0xFFA19F9F))),
+                                          Text(formatDateTime12(date),
+                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
+                                  color: Color(0xFFA19F9F))),
                                   Text('Rs '+fmfamount,
                                       style: TextStyle(fontWeight: FontWeight.bold,
                                           color: Colors.black)),
-                                  Text("Last Invoice date",
-                                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                  color: Color(0xFFA19F9F))),
-                                  Text(StaticValue.lastInvoiceDate,
-                                  style: TextStyle(fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
+                                  
+
                                 ],
                               ),
                             Image(

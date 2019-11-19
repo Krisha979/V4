@@ -11,6 +11,8 @@ import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/webview.dart' ;
 import 'package:url_launcher/url_launcher.dart';
 
+import 'invoice.dart';
+
 
  
 
@@ -205,6 +207,34 @@ CupertinoPageRoute(builder: (context) => Profile()));
                 Navigator.push(context,
                    CupertinoPageRoute(builder: (context) => Contact()));
                }),
+        ),
+
+        Container(
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
+          child: ListTile(
+              title: Row(
+                children: <Widget>[
+                   Icon(
+      Icons.info_outline,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),             
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                   Text('Invoice',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal)),
+                  
+                ],
+              ),
+              onTap: () {
+                Navigator.push(context,
+                   CupertinoPageRoute(builder: (context) => Invoice()));
+    
+              }),
         ),
 
       

@@ -144,6 +144,7 @@ class LoginPage extends StatefulWidget{
                       StaticValue.userRowstamp=user.userRowstamp;
                       StaticValue.orgUserId=user.userAccountId;
                       StaticValue.orgRowstamp = user.orgRowstamp;
+                      StaticValue.vATCredit = user.vatCredit;
                       await storage.write(key: "Email", value: email);
                       await storage.write(key: "Password", value: password);
                       var fcmtoken = await storage.read(key:"fcmtoken");
@@ -204,240 +205,248 @@ class LoginPage extends StatefulWidget{
               }
           );
       }
+      Future<bool> _onBackPressed(){
+         Navigator.pop(context);
+
+      }
 
       @override
       Widget build(BuildContext context) {
         Size size = MediaQuery.of(context).size;
-          return Scaffold(  
-            key: _scaffoldKey,
-            body: SingleChildScrollView(
-              child:Container(
-                  width: size.width ,
-                  height: size.height,
-                  decoration:new BoxDecoration(
-                    gradient: new LinearGradient(colors:[
-                      const Color(0xFF9C38FF),
-                      const Color(0xFF8551F8),
-                    ],
-                    begin: FractionalOffset.topLeft,
-                    end: FractionalOffset.bottomRight,
-                    stops: [0.0,100.0],
-                   ),
-                  ),
-                        
-                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new Image(
-                              image: new AssetImage("assets/logo.jpg"),
-                              height: 120.0,
-                              width: 120.0,
+          return WillPopScope(
+             onWillPop: _onBackPressed,            
+
+                      child: Scaffold(  
+              key: _scaffoldKey,
+              body: SingleChildScrollView(
+                child:Container(
+                    width: size.width ,
+                    height: size.height,
+                    decoration:new BoxDecoration(
+                      gradient: new LinearGradient(colors:[
+                        const Color(0xFF9C38FF),
+                        const Color(0xFF8551F8),
+                      ],
+                      begin: FractionalOffset.topLeft,
+                      end: FractionalOffset.bottomRight,
+                      stops: [0.0,100.0],
+                     ),
+                    ),
+                          
+                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Image(
+                                image: new AssetImage("assets/logo.jpg"),
+                                height: 120.0,
+                                width: 120.0,
+                              ),
+
+                            Padding(
+                              padding: EdgeInsets.only(top: 4.0),
+                            ),
+                            Text(
+                             "Log In", 
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 30.0
+                                ),
                             ),
 
-                          Padding(
-                            padding: EdgeInsets.only(top: 4.0),
-                          ),
-                          Text(
-                           "Log In", 
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 30.0
-                              ),
-                          ),
-
-                          
-                              
-                          Padding(
-                            padding: EdgeInsets.only(top: 40.0),
-                          ),
+                            
                                 
-                          Form(
-                            key: _formKey,
-                            child:  Wrap(
-                              children:<Widget>[
-                                new Container(
-                                  margin: EdgeInsets.only(left: 45, right: 45, top: 40),
-                                 // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-                                //  width: size.width * 0.85,
-                                  decoration: new BoxDecoration(
-                                  // color: Colors.grey[100].withOpacity(0.2),
-                                    borderRadius: new BorderRadius.all(Radius.circular(10.0),)      
-                                  ),                                      
-                                  child: isLoading? Center(
-                                    child:Column(
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsets.only(bottom: 15),
-                                              child: Text(message,textWidthBasis: TextWidthBasis.parent,style: TextStyle(color: Colors.white, fontSize: 15)),
+                            Padding(
+                              padding: EdgeInsets.only(top: 40.0),
+                            ),
+                                  
+                            Form(
+                              key: _formKey,
+                              child:  Wrap(
+                                children:<Widget>[
+                                  new Container(
+                                    margin: EdgeInsets.only(left: 45, right: 45, top: 40),
+                                   // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
+                                  //  width: size.width * 0.85,
+                                    decoration: new BoxDecoration(
+                                    // color: Colors.grey[100].withOpacity(0.2),
+                                      borderRadius: new BorderRadius.all(Radius.circular(10.0),)      
+                                    ),                                      
+                                    child: isLoading? Center(
+                                      child:Column(
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: const EdgeInsets.only(bottom: 15),
+                                                child: Text(message,textWidthBasis: TextWidthBasis.parent,style: TextStyle(color: Colors.white, fontSize: 15)),
+                                              ),
+                                             Theme(
+                                            data: new ThemeData(
+                                              hintColor: Colors.white,
                                             ),
-                                           Theme(
-                                          data: new ThemeData(
-                                            hintColor: Colors.white,
+                                           child: CircularProgressIndicator(
+
+                                                strokeWidth: 3.0,
+                                                backgroundColor: Colors.white
+                                            ),
+
                                           ),
-                                         child: CircularProgressIndicator(
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 20),
+                                        child: Text("Logging In...",style: TextStyle(color: Colors.white, fontSize: 15)),
 
-                                              strokeWidth: 3.0,
-                                              backgroundColor: Colors.white
+                                      )
+                                         ],
+                                      )
+                                    ):
+
+                                  new Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                  
+                                  Theme(
+                                   data: new ThemeData(
+                                     hintColor: Colors.white
+                                   ),
+                                                                    child: TextFormField(
+                                      style: TextStyle(color: Colors.white, fontSize: 15),
+                                      
+                                     enableInteractiveSelection: false,
+                                      controller: emailcontroller,
+                                      validator: (value) {
+                                      if (value.isEmpty) {
+                                      return 'Please enter some text';
+                                      
+                                      }
+                                      if(!value.contains("@")){
+                                      return 'please enter valid email';
+                                      }
+                                      return null;
+                                      },
+                                      maxLines: 1,
+                                      decoration: InputDecoration(
+                                      
+                                        
+                                        contentPadding: EdgeInsets.only(bottom: 10),
+                                        enabledBorder: UnderlineInputBorder(      
+                        borderSide: BorderSide(color: Colors.white),   
+                        ),  
+                focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                     ),  
+                                        
+                                        labelText: 'Username',  labelStyle: TextStyle(color: Colors.white, fontSize: 17),
+                                        prefixIcon: Padding(
+                                          padding: const EdgeInsets.only(left: 0, right: 20),
+                                          child: const Icon(
+                                            Icons.person,
+                                            
+                                            color: Colors.white, 
+                                            size: 20.0,
                                           ),
-
-                                        ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 20),
-                                      child: Text("Logging In...",style: TextStyle(color: Colors.white, fontSize: 15)),
-
-                                    )
-                                       ],
-                                    )
-                                  ):
-
-                                new Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                
-                                Theme(
-                                 data: new ThemeData(
-                                   hintColor: Colors.white
-                                 ),
-                                                                  child: TextFormField(
-                                    style: TextStyle(color: Colors.white, fontSize: 15),
+                                        ),   
+                                      ),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                     style: TextStyle(color: Colors.white, fontSize: 15),
+                                     
                                     
-                                   enableInteractiveSelection: false,
-                                    controller: emailcontroller,
-                                    validator: (value) {
+                                    controller: passwordcontroller,
+                                      validator: (value) {
                                     if (value.isEmpty) {
                                     return 'Please enter some text';
-                                    
                                     }
-                                    if(!value.contains("@")){
-                                    return 'please enter valid email';
-                                    }
+                                  
                                     return null;
                                     },
-                                    maxLines: 1,
                                     decoration: InputDecoration(
-                                    
-                                      
-                                      contentPadding: EdgeInsets.only(bottom: 10),
-                                      enabledBorder: UnderlineInputBorder(      
-                      borderSide: BorderSide(color: Colors.white),   
-                      ),  
-              focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                   ),  
-                                      
-                                      labelText: 'Username',  labelStyle: TextStyle(color: Colors.white, fontSize: 17),
+                                        enabledBorder: UnderlineInputBorder(      
+                        borderSide: BorderSide(color: Colors.white),   
+                        ),  
+                focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                     ),  
+                                      labelText: 'Password',
+                                      labelStyle: TextStyle(color: Colors.white, fontSize: 17),
                                       prefixIcon: Padding(
-                                        padding: const EdgeInsets.only(left: 0, right: 20),
-                                        child: const Icon(
-                                          Icons.person,
-                                          
-                                          color: Colors.white, 
-                                          size: 20.0,
+                                         padding: const EdgeInsets.only(left: 0, right: 20),
+                                        child: const Icon(Icons.lock, color: Colors.white, size: 20.0),
+                                      ),
+                                      suffixIcon: new GestureDetector(
+                                        child: new FlatButton(
+                                          onPressed: _toggle,
+                                            child: new Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white,),
                                         ),
-                                      ),   
-                                    ),
-                                  ),
-                                ),
-                                TextFormField(
-                                   style: TextStyle(color: Colors.white, fontSize: 15),
-                                   
-                                  
-                                  controller: passwordcontroller,
-                                    validator: (value) {
-                                  if (value.isEmpty) {
-                                  return 'Please enter some text';
-                                  }
-                                
-                                  return null;
-                                  },
-                                  decoration: InputDecoration(
-                                      enabledBorder: UnderlineInputBorder(      
-                      borderSide: BorderSide(color: Colors.white),   
-                      ),  
-              focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                   ),  
-                                    labelText: 'Password',
-                                    labelStyle: TextStyle(color: Colors.white, fontSize: 17),
-                                    prefixIcon: Padding(
-                                       padding: const EdgeInsets.only(left: 0, right: 20),
-                                      child: const Icon(Icons.lock, color: Colors.white, size: 20.0),
-                                    ),
-                                    suffixIcon: new GestureDetector(
-                                      child: new FlatButton(
-                                        onPressed: _toggle,
-                                          child: new Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: Colors.white,),
-                                      ),
-                                    )
+                                      )
 
+                                    ),
+                                    obscureText: _obscureText,
                                   ),
-                                  obscureText: _obscureText,
-                                ),
-                               
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 80),
-                                  child: SizedBox(
-                                    height: 40,
-                                    width: 170,
-                                    child: FlatButton(
-                                      color: Colors.white,
-                                      textColor: Colors.black,
-                                      disabledColor: Colors.grey,
-                                      disabledTextColor: Colors.black,
-                                      padding: EdgeInsets.all(9.0),
-                                      splashColor: Colors.blueAccent,
-                                      shape:RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0)
-                                      ),
-                                      
-                                      onPressed: () async {
-                                          if (_formKey.currentState.validate())
-                                           {
+                                 
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 80),
+                                    child: SizedBox(
+                                      height: 40,
+                                      width: 170,
+                                      child: FlatButton(
+                                        color: Colors.white,
+                                        textColor: Colors.black,
+                                        disabledColor: Colors.grey,
+                                        disabledTextColor: Colors.black,
+                                        padding: EdgeInsets.all(9.0),
+                                        splashColor: Colors.blueAccent,
+                                        shape:RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0)
+                                        ),
                                         
-                                              bool connection = await _checkConnectivity();
-                                              if(connection == true)
-                                              {
-                                                  setState(() {
-                                                  isLoading = true; 
-                                                  });
-                                                  
-                                                  var useremail = emailcontroller.text;
-                                                  var password = passwordcontroller.text;
-                                                    try{
-                                                        await storage.write(key: "Email", value: useremail);
-                                                        await storage.write(key: "Password", value: password);
-                                                  }catch(e)
-                                                  {
-                                                      print(e.toString());
-                                                  }
-                                                  await checkCredentials(useremail,password);
-                                              }  
-                                            }
-                                       },
-                                      child: Text("Sign In", 
-                                      style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal)),
-                                   ),
+                                        onPressed: () async {
+                                            if (_formKey.currentState.validate())
+                                             {
+                                          
+                                                bool connection = await _checkConnectivity();
+                                                if(connection == true)
+                                                {
+                                                    setState(() {
+                                                    isLoading = true; 
+                                                    });
+                                                    
+                                                    var useremail = emailcontroller.text;
+                                                    var password = passwordcontroller.text;
+                                                      try{
+                                                          await storage.write(key: "Email", value: useremail);
+                                                          await storage.write(key: "Password", value: password);
+                                                    }catch(e)
+                                                    {
+                                                        print(e.toString());
+                                                    }
+                                                    await checkCredentials(useremail,password);
+                                                }  
+                                              }
+                                         },
+                                        child: Text("Sign In", 
+                                        style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal)),
+                                     ),
+                                    ),
+                                  ),   
+                                  ]
                                   ),
-                                ),   
-                                ]
-                                ),
-                                ), 
-                                ]  
+                                  ), 
+                                  ]  
+                                   ),
+                                   ),
+                                   ],
+                                   ),
+                                   ],
+                                   ),
+                 ) 
+                
+                                
                                  ),
                                  ),
-                                 ],
-                                 ),
-                                 ],
-                                 ),
-               ) 
-              
-                              
-                               ),
-                               ); 
+          ); 
                                     
                            }
                        
