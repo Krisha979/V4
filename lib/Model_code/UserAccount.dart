@@ -12,6 +12,7 @@ class UserAccount {
   String dateCreated;
   bool deleted;
   String rowstamp;
+  
 
   UserAccount(
       {this.userAccountId,
@@ -26,7 +27,8 @@ class UserAccount {
       this.isValidated,
       this.dateCreated,
       this.deleted,
-      this.rowstamp});
+      this.rowstamp,
+      });
 
   UserAccount.fromJson(Map<String, dynamic> json) {
     userAccountId = json['userAccountId'];

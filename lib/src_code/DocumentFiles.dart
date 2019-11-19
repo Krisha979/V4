@@ -124,11 +124,13 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                              ? Image(
                         image: new AssetImage("assets/mp4-icon.jpg"),
                         height: size.height / 10,
-                      )
-                                             :  Image(
-                        image: new AssetImage("assets/pdf.png"),
-                        height: size.height / 10,
-                      ),
+                      ) : url.contains(".pdf") ?
+                       Image(
+                         image: new AssetImage("assets/pdf.png"),
+                         height: size.height / 10,
+                       ): Image( 
+                         image: new AssetImage("assets/snbizsfiles-web.png"),height: size.height/10,)
+                     
  )
                                     
                                         

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/OrgTask.dart';
@@ -116,11 +117,33 @@ catch(e){
        
   }
 
+String value;
+String formatPercent(String fmfamount){
+    
+  var time = double.parse(fmfamount);
+  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
+
+    amount:time,
+    
+    settings: MoneyFormatterSettings(
+        
+        thousandSeparator: ',',
+        decimalSeparator: '.',
+        symbolAndNumberSeparator: ' ',
+        //fractionDigits: 2,
+        //compactFormatType: CompactFormatType.sort
+    )
+);
+value = fmf.output.withoutFractionDigits.toString();
+
+}
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-   
+
+     
     return Scaffold(
       appBar: AppBar(title: Text('Task',  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
        backgroundColor: const Color(0xFF9C38FF),),
@@ -270,10 +293,18 @@ catch(e){
                        var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
                        var enddate = formatTime(snapshot.data[index].parentTask.endDate);
                        var name = snapshot.data[index].parentTask.taskName;
+                       formatPercent(snapshot.data[index].percentageComplete.toString());
+                      
+                      
+                       
+ 
+  
                        var icon = "assets/snbizrunning-web.png";
                        if(snapshot.data[index].percentageComplete == 100){
                          icon = "assets/acceptedtick-web.png";
                          }
+
+
                        
                       // ignore: missing_return, missing_return
                       return ListTile(
@@ -300,13 +331,13 @@ catch(e){
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(enddate, textAlign: TextAlign.left,
-                                      style:TextStyle(fontSize: 17, fontWeight: FontWeight.bold) ),
-                                 Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
+                                  // Text(enddate, textAlign: TextAlign.left,
+                                  //     style:TextStyle(fontSize: 17, fontWeight: FontWeight.bold) ),
+                                 Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)),
 
                                 Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
                                 Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal))),
-                                Flexible(child: Text(snapshot.data[index].percentageComplete.toString() + "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,
+                                Flexible(child: Text(value+ "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,
                                 color: Color(0xFFA19F9F)
                                 ))),
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:snbiz/Model_code/meetingStatus.dart';
 
 class StaticValue{
+  static String vATCredit;
   static int orgId;
   static String orgName;
   static String logo;

@@ -152,7 +152,7 @@ return Scaffold(
                      Stack(
                       children: <Widget>[CarouselSlider(
                         items: imageList,
-                        height:400,
+                        height:size.height-100,
                         aspectRatio: 16/9,
                         viewportFraction: 0.99,
                         initialPage: 0,
