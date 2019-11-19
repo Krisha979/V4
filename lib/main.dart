@@ -69,8 +69,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
 @override
   void initState()  {
     super.initState();    
-    
-   
+
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     // scheduleNotification(10,1000000);
     // scheduleNotification(20,100);
