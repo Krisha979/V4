@@ -7,8 +7,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 class Tutorial extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    
     return TutorialState();
+
   }
 
 
@@ -19,6 +19,7 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
 
   static List<Widget> imageList = [];
   static Size size;
+
 
 int _current=0;
 
@@ -155,14 +156,14 @@ return Scaffold(
                      Stack(
                       children: <Widget>[CarouselSlider(
                         items: imageList,
-                        height:400,
+                        height:size.height-100,
                         aspectRatio: 16/9,
                         viewportFraction: 0.99,
                         initialPage: 0,
                         enableInfiniteScroll: true,
                         reverse: false,
                         autoPlay: true,
-                        enlargeCenterPage: false,
+                        enlargeCenterPage: true,
                         autoPlayInterval: Duration(seconds: 5),
                         autoPlayAnimationDuration: Duration(milliseconds: 2000),
                         pauseAutoPlayOnTouch: Duration(seconds: 4),
@@ -174,7 +175,7 @@ return Scaffold(
                         },
                       ),
                         Positioned(
-                            bottom: 10.0,
+                            bottom: 0.0,
                             left: 0.0,
                             right: 0.0,
                             child: Row(
@@ -204,9 +205,9 @@ return Scaffold(
                           Column(
 
                             children: <Widget>[
-                              Text("Skip>>>",style: TextStyle( fontWeight: FontWeight.bold,
+                              Text("Skip",style: TextStyle( fontWeight: FontWeight.bold,
                                   color: Colors.white,
-                                  fontSize: 20.0),),
+                                  fontSize: 18.0),),
                             ],
                           ),
                         ],
