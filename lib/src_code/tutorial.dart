@@ -18,6 +18,7 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
 
 
   static List<Widget> imageList = [];
+
   static Size size;
 
 
