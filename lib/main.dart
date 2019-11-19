@@ -1,11 +1,10 @@
-
-
+import 'dart:async';
 import 'dart:typed_data';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:snbiz/src_code/bridge.dart';
 //import 'package:snbiz/src_code/home.dart';
 import 'package:snbiz/src_code/login.dart';
 import 'package:snbiz/src_code/tutorial.dart';
@@ -68,8 +67,10 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
       await flutterLocalNotificationsPlugin.show(0, 'S.N. Business', message['notification']['body'], platform,payload: message['data']['body']);
     }
 @override
-  void initState() {
-    super.initState();
+  void initState()  {
+    super.initState();    
+    
+   
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     // scheduleNotification(10,1000000);
     // scheduleNotification(20,100);
@@ -93,20 +94,21 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
           
         },
       );
+
   }
+ 
   @override
   Widget build(BuildContext context) {
-
-
+//checkFirstSeen();
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.deepPurple, 
         fontFamily: 'Poppins'
       ),
     debugShowCheckedModeBanner: false,
-   
-    home: Tutorial(),
-    //LoginPage(),
-    );
+     
+
+     home: Bridge(),
+     );
   }
 }

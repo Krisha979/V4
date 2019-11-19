@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:snbiz/src_code/login.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -15,6 +16,9 @@ class Tutorial extends StatefulWidget{
 }
 
 class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin {
+  //final storage = new FlutterSecureStorage();
+
+
 
 
   static List<Widget> imageList = [];
@@ -23,13 +27,6 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
 
 
 int _current=0;
-
-void initState(){
-  super.initState();
-  
-   
-}
-
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
