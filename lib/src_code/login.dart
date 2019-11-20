@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -205,9 +207,8 @@ class LoginPage extends StatefulWidget{
               }
           );
       }
-      Future<bool> _onBackPressed(){
-         Navigator.pop(context);
-
+      Future<bool> _onBackPressed() async {
+        exit(0);
       }
 
       @override

@@ -88,8 +88,10 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                       //onPressed: ()=>Navigator.pop(context,true),
 
                       onPressed: (){
-                        exit(0);
-                        
+                                exit(0);
+                       // Navigator.pop(context, true);
+
+                      //  Navigator.pop(context);
                       },
 
                       color:  Color(0xFFCEC0C0),
@@ -213,7 +215,11 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                 //  text: "Home",
                 ),
                 new Tab(
-                  icon: new Icon(Icons.people, size: 30),
+              //    icon: new Image.asset("assets/meetingtabnew.png",height: 25,width: 25),
+                  icon: new Icon(
+                    Icons.alarm,
+                    size: 30,
+                  ),
                   //text: "Meeting",
                 ),
                 new Tab(
