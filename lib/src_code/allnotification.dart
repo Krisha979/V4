@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/Notification.dart';
+import 'package:snbiz/src_code/send-notification.dart';
 
 import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/task.dart';
@@ -187,12 +188,40 @@ class AllNotificationState extends State<AllNotification> {
                         // ))
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Image(
-                        image: new AssetImage("assets/snbiznotification.png"),
-                        height: size.height / 10,
-                      ),
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: GestureDetector(
+                            onTap: (){
+                                 Navigator.push(
+                                                context,
+                                                CupertinoPageRoute(
+                                                    builder: (context) =>
+                                                        SendNotification()));
+                            },
+                                                      child: Image(
+                              image: new AssetImage("assets/snbiznotification.png"),
+                              height: size.height / 11,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: GestureDetector(
+                            onTap: (){
+                               Navigator.push(
+                                                context,
+                                                CupertinoPageRoute(
+                                                    builder: (context) =>
+                                                        SendNotification()));
+
+                            },
+                                                      child: Text("Send", style: TextStyle(color: Color(0xFFA19F9F), fontWeight: FontWeight.normal,
+                            fontSize: 16),),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

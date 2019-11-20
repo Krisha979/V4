@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/src_code/profile.dart';
@@ -86,10 +88,8 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                       //onPressed: ()=>Navigator.pop(context,true),
 
                       onPressed: (){
-                        Navigator.pop(context, true);
-                        Navigator.pop(context, true);
-
-                      //  Navigator.pop(context);
+                        exit(0);
+                        
                       },
 
                       color:  Color(0xFFCEC0C0),
