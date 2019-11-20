@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/src_code/profile.dart';
@@ -86,8 +88,8 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                       //onPressed: ()=>Navigator.pop(context,true),
 
                       onPressed: (){
-                        Navigator.pop(context, true);
-                        Navigator.pop(context, true);
+                                exit(0);
+                       // Navigator.pop(context, true);
 
                       //  Navigator.pop(context);
                       },
@@ -213,7 +215,11 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                 //  text: "Home",
                 ),
                 new Tab(
-                  icon: new Icon(Icons.people, size: 30),
+              //    icon: new Image.asset("assets/meetingtabnew.png",height: 25,width: 25),
+                  icon: new Icon(
+                    Icons.alarm,
+                    size: 30,
+                  ),
                   //text: "Meeting",
                 ),
                 new Tab(
