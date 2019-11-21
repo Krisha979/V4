@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -26,6 +25,8 @@ class LoginPage extends StatefulWidget{
       final storage = new FlutterSecureStorage();
       final _scaffoldKey = GlobalKey<ScaffoldState>();
       final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+      //method to set message according to time
       @override
       void initState() {
       super.initState();
@@ -40,8 +41,10 @@ class LoginPage extends StatefulWidget{
               }else if(hours<=24){
                   message = "Good Night!";
               }
-      getfromstorage();
+      getfromstorage();  
       }
+
+      //function to store email and password on storage
       Future<Null> getfromstorage() async {
       var email = await storage.read(key:"Email");
       var password = await storage.read(key: "Password");
@@ -61,6 +64,8 @@ class LoginPage extends StatefulWidget{
              }
           }
       }
+
+      //api call to check status
 
       Future<void> status() async {
 
@@ -94,7 +99,7 @@ class LoginPage extends StatefulWidget{
     }
 
   }
-
+// to register device
 
   Future<bool> registerDevice(String fcmtoken) async{                 
       http.Response response = await http.get(
@@ -113,11 +118,12 @@ class LoginPage extends StatefulWidget{
           return false;
       }
 
+//api call to get user mail and password for user user authentication
   Future<void> checkCredentials(String email, String password) async{
     var client = new http.Client();
 
       http.Response response = await client.get(
-      Uri.encodeFull(StaticValue.baseUrl + "api/UserAuthentication"),
+      Uri.encodeFull(StaticValue.baseUrl + StaticValue.loginurl),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -127,6 +133,7 @@ class LoginPage extends StatefulWidget{
 
       }
       );
+
 
 
       if(response.statusCode == 200){
@@ -202,6 +209,8 @@ class LoginPage extends StatefulWidget{
               }
           );
       }
+
+      //handle on back press
       Future<bool> _onBackPressed() async {
         exit(0);
       }
@@ -309,6 +318,7 @@ class LoginPage extends StatefulWidget{
                                      enableInteractiveSelection: false,
                                       controller: emailcontroller,
                                       validator: (value) {
+                                        // field valdation code here
                                       if (value.isEmpty) {
                                       return 'Please enter some text';
                                       
@@ -442,7 +452,7 @@ class LoginPage extends StatefulWidget{
           ); 
                                     
                            }
-                       
+                       //internet connection check
                        Future<bool> _checkConnectivity() async{
                         var result = await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){

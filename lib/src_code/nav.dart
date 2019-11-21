@@ -22,7 +22,11 @@ class Nav extends StatefulWidget {
 }
 
 class NavBar extends State<Nav> {
+
+
         final storage = new FlutterSecureStorage();
+
+        //removing values from the storage
         removeStaticValue(){
    StaticValue.orgName=null;
    StaticValue.logo=null;
@@ -259,12 +263,14 @@ CupertinoPageRoute(builder: (context) => Profile()));
                   
                 ],
               ),
+
+            //log out
               onTap: () async {
                 var appDir = (Directory.systemTemp.path);
                 new Directory(appDir).delete(recursive: true);
-                await storage.delete(key: "Password");
-                await storage.delete(key: "fcmtoken");
-                removeStaticValue();
+                await storage.delete(key: "Password"); //deletes pass word from storage
+                await storage.delete(key: "fcmtoken");//deletes fmtocken from storage
+                removeStaticValue(); //removing static value
                  
                Navigator
         .of(context)
@@ -302,7 +308,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
               padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
               child: InkWell(
                 splashColor: Colors.blue,
-                onTap: () => launch(StaticValue.whatsapp),
+                onTap: () => launch(StaticValue.whatsapp), 
                 child: Image(
                   image: new AssetImage("assets/whatsapp.png"),
                   height: 33.0,

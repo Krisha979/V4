@@ -14,6 +14,8 @@ class SendNotification extends StatefulWidget{
 }
 class SendState extends State<SendNotification>{
    var ctx;
+
+   //handling back press
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
@@ -25,6 +27,8 @@ final notificationbody = TextEditingController();
 NotificationModel details;
 String lastNotifications;
 
+
+//api call to get recent sent notification
  Future<List<NotificationModel>> getNotifications() async {
   notification.dateCreated = DateTime.now().toString();
   notification.createdBy = StaticValue.orgUserId;
@@ -34,7 +38,7 @@ String lastNotifications;
  
    String jsonbody = jsonEncode(notification);
 
- bool connection = await _checkConnectivity();
+ bool connection = await _checkConnectivity(); //cheeck internet connection
       if(connection == false){
                    showDialog(
                  context: context,
@@ -78,6 +82,7 @@ String lastNotifications;
           body: jsonbody);
        print(post);
 
+//check notification check
       if (post.statusCode == 201){
         showGeneralDialog(
                 barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
@@ -139,18 +144,20 @@ String lastNotifications;
                );
     }
   }}
+  //iinitilizing last notification function
 @override
   void initState()  {
     super.initState();  
     lastNotification();
   }
 
+//api call to get last sent notification
 Future<List<NotificationModel>> lastNotification() async {
 
    try {
       http.Response post = await http.get(
             Uri.encodeFull(StaticValue.baseUrl +
-                "api/lastsentnotification?Orgid=")+StaticValue.orgId.toString(),
+               StaticValue.sendNotification)+StaticValue.orgId.toString(),
             headers: {
               'Content-type': 'application/json',
               'Accept': 'application/json',
@@ -173,6 +180,7 @@ Future<List<NotificationModel>> lastNotification() async {
    }
 }
 
+// internet connection 
 Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -266,7 +274,7 @@ Future<bool> _checkConnectivity()  async{
                                       color: Color(0xFFB56AFF),
                                       onPressed: () {
 
-                   if (notificationbody.text == ""){
+                   if (notificationbody.text == ""){ // to check empty field
                   showDialog(
                  context: context,
                  barrierDismissible: false,
@@ -290,7 +298,7 @@ Future<bool> _checkConnectivity()  async{
                                         }
                                         else
                                         {
-                                         showDialog(
+                                         showDialog( //loading while uploading 
                                          context: context,
                                               barrierDismissible: false,
                                               builder: (BuildContext context) {

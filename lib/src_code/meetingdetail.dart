@@ -43,7 +43,7 @@ String _selectedvalue;
     String jsonbody = jsonEncode(details);
     try {
       http.Response data = await http.put(
-          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings/" +
+          Uri.encodeFull(StaticValue.baseUrl + StaticValue.meeeetingDetails_url+
               details.meetingId.toString() +
               "?sender=" +
               (details.organizationId).toString()),
@@ -57,7 +57,7 @@ String _selectedvalue;
             Navigator.pop(context);
             Navigator.pop(context);
           }
-
+//meeting detail  respond check
       if (data.statusCode == 204){
         showGeneralDialog(
             barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
@@ -97,7 +97,7 @@ String _selectedvalue;
       Text("Server error!!");
     }
   }
-
+//format date time
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -105,7 +105,7 @@ String _selectedvalue;
     date = longdate.format(format);
     return date;
   }
-
+//format time
   String formatTime(String time) {
     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
     DateTime formattedtime = (dateFormatremoveT.parse(time));
@@ -300,6 +300,8 @@ String _selectedvalue;
                                       child: Text(list.statusName),
                                     );
                                   }).toList(),
+
+                                  
                                   onChanged: (newvalue) {
                                     setState(() {
                                       _selectedvalue = newvalue.toString();

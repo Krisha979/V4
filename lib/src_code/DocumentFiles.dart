@@ -15,6 +15,8 @@ class DocumentFilesState extends State<DocumentFilesPage> {
   final DocumentModel details;
   DocumentFilesState(this.details);
   String documentUrl;
+
+  //method to format date and time
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -22,7 +24,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
     date = longdate.format(format);
     return date;
   }
-
+//method to format time
   String formatTime(String time) {
     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
     
@@ -60,6 +62,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
 
                     },
                     child: Container(
+                     // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: Card(
                             elevation: 5,
                             margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
@@ -69,13 +72,17 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
+                                    // Padding(
+                                    //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                    // ),
                                     Flexible(
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                         InkWell(
                                           child: Text(
-                                         ( details.documents[index].fileName == null)?details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
+                                         ( details.documents[index].fileName == null)? //to check if file name is null then show the last index of filename
+                                         details.documents[index].documentURL.substring(details.documents[index].documentURL.lastIndexOf('/')+1):
                                          details.documents[index].fileName,
 
                                           
@@ -86,7 +93,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                                  fontWeight: FontWeight.normal),
                                            ),
                                           onTap: () {
-                                            launch('$url');
+                                            launch('$url');  // to open uploaded document
                                           },
                                         ),
                                         Text(formatDateTime(details.documents[index].dateCreated),
@@ -105,6 +112,10 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                   height: size.height / 12,
                                   width: size.height / 12,
                                   
+
+                                  //to check the extension of image and show the icon as per the extension
+                                  //pdf then pdf icon other wise generic icon 
+
 
                           child: url.contains(".jpeg") 
                                           ? Image.network(details.documents[index].documentURL,

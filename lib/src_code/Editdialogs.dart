@@ -28,6 +28,8 @@ class AddEditDialogState extends State<AddEditDialog> {
   String _selectedvalue;
 
   int _statusid;
+
+  //edit meeting function api call to put the edited meeting
   Future<void> editData() async {
     var mt = meetingTime.text.replaceAll(new RegExp(r"\ "),"T");
     details.meetingTime = mt;
@@ -39,7 +41,7 @@ class AddEditDialogState extends State<AddEditDialog> {
     String jsonbody = jsonEncode(details);
     try {
       http.Response data = await http.put(
-          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings/" +
+          Uri.encodeFull(StaticValue.baseUrl + StaticValue.createMeeting +
               details.meetingId.toString() +
               "?sender=" +
               (details.organizationId).toString()),
@@ -48,7 +50,7 @@ class AddEditDialogState extends State<AddEditDialog> {
             'Accept': 'application/json'
           },
           body: jsonbody);
-          if(data.statusCode == 204){
+          if(data.statusCode == 204){  //condition to check if meeting is edited then show check dialog message
               showGeneralDialog(
                 barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
                 transitionBuilder: (context, a1, a2, widget) {
@@ -88,13 +90,13 @@ class AddEditDialogState extends State<AddEditDialog> {
     {
     } 
   }
-Future<bool> _onBackPressed() async {
+Future<bool> _onBackPressed() async { //handle on back press
    Navigator.pop(ctx);
    Navigator.pop(ctx);
    Navigator.pop(ctx);
   
  }
-
+//initializing textform field data
   @override
   void initState() {
     super.initState();
@@ -190,7 +192,7 @@ Future<bool> _onBackPressed() async {
                                     maxLength: 300,
                                   
                                     controller: meetingAgenda,
-                                    decoration: new InputDecoration(
+                                    decoration: new InputDecoration(   //empty field validation
                                        errorText: _validate ? 'Value Can\'t Be Empty' : null,
                                       fillColor: Color(0xFFFBF4F4),
                                       filled: true,
@@ -278,9 +280,10 @@ Future<bool> _onBackPressed() async {
                                       ),
                                   ),
                                   onShowPicker: (context, currentValue) async {
+
                                       final date = await showDatePicker(
                                           context: context,
-                                          firstDate: DateTime.now(),
+                                          firstDate: DateTime.now(), 
                                           
                                           initialDate:
                                               currentValue ?? DateTime.now(),
@@ -340,6 +343,8 @@ Future<bool> _onBackPressed() async {
                                             child: Text(list.statusName),
                                           );
                                         }).toList(),
+
+                                        //drop down selection change
                                         onChanged: (newvalue) {
                                           setState(() {
                                             _selectedvalue = newvalue.toString();
@@ -367,14 +372,16 @@ Future<bool> _onBackPressed() async {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: RaisedButton(
                                         onPressed: () async {
+                                          //to check text field empty
                                           if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
                                           meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty){
                                            }
 
                  else if (details.meetingTime == meetingTime.text && details.location == meetingLocation.text
-                  && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){
+                  && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){ 
 
                  }
+
                  else if (DateTime.now().isAfter(DateTime.parse(meetingTime.text))){
                     showDialog(
                  context: context,
@@ -406,7 +413,7 @@ Future<bool> _onBackPressed() async {
                                               builder: (BuildContext context) {
                                                  ctx = context;
                                     return new WillPopScope(
-
+//handle on back press
                                       onWillPop: _onBackPressed,
                                       child: Center(
                                      
@@ -424,7 +431,7 @@ Future<bool> _onBackPressed() async {
                                       ),
                                        ) );
                                               });
-                                           editData();
+                                           editData(); //function call
                                           }
 
                                         },

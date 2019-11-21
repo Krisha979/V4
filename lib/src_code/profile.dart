@@ -18,12 +18,12 @@ class ProfileState extends State<Profile> {
   TextEditingController userEmail;
   TextEditingController userContact;
 
-
+//api call to get organization details
   Future<ProfileModel> profile() async {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/OrganizationUserDetails?Orgid=" +
+            StaticValue.profile_modelurl +
               StaticValue.orgId.toString()),
 
           headers: {
@@ -50,6 +50,8 @@ class ProfileState extends State<Profile> {
     }
   }
 
+
+//api call to put users details
   Future<bool> UpdateDetails() async {
     UserAccount userAccount = new UserAccount();
     userAccount.userAccountId = details.userAccountId;
@@ -71,7 +73,7 @@ class ProfileState extends State<Profile> {
     try {
       http.Response data = await http.put(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/UserAccounts/" +
+              StaticValue.profilePerson_url +
               details.userAccountId.toString()),
           headers: {
             'Content-type': 'application/json',
@@ -87,6 +89,8 @@ class ProfileState extends State<Profile> {
       return false;
     }
   }
+
+
 
   @override
   void initState() {
@@ -107,7 +111,7 @@ class ProfileState extends State<Profile> {
         body: SmartRefresher(
           controller: _refreshController,
           enablePullDown: true,
-          onRefresh: () async {
+          onRefresh: () async { //page refresh
             await Future.delayed(Duration(seconds: 2));
             profile();
             _refreshController.refreshCompleted();
@@ -383,6 +387,8 @@ class ProfileState extends State<Profile> {
                                       ),
                                         );
                                       });
+
+                                      //to check user dtails update
                                   bool success = await UpdateDetails();
                                   if (success == true) {
                                     await _showDialog(

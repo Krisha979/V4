@@ -16,6 +16,8 @@ class _InvoiceState extends State<Invoice> {
   int invoicenumber;
 
   Future<List<InvoiceModel>> _future;
+
+  //internet connection 
   Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -23,7 +25,7 @@ class _InvoiceState extends State<Invoice> {
                          return false;
                         }
                         }
-
+//api call to get uploaded invoices
   Future<List<InvoiceModel>> getInovoices() async {
     bool connection = await _checkConnectivity();
       if(connection == false){
@@ -52,7 +54,7 @@ class _InvoiceState extends State<Invoice> {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/OrgInvoices?Orgid=" +
+             StaticValue.create_invoiceurl +
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
@@ -89,18 +91,17 @@ class _InvoiceState extends State<Invoice> {
   @override 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    //Size size = MediaQuery.of(context).size;
-    
+   
     String fmfamount ;
     if(StaticValue.totalPaymentDue.contains('-')){
 fmfamount="0";
 }
 else{
   var time = double.parse(StaticValue.totalPaymentDue);
-  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
+  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter( //decimal seperator
 
     amount:time,
-    settings: MoneyFormatterSettings(
+    settings: MoneyFormatterSettings(  
         
         thousandSeparator: ',',
         decimalSeparator: '.',

@@ -13,24 +13,57 @@ class StaticValue
   static int orgUserId;
   static String userRowstamp;
   static String orgRowstamp;
-
-  static int meetingstatusId=3;
   static List<MeetingStatus> statuslist = [];
+   static final String loginurl = "api/UserAuthentication";
 
-  //baseurl
+  //home baseurl
+  static final String home_url="api/OrganizationDashboard?Orgid=" ;
+
+  //image previewurl
+  static final String previewurl = "api/UploadDocuments?Orgid=" ;
 
   //static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
   static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
 
   //notification
+  static final String notification_url = "api/RecentOrgNotifications?Orgid=";
   static int latestNotificationId;
 
+  //meeting details
+   static final String meeeetingDetails_url = "api/Meetings/" ;
+
+   //multiple image_picker
+   static final String multipleimage_url =  "api/UploadDocuments?Orgid=";
+  
+  //create invoiceurl
+  static final String create_invoiceurl =  "api/OrgInvoices?Orgid=";
+
+
+
   //meeting
+  static final String meeting_url = "api/OrgMeetings?Orgid=";
   static int meetingScheduledId = 4;
+  static int meetingstatusId=3;
   static bool togglestate;
+
+  //create meeting
+  static final String createMeeting = "api/Meetings/";
 
   //image preview
   static File imgfile;
+
+  //create meeting
+  static final String createMeeting_url = "api/Meetings?sender=";
+
+  //privacy 
+  static final String privacy_url='http://snbiznepal.com/wp-content/uploads/2019/08';
+
+  //profile
+  static final String profile_modelurl = "api/OrganizationUserDetails?Orgid="; 
+   static final String profilePerson_url = "api/UserAccounts/";
+
+  //document
+  static final String document ="api/OrgDocumentsList?Orgid=" ;
 
   //multiple image
   static List<String> filenames;
@@ -39,6 +72,16 @@ class StaticValue
   static String facebookurl = "http://www.facebook.com";
   static String whatsapp="http://api.whatsapp.com/send?phone=+977-9803373555";
 
+  //task
+  static final String taskurl="api/AllOrgTasks?Orgid=";
+
+  //send notification
+  static final String sendNotification= "api/lastsentnotification?Orgid=";
+
+  //task details
+  static final String taskDetails_url= "api/OrgChildTasks?Orgid=";
+  //trems
+  static final String termsurl = 'https://snbiznepal.com' ;
   //carousal datas
   static String upcomingMeetingsCount='-';
   static String meetingTime='-';
@@ -55,5 +98,8 @@ class StaticValue
 
   //logout
   static bool wasloggedout;
+
+  //webview
+  static final String webviewUrl='https://snbiznepal.com';
 
 }

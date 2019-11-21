@@ -12,10 +12,13 @@ class BridgeState extends State<Bridge> {
   final storage = new FlutterSecureStorage();
   void initState(){
   super.initState();
-  getfromstorage();
+  getfromstorage();   //function call
    
 }
-Future<Null> getfromstorage() async {
+
+// if user login for first time the tutorial page is open and firstlogin is set false
+//while if the user is already logged in the login page in opened. 
+Future<Null> getfromstorage() async {  
 var firstlogin = await storage.read(key:"Login");
 if(firstlogin == 'false'){
             Navigator.push(context, 

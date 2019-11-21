@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 
-enum FileType {
+enum FileType { 
   ANY,
   IMAGE,
   VIDEO,
