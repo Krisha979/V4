@@ -13,6 +13,7 @@ class StaticValue
   static int orgUserId;
   static String userRowstamp;
   static String orgRowstamp;
+
   static int meetingstatusId=3;
   static List<MeetingStatus> statuslist = [];
 
