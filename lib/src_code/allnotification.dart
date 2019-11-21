@@ -228,6 +228,7 @@ class AllNotificationState extends State<AllNotification> {
               ),
 
                    Expanded(
+
                       child: Container(
                      color: Color(0XFF),
                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
