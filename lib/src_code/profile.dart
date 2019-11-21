@@ -25,11 +25,11 @@ class ProfileState extends State<Profile> {
           Uri.encodeFull(StaticValue.baseUrl +
               "api/OrganizationUserDetails?Orgid=" +
               StaticValue.orgId.toString()),
+
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
             'Cache-Control': 'no-cache,private,no-store,must-revalidate'
-
           });
 
       var jsonData = json.decode(data.body);
