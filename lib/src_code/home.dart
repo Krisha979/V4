@@ -44,6 +44,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String uploadeddate,meetingtime,lastinvoicedate;
   final RefreshController _refreshController = RefreshController();
   var date = DateTime.now().toString();
+
+  //date time format method
   String formatDateTime12(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM");
     DateTime format = (dateFormat.parse(date));
@@ -53,6 +55,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
 
+//function to call api
   Future<DashBoardData> getData() async{
     try{
       http.Response response = await http.get(
@@ -67,6 +70,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
       var data1 = DashBoardData.fromJson(jsonData);
+
+
       if(data1 != null){
           setState(() {
         data = data1;
@@ -97,6 +102,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         return null;
         }
     }
+
+    //method to open file 
 
   void _openFileExplorer() async {
     if (_pickingType != FileType.CUSTOM || _hasValidMime) {
@@ -135,6 +142,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
  String img;
 
+
+//method to open camera
   openCamera(BuildContext context) async {
     var picture = await ImagePicker.pickImage(source: ImageSource.camera);
     imageFile = picture;
@@ -240,23 +249,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                              ],
                            ),
 
-
-
-
-                         /* FloatingActionButton(
-                            //child: Icon(Icons.sd_storage),
-                            onPressed: () => _openFileExplorer(),
-                          ),
-                          FloatingActionButton(
-                            child: Icon(Icons.camera_alt),
-                            onPressed: () {
-                              openCamera(context);
-                              Navigator.of(context).pop();
-
-                              // To close the dialog
-                            },
-                          ),*/
-
                         ],
                         ),
 
@@ -270,13 +262,14 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         },
       );
     }
-
+//to check the image path is empty or not
     void image1(){
   if(_paths.isNotEmpty){
      findnames();
 
   }
 }
+//image uplaod then navigate to another page
   void findnames(){
       String names = _paths.toString();
       StaticValue.filenames= names.split(',');
@@ -290,8 +283,11 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
+
+//funnction to create slider widget
   Future<List<Widget>> listwidget()async {
-        if(StaticValue.upcomingMeetingsCount != null)
+
+        if(StaticValue.upcomingMeetingsCount != null)  //condition to check meeting count
 
         {
              setState(() {
@@ -478,6 +474,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         );
  String fmfamount ;
 
+//conditioin to if vat credit is null
  if(StaticValue.vATCredit==null){
   fmfamount="0";
 }
@@ -486,7 +483,7 @@ else{
 var money = double.parse(StaticValue.vATCredit);
 
 
-  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
+  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter( //flutter money package for decimal seperator
 
     amount:money,
     settings: MoneyFormatterSettings(
@@ -558,7 +555,9 @@ fmfamount = fmf.output.nonSymbol.toString();
                ]
              )
         );
+
         widgets.clear();
+        //adding widget to list
         widgets.add(widget1);
         widgets.add(widget2);
         widgets.add(widget3);
@@ -573,7 +572,7 @@ fmfamount = fmf.output.nonSymbol.toString();
 
 
 
-
+//method for widget animation
   @override
   void initState() {
     super.initState();
@@ -591,7 +590,7 @@ fmfamount = fmf.output.nonSymbol.toString();
 
   }
 
-
+//to check if the code changes evry time it should hit this method
   @override
   void didChangeDependencies() async{
     super.didChangeDependencies();
@@ -642,7 +641,7 @@ fmfamount = fmf.output.nonSymbol.toString();
     return result;
   }
 
-
+//date time format
  String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -650,6 +649,7 @@ fmfamount = fmf.output.nonSymbol.toString();
     date = longdate.format(format);
     return date;
   }
+  //time format
   String formatTime(String time) {
      DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
     DateTime formattedtime = (dateFormatremoveT.parse(time));
@@ -670,11 +670,14 @@ fmfamount = fmf.output.nonSymbol.toString();
        body: SmartRefresher(
         controller: _refreshController,
         enablePullDown: true,
+        //page refresh
         onRefresh: () async {
+
+
       await Future.delayed(Duration(seconds: 2));
       setState(() async{
         await getData();
-        _refreshController.refreshCompleted();
+        _refreshController.refreshCompleted(); //page refresh
         listwidget();
 
     

@@ -16,7 +16,7 @@ class WebViewState extends State<WebView>{
   @override
   Widget build(BuildContext context) {
    
-    return  WebviewScaffold(
+    return  WebviewScaffold( 
       url: 'https://snbiznepal.com',
       hidden: true,
       appBar: AppBar(title: Text("About SN Business", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),

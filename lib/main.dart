@@ -16,8 +16,9 @@ class AppStart extends StatefulWidget {
 }
 
 class _AppStart extends State<AppStart> {
-final FirebaseMessaging _fcm = FirebaseMessaging();
+final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification 
  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
 
   Future<dynamic> selectNotification(String payload){
       return showDialog(
@@ -29,7 +30,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
             );
     }
 
-    
+    //vibration pattern
 
     showNotification(Map<String,dynamic> message) async {
       var vibrationPattern;
@@ -50,7 +51,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
       vibrationPattern[0] = 200;
     }
 
-
+//setting up notification channel
       var android = new AndroidNotificationDetails('channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
       priority: Priority.High,importance: Importance.Max
           ,vibrationPattern: vibrationPattern
@@ -98,7 +99,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
     debugShowCheckedModeBanner: false,
      
 
-     home: Bridge(),
+     home: Bridge(), //navigate to tutorial or login page
      );
   }
 }

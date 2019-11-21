@@ -16,7 +16,7 @@ class PrivacyWebViewState extends State<PrivacyWebView>{
   @override
   Widget build(BuildContext context) {
    
-    return  WebviewScaffold(
+    return  WebviewScaffold(   //package to view web 
       url: 'http://snbiznepal.com/wp-content/uploads/2019/08',
       hidden: true,
       appBar: AppBar(title: Text("Privacy Policy", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),

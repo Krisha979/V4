@@ -23,6 +23,8 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
 
 
 int _current=0;
+
+
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -33,7 +35,7 @@ static List<T> map<T>(List list, Function handler) {
   }
 
 
-
+//to create widget
 
  Future<List<Widget>> listwidget()async {
                   imageList.clear();
@@ -146,7 +148,7 @@ static List<T> map<T>(List list, Function handler) {
 
                   
 
-      
+      //adding widget to list
             imageList.add(widget1);
             imageList.add(widget2);
             imageList.add(widget3);
@@ -193,7 +195,7 @@ return Scaffold(
 
 
                      Stack(
-                      children: <Widget>[CarouselSlider(
+                      children: <Widget>[CarouselSlider( //carousel slider to slide the widget
                         items: imageList,
                         height:size.height-100,
                         aspectRatio: 16/9,

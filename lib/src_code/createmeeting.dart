@@ -17,7 +17,7 @@ class Create extends StatefulWidget {
 class _CreateState extends State<Create> {
   DateTime meeting;
   var ctx;
-  Future<bool> _onBackPressed() async {
+  Future<bool> _onBackPressed() async {//function to handle on back press
    Navigator.pop(ctx);
    Navigator.pop(ctx);
   
@@ -31,7 +31,9 @@ class _CreateState extends State<Create> {
   final location = TextEditingController();
   final reminderTime = TextEditingController();
 
-  Future<void> createMeeting() async {
+
+//function to call api
+  Future<void> createMeeting() async {  
     CreateMeetings meeting = new CreateMeetings();
 
     meeting.meetingId = null;
@@ -41,14 +43,16 @@ class _CreateState extends State<Create> {
     meeting.agenda = meetingAgenda.text.toString();
     meeting.statusId = StaticValue.meetingScheduledId;
     meeting.reminderTime =
-        (DateTime.parse(meetingTime.text).add(new Duration(hours: -1)))
+        (DateTime.parse(meetingTime.text).add(new Duration(hours: -1))) //setting reminder time before  one hour of meeting time
             .toString();
-    meeting.dateCreated = DateTime.now().toString();
+    meeting.dateCreated = DateTime.now().toString();// current date time 
     meeting.createdBy = StaticValue.orgUserId;
     meeting.deleted = false;
 
     String jsonbody = jsonEncode(meeting);
-     bool connection = await _checkConnectivity();
+     bool connection = await _checkConnectivity();  // internet connection function call
+
+     //condition to check if connection is true or false
       if(connection == false){
                    showDialog(
                  context: context,
@@ -81,7 +85,7 @@ class _CreateState extends State<Create> {
       else{
     try {
       http.Response response = await http.post( Uri.encodeFull(StaticValue.baseUrl +"api/Meetings?sender=" +
-              StaticValue.orgId.toString()),
+              StaticValue.orgId.toString()),  //appi call to post the meeting
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
@@ -91,7 +95,9 @@ class _CreateState extends State<Create> {
           body: jsonbody);
       print(response);
 
-      if (response.statusCode == 201){
+      // condition to check if meeting is created then show dialog 
+
+      if (response.statusCode == 201){  
         showGeneralDialog(
                 barrierColor: Colors.black.withOpacity(0.5), 
                 transitionBuilder: (context, a1, a2, widget) {
@@ -154,7 +160,7 @@ class _CreateState extends State<Create> {
     }
   }}
 
-Future<bool> _checkConnectivity()  async{
+Future<bool> _checkConnectivity()  async{ //internet connection function
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
              
@@ -344,16 +350,16 @@ Future<bool> _checkConnectivity()  async{
                                     ),
                                     onShowPicker:
                                         (context, currentValue) async {
-                                      final date = await showDatePicker(
+                                      final date = await showDatePicker(   
                                           context: context,
-                                          firstDate: DateTime.now(),
+                                          firstDate: DateTime.now(), 
                                           initialDate:
                                               currentValue ?? DateTime.now(),
                                           lastDate: DateTime(2100));
                                       if (date != null) {
                                         final time = await showTimePicker(
                                           context: context,
-                                          initialTime: TimeOfDay.fromDateTime(
+                                          initialTime: TimeOfDay.fromDateTime(      
                                               currentValue ?? DateTime.now()),
                                         );
                                         return DateTimeField.combine(
@@ -372,6 +378,8 @@ Future<bool> _checkConnectivity()  async{
                                     padding: const EdgeInsets.only(
                                         top: 30, bottom: 30),
                                     child: RaisedButton(
+
+                                      //to check if field is empty or not
                                       onPressed: () async {
                                         if (meetingAgenda.text.isEmpty ||
                                             meetingLocation.text.isEmpty ||
@@ -413,7 +421,7 @@ Future<bool> _checkConnectivity()  async{
                                               barrierDismissible: false,
                                               builder: (BuildContext context) {
                                                 ctx = context;
-                                    return new WillPopScope(
+                                    return new WillPopScope(  //to handle on back press
 
                                       onWillPop: _onBackPressed,
                                       child: Center(

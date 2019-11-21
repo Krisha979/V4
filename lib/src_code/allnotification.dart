@@ -30,6 +30,9 @@ class AllNotificationState extends State<AllNotification> {
   String date;
   final storage = new FlutterSecureStorage();
   var latestid;
+
+
+  //to check internet 
   Future<bool> _checkConnectivity() async {
     var result = await Connectivity().checkConnectivity();
     if (result == ConnectivityResult.none) {
@@ -37,9 +40,12 @@ class AllNotificationState extends State<AllNotification> {
     }
   }
 
-  Future<List<NotificationModel>> getNotifications() async {
+
+
+
+  Future<List<NotificationModel>> getNotifications() async { //function to call notification api
     bool connection = await _checkConnectivity();
-    if (connection == false) {
+    if (connection == false) {    //condtition to check the internet connectivity
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -66,7 +72,7 @@ class AllNotificationState extends State<AllNotification> {
           });
     } else {
       try {
-        http.Response data = await http.get(
+        http.Response data = await http.get(   // recent notification api call
             Uri.encodeFull(StaticValue.baseUrl +
                 "api/RecentOrgNotifications?Orgid=" +
                 StaticValue.orgId.toString()),
@@ -75,7 +81,7 @@ class AllNotificationState extends State<AllNotification> {
               'Accept': 'application/json',
               'Cache-Control': 'no-cache,private,no-store,must-revalidate'
             });
-        var jsonData = json.decode(data.body);
+        var jsonData = json.decode(data.body);   
         List<NotificationModel> notifications = [];
         for (var u in jsonData) {
           var notification = NotificationModel.fromJson(u);
@@ -110,11 +116,11 @@ class AllNotificationState extends State<AllNotification> {
     });
   }
 
-  Future<void> storeLatesId(String id) async {
+  Future<void> storeLatesId(String id) async {   //to store the last nottification id
     await storage.write(key: "LatestNotificationId", value: id);
   }
 
-  String formatDateTime(String date) {
+  String formatDateTime(String date) {   // date time format  method
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
     DateFormat longdate = DateFormat("EEEE, MMM d, yyyy");
@@ -134,7 +140,7 @@ class AllNotificationState extends State<AllNotification> {
         onRefresh: () async {
           await Future.delayed(Duration(seconds: 2));
           _future = getNotifications();
-          _refreshController.refreshCompleted();
+          _refreshController.refreshCompleted(); //method call for refreshing page
         },
         child: Container(
           width: size.width,
@@ -173,7 +179,7 @@ class AllNotificationState extends State<AllNotification> {
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: Text(
-                            '$notificationNumber',
+                            '$notificationNumber',   
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold),
@@ -288,7 +294,9 @@ class AllNotificationState extends State<AllNotification> {
                                       var type = "";
                                       int color = 0xFFA19F9F;
                                       var icon = "assets/snbiznotification.png";
-                                      if (snapshot.data[index].notificationBody
+
+                                      //condtition to set the icon according to the type of notification
+                                      if (snapshot.data[index].notificationBody   
                                           .contains("meeting")) {
                                         icon = "assets/snbizmeetings.png";
                                       } else if (snapshot
@@ -312,6 +320,8 @@ class AllNotificationState extends State<AllNotification> {
                                         type = "New";
                                         color = 0xFFEFF0F1;
                                       }
+
+
                                       return GestureDetector(
                                         child: Wrap(children: <Widget>[
                                           Container(
@@ -334,6 +344,8 @@ class AllNotificationState extends State<AllNotification> {
                                           String notificationtype = snapshot
                                               .data[index].notificationBody
                                             ..toString();
+
+                                            //navigating to the particular page according to the notification type
                                           if (notificationtype
                                               .contains("meeting")) {
                                             StaticValue.controller.animateTo(1);
@@ -381,6 +393,8 @@ class AllNotificationState extends State<AllNotification> {
       ),
     );
   }
+
+
 
   ListTile buildListTile(AsyncSnapshot snapshot, int index, String date, type,
       String icon, int color) {

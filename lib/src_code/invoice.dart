@@ -16,6 +16,8 @@ class _InvoiceState extends State<Invoice> {
   int invoicenumber;
 
   Future<List<InvoiceModel>> _future;
+
+  //internet connection 
   Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -23,7 +25,7 @@ class _InvoiceState extends State<Invoice> {
                          return false;
                         }
                         }
-
+//api call to get uploaded invoices
   Future<List<InvoiceModel>> getInovoices() async {
     bool connection = await _checkConnectivity();
       if(connection == false){
@@ -89,18 +91,17 @@ class _InvoiceState extends State<Invoice> {
   @override 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    //Size size = MediaQuery.of(context).size;
-    
+   
     String fmfamount ;
     if(StaticValue.totalPaymentDue.contains('-')){
 fmfamount="0";
 }
 else{
   var time = double.parse(StaticValue.totalPaymentDue);
-  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter(
+  FlutterMoneyFormatter fmf = new FlutterMoneyFormatter( //decimal seperator
 
     amount:time,
-    settings: MoneyFormatterSettings(
+    settings: MoneyFormatterSettings(  
         
         thousandSeparator: ',',
         decimalSeparator: '.',

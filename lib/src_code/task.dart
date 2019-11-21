@@ -23,7 +23,7 @@ class TaskState extends State<TaskPage> {
   final RefreshController _refreshController = RefreshController();
 
   Future<List<OrgTask>> _future;
-
+//date time format
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -31,6 +31,7 @@ class TaskState extends State<TaskPage> {
     date = longdate.format(format);
     return date;
   }
+  //format time
   String formatTime(String time) {
      DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
 
@@ -41,6 +42,8 @@ class TaskState extends State<TaskPage> {
    
     return time.toString();
   }
+
+  //internet connection  check
    Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -49,6 +52,9 @@ class TaskState extends State<TaskPage> {
                         }
                         }
 
+
+//api call to get task task details
+
 Future<List<OrgTask>> getTask()async{
   bool connection = await _checkConnectivity();
       if(connection == false){
@@ -56,7 +62,7 @@ Future<List<OrgTask>> getTask()async{
                  context: context,
                  barrierDismissible: false,
                  builder: (BuildContext context){
-                   return AlertDialog(
+                   return AlertDialog( 
                      title: Text("Please, check your internet connection",
                   
                      style: TextStyle(color:Color(0xFFA19F9F,),
@@ -107,7 +113,7 @@ catch(e){
 }
       }
 }
-
+//initializing the data 
  @override
   void initState() {
     super.initState();
@@ -123,7 +129,7 @@ String formatPercent(String fmfamount){
 
     amount:time,
     
-    settings: MoneyFormatterSettings(
+    settings: MoneyFormatterSettings( //money format package to separate decimal 
         
         thousandSeparator: ',',
         decimalSeparator: '.',
@@ -146,7 +152,7 @@ value = fmf.output.withoutFractionDigits.toString();
     body: SmartRefresher(
       controller: _refreshController,
       enablePullDown: true,
-      onRefresh: () async {
+      onRefresh: () async { //page refresh
         await Future.delayed(Duration(seconds: 2));
         _future = getTask();
         _refreshController.refreshCompleted();
@@ -284,8 +290,9 @@ value = fmf.output.withoutFractionDigits.toString();
                      shrinkWrap: true,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index){
-                      var firstName = snapshot.data[index].parentTask.fullName;
-                       var contact = snapshot.data[index].parentTask.contactNumber;
+
+                      var firstName = snapshot.data[index].parentTask.fullName = null ? "no name" : snapshot.data[index].parentTask.fullName;
+                       var contact = snapshot.data[index].parentTask.contactNumber = null ? "no contact details" : snapshot.data[index].parentTask.contactNumber;
                        var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
                        var name = snapshot.data[index].parentTask.taskName;
                        formatPercent(snapshot.data[index].percentageComplete.toString());
@@ -323,6 +330,7 @@ value = fmf.output.withoutFractionDigits.toString();
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
+                                  //showing data in listtile
                                  Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)),
                                 Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
                                  Flexible(child: Text(firstName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),

@@ -28,11 +28,15 @@ class PreviewImageState extends State<PreviewImage>{
  var ctx;
  bool bottondisable;
 
+
+//method to disable button
  @override
  void initState() {
    super.initState();
    bottondisable = false;
  }
+
+
 
 void _incrementCounter(){
   setState(() {
@@ -47,6 +51,7 @@ void _incrementCounter(){
   File imageFile;
   String url;
   PreviewImageState(this.url);
+  //function to check the internet connectioj
 Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -55,6 +60,8 @@ Future<bool> _checkConnectivity()  async{
                         }
                         return true;
                         }
+
+//method to upload api to upload image
   Future<void> upload(File files) async {
     List<File> docs = new List();
     docs.add(files);
@@ -98,7 +105,7 @@ Future<bool> _checkConnectivity()  async{
 
 
 
-
+//handle on back press
  Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
@@ -200,9 +207,11 @@ Future<bool> _checkConnectivity()  async{
                                     );
                                     });
 
+
+
                                     if (StaticValue.imgfile.path == url) {
                                     await testCompressAndGetFile(StaticValue.imgfile, StaticValue.imgfile.path);
-                                    
+                                    //image upload check condition
                                     if(responsecode==200){
 
                                       showGeneralDialog(

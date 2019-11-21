@@ -30,8 +30,11 @@ class MeetingState extends State<Meeting> {
 
   Future<List<MeetingInfo>> _future;
 
+//toogle button 
   Future<void> _onSwitchChanged(bool value) async {
     var list = meetinglist;
+
+    //toogle button condition check
     if (value == true) {
       isSwitched = true;
       StaticValue.togglestate = true;
@@ -46,7 +49,8 @@ class MeetingState extends State<Meeting> {
     }
     setState(() {});
   }
-
+  
+  //internet connection check
   Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -63,6 +67,8 @@ class MeetingState extends State<Meeting> {
       _future = _meeting();
     });
   }
+
+  //meeting api call function
    Future<List<MeetingInfo>> _meeting() async {
     bool connection = await _checkConnectivity();
       if(connection == false){
@@ -91,7 +97,7 @@ class MeetingState extends State<Meeting> {
       }else {
     try {
       http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl +
+          Uri.encodeFull(StaticValue.baseUrl + 
               "api/OrgMeetings?Orgid=" +
               StaticValue.orgId.toString() +
               "&Page=1&RecordsPerPage=50"),
@@ -112,11 +118,13 @@ class MeetingState extends State<Meeting> {
       setState(() {
         counts = meeting.length;
       });
+
+
       if (StaticValue.togglestate == true) {
         isSwitched = true;
 
         switchText = 'Upcoming Meetings';
-        var sorted = await upcomingsortedlist(meeting);
+        var sorted = await upcomingsortedlist(meeting); //sort meeting according to the meeting time
         return sorted;
       } else {
         isSwitched = false;
@@ -130,18 +138,22 @@ class MeetingState extends State<Meeting> {
                                           }                                      
   }
 
+//to sort upcoming meeting list
   Future<List<MeetingInfo>> upcomingsortedlist(
       List<MeetingInfo> meetinginfo) async {
+
     var filteredmeetings = meetinginfo;
     filteredmeetings.removeWhere(
         (a) => DateTime.parse(a.meetingTime).isBefore(DateTime.now()));
     filteredmeetings.sort((a, b) =>
         DateTime.parse(a.meetingTime).compareTo(DateTime.parse(b.meetingTime)));
+
+        //remove from status in upcoming meeting
         filteredmeetings.removeWhere((a) => a.statusName == "Concluded" || a.statusName == "Cancelled" || a.statusName=="Declined");
     print(filteredmeetings);
     return filteredmeetings;
   }
-
+//to sort latest meeting list
   Future<List<MeetingInfo>> latestsortedlist(
       List<MeetingInfo> meetinginfo) async {
     meetinginfo.sort((a, b) =>
@@ -150,6 +162,7 @@ class MeetingState extends State<Meeting> {
     return meetinginfo;
   }
 
+//date time format code here
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -158,6 +171,7 @@ class MeetingState extends State<Meeting> {
     return date;
   }
 
+//time format 
   String formatTime(String time) {
     DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
     DateTime formattedtime = (dateFormatremoveT.parse(time));
@@ -333,6 +347,8 @@ class MeetingState extends State<Meeting> {
 
                                          
                                         var icon = "assets/snbizmeetings.png";
+
+                                        //condition for icon according to the status name
                                         if(snapshot.data[meetingId].statusName.contains("Schedule")){
                                          icon = "assets/snbizscheduled.png";
                                          }
