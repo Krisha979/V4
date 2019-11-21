@@ -17,7 +17,7 @@ class WebViewState extends State<WebView>{
   Widget build(BuildContext context) {
    
     return  WebviewScaffold( 
-      url: 'https://snbiznepal.com',
+      url: 'https://snbiznepal.com', 
       hidden: true,
       appBar: AppBar(title: Text("About SN Business", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
       backgroundColor: const Color(0xFF9C38FF),),
