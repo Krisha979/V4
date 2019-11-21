@@ -17,12 +17,7 @@ class LoginPage extends StatefulWidget{
         @override
         State createState()=> new LoginPageState();
     }
-
-
     bool isLoading = false;
-
-    
-
     class LoginPageState extends State<LoginPage> {
       String message;
       final _formKey = GlobalKey<FormState>();
@@ -47,7 +42,6 @@ class LoginPage extends StatefulWidget{
               }
       getfromstorage();
       }
-
       Future<Null> getfromstorage() async {
       var email = await storage.read(key:"Email");
       var password = await storage.read(key: "Password");

@@ -486,10 +486,8 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              )
         );
  String fmfamount ;
-if(StaticValue.vATCredit.contains('-')){
-fmfamount="0";
-}
-else if(StaticValue.vATCredit==null){
+
+ if(StaticValue.vATCredit==null){
   fmfamount="0";
 }
 else{
