@@ -35,7 +35,7 @@ var responsecode;
     }
 
     // string to uri
-    var uri = Uri.parse(StaticValue.baseUrl + "api/UploadDocuments?Orgid=" + StaticValue.orgId.toString() +  "&OrgName=" + StaticValue.orgName);
+    var uri = Uri.parse(StaticValue.baseUrl + StaticValue.multipleimage_url + StaticValue.orgId.toString() +  "&OrgName=" + StaticValue.orgName);
 
 
     // create multipart request

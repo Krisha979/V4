@@ -52,7 +52,7 @@ class _InvoiceState extends State<Invoice> {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/OrgInvoices?Orgid=" +
+             StaticValue.create_invoiceurl +
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',

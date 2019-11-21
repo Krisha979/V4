@@ -52,7 +52,7 @@ class _DocumentsState extends State<Documents> {
 
   try{
   http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl+ "api/OrgDocumentsList?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl+ StaticValue.document + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -116,6 +116,7 @@ catch(e){
                   children: [
                     Flexible (
                                           child: Column(
+                        //  mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
@@ -299,13 +300,8 @@ Padding(
                       ),
            ),
           onTap: () {
-<<<<<<< HEAD
  Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
-snapshot.data[index])));
-=======
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
-                                  snapshot.data[index])));
->>>>>>> a6965de845bd43fd395a504f57fae7c4419fe5cf
+  snapshot.data[index])));
                                         },
            )
            );

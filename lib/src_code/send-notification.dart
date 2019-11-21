@@ -150,7 +150,7 @@ Future<List<NotificationModel>> lastNotification() async {
    try {
       http.Response post = await http.get(
             Uri.encodeFull(StaticValue.baseUrl +
-                "api/lastsentnotification?Orgid=")+StaticValue.orgId.toString(),
+               StaticValue.sendNotification)+StaticValue.orgId.toString(),
             headers: {
               'Content-type': 'application/json',
               'Accept': 'application/json',

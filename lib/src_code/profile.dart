@@ -23,7 +23,7 @@ class ProfileState extends State<Profile> {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/OrganizationUserDetails?Orgid=" +
+            StaticValue.profile_modelurl +
               StaticValue.orgId.toString()),
 
           headers: {
@@ -71,7 +71,7 @@ class ProfileState extends State<Profile> {
     try {
       http.Response data = await http.put(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/UserAccounts/" +
+              StaticValue.profilePerson_url +
               details.userAccountId.toString()),
           headers: {
             'Content-type': 'application/json',

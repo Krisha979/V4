@@ -43,7 +43,7 @@ String _selectedvalue;
     String jsonbody = jsonEncode(details);
     try {
       http.Response data = await http.put(
-          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings/" +
+          Uri.encodeFull(StaticValue.baseUrl + StaticValue.meeeetingDetails_url+
               details.meetingId.toString() +
               "?sender=" +
               (details.organizationId).toString()),

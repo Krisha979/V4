@@ -92,7 +92,7 @@ class MeetingState extends State<Meeting> {
     try {
       http.Response data = await http.get(
           Uri.encodeFull(StaticValue.baseUrl +
-              "api/OrgMeetings?Orgid=" +
+              StaticValue.meeting_url +
               StaticValue.orgId.toString() +
               "&Page=1&RecordsPerPage=50"),
           headers: {

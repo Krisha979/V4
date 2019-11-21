@@ -39,7 +39,7 @@ class AddEditDialogState extends State<AddEditDialog> {
     String jsonbody = jsonEncode(details);
     try {
       http.Response data = await http.put(
-          Uri.encodeFull(StaticValue.baseUrl + "api/Meetings/" +
+          Uri.encodeFull(StaticValue.baseUrl + StaticValue.createMeeting +
               details.meetingId.toString() +
               "?sender=" +
               (details.organizationId).toString()),

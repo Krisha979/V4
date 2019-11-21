@@ -117,7 +117,7 @@ class LoginPage extends StatefulWidget{
     var client = new http.Client();
 
       http.Response response = await client.get(
-      Uri.encodeFull(StaticValue.baseUrl + "api/UserAuthentication"),
+      Uri.encodeFull(StaticValue.baseUrl + StaticValue.loginurl),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
