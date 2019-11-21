@@ -29,12 +29,10 @@ final OrgTask details;
   }
   String formatTime(String time) {
      DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
-   // DateFormat dateFormat = DateFormat.yMd().add_jm();
     DateTime formattedtime = (dateFormatremoveT.parse(time));
     DateFormat longtme = DateFormat.jm();
     time = longtme.format(formattedtime);
     print(time);
-   // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
     return time.toString();
   }
 
@@ -79,7 +77,6 @@ catch(e){
          
               child: Container(
                 margin: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                         //padding: EdgeInsets.fromLTRB(20, 20, 25, 15),
                            decoration: new BoxDecoration(
                           color: Colors.white,
                            borderRadius: new BorderRadius.circular(10.0),

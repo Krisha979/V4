@@ -18,10 +18,6 @@ class AppStart extends StatefulWidget {
 class _AppStart extends State<AppStart> {
 final FirebaseMessaging _fcm = FirebaseMessaging();
  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
- 
-//  Future<void> getnotified() async {
-//       var pendingNotificationRequest = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
-//  }
 
   Future<dynamic> selectNotification(String payload){
       return showDialog(
@@ -68,8 +64,6 @@ final FirebaseMessaging _fcm = FirebaseMessaging();
     super.initState();    
 
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
-    // scheduleNotification(10,1000000);
-    // scheduleNotification(20,100);
     var android = new AndroidInitializationSettings("@mipmap/launcher_icons");
     var ios = new IOSInitializationSettings();
     var initiSettings = new InitializationSettings(android, ios);

@@ -21,10 +21,6 @@ class _CreateState extends State<Create> {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
   
-     
-
-   // Your back press code here...
-   //CommonUtils.showToast(context, "Back presses");
  }
   final todayDate = DateTime.now();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -36,10 +32,6 @@ class _CreateState extends State<Create> {
   final reminderTime = TextEditingController();
 
   Future<void> createMeeting() async {
-    // bool _validate = false;
-    //  var agenda = meetingAgenda.text;
-    //  var loc = location.text;
-
     CreateMeetings meeting = new CreateMeetings();
 
     meeting.meetingId = null;
@@ -101,11 +93,11 @@ class _CreateState extends State<Create> {
 
       if (response.statusCode == 201){
         showGeneralDialog(
-                barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
+                barrierColor: Colors.black.withOpacity(0.5), 
                 transitionBuilder: (context, a1, a2, widget) {
                   return Center(
                     child: Container(
-                      height: 100.0 * a1.value,  // USE PROVIDED ANIMATION
+                      height: 100.0 * a1.value,  
                       width: 100.0 * a1.value,
                       color: Colors.transparent,
                       child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
@@ -114,7 +106,7 @@ class _CreateState extends State<Create> {
                     ),
                   );
                 },
-                transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
+                transitionDuration: Duration(milliseconds: 700), 
                 barrierDismissible: true,
                 barrierLabel: 'LABEL',
                 context: context,
@@ -131,12 +123,8 @@ class _CreateState extends State<Create> {
                    });
                
                  });
-               
-
-      }
-
-     
-    } catch (e) {
+                }
+                } catch (e) {
        showDialog(
                  context: context,
                  barrierDismissible: false,
@@ -154,9 +142,6 @@ class _CreateState extends State<Create> {
                         Navigator.pop(context);
                         Navigator.pop(context);
 
-
-//                         Navigator.pop(context);
-
                        })
                      ],
                    );
@@ -168,10 +153,6 @@ class _CreateState extends State<Create> {
      
     }
   }}
-
-
- 
-
 
 Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
@@ -197,20 +178,12 @@ Future<bool> _checkConnectivity()  async{
           Wrap(children: <Widget>[
             Container(
               constraints: new BoxConstraints(
-                  // minHeight: size.height,
-
-                  // maxHeight: size.height,
-
-                  ),
-              //   height: size.height,
+                     ),
               color: Color(0xFFF4EAEA),
               child: Wrap(children: <Widget>[
                 Container(
                   constraints: new BoxConstraints(
-                      //  minHeight: size.height,
-
-                      // maxHeight: size.height*2,
-
+          
                       ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
@@ -319,7 +292,6 @@ Future<bool> _checkConnectivity()  async{
                                 padding:
                                     const EdgeInsets.only(top: 10, bottom: 10),
                                 child: TextFormField(
-                                  // maxLength: 150,
                                   maxLines: 3,
                                   maxLength: 150,
                                   keyboardType: TextInputType.multiline,

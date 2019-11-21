@@ -16,11 +16,7 @@ class Tutorial extends StatefulWidget{
 }
 
 class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin {
-  //final storage = new FlutterSecureStorage();
-
-
-
-
+  
   static List<Widget> imageList = [];
 
   static Size size;
@@ -88,7 +84,6 @@ static List<T> map<T>(List list, Function handler) {
                   var widget3 =  Wrap(
                       children: <Widget>[
                         new Container(
-                          //height: size.height,
                             width: size.width,
                             padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
 
@@ -110,7 +105,6 @@ static List<T> map<T>(List list, Function handler) {
                     var widget4 =  Wrap(
                       children: <Widget>[
                         new Container(
-                          //height: size.height,
                             width: size.width,
                             padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
 
@@ -132,7 +126,6 @@ static List<T> map<T>(List list, Function handler) {
                     var widget5 =  Wrap(
                       children: <Widget>[
                         new Container(
-                          //height: size.height,
                             width: size.width,
                             padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
 
@@ -179,7 +172,6 @@ return Scaffold(
        Container(
        width: size.width ,
                     height: size.height,
-//color: Colors.grey,
          decoration:new BoxDecoration(
            gradient: new LinearGradient(colors:[
              const Color(0xFF9C38FF),
@@ -189,7 +181,6 @@ return Scaffold(
              end: FractionalOffset.bottomRight,
              stops: [0.0,100.0],
            ),
-//
          ),
 
 

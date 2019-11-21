@@ -23,11 +23,6 @@ class SendState extends State<SendNotification>{
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
-  
-     
-
-   // Your back press code here...
-   //CommonUtils.showToast(context, "Back presses");
  }
   NotificationModel notification = new NotificationModel();
 
@@ -37,17 +32,12 @@ NotificationModel details;
 String lastNotifications;
 
  Future<List<NotificationModel>> getNotifications() async {
-  //  String dateCreated;
-  // int createdBy;
-  // String organizationName;
-  // int notificationId;
-
   notification.dateCreated = DateTime.now().toString();
   notification.createdBy = StaticValue.orgUserId;
   notification.notificationBody = notificationbody.text;
   notification.organizationName = StaticValue.orgName;
   notification.notificationId = 00;
-  //notification.sendTo = ;
+  
 
 
 
@@ -161,9 +151,6 @@ String lastNotifications;
                         Navigator.pop(context);
                         Navigator.pop(context);
 
-
-//                         Navigator.pop(context);
-
                        })
                      ],
                    );
@@ -267,14 +254,12 @@ Future<bool> _checkConnectivity()  async{
                     ),
 
                   Container(
-
-
-                    child: Padding(
+                  child: Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Text(
+                      child:
                         lastNotifications == null ?
                         Text("No recent notification"): 
-                        lastNotifications.toString(), style: TextStyle(fontSize: 16),),
+                       Text( lastNotifications.toString()),
                     ),
                 width: size.width,
                 height: size.height/6,
@@ -290,16 +275,7 @@ Future<bool> _checkConnectivity()  async{
                       offset: Offset(0.0, 0.5),
                     ),
                   ],
-                ),
-               
-                       
-
-                        // Text(StaticValue.notificationdate,
-                        // style: TextStyle(
-                        // fontWeight:FontWeight.bold,
-                        // ))
-                    
-                   
+                ),   
               ),
                    new Theme(
                               data: new ThemeData(

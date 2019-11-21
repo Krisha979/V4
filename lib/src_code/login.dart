@@ -270,10 +270,7 @@ class LoginPage extends StatefulWidget{
                                 children:<Widget>[
                                   new Container(
                                     margin: EdgeInsets.only(left: 45, right: 45, top: 40),
-                                   // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-                                  //  width: size.width * 0.85,
                                     decoration: new BoxDecoration(
-                                    // color: Colors.grey[100].withOpacity(0.2),
                                       borderRadius: new BorderRadius.all(Radius.circular(10.0),)      
                                     ),                                      
                                     child: isLoading? Center(
