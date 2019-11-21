@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,7 @@ class _DocumentsState extends State<Documents> {
 
   try{
   http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl+ "api/OrgDocumentsList?Orgid=" + StaticValue.orgId.toString()),  //api call to get the uploaded document
+          Uri.encodeFull(StaticValue.baseUrl+ StaticValue.document + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -94,7 +93,6 @@ catch(e){
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-   
     return Scaffold(
       appBar: AppBar(title: Text('Documents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)), backgroundColor: const Color(0xFF9C38FF),),
       body: Container(
@@ -122,6 +120,7 @@ catch(e){
                   children: [
                     Flexible (
                                           child: Column(
+                        //  mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
@@ -308,8 +307,8 @@ Padding(
                       ),
            ),
           onTap: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
-                                  snapshot.data[index])));
+ Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
+  snapshot.data[index])));
                                         },
            )
            );

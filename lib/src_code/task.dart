@@ -84,7 +84,7 @@ Future<List<OrgTask>> getTask()async{
       }else {
   try{
   http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl + "api/AllOrgTasks?Orgid=" + StaticValue.orgId.toString()), 
+          Uri.encodeFull(StaticValue.baseUrl + StaticValue.taskurl + StaticValue.orgId.toString()), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
@@ -290,17 +290,13 @@ value = fmf.output.withoutFractionDigits.toString();
                      shrinkWrap: true,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index){
-
-                      var firstName = snapshot.data[index].parentTask.fullName = null ? "no name" : snapshot.data[index].parentTask.fullName;
-                       var contact = snapshot.data[index].parentTask.contactNumber = null ? "no contact details" : snapshot.data[index].parentTask.contactNumber;
+                      var firstName = snapshot.data[index].parentTask.fullName  == null ? "-" :
+                      snapshot.data[index].parentTask.fullName;
+                       var contact = snapshot.data[index].parentTask.contactNumber == null ? "-":
+                       snapshot.data[index].parentTask.contactNumber;
                        var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
                        var name = snapshot.data[index].parentTask.taskName;
                        formatPercent(snapshot.data[index].percentageComplete.toString());
-                      
-                      
-                       
- 
-  
                        var icon = "assets/snbizrunning-web.png";
                        if(snapshot.data[index].percentageComplete == 100){
                          icon = "assets/acceptedtick-web.png";

@@ -67,7 +67,7 @@ Future<bool> _checkConnectivity()  async{
     docs.add(files);
     // string to uri
     var uri = Uri.parse(StaticValue.baseUrl +
-        "api/UploadDocuments?Orgid=" +StaticValue.orgId.toString() +"&OrgName=" +StaticValue.orgName);
+      StaticValue.previewurl +StaticValue.orgId.toString() +"&OrgName=" +StaticValue.orgName);
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
 

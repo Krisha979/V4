@@ -59,7 +59,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Future<DashBoardData> getData() async{
     try{
       http.Response response = await http.get(
-      Uri.encodeFull(StaticValue.baseUrl + "api/OrganizationDashboard?Orgid=" + StaticValue.orgId.toString()),
+      Uri.encodeFull(StaticValue.baseUrl +StaticValue.home_url+ StaticValue.orgId.toString()),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:snbiz/src_code/static.dart';
 
 
 class PrivacyWebView extends StatefulWidget{

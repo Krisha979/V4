@@ -42,7 +42,7 @@ Future<List<Task>> getTask()async{
   var orgTaskId = details.parentTask.organizationTaskId;
   try{
   http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl + "api/OrgChildTasks?Orgid=" + StaticValue.orgId.toString()+"&OrgTaskId=" + orgTaskId.toString() ), 
+          Uri.encodeFull(StaticValue.baseUrl + StaticValue.taskDetails_url + StaticValue.orgId.toString()+"&OrgTaskId=" + orgTaskId.toString() ), 
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json' 
