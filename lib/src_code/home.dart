@@ -542,7 +542,7 @@ fmfamount = fmf.output.nonSymbol.toString();
                                 ],
                               ),
                             Image(
-                                      image: new AssetImage("assets/snbizinvoice.png"),
+                                      image: new AssetImage("assets/snbizvaticon.png"),
                                       fit: BoxFit.fill,
                                    
                               height: size.height/12,
