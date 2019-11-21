@@ -118,7 +118,6 @@ catch(e){
                   children: [
                     Flexible (
                                           child: Column(
-                        //  mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
@@ -302,7 +301,7 @@ Padding(
                       ),
            ),
           onTap: () {
- Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
                                   snapshot.data[index])));
                                         },
            )

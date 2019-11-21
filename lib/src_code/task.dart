@@ -7,9 +7,7 @@ import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/OrgTask.dart';
-//import 'package:snbiz/Model_code/Task.dart';
 import 'package:snbiz/src_code/TaskDetails.dart';
-//import 'package:snbiz/src_code/meetingdetail.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,12 +33,12 @@ class TaskState extends State<TaskPage> {
   }
   String formatTime(String time) {
      DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
-   // DateFormat dateFormat = DateFormat.yMd().add_jm();
+
     DateTime formattedtime = (dateFormatremoveT.parse(time));
     DateFormat longtme = DateFormat.jm();
     time = longtme.format(formattedtime);
     print(time);
-   // DateTime timee = (dateFormat.parse(DateTime.now().toString()));
+   
     return time.toString();
   }
    Future<bool> _checkConnectivity()  async{
@@ -130,8 +128,6 @@ String formatPercent(String fmfamount){
         thousandSeparator: ',',
         decimalSeparator: '.',
         symbolAndNumberSeparator: ' ',
-        //fractionDigits: 2,
-        //compactFormatType: CompactFormatType.sort
     )
 );
 value = fmf.output.withoutFractionDigits.toString();
@@ -180,7 +176,6 @@ value = fmf.output.withoutFractionDigits.toString();
                   children: [
                     Flexible(
                                           child: Column(
-                        //  mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
@@ -231,7 +226,6 @@ value = fmf.output.withoutFractionDigits.toString();
             Container(
            child: FutureBuilder(
             future: _future,
-            // ignore: missing_return
             builder:(BuildContext context, AsyncSnapshot snapshot){
               switch (snapshot.connectionState) {
               case ConnectionState.none:
@@ -290,8 +284,9 @@ value = fmf.output.withoutFractionDigits.toString();
                      shrinkWrap: true,
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index){
+                      var firstName = snapshot.data[index].parentTask.fullName;
+                       var contact = snapshot.data[index].parentTask.contactNumber;
                        var startdate = formatDateTime(snapshot.data[index].parentTask.startDate);
-                       var enddate = formatTime(snapshot.data[index].parentTask.endDate);
                        var name = snapshot.data[index].parentTask.taskName;
                        formatPercent(snapshot.data[index].percentageComplete.toString());
                       
@@ -304,9 +299,6 @@ value = fmf.output.withoutFractionDigits.toString();
                          icon = "assets/acceptedtick-web.png";
                          }
 
-
-                       
-                      // ignore: missing_return, missing_return
                       return ListTile(
                         title: InkWell(
                                                 child: new Theme(
@@ -331,11 +323,10 @@ value = fmf.output.withoutFractionDigits.toString();
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  // Text(enddate, textAlign: TextAlign.left,
-                                  //     style:TextStyle(fontSize: 17, fontWeight: FontWeight.bold) ),
                                  Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)),
-
                                 Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
+                                 Flexible(child: Text(firstName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
+                                  Flexible(child: Text(contact, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
                                 Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal))),
                                 Flexible(child: Text(value+ "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,
                                 color: Color(0xFFA19F9F)

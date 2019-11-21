@@ -85,13 +85,9 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                                 color: Colors.black, fontWeight: FontWeight.normal,
                                 fontStyle: FontStyle.normal,fontSize: 16),),
 
-                      //onPressed: ()=>Navigator.pop(context,true),
-
                       onPressed: (){
                                 exit(0);
-                       // Navigator.pop(context, true);
-
-                      //  Navigator.pop(context);
+                      
                       },
 
                       color:  Color(0xFFCEC0C0),
@@ -155,12 +151,6 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
           
             appBar: AppBar(
       
-            
-        
-            
-      
-              //centerTitle: true,
-
               title: Text(StaticValue.orgName,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
               backgroundColor: const Color(0xFF9C38FF),
@@ -212,19 +202,19 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                     Icons.home,
                     size: 30,
                   ),
-                //  text: "Home",
+             
                 ),
                 new Tab(
-              //    icon: new Image.asset("assets/meetingtabnew.png",height: 25,width: 25),
+              
                   icon: new Icon(
                     Icons.alarm,
                     size: 30,
                   ),
-                  //text: "Meeting",
+                 
                 ),
                 new Tab(
                   icon: new Icon(Icons.notifications, size: 30),
-                //  text: "Notification",
+           
                 ),
                
               ],

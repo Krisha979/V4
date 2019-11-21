@@ -31,7 +31,7 @@ String lastNotifications;
   notification.notificationBody = notificationbody.text;
   notification.organizationName = StaticValue.orgName;
   notification.notificationId = 00;
-
+ 
    String jsonbody = jsonEncode(notification);
 
  bool connection = await _checkConnectivity();
@@ -206,15 +206,12 @@ Future<bool> _checkConnectivity()  async{
                                 TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
                     ),
                   Container(
-                    child: Padding(
+                  child: Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Text(
+                      child:
                         lastNotifications == null ?
-                       "No recent notification"
-                            :
-                        lastNotifications.toString(),
-                        style: TextStyle(fontSize: 16),
-                      ),
+                        Text("No recent notification"): 
+                       Text( lastNotifications.toString()),
                     ),
                 width: size.width,
                 height: size.height/6,
@@ -230,7 +227,7 @@ Future<bool> _checkConnectivity()  async{
                       offset: Offset(0.0, 0.5),
                     ),
                   ],
-                ),
+                ),   
               ),
                    new Theme(
                               data: new ThemeData(

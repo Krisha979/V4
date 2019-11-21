@@ -4,7 +4,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:http/http.dart' as http;
-//import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -82,7 +81,6 @@ class MeetingState extends State<Meeting> {
                        onPressed: (){
                          StaticValue.controller.animateTo(0);
                         Navigator.pop(context);
-//                         Navigator.pop(context);
 
                        })
                      ],
@@ -110,12 +108,10 @@ class MeetingState extends State<Meeting> {
         meeting.add(meetinginfo);
       }
       meetinglist = meeting;
-     // _future = meetinglist as Future<List<MeetingInfo>>;
       print(meeting.length);
       setState(() {
         counts = meeting.length;
       });
-//counts = meeting.length;
       if (StaticValue.togglestate == true) {
         isSwitched = true;
 
@@ -131,9 +127,7 @@ class MeetingState extends State<Meeting> {
       print(e);
       return null;
     }
-                                          }
-                                         
-                                           
+                                          }                                      
   }
 
   Future<List<MeetingInfo>> upcomingsortedlist(
@@ -235,7 +229,6 @@ class MeetingState extends State<Meeting> {
                                     0xFFA19F9F,
                                   ),
                                   fontWeight: FontWeight.w600)),
-                          //Text( StaticValue.meetingTime, style: TextStyle(fontSize: 14),),
                           Text(
                            ( StaticValue.meetingTime== null)?'not found':
                            StaticValue.meetingTime,
@@ -275,7 +268,7 @@ class MeetingState extends State<Meeting> {
               child: FutureBuilder(
                   future: _future,
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    //counts= meetinglist.length;
+                 
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
                         return Container(
@@ -360,7 +353,7 @@ class MeetingState extends State<Meeting> {
                                           
                                           
                                     return ListTile(
-                                      //  contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    
 
                                       title: InkWell(
                                         child: new Theme(
