@@ -35,12 +35,6 @@ String _selectedvalue;
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
-
-  
-     
-
-   // Your back press code here...
-   //CommonUtils.showToast(context, "Back presses");
  }
 
  Future<void> editData() async {
@@ -125,7 +119,6 @@ String _selectedvalue;
     Size size = MediaQuery.of(context).size;
     var date = formatDateTime(details.meetingTime);
     var time = formatTime(details.meetingTime);
-    // Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text("Details",style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
@@ -154,25 +147,21 @@ String _selectedvalue;
               children: <Widget>[
                            Container(
                               constraints:  new BoxConstraints(
- //   minHeight: size.height,
+
     
     maxHeight: size.height,
   
   ),
                 
-               // height: size.height,
                 color: Color(0XFFF4EAEA),
                 child: Wrap(
                                  children: <Widget>[  Container(
 
                                     constraints:  new BoxConstraints(
-  //  minHeight: size.height,
-    
     maxHeight: size.height,
   
   ),
-                    //constraints: new BoxConstraints(minHeight: size.height),
-                    
+                   
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: [
@@ -210,7 +199,6 @@ String _selectedvalue;
                                 fontWeight: FontWeight.normal,
                                 fontSize: 14),
                           ),
-                          //  child: Text( DateFormat("dd-MM-yyyy").format(details.meetingTime)),
                         ],
                       ),
                       Padding(

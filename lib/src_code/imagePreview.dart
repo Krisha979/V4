@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
-// import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,12 +41,6 @@ void _incrementCounter(){
   });
 }
 
-
-
-
-
-
-
   var responsecode;
   
 
@@ -64,9 +57,6 @@ Future<bool> _checkConnectivity()  async{
                         }
   Future<void> upload(File files) async {
     List<File> docs = new List();
-    // if (files.isNotEmpty) {
-    //   files.forEach((k, v) => docs.add(new File(v)));
-    // }
     docs.add(files);
     // string to uri
     var uri = Uri.parse(StaticValue.baseUrl +
@@ -246,43 +236,8 @@ Future<bool> _checkConnectivity()  async{
                    });
                
                  });
-               
-
-
-                                      
-    //                 showGeneralDialog(
-    // barrierColor: Colors.black.withOpacity(0.5),
-    // transitionBuilder: (context, a1, a2, widget) {
-    //   return Transform.scale(
-    //     scale: a1.value,
-    //     child: Opacity(
-    //       opacity: a1.value,
-    //       child: AlertDialog(
-    //         shape: OutlineInputBorder(
-    //             borderRadius: BorderRadius.circular(16.0)),
-    //         title: Image(
-    //           image: AssetImage("assets/acceptedtick-web.png"), height: 100, width: 100,
-    //         )
-    //       ),
-    //     ),
-    //   );
-    // },
-    // transitionDuration: Duration(milliseconds: 1000),
-    // barrierDismissible: false,
-    // barrierLabel: '',
-    // context: context,
-    // pageBuilder: (context, animation1, animation2) {
-
-    // });
-                                    }
+                          }
                       
-                
-                 
-
-               
-
-                                    
-
                                     else {
                                         showDialog(
                  context: context,
@@ -307,8 +262,7 @@ Future<bool> _checkConnectivity()  async{
                  }
 
                );
-
-                                    }
+                  }
                                     }
                                     }
                  if(con==false){

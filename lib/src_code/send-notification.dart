@@ -4,30 +4,19 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/Model_code/Notification.dart';
 import 'package:snbiz/src_code/static.dart';
-import 'package:http/http.dart' as http;
-
+import 'package:http/http.dart' as http ;
 
 class SendNotification extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    
     return SendState();
   }
-
-
 }
-
 class SendState extends State<SendNotification>{
-
    var ctx;
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
-  
-     
-
-   // Your back press code here...
-   //CommonUtils.showToast(context, "Back presses");
  }
   NotificationModel notification = new NotificationModel();
 
@@ -37,26 +26,13 @@ NotificationModel details;
 String lastNotifications;
 
  Future<List<NotificationModel>> getNotifications() async {
-  //  String dateCreated;
-  // int createdBy;
-  // String organizationName;
-  // int notificationId;
-
   notification.dateCreated = DateTime.now().toString();
   notification.createdBy = StaticValue.orgUserId;
   notification.notificationBody = notificationbody.text;
   notification.organizationName = StaticValue.orgName;
   notification.notificationId = 00;
-  //notification.sendTo = ;
-
-
-
+ 
    String jsonbody = jsonEncode(notification);
-
-
-   
-   
-
 
  bool connection = await _checkConnectivity();
       if(connection == false){
@@ -101,9 +77,6 @@ String lastNotifications;
             
           body: jsonbody);
        print(post);
-    
-              
-
 
       if (post.statusCode == 201){
         showGeneralDialog(
@@ -115,7 +88,6 @@ String lastNotifications;
                       width: 100.0 * a1.value,
                       color: Colors.transparent,
                       child: Image(image: AssetImage("assets/acceptedtick-web.png"),),
-                      
 
                     ),
                   );
@@ -138,10 +110,8 @@ String lastNotifications;
                    });
                
                  });
-               
 
       }
-
      
     } catch (e) {
        showDialog(
@@ -161,27 +131,19 @@ String lastNotifications;
                         Navigator.pop(context);
                         Navigator.pop(context);
 
-
-//                         Navigator.pop(context);
-
                        })
                      ],
                    );
                  }
 
                );
-
-
-     
     }
   }}
 @override
   void initState()  {
     super.initState();  
     lastNotification();
-
   }
- 
 
 Future<List<NotificationModel>> lastNotification() async {
 
@@ -199,29 +161,16 @@ Future<List<NotificationModel>> lastNotification() async {
    NotificationModel _notification;
 
    _notification = NotificationModel.fromJson(jsondata);
- 
 
  setState(() {
    
    details =_notification;
-
    lastNotifications = details.notificationBody;
-   
-
  });
-
- 
         print(post);
-    
    } catch(e){
-
      print(e);
-
-   }  
-
-
-
-
+   }
 }
 
 Future<bool> _checkConnectivity()  async{
@@ -235,7 +184,6 @@ Future<bool> _checkConnectivity()  async{
   @override
   Widget build(BuildContext context) {
      Size size = MediaQuery.of(context).size;
-   
     return  Scaffold(
       appBar: AppBar(title: Text("Send Notification",  style: TextStyle(
               color: Colors.white,
@@ -244,37 +192,26 @@ Future<bool> _checkConnectivity()  async{
               fontSize: 19),),
                backgroundColor: Color(0xFF9C38FF),
       ),
-
       body:   SingleChildScrollView(
-         
-         
                      child:  Container(
-
               color: Colors.white,
              height: size.height,
               width: size.width,
-             
               child: Column(
-
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  
-
                     Padding(
                       padding: const EdgeInsets.only(top: 10, left: 20),
                       child: Text("Recent notification sent", style:
                                 TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
                     ),
-
                   Container(
-
-
-                    child: Padding(
+                  child: Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Text(
+                      child:
                         lastNotifications == null ?
                         Text("No recent notification"): 
-                        lastNotifications.toString(), style: TextStyle(fontSize: 16),),
+                       Text( lastNotifications.toString()),
                     ),
                 width: size.width,
                 height: size.height/6,
@@ -290,16 +227,7 @@ Future<bool> _checkConnectivity()  async{
                       offset: Offset(0.0, 0.5),
                     ),
                   ],
-                ),
-               
-                       
-
-                        // Text(StaticValue.notificationdate,
-                        // style: TextStyle(
-                        // fontWeight:FontWeight.bold,
-                        // ))
-                    
-                   
+                ),   
               ),
                    new Theme(
                               data: new ThemeData(
@@ -357,12 +285,9 @@ Future<bool> _checkConnectivity()  async{
                        })
                      ],
                    );
-
                  }
                                 );
-
                                         }
-
                                         else
                                         {
                                          showDialog(
@@ -398,9 +323,7 @@ Future<bool> _checkConnectivity()  async{
                                         getNotifications();
                                        
                                       }},
-                                    
                                       padding: const EdgeInsets.all(0.0),
-
                                        shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10.0)),
@@ -416,16 +339,11 @@ Future<bool> _checkConnectivity()  async{
                                     ),
                                   ),
                                 )
-
                             )
                 ]
               )
             ),
-            
       )
     );
-
-    
   }
-
 }

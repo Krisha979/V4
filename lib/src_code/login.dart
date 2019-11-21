@@ -17,12 +17,7 @@ class LoginPage extends StatefulWidget{
         @override
         State createState()=> new LoginPageState();
     }
-
-
     bool isLoading = false;
-
-    
-
     class LoginPageState extends State<LoginPage> {
       String message;
       final _formKey = GlobalKey<FormState>();
@@ -47,7 +42,6 @@ class LoginPage extends StatefulWidget{
               }
       getfromstorage();
       }
-
       Future<Null> getfromstorage() async {
       var email = await storage.read(key:"Email");
       var password = await storage.read(key: "Password");
@@ -67,6 +61,7 @@ class LoginPage extends StatefulWidget{
              }
           }
       }
+
       Future<void> status() async {
 
 
@@ -270,10 +265,7 @@ class LoginPage extends StatefulWidget{
                                 children:<Widget>[
                                   new Container(
                                     margin: EdgeInsets.only(left: 45, right: 45, top: 40),
-                                   // padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-                                  //  width: size.width * 0.85,
                                     decoration: new BoxDecoration(
-                                    // color: Colors.grey[100].withOpacity(0.2),
                                       borderRadius: new BorderRadius.all(Radius.circular(10.0),)      
                                     ),                                      
                                     child: isLoading? Center(

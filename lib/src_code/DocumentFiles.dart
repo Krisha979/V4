@@ -60,7 +60,6 @@ class DocumentFilesState extends State<DocumentFilesPage> {
 
                     },
                     child: Container(
-                     // padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: Card(
                             elevation: 5,
                             margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
@@ -70,9 +69,6 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    // Padding(
-                                    //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
-                                    // ),
                                     Flexible(
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,

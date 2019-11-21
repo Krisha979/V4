@@ -24,7 +24,6 @@ class Nav extends StatefulWidget {
 class NavBar extends State<Nav> {
         final storage = new FlutterSecureStorage();
         removeStaticValue(){
-  // StaticValue.orgId==null;
    StaticValue.orgName=null;
    StaticValue.logo=null;
    StaticValue.userRowstamp=null;
@@ -39,7 +38,6 @@ class NavBar extends State<Nav> {
   StaticValue.uploadedDate = "- - -";
    StaticValue.wasloggedout = true;
    StaticValue.orgUserId = null;
- //  StaticValue.meetingstatusId=3;
         }
 
   @override
@@ -173,8 +171,6 @@ CupertinoPageRoute(builder: (context) => Profile()));
                 ],
               ),
               onTap: () {
-               
-                //launch('https://snbiznepal.com');
                 Navigator.push(context,
                    CupertinoPageRoute(builder: (context) => WebView()));
     
@@ -276,7 +272,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
       return new LoginPage();
     }));
                  
-                //authenticationBloc.dispatch(LoggedOut()); Navigator.pop(context); Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
+               
               }),
         ),
         

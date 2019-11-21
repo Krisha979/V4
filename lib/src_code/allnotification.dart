@@ -137,7 +137,6 @@ class AllNotificationState extends State<AllNotification> {
           _refreshController.refreshCompleted();
         },
         child: Container(
-          // height: size.height * 2,
           width: size.width,
           color: Color(0XFFF4EAEA),
           child: Column(
@@ -161,7 +160,6 @@ class AllNotificationState extends State<AllNotification> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      //  mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
@@ -181,11 +179,6 @@ class AllNotificationState extends State<AllNotification> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-
-                        // Text(StaticValue.notificationdate,
-                        // style: TextStyle(
-                        // fontWeight:FontWeight.bold,
-                        // ))
                       ],
                     ),
                     Column(
@@ -287,7 +280,6 @@ class AllNotificationState extends State<AllNotification> {
                         )
                         );}
                                 return ListView.builder(
-                                   // shrinkWrap: true,
                                     itemCount: snapshot.data.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -395,7 +387,6 @@ class AllNotificationState extends State<AllNotification> {
     var list = ListTile(
       title: Container(
         padding: EdgeInsets.only(top: 10),
-        // color: Color(color),
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -419,9 +410,9 @@ class AllNotificationState extends State<AllNotification> {
             ),
             ClipOval(
               child: Material(
-                color: Colors.blue, // button color
+                color: Colors.blue, 
                 child: InkWell(
-                    splashColor: Colors.red, // inkwell color
+                    splashColor: Colors.red,
                     child: SizedBox(
                       width: 50,
                       height: 50,

@@ -138,7 +138,6 @@ return Scaffold(
         child: Column(
           children: <Widget>[
             Container(
-             // height: size.height / 5.5,
              width: size.width,
               margin: EdgeInsets.fromLTRB(10,10,10,0),
               padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
@@ -160,7 +159,6 @@ return Scaffold(
                               
                               Flexible(
                                                               child: Column(
-                                //  mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Padding(
@@ -176,9 +174,6 @@ return Scaffold(
                                       fontWeight: FontWeight.bold)),
                                     ),
 
-                                    
-                                 
-                                       
                                        Padding(
                                          padding: const EdgeInsets.only(left: 30),
                                          child: Text("Due Remaining",style: TextStyle(
@@ -214,7 +209,6 @@ return Scaffold(
             ),
             Flexible(
               child: Container(
-              //  height: size.height / 1.7,
                 width: size.width,
                 margin: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(

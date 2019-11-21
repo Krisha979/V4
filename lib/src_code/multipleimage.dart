@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-// import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +110,6 @@ Future<bool> checkConnectivity()  async{
         body: Container(
           color: Color(0xFFE0CECE),
 
-          //  margin: EdgeInsets.all(10.0),
 
           child: Column(children: <Widget>[
             Container(
@@ -148,7 +145,7 @@ Future<bool> checkConnectivity()  async{
                             title: Column(
                               children: <Widget>[
                                 Row(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                
                                   children: <Widget>[
                                     Padding(
                                       padding: const EdgeInsets.only(left: 20,bottom: 15),
@@ -176,15 +173,6 @@ Future<bool> checkConnectivity()  async{
                                     ),
                                   ],
                                 ),
-
-                                //Divider(height: 0,color: Color(0xFFB162F7),
-                                //)
-                                /* SizedBox(
-                                                height: 10,
-                                                width: 10,
-                                                
-                                              )*/
-
                                 new Container(
                                   height: 1.5,
                                   width: size.width,
@@ -201,7 +189,7 @@ Future<bool> checkConnectivity()  async{
               ),
             ),
             Container(
-              // color: Colors.white,
+        
               height: 95,
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(

@@ -6,8 +6,6 @@ import 'package:snbiz/Model_code/meetingStatus.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:snbiz/src_code/static.dart';
-//import 'package:basic_utils/basic_utils.dart';
-
 class AddEditDialog extends StatefulWidget {
   final MeetingInfo details;
   const AddEditDialog({Key key, this.details}) : super(key: key);
@@ -50,9 +48,6 @@ class AddEditDialogState extends State<AddEditDialog> {
             'Accept': 'application/json'
           },
           body: jsonbody);
-          // if(data.statusCode == 500){
-            
-          // }
           if(data.statusCode == 204){
               showGeneralDialog(
                 barrierColor: Colors.black.withOpacity(0.5), //SHADOW EFFECT
@@ -91,43 +86,13 @@ class AddEditDialogState extends State<AddEditDialog> {
           }
     } catch (e) 
     {
-      // showDialog(
-      //            context: context,
-      //            barrierDismissible: false,
-      //            builder: (BuildContext context){
-      //              return AlertDialog(
-      //                title: Text("Server error!!",
-                  
-      //                style: TextStyle(color:Color(0xFFA19F9F,),
-      //                fontSize: 15,
-      //                fontWeight: FontWeight.normal),),
-      //                actions: <Widget>[
-      //                  FlatButton(child: Text("OK"),
-      //                  onPressed: (){
-                      
-      //                   Navigator.pop(context);
-      //                   Navigator.pop(context);
-                       
-
-      //                  })
-      //                ],
-      //              );
-      //            }
-
-      //          );
-
     } 
   }
-
-  Future<bool> _onBackPressed() async {
+Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
    Navigator.pop(ctx);
   
-     
-
-   // Your back press code here...
-   //CommonUtils.showToast(context, "Back presses");
  }
 
   @override
@@ -279,12 +244,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                                   ),
                                 ),
                               ),
-
-
-                              
-                              
-                              
-                              Row(children: <Widget>[
+                            Row(children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                                   child: Text(
@@ -331,8 +291,6 @@ class AddEditDialogState extends State<AddEditDialog> {
                                           
                                           initialTime: TimeOfDay.now(),
                                           
-                                          // initialTime: TimeOfDay.fromDateTime(
-                                          //     currentValue ?? DateTime.now()),
                                         );
 
                                         
@@ -345,9 +303,6 @@ class AddEditDialogState extends State<AddEditDialog> {
                                 ),
                                     )),
                               
-
-
-                            
                               Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -398,7 +353,6 @@ class AddEditDialogState extends State<AddEditDialog> {
                                           });
                                         },
                                         value: _selectedvalue,
-                                        //hint: Text(details.statusName),
                                       ),
                                     )
                                   ]),

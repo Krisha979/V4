@@ -25,11 +25,11 @@ class ProfileState extends State<Profile> {
           Uri.encodeFull(StaticValue.baseUrl +
               "api/OrganizationUserDetails?Orgid=" +
               StaticValue.orgId.toString()),
+
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
             'Cache-Control': 'no-cache,private,no-store,must-revalidate'
-
           });
 
       var jsonData = json.decode(data.body);
@@ -114,9 +114,7 @@ class ProfileState extends State<Profile> {
           },
           child: SingleChildScrollView(
             child: Container(
-              // margin: EdgeInsets.all(8.0),
               width: size.width,
-              // height: size.height,
               margin: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
@@ -128,7 +126,7 @@ class ProfileState extends State<Profile> {
                     children: <Widget>[
                                        Container(
                       margin: EdgeInsets.all(8.0),
-                    //  height: size.height / 1.6,
+                   
                       width: size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
@@ -147,7 +145,6 @@ class ProfileState extends State<Profile> {
                                   child: SizedBox(
                                     height: size.height / 4,
                                     width: size.height / 4,
-                                    // child: Image.network(StaticValue.logo),
                                     child: StaticValue.logo == null
                                         ? Icon(
                                             Icons.person,
@@ -259,7 +256,6 @@ class ProfileState extends State<Profile> {
                                       Container(
                       margin:
                           EdgeInsets.only(top: 2, left: 8, right: 8.0, bottom: 8),
-                    //  height: size.height / 1.4,
                       width: size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
@@ -292,7 +288,6 @@ class ProfileState extends State<Profile> {
                               height: size.height / 20,
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
-                              // color: Colors.white,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
@@ -322,7 +317,6 @@ class ProfileState extends State<Profile> {
 
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
-                              // color: Colors.white,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
@@ -333,7 +327,6 @@ class ProfileState extends State<Profile> {
                                   focusedBorder: InputBorder.none,
                                   contentPadding: EdgeInsets.all(5),
                                 ),
-                                // controller: userContact,
                               ),
                             ),
                           ),
@@ -353,7 +346,6 @@ class ProfileState extends State<Profile> {
                               height: size.height / 20,
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
-                              // color: Colors.white,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
@@ -401,7 +393,6 @@ class ProfileState extends State<Profile> {
                                   }
 
                                   Navigator.pop(context);
-//Navigator.pop(context);
                                 },
                                 textColor: Colors.white,
                                 color: Color(0xFFB56AFF),
