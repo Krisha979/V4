@@ -15,7 +15,9 @@ class Documents extends StatefulWidget{
 }
 
 class _DocumentsState extends State<Documents> {
-  Future<List<DocumentModel>> _future;
+  Future<List<DocumentModel>> _future; 
+
+  //internet connection function 
   
  Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
@@ -24,6 +26,8 @@ class _DocumentsState extends State<Documents> {
                          return false;
                         }
                         }
+
+    //api call function to get the uploaded document
   Future<List<DocumentModel>> getDocuments()async{
     bool connection = await _checkConnectivity();
       if(connection == false){
@@ -63,7 +67,7 @@ class _DocumentsState extends State<Documents> {
 
   var jsonData = json.decode(data.body);
   List <DocumentModel> documents = [];
-  for (var u in jsonData){
+  for (var u in jsonData){     
       var tasks = DocumentModel.fromJson(u);
     documents.add(tasks);
   }
@@ -81,7 +85,7 @@ catch(e){
  @override
   void initState() {
     super.initState();
-    _future = getDocuments();
+    _future = getDocuments();     
 
        
   }
@@ -165,7 +169,7 @@ Padding(
               ),
       Flexible(
         child: Container(
-           child: FutureBuilder(
+           child: FutureBuilder(   
             future: _future,
             builder:(BuildContext context, AsyncSnapshot snapshot){
               switch (snapshot.connectionState) {
@@ -226,6 +230,9 @@ Padding(
                   itemBuilder: (BuildContext context, int index){
                     var name = snapshot.data[index].documents[0].fileTypeName;
                     var icon = "assets/snbizcircledocument.png";
+
+
+                    //condition to show the icon according to the uploaded file type
                                         if(name.contains("VAT Billssss")){
                                          icon = "assets/snbizvaticon.png";
                                             }
@@ -289,8 +296,8 @@ Padding(
                           height: size.height / 12,
                         ),),
                                 onTap: () {
-                                 Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
-                                  snapshot.data[index])));
+                                  Navigator.push(context, CupertinoPageRoute(builder: (context)=> DocumentFilesPage(details:
+                                  snapshot.data[index]))); //navigating to respective document file
                                 },
                               ),
                             ),

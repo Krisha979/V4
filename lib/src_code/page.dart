@@ -22,6 +22,8 @@ class MainPage extends StatefulWidget {
 class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
 
   static final myTabbedPageKey = new GlobalKey<MainPageState>();
+
+  //tab controller
   @override
   void initState() {
     super.initState();
@@ -36,7 +38,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
     StaticValue.controller.dispose();
     super.dispose();
   }
-
+//back press handle
   Future<bool> _onBackPressed(){
     return showDialog( 
       context: context,
@@ -175,8 +177,8 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
               
           
              ),
-        drawer:  Nav(),
-        body: new TabBarView(
+        drawer:  Nav(),//navigation drawer
+        body: new TabBarView( //tab bar view
           controller: StaticValue.controller,
           key: myTabbedPageKey,
           children: <Widget>[

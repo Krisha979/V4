@@ -19,7 +19,7 @@ class TaskDetailsPage extends StatefulWidget {
 class TaskDetailsState extends State<TaskDetailsPage> {
 final OrgTask details;
   TaskDetailsState(this.details);
-
+//format date time
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime format = (dateFormat.parse(date));
@@ -27,6 +27,8 @@ final OrgTask details;
     date = longdate.format(format);
     return date;
   }
+
+  //format time
   String formatTime(String time) {
      DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
     DateTime formattedtime = (dateFormatremoveT.parse(time));
@@ -35,7 +37,7 @@ final OrgTask details;
     print(time);
     return time.toString();
   }
-
+//api call to get task details
 Future<List<Task>> getTask()async{
   var orgTaskId = details.parentTask.organizationTaskId;
   try{
@@ -48,7 +50,7 @@ Future<List<Task>> getTask()async{
       );
 
   var jsonData = json.decode(data.body);
-  List <Task> task = [];
+  List <Task> task = []; 
   for (var u in jsonData){
       var tasks = Task.fromJson(u);
     task.add(tasks);
@@ -94,6 +96,7 @@ catch(e){
                   itemCount: details.childTask.length,
                   itemBuilder: (BuildContext context, int index){
                     var statusname = details.childTask[index].statusName;
+                    //icon according to the task uploaded
                     var icon = "assets/snbiztasks.png";
                                       if(statusname.contains("Running")){
                                        icon = "assets/snbizrunning-web.png";

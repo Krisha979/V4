@@ -78,7 +78,7 @@ class ContactState extends State<Contact>{
                                         fontWeight: FontWeight.normal,
                                         color: const Color(0xFF9C38FF),)),
                   onTap: 
-                  () => launch("tel:+977 9801042730" ),
+                  () => launch("tel:+977 9801042730" ), //auto call if user tap on the number
                 ),
                 Text('INFO@SNBIZNEPAL.COM', style:TextStyle(fontSize: 18,
                                         fontStyle: FontStyle.normal,
