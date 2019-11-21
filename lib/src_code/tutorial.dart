@@ -52,7 +52,7 @@ static List<T> map<T>(List list, Function handler) {
                children: <Widget>[
 
                                          Center(
-                                           child: Image(image: AssetImage("assets/transparent.png"),
+                                           child: Image(image: AssetImage("assets/intro4.png"),
 
                      ),
                                          ),
@@ -75,7 +75,7 @@ static List<T> map<T>(List list, Function handler) {
                                 children: <Widget>[
 
                                   Center(
-                                    child: Image(image: AssetImage("assets/transparent.png"),
+                                    child: Image(image: AssetImage("assets/intro1.png"),
 
                                     ),
                                   ),
@@ -107,10 +107,60 @@ static List<T> map<T>(List list, Function handler) {
                       ]
                   );
 
+                    var widget4 =  Wrap(
+                      children: <Widget>[
+                        new Container(
+                          //height: size.height,
+                            width: size.width,
+                            padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
+
+                            child: Column(
+                                children: <Widget>[
+
+                                  Center(
+                                    child: Image(image: AssetImage("assets/intro2.png"),
+
+                                    ),
+                                  ),
+
+                                ]
+                            )
+                        )
+                      ]
+                  );
+
+                    var widget5 =  Wrap(
+                      children: <Widget>[
+                        new Container(
+                          //height: size.height,
+                            width: size.width,
+                            padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
+
+                            child: Column(
+                                children: <Widget>[
+
+                                  Center(
+                                    child: Image(image: AssetImage("assets/intro3.png"),
+
+                                    ),
+                                  ),
+
+                                ]
+                            )
+                        )
+                      ]
+                  );
+
+                  
+
       
             imageList.add(widget1);
             imageList.add(widget2);
             imageList.add(widget3);
+            imageList.add(widget4);
+            imageList.add(widget5);
+            
+
       
 
         return imageList;
@@ -159,6 +209,7 @@ return Scaffold(
                         viewportFraction: 0.99,
                         initialPage: 0,
                         enableInfiniteScroll: true,
+                        
                         reverse: false,
                         autoPlay: true,
                         enlargeCenterPage: true,
@@ -184,8 +235,9 @@ return Scaffold(
                                   height: 8.0,
                                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                                   decoration: BoxDecoration(
+                                    
                                       shape: BoxShape.circle,
-                                      color: _current == index ? Color.fromRGBO(21, 0, 255, 0.7) : Color.fromRGBO(0, 0, 0, 0.2)
+                                      color: _current == index ? Colors.white : Color.fromRGBO(0, 0, 0, 0.2)
                                   ),
                                 );
                               }),
@@ -194,28 +246,36 @@ return Scaffold(
                       ],
                     ),
 
-                    FlatButton(
 
-                      child: Row(
+                     Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
+                           
                           Column(
 
                             children: <Widget>[
-                              Text("Skip",style: TextStyle( fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 18.0),),
+                              GestureDetector(
+                                onTap: (){
+                                
+                         Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => LoginPage()));
+                      
+                                },
+                                                              child: Padding(
+                                                                padding: const EdgeInsets.only(right: 15, bottom: 10, top: 10),
+                                                                child: Text("Skip",style: TextStyle( fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 18.0),),
+                                                              ),
+                              ),
                             ],
                           ),
                         ],
                       ),
 
 
-                      onPressed: (){
-                         Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => LoginPage()));
-                      },
-                    ),
+                     
+                    
                   ],
                 ),
 

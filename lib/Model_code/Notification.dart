@@ -4,13 +4,16 @@ class NotificationModel {
   String notificationBody;
   String organizationName;
   int notificationId;
+  //int sendTo;
 
   NotificationModel(
       {this.dateCreated,
       this.createdBy,
       this.notificationBody,
       this.organizationName,
-      this.notificationId});
+      this.notificationId,
+     // this.sendTo
+      });
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     dateCreated = json['dateCreated'];
@@ -18,6 +21,7 @@ class NotificationModel {
     notificationBody = json['notificationBody'];
     organizationName = json['organizationName'];
     notificationId = json['notificationId'];
+    //sendTo = json['sendTo'];
   }
 
   Map<String, dynamic> toJson() {
@@ -27,6 +31,7 @@ class NotificationModel {
     data['notificationBody'] = this.notificationBody;
     data['organizationName'] = this.organizationName;
     data['notificationId'] = this.notificationId;
+   // data['sendTo'] = this.sendTo;
     return data;
   }
 }

@@ -184,6 +184,7 @@ Future<bool> _checkConnectivity()  async{
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Create Meeting",

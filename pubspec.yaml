@@ -128,14 +128,11 @@ flutter:
    - assets/profit-web.png
    - assets/bannerpicturehome.jpg
    - assets/mp4-icon.jpg
-   - assets/tutorial1.png
-   - assets/tutorial2.png
-   - assets/tutorial3.png
-   - assets/tutorial4.png
-   - assets/tutorial5.png
-   - assets/tutorial6.png
    - assets/transparent.png
-   - assets/meetingtabnew.png
+   - assets/intro1.png
+   - assets/intro2.png
+   - assets/intro3.png
+   - assets/intro4.png
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

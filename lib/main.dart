@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:snbiz/src_code/bridge.dart';
-//import 'package:snbiz/src_code/home.dart';
-import 'package:snbiz/src_code/login.dart';
-import 'package:snbiz/src_code/tutorial.dart';
 
 void main() {
   runApp(new AppStart());

@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:snbiz/Model_code/DashBoardData.dart';
 import 'package:snbiz/src_code/createmeeting.dart';
-import 'package:snbiz/src_code/invoice.dart';
+import 'package:snbiz/src_code/send-notification.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/task.dart';
 import 'package:snbiz/src_code/documents.dart';
@@ -814,7 +814,7 @@ fmfamount = fmf.output.nonSymbol.toString();
                                   InkWell(
                                     splashColor: Colors.red,
                                     onTap: () {
-                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => Invoice()));
+                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => SendNotification()));
                                     },
                                     child: Image(
                                       image: new AssetImage("assets/snbizinvoice.png"),
