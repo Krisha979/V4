@@ -6,6 +6,7 @@ import 'package:snbiz/Model_code/meetingStatus.dart';
 class StaticValue
 {
 
+bool notifiactionicon=false;
   //login
   static int orgId;
   static String orgName;

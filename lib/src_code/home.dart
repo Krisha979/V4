@@ -83,7 +83,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         StaticValue.meetingTime = meetingtime;
         StaticValue.activeTaskcount = data.activeTaskcount.toString();
         StaticValue.taskName = data.taskName;
-        StaticValue.vATCredit = data.totalPaymentDue.toString();
         StaticValue.lastInvoiceDate = lastinvoicedate;
         StaticValue.uploadsToday = data.uploadsToday.toString();
         StaticValue.uploadedDate = uploadeddate;
