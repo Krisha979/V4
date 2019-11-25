@@ -140,6 +140,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
     );
     }
 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -214,11 +215,23 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                   ),
                  
                 ),
+                StaticValue.shownotificationReceived == true ?
                 new Tab(
-                  icon: new Icon(Icons.notifications, size: 30),
-           
+                  icon: new Stack(
+                      children: <Widget>[
+                        new Icon(Icons.notifications),
+                        new Positioned(
+                          right: 0.0,
+                          child: new Icon(Icons.brightness_1, size: 10,
+                              color: Color(0xFFB50000)),
+                        )
+                      ]
+                  ),
+
+                ) : new Tab(
+                  icon: new Icon(Icons.notifications,size: 30),
                 ),
-               
+
               ],
             ),
           ),

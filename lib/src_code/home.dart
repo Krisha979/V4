@@ -83,7 +83,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
         StaticValue.meetingTime = meetingtime;
         StaticValue.activeTaskcount = data.activeTaskcount.toString();
         StaticValue.taskName = data.taskName;
-        StaticValue.vATCredit = data.totalPaymentDue.toString();
+      //  StaticValue.vATCredit = data.totalPaymentDue.toString();
         StaticValue.lastInvoiceDate = lastinvoicedate;
         StaticValue.uploadsToday = data.uploadsToday.toString();
         StaticValue.uploadedDate = uploadeddate;
@@ -530,19 +530,19 @@ fmfamount = fmf.output.nonSymbol.toString();
                                 children: <Widget>[
                                   Text("Vat Credit",
                                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
-                                          color: Color(0xFFA19F9F))),
+                                          color: Color(0xFFFF0000))),
                                           Text(formatDateTime12(date),
                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,
                                   color: Color(0xFFA19F9F))),
                                   Text('Rs '+fmfamount,
                                       style: TextStyle(fontWeight: FontWeight.bold,
-                                          color: Colors.black)),
+                                          color: Colors.black, fontSize: 18)),
                                   
 
                                 ],
                               ),
                             Image(
-                                      image: new AssetImage("assets/snbizinvoice.png"),
+                                      image: new AssetImage("assets/snbizvaticon.png"),
                                       fit: BoxFit.fill,
                                    
                               height: size.height/12,
@@ -566,8 +566,6 @@ fmfamount = fmf.output.nonSymbol.toString();
         return widgets;
 
         }
-        
-
   }
 
 
@@ -626,10 +624,7 @@ fmfamount = fmf.output.nonSymbol.toString();
     setState(() {
       widgets.clear();
     });
-
       listwidget();
-
-
   }
 
   List<T> map<T>(List list, Function handler) {
@@ -729,11 +724,21 @@ fmfamount = fmf.output.nonSymbol.toString();
                                   InkWell(
                                     splashColor: Colors.red,
                                     onTap: () {
-                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => TaskPage()));
+                                      StaticValue.Tasknotification=false;
+                                      Navigator.push(context, CupertinoPageRoute(builder: (context) => TaskPage()));
                                     },
-                                    child: Image(
+
+                                    child:
+                                    StaticValue.Tasknotification == true ?
+                                    Image(
+
+                                      image: new AssetImage("assets/snbiztasks_notification.png"),
+                                      height: size.height / 12 ,
+
+
+                                    ): Image(
                                       image: new AssetImage("assets/snbiztasks.png"),
-                                      height: size.height / 12,
+                                      height: size.height / 12 ,
                                     ),
                                   ),
 
@@ -750,11 +755,18 @@ fmfamount = fmf.output.nonSymbol.toString();
                                   InkWell(
                                     splashColor: Colors.red,
                                     onTap: () {
+                                      StaticValue.Documentnotification=false;
                                        Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents()));
                                     },
-                                    child: Image(
+                                    child:
+                                    StaticValue.Documentnotification == true ?
+                                    Image(
                                       image:
-                                          new AssetImage("assets/snbizcircledocument.png"),
+                                          new AssetImage("assets/snbizcircledocument_notification.png"),
+                                      height: size.height / 12,
+                                    ): Image(
+                                      image:
+                                      new AssetImage("assets/snbizcircledocument.png"),
                                       height: size.height / 12,
                                     ),
                                   ),

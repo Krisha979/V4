@@ -234,9 +234,11 @@ value = fmf.output.withoutFractionDigits.toString();
             future: _future,
             builder:(BuildContext context, AsyncSnapshot snapshot){
               switch (snapshot.connectionState) {
+              // ignore: missing_return
               case ConnectionState.none:
                   return Container(
                   child: Center(
+                      // ignore: missing_return
                       child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                   )  
                 );
@@ -261,6 +263,7 @@ value = fmf.output.withoutFractionDigits.toString();
                 );
               case ConnectionState.done:
               
+              // ignore: missing_return
               if (!snapshot.hasData) {
                           return Container(
                             child: Center(
@@ -274,6 +277,7 @@ value = fmf.output.withoutFractionDigits.toString();
                         );
                         } else {
                           if(snapshot.data.length == 0){
+                            // ignore: missing_return
                             return Container(
                             child: Center(
                               child: Text("No Records Available.",
@@ -325,6 +329,7 @@ value = fmf.output.withoutFractionDigits.toString();
                             children: <Widget>[
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                // ignore: missing_return
                                 children: <Widget>[
                                   //showing data in listtile
                                  Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)),

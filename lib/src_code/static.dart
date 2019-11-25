@@ -6,6 +6,9 @@ import 'package:snbiz/Model_code/meetingStatus.dart';
 class StaticValue
 {
 
+  static bool shownotificationReceived = true;
+  static bool Tasknotification = false;
+  static bool Documentnotification = false;
   //login
   static int orgId;
   static String orgName;

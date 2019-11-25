@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:snbiz/src_code/bridge.dart';
+import 'package:snbiz/src_code/static.dart';
 
 void main() {
   runApp(new AppStart());
@@ -72,12 +73,27 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
      _fcm.configure(
           onMessage: (Map<String, dynamic> message) async {
             print("onMessage: $message");
-
+            setState(() {
+              StaticValue.shownotificationReceived = true;
+            });
+            if(message.toString().contains("Task")){
+              setState(() {
+                StaticValue.Tasknotification = true;
+              });
+            }
+            if(message.toString().contains("Document")){
+              setState(() {
+                StaticValue.Documentnotification = true;
+              });
+            }
             showNotification(message);
         },
         onLaunch: (Map<String, dynamic> message) async {
             print("onLaunch: $message");
-           showNotification(message);
+            setState(() {
+              StaticValue.shownotificationReceived = true;
+            });
+            showNotification(message);
         },
         onResume: (Map<String, dynamic> message) async {
             print("onResume: $message");

@@ -87,8 +87,9 @@ class AllNotificationState extends State<AllNotification> {
           var notification = NotificationModel.fromJson(u);
           notifications.add(notification);
         }
-        print(notifications.length);
+      //  print(notifications.length);
         setState(() {
+          StaticValue.shownotificationReceived=false;
           notificationNumber = notifications.length;
         });
         latestid = notifications[0].notificationId;
