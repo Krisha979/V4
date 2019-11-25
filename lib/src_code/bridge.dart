@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/tutorial.dart';
 
 import 'login.dart';
@@ -23,16 +24,22 @@ var firstlogin = await storage.read(key:"Login");
 if(firstlogin == 'false'){
             Navigator.push(context, 
             MaterialPageRoute(builder: (context)=> LoginPage()));
-            }
+            StaticValue.shownotificationReceived= false;
+
+}
 else if(firstlogin == null){
               await storage.write(key: "Login", value: 'false');
+              StaticValue.shownotificationReceived= true;
             Navigator.push(context, 
             MaterialPageRoute(builder: (context)=> Tutorial()));
+
 
 }
             else{
             await storage.write(key: "Login", value: 'false');
-              Navigator.push(context, 
+            StaticValue.shownotificationReceived= true;
+
+            Navigator.push(context,
             MaterialPageRoute(builder: (context)=> Tutorial()));
             }
 }

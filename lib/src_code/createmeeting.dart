@@ -84,13 +84,8 @@ class _CreateState extends State<Create> {
 
       else{
     try {
-<<<<<<< HEAD
       http.Response response = await http.post( Uri.encodeFull(StaticValue.baseUrl +StaticValue.createMeeting_url +
-              StaticValue.orgId.toString()),
-=======
-      http.Response response = await http.post( Uri.encodeFull(StaticValue.baseUrl +"api/Meetings?sender=" +
               StaticValue.orgId.toString()),  //appi call to post the meeting
->>>>>>> 315b83066e57b742cfb9a04cc9706a7ca5041474
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
