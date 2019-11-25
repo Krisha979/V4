@@ -334,7 +334,7 @@ value = fmf.output.withoutFractionDigits.toString();
                                   //showing data in listtile
                                  Flexible(child: Text(startdate, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)),
                                 Flexible(child: Text(name, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
-                                 Flexible(child: Text(firstName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
+                                 Flexible(child: Text(firstName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)),
                                   Flexible(child: Text(contact, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),)),
                                 Flexible(child: Text(snapshot.data[index].parentTask.statusName, textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal))),
                                 Flexible(child: Text(value+ "% Completed", textAlign: TextAlign.left, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,
