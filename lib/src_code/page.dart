@@ -21,7 +21,7 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
 
-  static final myTabbedPageKey = new GlobalKey<MainPageState>();
+  //static final myTabbedPageKey = new GlobalKey<MainPageState>();
 
   //tab controller
   @override
@@ -181,7 +181,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         drawer:  Nav(),//navigation drawer
         body: new TabBarView( //tab bar view
           controller: StaticValue.controller,
-          key: myTabbedPageKey,
+         // key: myTabbedPageKey,
           children: <Widget>[
             new first.Home(),
             new second.Meeting(),

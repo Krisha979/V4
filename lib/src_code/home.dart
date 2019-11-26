@@ -624,8 +624,9 @@ fmfamount = fmf.output.nonSymbol.toString();
    //   staticsize = MediaQuery.of(context).size;
     setState(() {
       widgets.clear();
+       listwidget();
     });
-      listwidget();
+    
   }
 
   List<T> map<T>(List list, Function handler) {
