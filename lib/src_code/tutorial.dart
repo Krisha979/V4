@@ -19,7 +19,7 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
   static Size size;
    //bool tutorialFromNav=false;
    int _current=0;
-  int _current=0;
+
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -194,9 +194,6 @@ child: Column(
                   ) :
                   Container(),
             Column(
-
-
-                child: Column(
                   children: <Widget>[
                      Stack(
                       children: <Widget>[CarouselSlider( //carousel slider to slide the widget
