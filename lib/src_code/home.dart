@@ -292,7 +292,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              setState(() {
                widgets.clear();
              });
-             Size staticsize = MediaQuery.of(context).size;
+            final Size staticsize = MediaQuery.of(context).size;
 
              var widget1 = new Container(
              color: Color(0XFFF4EAEA),
@@ -661,7 +661,7 @@ fmfamount = fmf.output.nonSymbol.toString();
   Widget build(BuildContext context)
   {
     Size size = MediaQuery.of(context).size;
- //   staticsize = size;
+
 
     return Scaffold(
 
