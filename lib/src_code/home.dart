@@ -795,7 +795,7 @@ fmfamount = fmf.output.nonSymbol.toString();
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Send Notification",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
+                                    child: Text("Notify",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
                                   )
                                 ],
                               ),
