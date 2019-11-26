@@ -18,8 +18,9 @@ class ContactState extends State<Contact>{
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Contact"),
-      ),
+        title: Text("Contact",style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
+          backgroundColor: const Color(0xFF9C38FF),),
+      
       body:
         Container(
                  color:Color(0XFFF4EAEA),
