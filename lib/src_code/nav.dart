@@ -7,6 +7,7 @@ import 'package:snbiz/src_code/contact.dart';
 import 'package:snbiz/src_code/login.dart';
 import 'package:snbiz/src_code/privacy.dart';
 import 'package:snbiz/src_code/profile.dart';
+import 'package:snbiz/src_code/report.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'package:snbiz/src_code/tutorial.dart';
 import 'package:snbiz/src_code/webview.dart' ;
@@ -94,60 +95,46 @@ class NavBar extends State<Nav> {
         ),
        
        Center(
-                child: Container(
-                  margin: EdgeInsets.all(5),
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  decoration: new BoxDecoration(
-                          color: const Color(0xFF9C38FF),
-                          
-                           borderRadius: new BorderRadius.circular(5.0),
-                  ),
-                  
-                child:Row(
-                  children: <Widget>[
-                 Expanded(
-                                    child: Center(
-                                      child: Text(StaticValue.orgName.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal)),
-                                    ),
-                 ),
-          
-                  ])),
-       ),
-        
-        Container(
-          padding: EdgeInsets.only(top: 20),
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
-          child: ListTile(
-              title: Row(
-                children: <Widget>[
-                  
-                
-                    Icon(
-      Icons.person,
-      color: Colors.black,
-      size: 24.0,
-      
-    ),
-              
-                Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                  
-                    Text(
-                      'Profile',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.normal),
-                    ),
-                  
-                ],
-              ),
-              onTap: () {
+                child: GestureDetector(
+                   onTap: () {
                 Navigator.push(context,
 CupertinoPageRoute(builder: (context) => Profile()));
-              }),
-        ),
+              },
+                                  child: Container(
+                    margin: EdgeInsets.all(5),
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    decoration: new BoxDecoration(
+                            color: const Color(0xFF9C38FF),
+                            
+                             borderRadius: new BorderRadius.circular(5.0),
+                    ),
+                    
+                  child:Row(
+                   
+
+                    children: <Widget>[
+                      
+                                        Icon(
+                          Icons.person,
+                          color: Colors.black,
+                          size: 24.0,
+                          
+                        ),
+                   Expanded(
+                    
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Text(StaticValue.orgName.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal)),
+                  ),
+                                      
+                   ),
+          
+                    ])),
+                ),
+       ),
+        
+       
         Container(
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
@@ -264,7 +251,35 @@ CupertinoPageRoute(builder: (context) => Profile()));
               }),
         ),
       
-
+Container(
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
+          child: ListTile(
+              title: Row(
+                children: <Widget>[
+                   Icon(
+      Icons.report,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),
+                  
+                  
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                   Text('Report',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal)),
+                  
+                ],
+              ),
+              onTap: () {
+                Navigator.push(context,
+                   CupertinoPageRoute(builder: (context) => Report()));
+    
+              }),
+        ),
 
         Container(
           decoration: BoxDecoration(
