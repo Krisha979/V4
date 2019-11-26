@@ -213,7 +213,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
               title: Row(
                 children: <Widget>[
                    Icon(
-      Icons.info_outline,
+      Icons.inbox,
       color: Colors.black,
       size: 24.0,
       
@@ -241,7 +241,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
               title: Row(
                 children: <Widget>[
                    Icon(
-      Icons.info_outline,
+      Icons.video_label,
       color: Colors.black,
       size: 24.0, 
     ),             
@@ -369,8 +369,8 @@ CupertinoPageRoute(builder: (context) => Profile()));
                   "Privacy Policy |Terms of Use"),
               
             ))
+
       ]),
-        
       ])
     );
   }
