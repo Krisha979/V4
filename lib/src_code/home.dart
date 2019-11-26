@@ -39,7 +39,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Animation<double> animation;
   bool showIndicator = false;
   static List<Widget> widgets = [];
-  static Size staticsize;
+
   DashBoardData data;
   String uploadeddate,meetingtime,lastinvoicedate;
   final RefreshController _refreshController = RefreshController();
@@ -293,8 +293,10 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              setState(() {
                widgets.clear();
              });
-                  var widget1 = new Container(
-              color: Color(0XFFF4EAEA),
+             Size staticsize = MediaQuery.of(context).size;
+
+             var widget1 = new Container(
+             color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
                  Container(
@@ -620,7 +622,7 @@ fmfamount = fmf.output.nonSymbol.toString();
             data = await getData();
             StaticValue.wasloggedout = false;
      }
-      staticsize = MediaQuery.of(context).size;
+   //   staticsize = MediaQuery.of(context).size;
     setState(() {
       widgets.clear();
     });
@@ -660,7 +662,7 @@ fmfamount = fmf.output.nonSymbol.toString();
   Widget build(BuildContext context)
   {
     Size size = MediaQuery.of(context).size;
-    staticsize = size;
+ //   staticsize = size;
 
     return Scaffold(
 
