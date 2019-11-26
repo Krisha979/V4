@@ -4,27 +4,21 @@ import 'package:flutter/material.dart';
 
 import 'package:snbiz/src_code/login.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:snbiz/src_code/page.dart';
+import 'package:snbiz/src_code/static.dart';
 
 class Tutorial extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     return TutorialState();
-
   }
-
-
 }
 
 class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin {
-  
   static List<Widget> imageList = [];
-
   static Size size;
-
-
-int _current=0;
-
-
+   //bool tutorialFromNav=false;
+   int _current=0;
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -167,8 +161,7 @@ static List<T> map<T>(List list, Function handler) {
     Size size1 = MediaQuery.of(context).size;
     size = size1;
  listwidget();
-return Scaffold(
-  
+return Scaffold(  
   body: Stack(
     children: <Widget>[
        Container(
@@ -185,15 +178,25 @@ return Scaffold(
            ),
          ),
 
+child: Column(
 
-                
-
-                child: Column(
+                   crossAxisAlignment:CrossAxisAlignment.end,
+                  children: <Widget>[ 
+                    StaticValue.tutorialFromNav == false?
+                    Padding(
+                    padding: const EdgeInsets.only(top: 25, right: 15),
+                   child: GestureDetector(
+                     onTap: (){
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainPage()));
+                     },
+                     child: Icon(Icons.close, color: Colors.white))
+                  ) :
+                  Container(),
+            Column(
 
 
                   children: <Widget>[
-
-
+                    
                      Stack(
                       children: <Widget>[CarouselSlider( //carousel slider to slide the widget
                         items: imageList,
@@ -248,6 +251,7 @@ return Scaffold(
                           Column(
 
                             children: <Widget>[
+                                StaticValue.tutorialFromNav == true ?
                               GestureDetector(
                                 onTap: (){
                                 
@@ -260,7 +264,7 @@ return Scaffold(
                                     color: Colors.white,
                                     fontSize: 18.0),),
                                                               ),
-                              ),
+                              ):Container()
                             ],
                           ),
                         ],
@@ -271,6 +275,8 @@ return Scaffold(
                     
                   ],
                 ),
+                  ]
+                  )
 
     ),
     ]),

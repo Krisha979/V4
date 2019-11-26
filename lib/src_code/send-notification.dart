@@ -31,7 +31,7 @@ String lastNotifications;
 //api call to get recent sent notification
  Future<List<NotificationModel>> getNotifications() async {
   notification.dateCreated = DateTime.now().toString();
-  notification.createdBy = StaticValue.orgUserId;
+  notification.createdBy = StaticValue.orgId;
   notification.notificationBody = notificationbody.text;
   notification.organizationName = StaticValue.orgName;
   notification.notificationId = 00;
@@ -76,6 +76,8 @@ String lastNotifications;
             headers: {
               'Content-type': 'application/json',
               'Accept': 'application/json',
+              'SentBy': StaticValue.orgUserId.toString(),
+
              
             },
             
