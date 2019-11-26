@@ -11,31 +11,20 @@ class Tutorial extends StatefulWidget{
     return TutorialState();
 
   }
-
-
 }
-
 class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin {
   
   static List<Widget> imageList = [];
-
   static Size size;
-
-
-int _current=0;
-
-
+  int _current=0;
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
       result.add(handler(i, list[i]));
     }
-
     return result;
   }
-
-
-//to create widget
+  //to create widget
 
  Future<List<Widget>> listwidget()async {
                   imageList.clear();
@@ -45,30 +34,22 @@ static List<T> map<T>(List list, Function handler) {
                     new Container(
                       padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
                      width: size.width,
-
-             child: Column(
-               children: <Widget>[
-
+                  child: Column(
+                  children: <Widget>[
                                          Center(
                                            child: Image(image: AssetImage("assets/intro4.png"),
-
                      ),
-                                         ),
-
+                  ),
                ]
              )
                     )
                     ]
                   );
-
                   var widget2 =  Wrap(
                       children: <Widget>[
                         new Container(
-
                             width: size.width,
                             padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
-
-
                             child: Column(
                                 children: <Widget>[
 
@@ -146,7 +127,6 @@ static List<T> map<T>(List list, Function handler) {
                       ]
                   );
 
-                  
 
       //adding widget to list
             imageList.add(widget1);
@@ -154,46 +134,33 @@ static List<T> map<T>(List list, Function handler) {
             imageList.add(widget3);
             imageList.add(widget4);
             imageList.add(widget5);
-            
-
-      
-
         return imageList;
-
         }
-
   @override
   Widget build(BuildContext context) {
     Size size1 = MediaQuery.of(context).size;
     size = size1;
- listwidget();
-return Scaffold(
-  
-  body: Stack(
-    children: <Widget>[
-       Container(
-       width: size.width ,
-                    height: size.height,
-         decoration:new BoxDecoration(
-           gradient: new LinearGradient(colors:[
-             const Color(0xFF9C38FF),
-             const Color(0xFF8551F8),
-           ],
+    listwidget();
+
+    return Scaffold(
+
+      body: Stack(
+        children: <Widget>[
+           Container(
+           width: size.width ,
+                        height: size.height,
+             decoration:new BoxDecoration(
+               gradient: new LinearGradient(colors:[
+                 const Color(0xFF9C38FF),
+                 const Color(0xFF8551F8),
+               ],
              begin: FractionalOffset.topLeft,
              end: FractionalOffset.bottomRight,
              stops: [0.0,100.0],
            ),
          ),
-
-
-                
-
                 child: Column(
-
-
                   children: <Widget>[
-
-
                      Stack(
                       children: <Widget>[CarouselSlider( //carousel slider to slide the widget
                         items: imageList,
@@ -202,7 +169,6 @@ return Scaffold(
                         viewportFraction: 0.99,
                         initialPage: 0,
                         enableInfiniteScroll: true,
-                        
                         reverse: false,
                         autoPlay: true,
                         enlargeCenterPage: true,
@@ -227,8 +193,7 @@ return Scaffold(
                                   width: 8.0,
                                   height: 8.0,
                                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                                  decoration: BoxDecoration(
-                                    
+                                      decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: _current == index ? Colors.white : Color.fromRGBO(0, 0, 0, 0.2)
                                   ),
@@ -265,17 +230,10 @@ return Scaffold(
                           ),
                         ],
                       ),
-
-
-                     
-                    
                   ],
                 ),
-
     ),
     ]),
-
-
 );
-  }
+}
 }

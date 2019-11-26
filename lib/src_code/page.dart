@@ -226,12 +226,9 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                               color: Color(0xFFB50000)),
                         )
                       ]
-
                   ),
-
                 ) : new Tab(
-                  icon: new Icon(Icons.notifications,size: 30),
-                ),
+                  icon: new Icon(Icons.notifications,size: 30),),
 
               ],
             ),
