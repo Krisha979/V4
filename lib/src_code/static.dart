@@ -5,7 +5,7 @@ import 'package:snbiz/Model_code/meetingStatus.dart';
 
 class StaticValue
 {
-
+//mainpage
   static bool shownotificationReceived = true;
   static bool Tasknotification = false;
   static bool Documentnotification = false;
@@ -25,8 +25,8 @@ class StaticValue
   //image previewurl
   static final String previewurl = "api/UploadDocuments?Orgid=" ;
 
-  //static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
-  static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
+  static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
+  //static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
 
   //notification
   static final String notification_url = "api/RecentOrgNotifications?Orgid=";
@@ -79,7 +79,7 @@ class StaticValue
   static final String taskurl="api/AllOrgTasks?Orgid=";
 
   //send notification
-  static final String sendNotification= "api/lastsentnotification?Orgid=";
+  static final String sendNotification= "api/lastsentnotification?Userid=";
 
   //task details
   static final String taskDetails_url= "api/OrgChildTasks?Orgid=";

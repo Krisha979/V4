@@ -41,7 +41,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   static List<Widget> widgets = [];
 
   DashBoardData data;
-  String uploadeddate,meetingtime,lastinvoicedate;
+  String uploadeddate = "-",meetingtime="-",lastinvoicedate="-";
   final RefreshController _refreshController = RefreshController();
   var date = DateTime.now().toString();
 
@@ -74,14 +74,25 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       if(data1 != null){
           setState(() {
         data = data1;
-        uploadeddate =  formatTime(data.uploadedDate.toString()) +" "+ formatDateTime(data.uploadedDate.toString()) ;
-        lastinvoicedate = formatTime(data.lastInvoiceDate.toString())+" "+ formatDateTime(data.lastInvoiceDate.toString());
-        meetingtime = formatTime(data.meetingTime.toString())+" "+ formatDateTime(data.meetingTime.toString());
+        if(data.uploadedDate!=null) {
+          uploadeddate = formatTime(data.uploadedDate.toString()) + " " +
+              formatDateTime(data.uploadedDate.toString());
+        }
+        if(data.lastInvoiceDate!=null) {
+          lastinvoicedate = formatTime(data.lastInvoiceDate.toString()) + " " +
+              formatDateTime(data.lastInvoiceDate.toString());
+        }
+        if(data.meetingTime!=null) {
+          meetingtime = formatTime(data.meetingTime.toString()) + " " +
+              formatDateTime(data.meetingTime.toString());
+        }
 
         StaticValue.upcomingMeetingsCount = data.upcomingMeetingsCount.toString();
         StaticValue.meetingTime = meetingtime;
         StaticValue.activeTaskcount = data.activeTaskcount.toString();
-        StaticValue.taskName = data.taskName;
+       // if(data.taskName!=null) {
+          StaticValue.taskName = data.taskName;
+     //   }
       //  StaticValue.vATCredit = data.totalPaymentDue.toString();
         StaticValue.lastInvoiceDate = lastinvoicedate;
         StaticValue.uploadsToday = data.uploadsToday.toString();
@@ -295,6 +306,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
             final Size staticsize = MediaQuery.of(context).size;
 
              var widget1 = new Container(
+
              color: Color(0XFFF4EAEA),
              child: Column(
                children: <Widget>[
@@ -624,8 +636,9 @@ fmfamount = fmf.output.nonSymbol.toString();
    //   staticsize = MediaQuery.of(context).size;
     setState(() {
       widgets.clear();
-    });
       listwidget();
+    });
+
   }
 
   List<T> map<T>(List list, Function handler) {
