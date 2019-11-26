@@ -105,4 +105,7 @@ class StaticValue
   //webview
   static final String webviewUrl='https://snbiznepal.com';
 
+  //tutorial
+  static bool tutorialFromNav = true;
+
 }

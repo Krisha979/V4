@@ -4,27 +4,33 @@ import 'package:flutter/material.dart';
 
 import 'package:snbiz/src_code/login.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:snbiz/src_code/page.dart';
+import 'package:snbiz/src_code/static.dart';
 
 class Tutorial extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     return TutorialState();
-
   }
 }
+
 class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin {
-  
   static List<Widget> imageList = [];
   static Size size;
+   //bool tutorialFromNav=false;
+   int _current=0;
   int _current=0;
 static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
       result.add(handler(i, list[i]));
     }
+
     return result;
   }
-  //to create widget
+
+
+//to create widget
 
  Future<List<Widget>> listwidget()async {
                   imageList.clear();
@@ -34,22 +40,30 @@ static List<T> map<T>(List list, Function handler) {
                     new Container(
                       padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
                      width: size.width,
-                  child: Column(
-                  children: <Widget>[
+
+             child: Column(
+               children: <Widget>[
+
                                          Center(
                                            child: Image(image: AssetImage("assets/intro4.png"),
+
                      ),
-                  ),
+                                         ),
+
                ]
              )
                     )
                     ]
                   );
+
                   var widget2 =  Wrap(
                       children: <Widget>[
                         new Container(
+
                             width: size.width,
                             padding: EdgeInsets.only(left: 15,right: 15,top: 15,bottom: 15),
+
+
                             child: Column(
                                 children: <Widget>[
 
@@ -127,6 +141,7 @@ static List<T> map<T>(List list, Function handler) {
                       ]
                   );
 
+                  
 
       //adding widget to list
             imageList.add(widget1);
@@ -134,31 +149,53 @@ static List<T> map<T>(List list, Function handler) {
             imageList.add(widget3);
             imageList.add(widget4);
             imageList.add(widget5);
+            
+
+      
+
         return imageList;
+
         }
+
   @override
   Widget build(BuildContext context) {
     Size size1 = MediaQuery.of(context).size;
     size = size1;
-    listwidget();
-
-    return Scaffold(
-
-      body: Stack(
-        children: <Widget>[
-           Container(
-           width: size.width ,
-                        height: size.height,
-             decoration:new BoxDecoration(
-               gradient: new LinearGradient(colors:[
-                 const Color(0xFF9C38FF),
-                 const Color(0xFF8551F8),
-               ],
+ listwidget();
+return Scaffold(
+  body: Stack(
+    children: <Widget>[
+       Container(
+       width: size.width ,
+                    height: size.height,
+         decoration:new BoxDecoration(
+           gradient: new LinearGradient(colors:[
+             const Color(0xFF9C38FF),
+             const Color(0xFF8551F8),
+           ],
              begin: FractionalOffset.topLeft,
              end: FractionalOffset.bottomRight,
              stops: [0.0,100.0],
            ),
          ),
+
+child: Column(
+
+                   crossAxisAlignment:CrossAxisAlignment.end,
+                  children: <Widget>[
+                    StaticValue.tutorialFromNav == false?
+                    Padding(
+                    padding: const EdgeInsets.only(top: 25, right: 15),
+                   child: GestureDetector(
+                     onTap: (){
+                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainPage()));
+                     },
+                     child: Icon(Icons.close, color: Colors.white))
+                  ) :
+                  Container(),
+            Column(
+
+
                 child: Column(
                   children: <Widget>[
                      Stack(
@@ -213,6 +250,7 @@ static List<T> map<T>(List list, Function handler) {
                           Column(
 
                             children: <Widget>[
+                                StaticValue.tutorialFromNav == true ?
                               GestureDetector(
                                 onTap: (){
                                 
@@ -225,13 +263,16 @@ static List<T> map<T>(List list, Function handler) {
                                     color: Colors.white,
                                     fontSize: 18.0),),
                                                               ),
-                              ),
+                              ):Container()
                             ],
                           ),
                         ],
                       ),
                   ],
                 ),
+                  ]
+                  )
+
     ),
     ]),
 );

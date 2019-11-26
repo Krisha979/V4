@@ -8,13 +8,10 @@ import 'package:snbiz/src_code/login.dart';
 import 'package:snbiz/src_code/privacy.dart';
 import 'package:snbiz/src_code/profile.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:snbiz/src_code/tutorial.dart';
 import 'package:snbiz/src_code/webview.dart' ;
 import 'package:url_launcher/url_launcher.dart';
-
 import 'invoice.dart';
-
-
- 
 
 class Nav extends StatefulWidget {
   @override
@@ -236,7 +233,36 @@ CupertinoPageRoute(builder: (context) => Profile()));
     
               }),
         ),
-
+        
+       Container(
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
+          child: ListTile(
+              title: Row(
+                children: <Widget>[
+                   Icon(
+      Icons.info_outline,
+      color: Colors.black,
+      size: 24.0, 
+    ),             
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                   Text('Tutorial',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal)),
+                  
+                ],
+              ),
+              onTap: () {
+                   Navigator.of(context).push(new CupertinoPageRoute<Null>(
+                       builder: (BuildContext context) {
+                       return new Tutorial();
+                      },
+                      fullscreenDialog: true));
+    
+              }),
+        ),
       
 
 

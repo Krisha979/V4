@@ -777,8 +777,38 @@ fmfamount = fmf.output.nonSymbol.toString();
                                   )
                                 ],
                               ),
+                              Column(
+                                children: <Widget>[
+                                  InkWell(
+                                    splashColor: Colors.red,
+                                    onTap: () {
+                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => SendNotification()));
+                                    },
+                                    child: Image(
+                                      image: new AssetImage("assets/snbiznotification.png"),
+                                      height: size.height / 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Text("Send Notification",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
+                                  )
+                                ],
+                              ),
+                             
+                            ],
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                            height: 50.0,
+                          ),
 
-                               Column(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+
+                                 Column(
                                 children: <Widget>[
                                   InkWell(
                                     splashColor: Colors.red,
@@ -798,37 +828,6 @@ fmfamount = fmf.output.nonSymbol.toString();
                                 ],
                               ),
                              
-                             
-                            ],
-                          ),
-                          Divider(
-                            color: Colors.grey,
-                            height: 50.0,
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-
-                               Column(
-                                children: <Widget>[
-                                  InkWell(
-                                    splashColor: Colors.red,
-                                    onTap: () {
-                                       Navigator.push(context, CupertinoPageRoute(builder: (context) => SendNotification()));
-                                    },
-                                    child: Image(
-                                      image: new AssetImage("assets/snbiznotification.png"),
-                                      height: size.height / 12,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                                    child: Text("Send Notification",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold,color: Colors.black54)),
-                                  )
-                                ],
-                              ),
                              
                               Column(
                                 children: <Widget>[

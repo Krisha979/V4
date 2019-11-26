@@ -365,13 +365,8 @@ class MeetingState extends State<Meeting> {
                                             }else if(snapshot.data[meetingId].statusName.contains("Rescheduled")){
                                               icon = "assets/snbizscheduled.png";
                                             }    
-                                          
-                                          
-                                          
-                                    return ListTile(
-                                    
-
-                                      title: InkWell(
+                                  return ListTile(
+                                     title: InkWell(
                                         child: new Theme(
                                             data: new ThemeData(
                                               hintColor: Colors.white,
