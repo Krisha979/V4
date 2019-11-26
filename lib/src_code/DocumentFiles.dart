@@ -45,7 +45,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
         backgroundColor: Color(0xFF9C38FF),
           title: Text(details.documents[0].fileTypeName, style: TextStyle(
           color: Colors.white, fontStyle: FontStyle.normal,
-           fontWeight: FontWeight.normal, fontSize: 19),),
+           fontWeight: FontWeight.normal, fontSize: 20),),
         ),
         body: Container(
 

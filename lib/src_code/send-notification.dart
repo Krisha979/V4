@@ -199,7 +199,7 @@ Future<bool> _checkConnectivity()  async{
               color: Colors.white,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.normal,
-              fontSize: 19),),
+              fontSize: 20),),
                backgroundColor: Color(0xFF9C38FF),
       ),
       body:   SingleChildScrollView(

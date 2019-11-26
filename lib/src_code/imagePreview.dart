@@ -131,7 +131,7 @@ Future<bool> _checkConnectivity()  async{
     return Scaffold(
         appBar: (AppBar(title: Text('Instant Upload', style: TextStyle(
           color: Colors.white, fontStyle: FontStyle.normal,
-           fontWeight: FontWeight.normal, fontSize: 19),
+           fontWeight: FontWeight.normal, fontSize: 20),
            ),
             backgroundColor: Color(0xFF9C38FF),
            )
