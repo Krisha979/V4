@@ -54,7 +54,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return date;
   }
 
-
 //function to call api
   Future<DashBoardData> getData() async{
     try{
