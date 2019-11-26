@@ -230,8 +230,6 @@ Padding(
                   itemBuilder: (BuildContext context, int index){
                     var name = snapshot.data[index].documents[0].fileTypeName;
                     var icon = "assets/snbizcircledocument.png";
-
-
                     //condition to show the icon according to the uploaded file type
                                         if(name.contains("VAT Billssss")){
                                          icon = "assets/snbizvaticon.png";

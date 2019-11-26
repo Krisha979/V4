@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:snbiz/src_code/profile.dart';
 import 'package:snbiz/src_code/static.dart';
 import 'nav.dart';
-
 import 'meeting.dart' as second;
 import 'allnotification.dart' as third;
 //import 'setting.dart' as fourth;
@@ -21,7 +20,7 @@ class MainPage extends StatefulWidget {
 
 class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
 
-  //static final myTabbedPageKey = new GlobalKey<MainPageState>();
+//  static final myTabbedPageKey = new GlobalKey<MainPageState>();
 
   //tab controller
   @override
@@ -44,7 +43,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       context: context,
        barrierDismissible: false,
       builder: (BuildContext context) {
-        Size size = MediaQuery.of(context).size;
+       // Size size = MediaQuery.of(context).size;
         return AlertDialog(
           
           title: Center(
@@ -67,10 +66,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-
                       children: <Widget>[
-
-
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Container(
@@ -181,11 +177,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         drawer:  Nav(),//navigation drawer
         body: new TabBarView( //tab bar view
           controller: StaticValue.controller,
-         // key: myTabbedPageKey,
           children: <Widget>[
-            new first.Home(),
-            new second.Meeting(),
-            new third.AllNotification(),
            
           ],
         ),
