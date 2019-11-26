@@ -39,7 +39,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Animation<double> animation;
   bool showIndicator = false;
   static List<Widget> widgets = [];
-  static Size size;
+  static Size staticsize;
   DashBoardData data;
   String uploadeddate,meetingtime,lastinvoicedate;
   final RefreshController _refreshController = RefreshController();
@@ -298,7 +298,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.8,
+                   height: staticsize.height/4.8,
                           margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                    padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
@@ -342,7 +342,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       image: new AssetImage("assets/snbizmeetings.png"),
                                       fit: BoxFit.fill,
 
-                              height: size.height/12,
+                              height: staticsize.height/12,
                                     ),
                             ],
                           )
@@ -358,7 +358,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.8,
+                   height: staticsize.height/4.8,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                    padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
@@ -400,7 +400,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       image: new AssetImage("assets/snbiztasks.png"),
                                       fit: BoxFit.fill,
                                     
-                              height: size.height/12,
+                              height: staticsize.height/12,
                                     ),
                             ],
                           )
@@ -417,7 +417,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.8,
+                   height: staticsize.height/4.8,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                    padding: EdgeInsets.fromLTRB(20, 12, 25, 5),
                            decoration: new BoxDecoration(
@@ -462,7 +462,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                       image: new AssetImage("assets/snbizuploads.png"),
                                       fit: BoxFit.fill,
                                    
-                              height: size.height/12,
+                              height: staticsize.height/12,
                                     ),
                             ],
                           )
@@ -509,7 +509,7 @@ fmfamount = fmf.output.nonSymbol.toString();
              child: Column(
                children: <Widget>[
                  Container(
-                   height: size.height/4.8,
+                   height: staticsize.height/4.8,
                    margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
                    padding: EdgeInsets.fromLTRB(20, 15, 25, 5),
                            decoration: new BoxDecoration(
@@ -545,7 +545,7 @@ fmfamount = fmf.output.nonSymbol.toString();
                                       image: new AssetImage("assets/snbizvaticon.png"),
                                       fit: BoxFit.fill,
                                    
-                              height: size.height/12,
+                              height: staticsize.height/12,
                                     ),
                             ],
                           )
@@ -620,7 +620,7 @@ fmfamount = fmf.output.nonSymbol.toString();
             data = await getData();
             StaticValue.wasloggedout = false;
      }
-      size = MediaQuery.of(context).size;
+      staticsize = MediaQuery.of(context).size;
     setState(() {
       widgets.clear();
     });
@@ -660,6 +660,8 @@ fmfamount = fmf.output.nonSymbol.toString();
   Widget build(BuildContext context)
   {
     Size size = MediaQuery.of(context).size;
+    staticsize = size;
+
     return Scaffold(
 
        body: SmartRefresher(
