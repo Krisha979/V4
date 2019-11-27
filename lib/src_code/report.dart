@@ -89,48 +89,32 @@ var jsonData = json.decode(data.body);
     report.add(reports);
   }
 print(report.length);
- // if(report.length == 0){
-              //               // ignore: missing_return
-              //           //     return Container(
-              //           //     child: Center(
-              //           //       child: Text("No Records Available.",
-              //           //           textAlign: TextAlign.left,
-              //           //           style: TextStyle(
-              //           //               fontSize: 16,
-              //           //               fontWeight: FontWeight.normal)
-              //           //                 )
-              //           // )
-              //           // );
-              //           showDialog(
-              //    context: context,
-              //    barrierDismissible: false,
-              //    builder: (BuildContext context){
-              //      return AlertDialog(
-              //        title: Text("No Records Available.",
-                  
-              //        style: TextStyle(color:Color(0xFFA19F9F,),
-              //        fontSize: 15,
-              //        fontWeight: FontWeight.normal),),
-              //        actions: <Widget>[
-              //          FlatButton(child: Text("OK"),
-              //          onPressed: (){
-              //          Navigator.pop(context);
-              //           Navigator.pop(context);
-              //          })
-              //        ],
-              //      );
-              //    }
-
-              //  );
-                 //       }else{
+ 
 return report;
-                    //    }
-
-
 
 }
 catch(e){
-  print(e);
+ showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Server error!!",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                       Navigator.pop(context);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
   return null;
 
 }
@@ -148,6 +132,7 @@ catch(e){
            fontWeight: FontWeight.normal, fontSize: 20),),
         ),
         body:   Container(
+          color: Color(0XFFF4EAEA),
            child: FutureBuilder(
             future: _future,
             builder:(BuildContext context, AsyncSnapshot snapshot) {
@@ -155,6 +140,7 @@ catch(e){
               // ignore: missing_return
               case ConnectionState.none:
                   return Container(
+
                   child: Center(
                       // ignore: missing_return
                       child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
@@ -180,19 +166,7 @@ catch(e){
                   )
                 );
               case ConnectionState.done:
-              // if (snapshot.data!=0) {
-              //             return Container(
-              //               child: Center(
-              //                 child: Text("Try Loading Again.",
-              //                     textAlign: TextAlign.left,
-              //                     style: TextStyle(
-              //                         fontSize: 16,
-              //                         fontWeight: FontWeight.normal)
-              //                           )
-              //           )
-              //           );
-              //           }
-                          if(snapshot.data.length == 0){
+                          if(snapshot.data == null||snapshot.data.length == 0 ){
                             // ignore: missing_return
                             return Container(
                             child: Center(
@@ -206,6 +180,22 @@ catch(e){
                         );
                         
                         }
+
+                      //  else if(snapshot.data == null ){
+                      //       // ignore: missing_return
+                      //       return Container(
+                      //       child: Center(
+                      //         child: Text("No Records Available.",
+                      //             textAlign: TextAlign.left,
+                      //             style: TextStyle(
+                      //                 fontSize: 16,
+                      //                 fontWeight: FontWeight.normal)
+                      //                   )
+                      //   )
+                      //   );
+                        
+                      //   }
+                        
                         else{
                         return Container(
                           child:ListView.builder(
