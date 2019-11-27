@@ -21,6 +21,7 @@ class WebViewState extends State<WebView>{
     return  WebviewScaffold(
       url: StaticValue.webviewUrl,
       hidden: true,
+
       appBar: AppBar(title: Text("About SN Business", style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
       backgroundColor: const Color(0xFF9C38FF),),
     );
