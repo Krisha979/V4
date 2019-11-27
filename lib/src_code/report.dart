@@ -88,48 +88,32 @@ var jsonData = json.decode(data.body);
     report.add(reports);
   }
 print(report.length);
- // if(report.length == 0){
-              //               // ignore: missing_return
-              //           //     return Container(
-              //           //     child: Center(
-              //           //       child: Text("No Records Available.",
-              //           //           textAlign: TextAlign.left,
-              //           //           style: TextStyle(
-              //           //               fontSize: 16,
-              //           //               fontWeight: FontWeight.normal)
-              //           //                 )
-              //           // )
-              //           // );
-              //           showDialog(
-              //    context: context,
-              //    barrierDismissible: false,
-              //    builder: (BuildContext context){
-              //      return AlertDialog(
-              //        title: Text("No Records Available.",
-                  
-              //        style: TextStyle(color:Color(0xFFA19F9F,),
-              //        fontSize: 15,
-              //        fontWeight: FontWeight.normal),),
-              //        actions: <Widget>[
-              //          FlatButton(child: Text("OK"),
-              //          onPressed: (){
-              //          Navigator.pop(context);
-              //           Navigator.pop(context);
-              //          })
-              //        ],
-              //      );
-              //    }
-
-              //  );
-                 //       }else{
+ 
 return report;
-                    //    }
-
-
 
 }
 catch(e){
-  print(e);
+ showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Server error!!",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                       Navigator.pop(context);
+                        Navigator.pop(context);
+                       })
+                     ],
+                   );
+                 }
+
+               );
   return null;
 
 }
