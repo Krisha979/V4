@@ -16,6 +16,7 @@ class Report extends StatefulWidget{
 
 class ReportState extends State<Report> {
 
+
    Future<List<Document>> _future; 
   
   @override
