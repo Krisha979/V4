@@ -8,12 +8,8 @@ class WebView extends StatefulWidget{
   State<StatefulWidget> createState() {
     
     return WebViewState();
-
   }
-
-
 }
-
 class WebViewState extends State<WebView>{
   @override
   Widget build(BuildContext context) {
