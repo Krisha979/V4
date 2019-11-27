@@ -25,7 +25,7 @@ class SendState extends State<SendNotification>{
 final notificationbody = TextEditingController();
 
 NotificationModel details;
-String lastNotifications;
+String lastNotifications = "-";
 
 
 //api call to get recent sent notification
@@ -159,23 +159,30 @@ Future<List<NotificationModel>> lastNotification() async {
    try {
       http.Response post = await http.get(
             Uri.encodeFull(StaticValue.baseUrl +
-               StaticValue.sendNotification)+StaticValue.orgId.toString(),
+               StaticValue.sendNotification)+StaticValue.orgUserId.toString(),
             headers: {
               'Content-type': 'application/json',
               'Accept': 'application/json',
              
             },);
-   var jsondata = json.decode(post.body);
+      if(post.statusCode==404){
+        setState(() {
+          lastNotifications = null;
 
-   NotificationModel _notification;
+        });
+      }
+      else {
+        var jsondata = json.decode(post.body);
 
-   _notification = NotificationModel.fromJson(jsondata);
+        NotificationModel _notification;
 
- setState(() {
-   
-   details =_notification;
-   lastNotifications = details.notificationBody;
- });
+        _notification = NotificationModel.fromJson(jsondata);
+
+        setState(() {
+          details = _notification;
+          lastNotifications = details.notificationBody;
+        });
+      }
         print(post);
    } catch(e){
      print(e);
@@ -219,9 +226,10 @@ Future<bool> _checkConnectivity()  async{
                   child: Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child:
-                        lastNotifications == null ?
-                        Text("No recent notification"): 
-                       Text( lastNotifications.toString()),
+                        lastNotifications == "-" ?
+                        Text("Loading"): lastNotifications == null?
+                        Text("No Recent Notification"):
+                        Text( lastNotifications.toString()),
                     ),
                 width: size.width,
                 height: size.height/6,

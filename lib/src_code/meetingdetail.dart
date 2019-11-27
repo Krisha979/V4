@@ -7,6 +7,7 @@ import 'package:snbiz/Model_code/meetingStatus.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:snbiz/src_code/Editdialogs.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:connectivity/connectivity.dart';
 
 class MeetingDetail extends StatefulWidget {
   final MeetingInfo details;
@@ -35,12 +36,52 @@ String _selectedvalue;
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
+   
  }
+
+
+
+  Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        }
 
  Future<void> editData() async {
     details.statusId = _statusid;
      _selectedvalue = details.statusName;
     String jsonbody = jsonEncode(details);
+
+      bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                         StaticValue.controller.animateTo(0);
+                        Navigator.pop(context);
+                         Navigator.pop(context);
+                        
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else{
+      
     try {
       http.Response data = await http.put(
           Uri.encodeFull(StaticValue.baseUrl + StaticValue.meeeetingDetails_url+
@@ -96,7 +137,13 @@ String _selectedvalue;
     } catch (e) {
       Text("Server error!!");
     }
+
+      }
   }
+
+   
+
+
 //format date time
   String formatDateTime(String date) {
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
