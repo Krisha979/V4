@@ -598,6 +598,7 @@ fmfamount = fmf.output.nonSymbol.toString();
         setState(() {});
       });
     controller.forward();
+     StaticValue.tutorialFromNav= false;
 
   }
 

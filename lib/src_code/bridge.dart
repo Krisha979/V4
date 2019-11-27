@@ -25,12 +25,13 @@ if(firstlogin == 'false'){
             Navigator.push(context, 
             MaterialPageRoute(builder: (context)=> LoginPage()));
             StaticValue.shownotificationReceived= false;
-            StaticValue.tutorialFromNav= false;
+           
 
 }
 else if(firstlogin == null){
               await storage.write(key: "Login", value: 'false');
               StaticValue.shownotificationReceived= true;
+               StaticValue.tutorialFromNav= true;
               Navigator.push(context, 
               MaterialPageRoute(builder: (context)=> Tutorial()));
 
@@ -39,7 +40,7 @@ else if(firstlogin == null){
             else{
             await storage.write(key: "Login", value: 'false');
             StaticValue.shownotificationReceived= true;
-
+               StaticValue.tutorialFromNav= true;
             Navigator.push(context,
             MaterialPageRoute(builder: (context)=> Tutorial()));
             }
