@@ -340,7 +340,7 @@ class LoginPage extends StatefulWidget{
                         borderSide: BorderSide(color: Colors.white),
                      ),  
                                         
-                                        labelText: 'Username',  labelStyle: TextStyle(color: Colors.white, fontSize: 17),
+                                        labelText: 'Email',  labelStyle: TextStyle(color: Colors.white, fontSize: 17),
                                         prefixIcon: Padding(
                                           padding: const EdgeInsets.only(left: 0, right: 20),
                                           child: const Icon(

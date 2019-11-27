@@ -7,7 +7,6 @@ import 'package:snbiz/src_code/static.dart';
 import 'nav.dart';
 import 'meeting.dart' as second;
 import 'allnotification.dart' as third;
-//import 'setting.dart' as fourth;
 import 'home.dart' as first;
 
 class MainPage extends StatefulWidget {
@@ -175,9 +174,9 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
           
              ),
         drawer:  Nav(),//navigation drawer
-        body: new TabBarView( //tab bar view
+        body: new TabBarView( 
+          //tab bar view
           controller: StaticValue.controller,
-        //  key: myTabbedPageKey,
           children: <Widget>[
             new first.Home(),
             new second.Meeting(),

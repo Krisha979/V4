@@ -109,6 +109,6 @@ class StaticValue
   static bool tutorialFromNav = true;
 
   //report
-   static final String reportUrl ="api/orgReports?OrgId=" ;
+   static final String reportUrl ="api/OrgReportDocs?OrgId=" ;
 
 }

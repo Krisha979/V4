@@ -6,6 +6,8 @@ import 'package:snbiz/Model_code/meetingStatus.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:snbiz/src_code/static.dart';
+import 'package:connectivity/connectivity.dart';
+
 class AddEditDialog extends StatefulWidget {
   final MeetingInfo details;
   const AddEditDialog({Key key, this.details}) : super(key: key);
@@ -30,6 +32,17 @@ class AddEditDialogState extends State<AddEditDialog> {
   int _statusid;
 
   //edit meeting function api call to put the edited meeting
+
+   Future<bool> _checkConnectivity()  async{
+                        var result =  await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none){
+             
+                         return false;
+                        }
+                        
+                        }
+
+
   Future<void> editData() async {
     var mt = meetingTime.text.replaceAll(new RegExp(r"\ "),"T");
     details.meetingTime = mt;
@@ -39,6 +52,34 @@ class AddEditDialogState extends State<AddEditDialog> {
     details.reminderTime = time;
     details.statusId = _statusid;
     String jsonbody = jsonEncode(details);
+
+
+    bool connection = await _checkConnectivity();
+      if(connection == false){
+                   showDialog(
+                 context: context,
+                 barrierDismissible: false,
+                 builder: (BuildContext context){
+                   return AlertDialog(
+                     title: Text("Please, check your internet connection",
+                  
+                     style: TextStyle(color:Color(0xFFA19F9F,),
+                     fontSize: 15,
+                     fontWeight: FontWeight.normal),),
+                     actions: <Widget>[
+                       FlatButton(child: Text("OK"),
+                       onPressed: (){
+                         StaticValue.controller.animateTo(0);
+                        Navigator.pop(context);
+                         Navigator.pop(context);
+
+                       })
+                     ],
+                   );
+                 }
+
+               );
+      }else {
     try {
       http.Response data = await http.put(
           Uri.encodeFull(StaticValue.baseUrl + StaticValue.createMeeting +
@@ -88,7 +129,8 @@ class AddEditDialogState extends State<AddEditDialog> {
           }
     } catch (e) 
     {
-    } 
+    }
+      } 
   }
 Future<bool> _onBackPressed() async { //handle on back press
    Navigator.pop(ctx);
@@ -96,6 +138,11 @@ Future<bool> _onBackPressed() async { //handle on back press
    Navigator.pop(ctx);
   
  }
+
+
+  
+
+
 //initializing textform field data
   @override
   void initState() {
