@@ -245,9 +245,9 @@ class LoginPage extends StatefulWidget{
                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               new Image(
-                                image: new AssetImage("assets/logo.jpg"),
-                                height: 120.0,
-                                width: 120.0,
+                                image: new AssetImage("assets/snbizlogo.png"),
+                                height: 140.0,
+                                width: 140.0,
                               ),
 
                             Padding(
