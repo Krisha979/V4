@@ -106,7 +106,7 @@ class StaticValue
   static final String webviewUrl='https://snbiznepal.com';
 
   //tutorial
-  static bool tutorialFromNav = true;
+  static bool tutorialFromNav = false;
 
   //report
    static final String reportUrl ="api/OrgReportDocs?OrgId=" ;
