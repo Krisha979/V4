@@ -46,6 +46,9 @@ class ReportState extends State<Report> {
     //api call function to get the uploaded document
   Future<List<Document>> getDocuments()async{
     bool connection = await _checkConnectivity();
+      
+      
+      
       if(connection == false){
                    showDialog(
                  context: context,
@@ -165,7 +168,7 @@ catch(e){
                   )
                 );
               case ConnectionState.done:
-                          if(snapshot.data == null||snapshot.data.length == 0 ){
+                          if(snapshot.data == null||snapshot.data.length == 0){
                             // ignore: missing_return
                             return Container(
                             child: Center(
