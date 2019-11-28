@@ -1,11 +1,12 @@
 import 'dart:convert';
+import 'package:SNBizz/Model_code/InvoiceModel.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 //import 'package:intl/intl.dart';
-import 'package:snbiz/Model_code/InvoiceModel.dart';
-import 'package:snbiz/src_code/static.dart';
+
 
 class Invoice extends StatefulWidget {
   @override

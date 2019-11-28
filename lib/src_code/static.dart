@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:SNBizz/Model_code/meetingStatus.dart';
 import 'package:flutter/material.dart';
-import 'package:snbiz/Model_code/meetingStatus.dart';
 
 class StaticValue
 {

@@ -1,11 +1,12 @@
 import 'dart:convert';
+import 'package:SNBizz/Model_code/DocumentModel.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:snbiz/Model_code/DocumentModel.dart';
 import 'package:http/http.dart' as http;
-import 'package:snbiz/src_code/DocumentFiles.dart';
-import 'package:snbiz/src_code/static.dart';
+
+import 'DocumentFiles.dart';
 
 
 class Documents extends StatefulWidget{

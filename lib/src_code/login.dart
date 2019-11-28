@@ -1,14 +1,17 @@
 import 'dart:io';
+import 'package:SNBizz/Model_code/meetingStatus.dart';
+import 'package:SNBizz/Model_code/model.dart';
+import 'package:SNBizz/src_code/page.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:snbiz/Model_code/meetingStatus.dart';
-import 'package:snbiz/Model_code/model.dart';
+
 import 'dart:convert';
-import 'package:snbiz/src_code/page.dart';
+
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:snbiz/src_code/static.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 

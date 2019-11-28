@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:async/async.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-import 'package:snbiz/src_code/static.dart';
+
 class PreviewImage extends StatefulWidget {
   final String url;
 

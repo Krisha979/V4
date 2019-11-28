@@ -1,15 +1,17 @@
 import 'dart:convert';
 
+import 'package:SNBizz/Model_code/OrgTask.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:snbiz/Model_code/OrgTask.dart';
-import 'package:snbiz/src_code/TaskDetails.dart';
-import 'package:snbiz/src_code/static.dart';
+
 import 'package:http/http.dart' as http;
+
+import 'TaskDetails.dart';
 
 class TaskPage extends StatefulWidget {
   @override
@@ -367,6 +369,7 @@ value = fmf.output.withoutFractionDigits.toString();
                           ),
                                                 ),
                                                 onTap: () {
+                                          // ignore: missing_return
                                           Navigator.push(context, CupertinoPageRoute(builder: (context)=> TaskDetailsPage(details:
                                       snapshot.data[index])));
                                         },

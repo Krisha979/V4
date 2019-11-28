@@ -1,9 +1,10 @@
 import 'dart:io';
 
+import 'package:SNBizz/src_code/profile.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:snbiz/src_code/profile.dart';
-import 'package:snbiz/src_code/static.dart';
+
 import 'nav.dart';
 import 'meeting.dart' as second;
 import 'allnotification.dart' as third;

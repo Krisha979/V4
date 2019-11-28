@@ -1,7 +1,8 @@
+import 'package:SNBizz/src_code/static.dart';
+import 'package:SNBizz/src_code/tutorial.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:snbiz/src_code/static.dart';
-import 'package:snbiz/src_code/tutorial.dart';
+
 
 import 'login.dart';
 class Bridge extends StatefulWidget {

@@ -1,4 +1,5 @@
-import 'package:snbiz/Model_code/Task.dart';
+
+import 'Task.dart';
 
 class OrgTask {
   Task parentTask;
