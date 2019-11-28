@@ -1,14 +1,17 @@
 import 'dart:io';
+import 'package:SNBizz/Model_code/meetingStatus.dart';
+import 'package:SNBizz/Model_code/model.dart';
+import 'package:SNBizz/src_code/page.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:snbiz/Model_code/meetingStatus.dart';
-import 'package:snbiz/Model_code/model.dart';
+
 import 'dart:convert';
-import 'package:snbiz/src_code/page.dart';
+
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:snbiz/src_code/static.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 
@@ -245,9 +248,9 @@ class LoginPage extends StatefulWidget{
                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               new Image(
-                                image: new AssetImage("assets/logo.jpg"),
-                                height: 120.0,
-                                width: 120.0,
+                                image: new AssetImage("assets/snbizlogo.png"),
+                                height: 140.0,
+                                width: 140.0,
                               ),
 
                             Padding(

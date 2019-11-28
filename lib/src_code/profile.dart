@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:SNBizz/Model_code/UserAccount.dart';
+import 'package:SNBizz/Model_code/profile.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:snbiz/Model_code/UserAccount.dart';
-import 'package:snbiz/Model_code/profile.dart';
-import 'package:snbiz/src_code/static.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -52,6 +52,7 @@ class ProfileState extends State<Profile> {
 
 
 //api call to put users details
+  // ignore: non_constant_identifier_names
   Future<bool> UpdateDetails() async {
     UserAccount userAccount = new UserAccount();
     userAccount.userAccountId = details.userAccountId;

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:SNBizz/Model_code/Notification.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:snbiz/Model_code/Notification.dart';
-import 'package:snbiz/src_code/static.dart';
+
 import 'package:http/http.dart' as http ;
 
 class SendNotification extends StatefulWidget{

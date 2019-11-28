@@ -1,13 +1,15 @@
 
 import 'dart:io';
 
+import 'package:SNBizz/src_code/page.dart';
+import 'package:SNBizz/src_code/static.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:snbiz/src_code/login.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:snbiz/src_code/page.dart';
-import 'package:snbiz/src_code/static.dart';
+import 'login.dart';
+
+
 
 class Tutorial extends StatefulWidget{
   @override

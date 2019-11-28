@@ -1,13 +1,15 @@
 import 'dart:convert';
+import 'package:SNBizz/Model_code/meetingStatus.dart';
+import 'package:SNBizz/Model_code/meetingsdetails.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:snbiz/Model_code/meetingStatus.dart';
-import 'package:snbiz/Model_code/meetingsdetails.dart';
-import 'package:snbiz/src_code/Editdialogs.dart';
-import 'package:snbiz/src_code/static.dart';
+
 import 'package:connectivity/connectivity.dart';
+
+import 'Editdialogs.dart';
 
 class MeetingDetail extends StatefulWidget {
   final MeetingInfo details;
@@ -425,6 +427,7 @@ String _selectedvalue;
           );
         
   }
+  // ignore: unused_element
   Future<void> _alert(BuildContext context, String header, String body) {
                           
                         return showDialog<void>(

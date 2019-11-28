@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-import 'package:snbiz/src_code/static.dart';
 
 class MultipleImage extends StatefulWidget {
   final Map<String, String> url;

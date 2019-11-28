@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:SNBizz/Model_code/meetingsdetails.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -7,9 +9,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:snbiz/Model_code/meetingsdetails.dart';
-import 'package:snbiz/src_code/meetingdetail.dart';
-import 'package:snbiz/src_code/static.dart';
+
+import 'meetingdetail.dart';
+
 
 
 class Meeting extends StatefulWidget {

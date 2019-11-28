@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:SNBizz/Model_code/documents.dart';
+import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:snbiz/Model_code/documents.dart';
-import 'package:snbiz/src_code/static.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,6 +15,7 @@ class Report extends StatefulWidget{
 }
 
 class ReportState extends State<Report> {
+
 
    Future<List<Document>> _future; 
   

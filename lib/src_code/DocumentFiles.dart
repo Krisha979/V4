@@ -1,6 +1,6 @@
+import 'package:SNBizz/Model_code/DocumentModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:snbiz/Model_code/DocumentModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 class DocumentFilesPage extends StatefulWidget {
   final DocumentModel details;
