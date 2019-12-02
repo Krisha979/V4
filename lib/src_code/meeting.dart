@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+
 import 'meetingdetail.dart';
 
 
@@ -375,7 +376,7 @@ class MeetingState extends State<Meeting> {
                                             ),
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(
-                                                  15, 10, 15, 10),
+                                                  15, 10, 15, 5),
                                               constraints: new BoxConstraints(
                                                   minWidth: size.width),
                                               width: size.width,
@@ -392,7 +393,8 @@ class MeetingState extends State<Meeting> {
                                                         .spaceBetween,
                                                 children: <Widget>[
                                                   Flexible(
-                                                    child: Column( crossAxisAlignment: CrossAxisAlignment .start,
+                                                    child: Column(
+                                                       crossAxisAlignment: CrossAxisAlignment .start,
                                                       children: <Widget>[
                                                         Text(
                                                           formattedtime,
@@ -424,6 +426,7 @@ class MeetingState extends State<Meeting> {
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
+                                                                        overflow: TextOverflow.ellipsis,
                                                                 style: TextStyle(
                                                                     fontSize: 16,
                                                                     fontWeight:
@@ -439,10 +442,12 @@ class MeetingState extends State<Meeting> {
                                                                     TextAlign
                                                                         .left,
                                                                 style: TextStyle(
+                                                                 color: Color(0xFFA19F9F),
+                                                               
                                                                     fontSize: 16,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .normal))),
+                                                                            .bold))),
                                                       ],
                                                     ),
                                                   ),
