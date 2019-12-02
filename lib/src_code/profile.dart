@@ -290,17 +290,24 @@ class ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                             child: Container(
-                              height: size.height / 20,
+                              height: size.height / 19,
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
+                              
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
+                                  
                               child: TextFormField(
+                                
+                               // maxLength: 30,
                                 decoration: new InputDecoration(
+                                
+                                  
                                   border: InputBorder.none,
+                                  
                                   focusedBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.all(10)
+                                  contentPadding: EdgeInsets.only(top: 5, left: 10)
 
                                     ,
                                 ),
