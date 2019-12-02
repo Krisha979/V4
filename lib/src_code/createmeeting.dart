@@ -303,7 +303,7 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                                      textInputAction: TextInputAction.done,
                                    
                                     maxLines: 3,
-                                    maxLength: 150,
+                                    maxLength: 35,
                                     keyboardType: TextInputType.multiline,
 
                                     controller: meetingLocation,

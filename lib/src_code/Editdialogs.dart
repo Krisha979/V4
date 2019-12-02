@@ -263,6 +263,7 @@ Future<bool> _onBackPressed() async { //handle on back press
                                     style: TextStyle(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 16,
+                                      
                                       color: Color(0XFFA19F9F),
                                     ),
                                   ),
@@ -278,7 +279,7 @@ Future<bool> _onBackPressed() async { //handle on back press
                                   child: TextFormField(
                                     keyboardType: TextInputType.multiline,
                                     maxLines: 3,
-                                    maxLength: 150,
+                                    maxLength: 35,
                                   
                                     controller: meetingLocation,
                                     decoration: new InputDecoration(
