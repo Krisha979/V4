@@ -236,7 +236,7 @@ Future<bool> _onBackPressed() async { //handle on back press
                                   
                                     keyboardType: TextInputType.multiline,
                                     maxLines: 6,
-                                    maxLength: 200,
+                                    maxLength: 150,
                                   
                                     controller: meetingAgenda,
                                     decoration: new InputDecoration(   //empty field validation
