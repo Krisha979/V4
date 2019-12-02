@@ -25,7 +25,12 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
    int _current=0;
      // ignore: missing_return
      Future<bool> _onBackPressed() async {
-        exit(0);
+        StaticValue.tutorialFromNav == true?
+       
+        exit(0) :
+
+         Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => MainPage()));
+        
       }
 
 static List<T> map<T>(List list, Function handler) {
