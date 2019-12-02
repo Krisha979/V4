@@ -174,17 +174,14 @@ static List<T> map<T>(List list, Function handler) {
   Widget build(BuildContext context) {
     Size size1 = MediaQuery.of(context).size;
     size = size1;
+
  listwidget();
 return WillPopScope(
    onWillPop: _onBackPressed,   
   child:   Scaffold(
-  
     body: Stack(
-  
       children: <Widget>[
-  
          Container(
-  
          width: size.width ,
   
                       height: size.height,
