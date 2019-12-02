@@ -6,7 +6,6 @@ import 'package:SNBizz/src_code/static.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'login.dart';
 
 
@@ -23,6 +22,7 @@ class TutorialState extends State<Tutorial>  with SingleTickerProviderStateMixin
   static Size size;
    //bool tutorialFromNav=false;
    int _current=0;
+     // ignore: missing_return
      Future<bool> _onBackPressed() async {
         exit(0);
       }
