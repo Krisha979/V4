@@ -222,7 +222,7 @@ String _selectedvalue;
                         ],
                         color: Colors.white),
                     margin: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
+                    padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                     child: Column(children: <Widget>[
                       Padding(
                         padding: EdgeInsets.all(8),
@@ -267,11 +267,13 @@ String _selectedvalue;
                       ),
                       Row(
                         children: <Widget>[
-                          Text(details.location.toString(),
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 14)),
+                          Flexible(
+                                                      child: Text(details.location.toString(),
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14)),
+                          ),
                         ],
                       ),
                       Padding(
