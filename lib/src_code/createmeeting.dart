@@ -264,7 +264,7 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                                     keyboardType: TextInputType.multiline,
                                     maxLines: 6,
                                     autofocus: true,
-                                    maxLength: 200,
+                                    maxLength: 150,
                                     controller: meetingAgenda,
                                     decoration: new InputDecoration(
                                       fillColor: Color(0xFFFBF4F4),
