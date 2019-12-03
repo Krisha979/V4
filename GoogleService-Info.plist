@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>29175609869-9gjnere07bnhu53034n33os0i6k9j5lf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.29175609869-9gjnere07bnhu53034n33os0i6k9j5lf</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>29175609869-t6fn1mj2ceo2fgcng4psks9fkvnp5mqp.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwr-LlV7Rm2oytKp88-0P4FTd6DRv1Huk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>29175609869</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kathmanducodes.snbiz</string>
+	<key>PROJECT_ID</key>
+	<string>snbiz-ff4f4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>snbiz-ff4f4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:29175609869:ios:efee1ccd75235965fab344</string>
+	<key>DATABASE_URL</key>
+	<string>https://snbiz-ff4f4.firebaseio.com</string>
+</dict>
+</plist>
