@@ -9,9 +9,7 @@ class CreateMeetings {
   int createdBy;
   String dateCreated;
   bool deleted;
-  
   String rowstamp;
-
   CreateMeetings(
       {this.meetingId,
       this.meetingTime,
