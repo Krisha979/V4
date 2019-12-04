@@ -64,8 +64,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
     }
 @override
   void initState()  {
-    super.initState();    
-
+    super.initState();
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var android = new AndroidInitializationSettings("@mipmap/launcher_icons");
     var ios = new IOSInitializationSettings();
