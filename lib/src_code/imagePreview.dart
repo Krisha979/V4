@@ -71,6 +71,7 @@ Future<bool> _checkConnectivity()  async{
       StaticValue.previewurl +StaticValue.orgId.toString() +"&OrgName=" +StaticValue.orgName);
     // create multipart request
     var request = new http.MultipartRequest("POST", uri);
+    request.headers['APIKey'] = StaticValue.apikey;
 
 
 

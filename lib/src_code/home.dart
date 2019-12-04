@@ -64,6 +64,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
+         "apikey" : StaticValue.apikey,
         'Cache-Control': 'no-cache,private,no-store,must-revalidate'
       }
           );

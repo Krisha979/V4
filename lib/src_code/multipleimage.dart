@@ -39,7 +39,9 @@ var responsecode;
 
 
     // create multipart request
+    
     var request = new http.MultipartRequest("POST", uri);
+    request.headers['APIKey'] = StaticValue.apikey;
     
     
 
@@ -55,6 +57,7 @@ var responsecode;
 
       // add file to multipart
       request.files.add(multipartFile);
+
     }
     // send
     var response = await request.send();
