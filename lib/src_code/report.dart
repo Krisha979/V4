@@ -80,6 +80,7 @@ class ReportState extends State<Report> {
           headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
+        "apikey" : StaticValue.apikey,
         'Cache-Control': 'no-cache,private,no-store,must-revalidate'
 
   }

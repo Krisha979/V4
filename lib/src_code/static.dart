@@ -25,8 +25,8 @@ class StaticValue
   //image previewurl
   static final String previewurl = "api/UploadDocuments?Orgid=" ;
 
-  static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
-  //static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
+  //static final String baseUrl = "https://s-nbiz.conveyor.cloud/";
+  static final String baseUrl = "http://snbizadmin.azurewebsites.net/";
 
   //notification
   static final String notification_url = "api/RecentOrgNotifications?Orgid=";

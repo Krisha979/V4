@@ -88,7 +88,8 @@ class AddEditDialogState extends State<AddEditDialog> {
               (details.organizationId).toString()),
           headers: {
             'Content-type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            "apikey" : StaticValue.apikey
           },
           body: jsonbody);
           if(data.statusCode == 204){  //condition to check if meeting is edited then show check dialog message
