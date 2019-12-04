@@ -35,6 +35,7 @@ class MeetingDetailState extends State<MeetingDetail> {
 String _selectedvalue;
   int _statusid;
   var ctx;
+  // ignore: missing_return
   Future<bool> _onBackPressed() async {
    Navigator.pop(ctx);
    Navigator.pop(ctx);
@@ -43,6 +44,7 @@ String _selectedvalue;
 
 
 
+  // ignore: missing_return
   Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
@@ -280,6 +282,7 @@ String _selectedvalue;
                         padding: EdgeInsets.all(20),
                       ),
                       Row(
+
                         children: <Widget>[
                           Text(
                             'Meeting Agenda',

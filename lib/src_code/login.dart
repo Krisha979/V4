@@ -132,6 +132,7 @@ class LoginPage extends StatefulWidget{
         'Accept': 'application/json',
         "email": email,
         "password" : password,
+        //"apikey" : StaticValue.apikey,
         'Cache-Control': 'no-cache,private,no-store,must-revalidate'
 
       }
@@ -197,6 +198,13 @@ class LoginPage extends StatefulWidget{
                         });
             await _alert(context, "Invalid Credentials","Email not found.");
          }
+      else if(response.statusCode == 403){
+        setState(() {
+                      isLoading = false; 
+                  });
+
+        await _alert(context, "Information","Authentication Error . Your Access has been denied. PLease contact you administrator.");
+      }
       else{
         setState(() {
                       isLoading = false; 
