@@ -116,6 +116,8 @@ flutter:
    - assets/intro4.png
    - assets/snbiztasks_notification.png
    - assets/snbizcircledocument_notification.png
+   - assets/vaticon.png
+   - assets/docnew.png
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

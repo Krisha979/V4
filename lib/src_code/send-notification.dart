@@ -166,7 +166,8 @@ Future<List<NotificationModel>> lastNotification() async {
             headers: {
               'Content-type': 'application/json',
               'Accept': 'application/json',
-             
+              "apikey" : StaticValue.apikey,
+
             },);
       if(post.statusCode==404){
         setState(() {
@@ -212,159 +213,192 @@ Future<bool> _checkConnectivity()  async{
               fontSize: 20),),
                backgroundColor: Color(0xFF9C38FF),
       ),
-      body:   SingleChildScrollView(
-                     child:  Container(
-              color: Colors.white,
-             height: size.height,
-              width: size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 20),
-                      child: Text("Recent notification sent", style:
-                                TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
-                    ),
-                  Container(
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child:
-                        lastNotifications == "-" ?
-                        Text("Loading"): lastNotifications == null?
-                        Text("No Recent Notification"):
-                        Text( lastNotifications.toString()),
-                    ),
-                width: size.width,
-                height: size.height/6,
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-                decoration: new BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: new BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 4.0,
-                      color: Colors.black.withOpacity(0.5),
-                      offset: Offset(0.0, 0.5),
-                    ),
-                  ],
-                ),   
-              ),
-                   new Theme(
-                              data: new ThemeData(
-                                hintColor: Color(0xFFF4EAEA),
-                              ),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 15, bottom: 10, left: 10, right: 10),
-                                child: TextFormField(
-                                  
-                                  controller: notificationbody,
-                                  keyboardType: TextInputType.multiline,
-                                  maxLines: 6,
-                                  maxLength: 300,
-                                 
-                                  decoration: new InputDecoration(
+      body: SingleChildScrollView(
+              child: Wrap(
+          children: <Widget>[
+                Container(
+                  color: Color(0XFFE0CECE),
+                  width: size.width,
+                  height: size.height,
 
-                                    hintText: 'Please enter new notificaton', hintStyle: TextStyle(color: Colors.black45),
-                                   fillColor: Color(0xFFF4EAEA),
-                                    filled: true,
-                                    border: new OutlineInputBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(10.0),
-                                      borderSide: new BorderSide(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 100,),
-                                    child: RaisedButton(
-                                      color: Color(0xFFB56AFF),
-                                      onPressed: () {
-
-                   if (notificationbody.text == ""){ // to check empty field
-                  showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("Please enter some message",
+                  child: Container(
+                     height: size.height,
+                  width: size.width,
+                  margin: EdgeInsets.all(8.0),
                   
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        Navigator.pop(context);
-                       
-                       })
-                     ],
-                   );
-                 }
-                                );
-                                        }
-                                        else
-                                        {
-                                         showDialog( //loading while uploading 
-                                         context: context,
-                                              barrierDismissible: false,
-                                              builder: (BuildContext context) {
-                                                ctx = context;
-                                    return new WillPopScope(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                     borderRadius: new BorderRadius.circular(10.0),
 
-                                      onWillPop: _onBackPressed,
-                                      child: Center(
-                                      child: Theme(
-                                        data: new ThemeData(
-                                          hintColor: Colors.white,
-                                        ),
-                                                child: Center(
-                                                  child: Theme(
-                                        data: new ThemeData(
-                                          hintColor: Colors.white,
-                                        ),
-                                       child: CircularProgressIndicator(
+                  ),
 
-                                            strokeWidth: 3.0,
-                                            backgroundColor: Colors.white
-                                        ),
 
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 35, left: 20),
+                            child: Text("Previous Notification Sent", style:
+                                      TextStyle(fontSize: 21, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Container(
+                          child: Padding(
+                              padding: const EdgeInsets.only(left: 15,),
+                              child:
+                                lastNotifications == "-" ?
+                                Text("Loading"): lastNotifications == null?
+                                Text("No Recent Notification"):
+                                Text( lastNotifications.toString(),style: TextStyle(fontSize: 19)),
+                                
+                            ),
+                      width: size.width,
+                      height: size.height/6,
+                      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                      padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                      decoration: new BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: new BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 4.0,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(0.0, 0.5),
+                            ),
+                          ],
+                      ),   
+                    ),
+                        ),
+
+                     Padding(
+                            padding: const EdgeInsets.only(top: 30, left: 20),
+                            child: Text("Create New Notification", style:
+                                      TextStyle(fontSize: 21, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
+                          ),
+                         new Theme(
+                                    data: new ThemeData(
+                                      hintColor: Color(0xFFF4EAEA),
+                                    ),
+                                    child: Flexible(
+                                                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 16, bottom: 0, left: 16, right: 16),
+                                        child: TextFormField(
+                                          
+                                          controller: notificationbody,
+                                          keyboardType: TextInputType.multiline,
+                                          maxLines: 8,
+                                          maxLength: 150,
+                                         
+                                          decoration: new InputDecoration(
+
+                                            hintText: 'Please enter new notificaton', hintStyle: TextStyle(color: Colors.black45, fontSize: 19),
+                                           fillColor: Color(0xFFFBF4F4),
+
+                                            filled: true,
+                                            border: new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(10.0),
+                                              borderSide: new BorderSide(),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                       )))
-                                        );
-                                              });
-
-
-                                        getNotifications();
-                                       
-                                      }},
-                                      padding: const EdgeInsets.all(0.0),
-                                       shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                      child: Container(
-                                        width: 200,
-                                          decoration: const BoxDecoration(
-                                              color: Color(0xFFB56AFF),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(8.0))),
-                                          padding: const EdgeInsets.fromLTRB(
-                                              20, 10, 20, 5),
-                                      child: Center(child: Text("Send",style: TextStyle(color: Colors.white, fontSize: 18))),
                                     ),
                                   ),
-                                )
-                            )
-                ]
-              )
-            ),
+
+                                  Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 60,),
+                                          child: RaisedButton(
+                                            color: Color(0xFFB56AFF),
+                                            onPressed: () {
+
+                         if (notificationbody.text == ""){ // to check empty field
+                        showDialog(
+                       context: context,
+                       barrierDismissible: false,
+                       builder: (BuildContext context){
+                         return AlertDialog(
+                           title: Text("Please enter some message",
+                        
+                           style: TextStyle(color:Color(0xFFA19F9F,),
+                           fontSize: 15,
+                           fontWeight: FontWeight.normal),),
+                           actions: <Widget>[
+                             FlatButton(child: Text("OK"),
+                             onPressed: (){
+                              Navigator.pop(context);
+                             
+                             })
+                           ],
+                         );
+                       }
+                                      );
+                                              }
+                                              else
+                                              {
+                                               showDialog( //loading while uploading 
+                                               context: context,
+                                                    barrierDismissible: false,
+                                                    builder: (BuildContext context) {
+                                                      ctx = context;
+                                          return new WillPopScope(
+
+                                            onWillPop: _onBackPressed,
+                                            child: Center(
+                                            child: Theme(
+                                              data: new ThemeData(
+                                                hintColor: Colors.white,
+                                              ),
+                                                      child: Center(
+                                                        child: Theme(
+                                              data: new ThemeData(
+                                                hintColor: Colors.white,
+                                              ),
+                                             child: CircularProgressIndicator(
+
+                                                  strokeWidth: 3.0,
+                                                  backgroundColor: Colors.white
+                                              ),
+
+                                            ),
+                                             )))
+                                              );
+                                                    });
+
+
+                                              getNotifications();
+                                             
+                                            }},
+                                            padding: const EdgeInsets.all(0.0),
+                                             shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0)),
+                                            child: Container(
+                                              width: 200,
+                                                decoration: const BoxDecoration(
+                                                    color: Color(0xFFB56AFF),
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(8.0))),
+                                                padding: const EdgeInsets.fromLTRB(
+                                                    20, 10, 20, 5),
+                                            child: Center(child: Text("Send",style: TextStyle(color: Colors.white, fontSize: 18))),
+                                          ),
+                                        ),
+                                      )
+                                  )
+                      ]
+                    ),
+                  )
+                
+          ),
+        
+          ]),
       )
+    
     );
   }
 }
