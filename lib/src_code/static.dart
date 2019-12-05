@@ -58,6 +58,9 @@ class StaticValue
   //image preview
   static File imgfile;
 
+  //contact
+  static String contact="+977 9801042730";
+
   //create meeting
   static final String createMeeting_url = "api/Meetings?sender=";
 
