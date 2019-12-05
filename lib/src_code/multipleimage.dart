@@ -155,7 +155,7 @@ Future<bool> checkConnectivity()  async{
                                       padding: const EdgeInsets.only(left: 20,bottom: 15),
                                       child: new Image(
                                           image:
-                                              new AssetImage("assets/snbizsfiles-web.png"),
+                                              new AssetImage("assets/docnew.png"),
                                           height:60,
                                           width: 60),
                                     ),
@@ -163,15 +163,17 @@ Future<bool> checkConnectivity()  async{
                                       padding:
                                           EdgeInsets.fromLTRB(20, 10, 0, 0),
                                     ),
+
                                     Flexible(
                                       child: Text(
                                         StaticValue.filenames[index].substring(
                                             StaticValue.filenames[index]
-                                                    .lastIndexOf('/') +
-                                                1),
+                                                .lastIndexOf('/') +1,StaticValue.filenames[index].lastIndexOf('}')
+                                        ),
+
                                         style: TextStyle(
                                             fontStyle: FontStyle.normal,
-                                            fontSize: 16,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.normal),
                                       ),
                                     ),

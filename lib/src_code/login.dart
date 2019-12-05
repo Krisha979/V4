@@ -319,7 +319,7 @@ class LoginPage extends StatefulWidget{
                                                                     child: TextFormField(
                                       style: TextStyle(color: Colors.white, fontSize: 15),
                                       
-                                     enableInteractiveSelection: false,
+                                    // enableInteractiveSelection: false,
                                       controller: emailcontroller,
                                       validator: (value) {
                                         // field valdation code here
