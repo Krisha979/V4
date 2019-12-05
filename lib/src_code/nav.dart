@@ -86,7 +86,7 @@ class NavBar extends State<Nav> {
                       color: Colors.black,
                       fontSize: 16.0),
                 ),
-                Text("Taking business to new height", style: TextStyle(fontStyle: FontStyle.normal,
+                Text("Taking business to new heights", style: TextStyle(fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.normal, fontSize: 12,),),
                 
               ],
@@ -151,7 +151,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
                   
                   
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                   Text('About SN Business',
+                   Text('About Us',
                         style: TextStyle(
                             fontSize: 18,
                             fontStyle: FontStyle.normal,
@@ -165,36 +165,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
     
               }),
         ),
-
-        Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
-          child: ListTile(
-              title: Row(
-                children: <Widget>[
-                  Icon(
-      Icons.phone,
-      color: Colors.black,
-      size: 24.0,
-      
-    ),
-    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                  
-                    Text('Contact List',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal)),
-                  
-                ],
-              ),
-              onTap: () {
-                Navigator.push(context,
-                   CupertinoPageRoute(builder: (context) => Contact()));
-               }),
-        ),
-
-        Container(
+   Container(
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
           child: ListTile(
@@ -222,35 +193,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
               }),
         ),
         
-       Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
-          child: ListTile(
-              title: Row(
-                children: <Widget>[
-                   Icon(
-      Icons.video_label,
-      color: Colors.black,
-      size: 24.0, 
-    ),             
-    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                   Text('Tutorial',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.normal)),
-                  
-                ],
-              ),
-              onTap: () {
-                   Navigator.of(context).push(new CupertinoPageRoute<Null>(
-                       builder: (BuildContext context) {
-                       return new Tutorial();
-                      },
-                      fullscreenDialog: true));
-    
-              }),
-        ),
+       
       
 Container(
           decoration: BoxDecoration(
@@ -280,6 +223,63 @@ Container(
                    CupertinoPageRoute(builder: (context) => Report()));
     
               }),
+        ),
+
+        Container(
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
+          child: ListTile(
+              title: Row(
+                children: <Widget>[
+                   Icon(
+      Icons.video_label,
+      color: Colors.black,
+      size: 24.0, 
+    ),             
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                   Text('Overview',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal)),
+                  
+                ],
+              ),
+              onTap: () {
+                   Navigator.of(context).push(new CupertinoPageRoute<Null>(
+                       builder: (BuildContext context) {
+                       return new Tutorial();
+                      },
+                      fullscreenDialog: true));
+    
+              }),
+        ),
+         Container(
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade100))),
+          child: ListTile(
+              title: Row(
+                children: <Widget>[
+                  Icon(
+      Icons.phone,
+      color: Colors.black,
+      size: 24.0,
+      
+    ),
+    Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
+                  
+                    Text('Contact',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.normal)),
+                  
+                ],
+              ),
+              onTap: () {
+                Navigator.push(context,
+                   CupertinoPageRoute(builder: (context) => Contact()));
+               }),
         ),
 
         Container(
@@ -373,7 +373,7 @@ Container(
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 25),
+          padding: EdgeInsets.only(top: 5),
         ),
         InkWell(
           onTap:(){
@@ -381,8 +381,11 @@ Container(
                     CupertinoPageRoute(builder: (context) => PrivacyWebView()));
           },child: Center(
            
-                child:Text(
-                  "Privacy Policy |Terms of Use"),
+                child:Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text(
+                    "Privacy Policy |Terms of Use"),
+                ),
               
             ))
 
