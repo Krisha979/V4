@@ -136,7 +136,7 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                          image: new AssetImage("assets/pdf.png"),
                          height: size.height / 10,
                        ): Image( 
-                         image: new AssetImage("assets/snbizsfiles-web.png"),height: size.height/10,)
+                         image: new AssetImage("assets/docnew.png"),height: size.height/10,)
                      
  )
                                     

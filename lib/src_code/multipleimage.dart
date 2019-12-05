@@ -155,7 +155,7 @@ Future<bool> checkConnectivity()  async{
                                       padding: const EdgeInsets.only(left: 20,bottom: 15),
                                       child: new Image(
                                           image:
-                                              new AssetImage("assets/snbizsfiles-web.png"),
+                                              new AssetImage("assets/docnew.png"),
                                           height:60,
                                           width: 60),
                                     ),
