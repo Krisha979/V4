@@ -6,19 +6,15 @@ import 'package:SNBizz/src_code/static.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import 'dart:convert';
-
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-
 class LoginPage extends StatefulWidget{
         @override
         State createState()=> new LoginPageState();
     }
+
     bool isLoading = false;
     class LoginPageState extends State<LoginPage> {
       String message;
@@ -46,7 +42,6 @@ class LoginPage extends StatefulWidget{
               }
       getfromstorage();  
       }
-
       //function to store email and password on storage
       Future<Null> getfromstorage() async {
       var email = await storage.read(key:"Email");
@@ -81,11 +76,12 @@ class LoginPage extends StatefulWidget{
           headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json',
+            "apikey" : StaticValue.apikey,
+
           });
+        var jsonData = json.decode(data.body);
 
-      var jsonData = json.decode(data.body);
-
-      for (var u in jsonData) {
+        for (var u in jsonData) {
         
         var meetingstatus = MeetingStatus.fromJson(u);
         if(!meetingstatus.statusName.contains("Concluded"))
@@ -93,17 +89,13 @@ class LoginPage extends StatefulWidget{
          StaticValue.statuslist.add(meetingstatus);
 
           }
-        
       }
-
     } catch (e) {
       print(e);
       return null;
     }
-
   }
 // to register device
-
   Future<bool> registerDevice(String fcmtoken) async{                 
       http.Response response = await http.get(
       Uri.encodeFull(StaticValue.baseUrl + "api/RegisterDevice"),
@@ -222,6 +214,7 @@ class LoginPage extends StatefulWidget{
       }
 
       //handle on back press
+      // ignore: missing_return
       Future<bool> _onBackPressed() async {
         exit(0);
       }
