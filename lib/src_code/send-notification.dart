@@ -239,7 +239,7 @@ Future<bool> _checkConnectivity()  async{
                           Padding(
                             padding: const EdgeInsets.only(top: 35, left: 20),
                             child: Text("Previous Notification Sent", style:
-                                      TextStyle(fontSize: 21, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
+                                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
                           ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
@@ -250,7 +250,7 @@ Future<bool> _checkConnectivity()  async{
                                 lastNotifications == "-" ?
                                 Text("Loading"): lastNotifications == null?
                                 Text("No Recent Notification"):
-                                Text( lastNotifications.toString(),style: TextStyle(fontSize: 19)),
+                                Text( lastNotifications.toString(),style: TextStyle(fontSize: 18)),
                                 
                             ),
                       width: size.width,
@@ -274,7 +274,7 @@ Future<bool> _checkConnectivity()  async{
                      Padding(
                             padding: const EdgeInsets.only(top: 30, left: 20),
                             child: Text("Create New Notification", style:
-                                      TextStyle(fontSize: 21, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
+                                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
                           ),
                          new Theme(
                                     data: new ThemeData(
@@ -293,7 +293,7 @@ Future<bool> _checkConnectivity()  async{
                                          
                                           decoration: new InputDecoration(
 
-                                            hintText: 'Please enter new notificaton', hintStyle: TextStyle(color: Colors.black45, fontSize: 19),
+                                            hintText: 'Please enter new notificaton', hintStyle: TextStyle(color: Colors.black45, fontSize: 18),
                                            fillColor: Color(0xFFFBF4F4),
 
                                             filled: true,
