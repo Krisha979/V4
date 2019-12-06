@@ -167,7 +167,6 @@ Future<List<NotificationModel>> lastNotification() async {
               'Content-type': 'application/json',
               'Accept': 'application/json',
               "apikey" : StaticValue.apikey,
-
             },);
       if(post.statusCode==404){
 
