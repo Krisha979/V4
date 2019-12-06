@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 
 import 'TaskDetails.dart';
 
+
 class TaskPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -53,10 +54,7 @@ class TaskState extends State<TaskPage> {
                          return false;
                         }
                         }
-
-
 //api call to get task task details
-
 Future<List<OrgTask>> getTask()async{
   bool connection = await _checkConnectivity();
       if(connection == false){
