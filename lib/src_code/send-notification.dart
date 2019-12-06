@@ -242,34 +242,36 @@ Future<bool> _checkConnectivity()  async{
                             child: Text("Previous Notification Sent", style:
                                       TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
                           ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                          child: Padding(
-                              padding: const EdgeInsets.only(left: 15,),
-                              child:
-                                lastNotifications == "-" ?
-                                Text("Loading"): lastNotifications == null?
-                                Text("No Recent Notification"):
-                                Text( lastNotifications.toString(),style: TextStyle(fontSize: 16)),
-                                
-                            ),
+                        Expanded(
+                                                  child: Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                            child: Padding(
+                                padding: const EdgeInsets.only(left: 15,),
+                                child:
+                                  lastNotifications == "-" ?
+                                  Text("Loading"): lastNotifications == null?
+                                  Text("No Recent Notification"):
+                                  Text( lastNotifications.toString(),style: TextStyle(fontSize: 16)),
+                                  
+                              ),
                       width: size.width,
-                      height: size.height/5,
+                      //height: size.height/5,
                       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
                       padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                       decoration: new BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: new BorderRadius.circular(10.0),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4.0,
-                              color: Colors.black.withOpacity(0.5),
-                              offset: Offset(0.0, 0.5),
-                            ),
-                          ],
+                            color: Colors.white,
+                            borderRadius: new BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Colors.black.withOpacity(0.5),
+                                offset: Offset(0.0, 0.5),
+                              ),
+                            ],
                       ),   
                     ),
+                          ),
                         ),
 
                      Padding(
