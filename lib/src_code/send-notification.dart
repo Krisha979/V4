@@ -250,11 +250,11 @@ Future<bool> _checkConnectivity()  async{
                                 lastNotifications == "-" ?
                                 Text("Loading"): lastNotifications == null?
                                 Text("No Recent Notification"):
-                                Text( lastNotifications.toString(),style: TextStyle(fontSize: 18)),
+                                Text( lastNotifications.toString(),style: TextStyle(fontSize: 16)),
                                 
                             ),
                       width: size.width,
-                      height: size.height/6,
+                      height: size.height/5,
                       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
                       padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                       decoration: new BoxDecoration(

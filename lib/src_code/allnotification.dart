@@ -266,7 +266,7 @@ class AllNotificationState extends State<AllNotification> {
               if (!snapshot.hasData) {
                           return Container(
                             child: Center(
-                              child: Text("Try Loading Again.",
+                              child: Text("No Records Avaliable.",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       fontSize: 16,
@@ -275,17 +275,6 @@ class AllNotificationState extends State<AllNotification> {
                         )
                         );
                         } else {
-                          if(snapshot.data.length == 0){
-                            return Container(
-                            child: Center(
-                              child: Text("No Records Available.",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal)
-                                        )
-                        )
-                        );}
                                 return ListView.builder(
                                     itemCount: snapshot.data.length,
                                     itemBuilder:
