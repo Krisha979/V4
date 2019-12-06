@@ -308,7 +308,7 @@ class ProfileState extends State<Profile> {
                                   border: InputBorder.none,
                                   
                                   focusedBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(top: 5, left: 10)
+                                  contentPadding: EdgeInsets.only(top: 10, left: 10)
 
                                     ,
                                 ),
