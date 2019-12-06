@@ -208,7 +208,13 @@ String _selectedvalue;
                 color: Color(0XFFF4EAEA),
                 child: Wrap(
                                  children: <Widget>[  Container(
+                                   
+constraints:  new BoxConstraints(
 
+    
+    minHeight: size.height,
+  
+  ),
                                    
                    
                     decoration: BoxDecoration(
