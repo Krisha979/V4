@@ -241,17 +241,18 @@ Future<bool> _checkConnectivity()  async{
                             child: Text("Previous Notification Sent", style:
                                       TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFF665959)),),
                           ),
-                        Expanded(
-                                                  child: Padding(
+                        
+                                                   Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Container(
+                              height : size.height/5,
                             child: Padding(
                                 padding: const EdgeInsets.only(left: 15,),
                                 child:
                                   lastNotifications == "-" ?
                                   Text("Loading"): lastNotifications == null?
                                   Text("No Recent Notification"):
-                                  Text( lastNotifications.toString(),style: TextStyle(fontSize: 16)),
+                                  Text( lastNotifications.toString(),style: TextStyle(fontSize: 15)),
                                   
                               ),
                       width: size.width,
@@ -271,7 +272,7 @@ Future<bool> _checkConnectivity()  async{
                       ),   
                     ),
                           ),
-                        ),
+                        
 
                      Padding(
                             padding: const EdgeInsets.only(top: 30, left: 20),
