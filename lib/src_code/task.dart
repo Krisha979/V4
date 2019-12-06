@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import 'package:http/http.dart' as http;
-
 import 'TaskDetails.dart';
 
 
