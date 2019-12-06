@@ -170,7 +170,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                     //   backgroundImage: 
                      
 
-                    //   NetworkImage(
+                    //   NetworkImage( 
                         
                     //     StaticValue.logo,
                     //   ),
