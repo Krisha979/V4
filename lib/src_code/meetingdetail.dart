@@ -176,9 +176,9 @@ String _selectedvalue;
           title: Text("Details",style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)),
             backgroundColor: const Color(0xFF9C38FF),
           actions: <Widget>[
-             StaticValue.orgId == details.createdBy ? 
+             StaticValue.orgUserId == details.createdBy ? 
              InkWell(onTap:() async{
-               if (StaticValue.orgId == details.createdBy || details.statusName == "Concluded"){
+               if (StaticValue.orgUserId == details.createdBy || details.statusName == "Concluded"){
 
                Navigator.of(context).push(new CupertinoPageRoute<Null>(
                        builder: (BuildContext context) {

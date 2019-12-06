@@ -176,10 +176,12 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                     //   ),
                     // ),
                      child: CircleAvatar(
-                                radius: 20,
+                                radius: 19,
                                 //backgroundColor:  Color(0xFFFBF9),
                                 child: ClipOval(
                                   child: SizedBox(
+                                    height: size.height/13,
+                                    width:size.height/13,
                                    
                                     child: StaticValue.logo == null
                                         ? Icon(

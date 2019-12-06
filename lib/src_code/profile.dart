@@ -57,9 +57,9 @@ class ProfileState extends State<Profile> {
   Future<bool> UpdateDetails() async {
     UserAccount userAccount = new UserAccount();
     userAccount.userAccountId = details.userAccountId;
-    userAccount.fullName = userName.text;
-    userAccount.contactNumber = userContact.text;
-    userAccount.email = userEmail.text;
+    userAccount.fullName = userName.text == null ? "--" : userName.text;
+    userAccount.contactNumber = userContact.text == null ? "--" :userContact.text;
+    userAccount.email = userEmail.text == null ? "--" : userEmail.text;
     userAccount.organizationId = details.organizationId;
     userAccount.requestTime = details.requestTime;
     userAccount.changeRequest = details.changeRequest;
@@ -201,7 +201,7 @@ class ProfileState extends State<Profile> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5, right: 40),
                                   child: Text(
-                                    details.organizationName,
+                                    details.organizationName == null ? "--" : details.organizationName,
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontStyle: FontStyle.normal,
@@ -223,7 +223,7 @@ class ProfileState extends State<Profile> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5, right: 40),
                                   child: Text(
-                                    details.taXPAN,
+                                    details.taXPAN == null ? "--" : details.taXPAN,
                                     style: TextStyle(
                                         fontSize: 17,
                                         fontStyle: FontStyle.normal,
@@ -245,7 +245,7 @@ class ProfileState extends State<Profile> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 5, right: 60),
                                   child: Text(
-                                    details.organizationNumber,
+                                    details.organizationNumber == null ? "--" : details.organizationNumber ,
                                     style: TextStyle(
                                         fontSize: 17,
                                         fontStyle: FontStyle.normal,
@@ -327,20 +327,23 @@ class ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Container(
-                              height: size.height / 20,
+                              //height: size.height / 18,
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
-                              child: TextFormField(
-                                decoration: new InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.all(10)
+                              child: Wrap(
+                                children: <Widget>[
+                                                              TextFormField(
+                                  decoration: new InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(10)
+                                  ),
+                                 controller: userEmail,
                                 ),
-                               controller: userEmail,
-                              ),
+                                ]),
                             ),
                           ),
 
