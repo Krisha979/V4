@@ -32,6 +32,7 @@ class TaskState extends State<TaskPage> {
     DateFormat longdate = DateFormat("EEEE, MMM d, yyyy");
     date = longdate.format(format);
     return date;
+
   }
   //format time
   String formatTime(String time) {
