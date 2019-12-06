@@ -54,10 +54,7 @@ class TaskState extends State<TaskPage> {
                          return false;
                         }
                         }
-
-
 //api call to get task task details
-
 Future<List<OrgTask>> getTask()async{
   bool connection = await _checkConnectivity();
       if(connection == false){
