@@ -170,6 +170,7 @@ Future<List<NotificationModel>> lastNotification() async {
 
             },);
       if(post.statusCode==404){
+
         setState(() {
           lastNotifications = null;
 
