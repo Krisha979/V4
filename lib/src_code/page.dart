@@ -161,12 +161,40 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                       Navigator.push(context,
                          CupertinoPageRoute(builder: (context) => Profile()));
                     },
-                    child: CircleAvatar(
-                      radius: 19,
-                      backgroundImage: NetworkImage(
-                        StaticValue.logo,
-                      ),
-                    ),
+                    
+                    // StaticValue.logo == null ? Icon(Icons.person,
+                    // color: Color(0xFF665959),) :
+
+                    // CircleAvatar(
+                    //   radius: 19,
+                    //   backgroundImage: 
+                     
+
+                    //   NetworkImage(
+                        
+                    //     StaticValue.logo,
+                    //   ),
+                    // ),
+                     child: CircleAvatar(
+                                radius: 20,
+                                //backgroundColor:  Color(0xFFFBF9),
+                                child: ClipOval(
+                                  child: SizedBox(
+                                   
+                                    child: StaticValue.logo == null
+                                        ? Icon(
+                                            Icons.person,
+                                            size: 30,
+                                            color: Colors.white
+                                          )
+                                        : StaticValue.logo != null
+                                            ? Image.network(StaticValue.logo,
+                                                fit: BoxFit.cover)
+                                            : Icon(Icons.person)
+                                  ),
+                                ),
+                              ),
+                   
                   ),
                 )
               

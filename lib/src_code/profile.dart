@@ -146,7 +146,7 @@ class ProfileState extends State<Profile> {
                               splashColor: Colors.yellow,
                               child: CircleAvatar(
                                 radius: 50,
-                                backgroundColor: Colors.white,
+                                backgroundColor:  Color(0xFFFBF4F4),
                                 child: ClipOval(
                                   child: SizedBox(
                                     height: size.height / 4,
@@ -155,7 +155,7 @@ class ProfileState extends State<Profile> {
                                         ? Icon(
                                             Icons.person,
                                             size: 70,
-                                            color: Colors.white,
+                                            color: Colors.white
                                           )
                                         : StaticValue.logo != null
                                             ? Image.network(StaticValue.logo,
