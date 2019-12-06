@@ -245,7 +245,8 @@ Future<bool> _checkConnectivity()  async{
                                                    Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Container(
-                              height : size.height/5,
+                              
+                              height : size.height/4.5,
                             child: Padding(
                                 padding: const EdgeInsets.only(left: 15,),
                                 child:
@@ -315,7 +316,7 @@ Future<bool> _checkConnectivity()  async{
                                   Center(
                                         child: Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 60,),
+                                              top: 20,),
                                           child: RaisedButton(
                                             color: Color(0xFFB56AFF),
                                             onPressed: () {
