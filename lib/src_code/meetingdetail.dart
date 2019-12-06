@@ -201,7 +201,7 @@ String _selectedvalue;
                               constraints:  new BoxConstraints(
 
     
-    maxHeight: size.height,
+    //minHeight: size.height,
   
   ),
                 
@@ -209,10 +209,7 @@ String _selectedvalue;
                 child: Wrap(
                                  children: <Widget>[  Container(
 
-                                    constraints:  new BoxConstraints(
-    maxHeight: size.height,
-  
-  ),
+                                   
                    
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),

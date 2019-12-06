@@ -288,34 +288,29 @@ class ProfileState extends State<Profile> {
                                   TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                         Padding(
+                            padding: const EdgeInsets.only(top: 10),
                             child: Container(
-                              height: size.height / 20,
+                              //height: size.height / 18,
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
-                              
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
-                                  
-                              child: TextFormField(
-                                
-                               // maxLength: 30,
-                                decoration: new InputDecoration(
-                                
-                                  
-                                  border: InputBorder.none,
-                                  
-                                  focusedBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(top: 10, left: 10)
-
-                                    ,
+                              child: Wrap(
+                                children: <Widget>[
+                                                              TextFormField(
+                                  decoration: new InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(10)
+                                  ),
+                                 controller: userName,
                                 ),
-                                controller: userName,
-                              ),
+                                ]),
                             ),
                           ),
+
                           Padding(
                             padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
                             child: Text(
@@ -360,20 +355,22 @@ class ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Container(
-                              height: size.height / 20,
+                              
                               width: size.width,
                               margin: EdgeInsets.only(left: 20, right: 20),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: Color(0xFFFBF4F4)),
-                              child: TextFormField(
-                                decoration: new InputDecoration(
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  contentPadding: EdgeInsets.all(10)
+                              child: Wrap(
+                                                              children: <Widget>[ TextFormField(
+                                  decoration: new InputDecoration(
+                                    border: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(10)
+                                  ),
+                                  controller: userContact,
                                 ),
-                                controller: userContact,
-                              ),
+                                                              ]),
                             ),
                           ),
                           Padding(
