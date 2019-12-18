@@ -113,8 +113,6 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
         fontFamily: 'Poppins'
       ),
     debugShowCheckedModeBanner: false,
-     
-
      home: Bridge(), //navigate to tutorial or login page
      );
   }
