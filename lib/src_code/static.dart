@@ -77,6 +77,7 @@ class StaticValue
   //multiple image
   static List<String> filenames;
 
+
   //navigation
   static String facebookurl = "http://www.facebook.com";
   static String whatsapp="http://api.whatsapp.com/send?phone=+977-9803373555";
