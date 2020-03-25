@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:SNBizz/Model_code/DocumentModel.dart';
+import 'package:SNBizz/src_code/search.dart';
 import 'package:SNBizz/src_code/static.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
@@ -241,7 +242,21 @@ class _DocumentsState extends State<Documents> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor:Color(0XFFF4EAEA),
-      appBar: AppBar(title: Text('Documents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)), backgroundColor: const Color(0xFF9C38FF),),
+      appBar: AppBar(
+        title: Text('Documents', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal)), backgroundColor: const Color(0xFF9C38FF),
+        actions: <Widget>[
+           InkWell(
+             onTap: (){
+               Navigator.push(context,
+                   CupertinoPageRoute(builder: (context) => Search()));
+             },
+             child: Padding(
+               padding: const EdgeInsets.only(right:8.0),
+               child: Icon(Icons.search),
+             ),
+           )
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:SNBizz/Model_code/DocumentModel.dart';
 import 'package:SNBizz/Model_code/meetingStatus.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,9 @@ class StaticValue
 
   //home baseurl
   static final String home_url="api/OrganizationDashboard?Orgid=" ;
+
+  static  List<ParentDocumentModel> parentfilteredlist = [];
+  static  List<DocumentListModel> documentfilteredlist =[];
 
   //image previewurl
   static final String previewurl = "api/UploadDocuments?Orgid=" ;
