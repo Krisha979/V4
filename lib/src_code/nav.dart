@@ -123,7 +123,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
                         ),
                    Expanded(
                     
-                  child: Padding(
+                    child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Text(StaticValue.orgName.toString(),
                     style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.normal)),

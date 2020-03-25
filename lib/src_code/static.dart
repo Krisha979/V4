@@ -38,8 +38,7 @@ class StaticValue
    //multiple image_picker
    static final String multipleimage_url =  "api/UploadDocuments?Orgid=";
   
-  //create invoiceurl
-  static final String create_invoiceurl =  "api/OrgInvoices?Orgid=";
+
 
   //apikey
   static final String apikey = "41V3av8BbTKA98Vv8Er/i20UTT3jZHLisRY2g7RqnIF7h8J55O9o/M2AwZ/zBHLR";

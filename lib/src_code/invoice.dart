@@ -5,6 +5,8 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:intl/intl.dart';
 
 
@@ -16,18 +18,25 @@ class Invoice extends StatefulWidget {
 class _InvoiceState extends State<Invoice> {
   int invoicenumber;
 
-  Future<List<InvoiceModel>> _future;
-
-  //internet connection 
+  Future<List<InvoiceDocument>> _future;
+  //method to format date and time
+  String formatDateTime(String date) {
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
+    DateTime format = (dateFormat.parse(date));
+    DateFormat longdate = DateFormat("EE, MMM d, yyyy");
+    date = longdate.format(format);
+    return date;
+  }
+  //internet connection
   Future<bool> _checkConnectivity()  async{
                         var result =  await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
-             
+
                          return false;
                         }
                         }
 //api call to get uploaded invoices
-  Future<List<InvoiceModel>> getInovoices() async {
+  Future<List<InvoiceDocument>> getInovoices() async {
     bool connection = await _checkConnectivity();
       if(connection == false){
                    showDialog(
@@ -36,7 +45,7 @@ class _InvoiceState extends State<Invoice> {
                  builder: (BuildContext context){
                    return AlertDialog(
                      title: Text("Please, check your internet connection",
-                  
+
                      style: TextStyle(color:Color(0xFFA19F9F,),
                      fontSize: 15,
                      fontWeight: FontWeight.normal),),
@@ -54,8 +63,7 @@ class _InvoiceState extends State<Invoice> {
       }else {
     try {
       http.Response data = await http.get(
-          Uri.encodeFull(StaticValue.baseUrl +
-             StaticValue.create_invoiceurl +
+          Uri.encodeFull(StaticValue.baseUrl +"api/OrgInvoiceDocs?Orgid="+
               StaticValue.orgId.toString()),
           headers: {
             'Content-type': 'application/json',
@@ -65,9 +73,9 @@ class _InvoiceState extends State<Invoice> {
 
           });
       var jsonData = json.decode(data.body);
-      List<InvoiceModel> invoices = [];
+      List<InvoiceDocument> invoices = [];
       for (var u in jsonData) {
-        var notification = InvoiceModel.fromJson(u);
+        var notification = InvoiceDocument.fromJson(u);
         invoices.add(notification);
       }
       print(invoices.length);
@@ -140,76 +148,76 @@ return Scaffold(
           color: Color(0XFFF4EAEA),
         child: Column(
           children: <Widget>[
-            Container(
-             width: size.width,
-              margin: EdgeInsets.fromLTRB(10,10,10,0),
-              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-              decoration: new BoxDecoration(
-                            color: Colors.white,
-                             borderRadius: new BorderRadius.circular(10.0),
-                             boxShadow: [
-                             BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Colors.black.withOpacity(0.5),
-                                    offset: Offset(0.0, 0.5),
-                                  ),
-                                ],
-                             ),
-           child: Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                            children: [
-                              
-                              Flexible(
-                                                              child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 30),
-                                      child: Text("Last invoice date",style: TextStyle(
-                                      fontSize: 18, color: Color(0xFFA19F9F),
-                                      fontWeight: FontWeight.bold)),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 30),
-                                      child: Text(StaticValue.lastInvoiceDate,style: TextStyle(
-                                      fontSize: 14, color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
-                                    ),
-
-                                       Padding(
-                                         padding: const EdgeInsets.only(left: 30),
-                                         child: Text("Due Remaining",style: TextStyle(
-                                      fontSize: 14, color: Color(0xFFA19F9F),
-                                      fontWeight: FontWeight.bold)),
-                                       ),
-                                       
-                                    
-                                   
-                                   Padding(
-                                         padding: const EdgeInsets.only(left: 30),
-                                         child: Text('Rs '+ fmfamount ,style: TextStyle(
-                                      fontSize: 14, color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
-                                       )
-                                    
-
-                                  ],
-                                  
-
-                                ),
-                              ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Image(
-                                        image: new AssetImage("assets/snbizinvoice.png"),
-                                        height: size.height / 10,
-                                      ),
-                            ),
-                            ],
-                          ),
-
-            ),
+//            Container(
+//             width: size.width,
+//              margin: EdgeInsets.fromLTRB(10,10,10,0),
+//              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+//              decoration: new BoxDecoration(
+//                            color: Colors.white,
+//                             borderRadius: new BorderRadius.circular(10.0),
+//                             boxShadow: [
+//                             BoxShadow(
+//                                    blurRadius: 4.0,
+//                                    color: Colors.black.withOpacity(0.5),
+//                                    offset: Offset(0.0, 0.5),
+//                                  ),
+//                                ],
+//                             ),
+//           child: Row(
+//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
+//                            children: [
+//
+//                              Flexible(
+//                                                              child: Column(
+//                                    crossAxisAlignment: CrossAxisAlignment.start,
+//                                  children: <Widget>[
+//                                    Padding(
+//                                      padding: const EdgeInsets.only(left: 30),
+//                                      child: Text("Last invoice date",style: TextStyle(
+//                                      fontSize: 18, color: Color(0xFFA19F9F),
+//                                      fontWeight: FontWeight.bold)),
+//                                    ),
+//                                    Padding(
+//                                      padding: const EdgeInsets.only(left: 30),
+//                                      child: Text(StaticValue.lastInvoiceDate,style: TextStyle(
+//                                      fontSize: 14, color: Colors.black,
+//                                      fontWeight: FontWeight.bold)),
+//                                    ),
+//
+//                                       Padding(
+//                                         padding: const EdgeInsets.only(left: 30),
+//                                         child: Text("Due Remaining",style: TextStyle(
+//                                      fontSize: 14, color: Color(0xFFA19F9F),
+//                                      fontWeight: FontWeight.bold)),
+//                                       ),
+//
+//
+//
+//                                   Padding(
+//                                         padding: const EdgeInsets.only(left: 30),
+//                                         child: Text('Rs '+ fmfamount ,style: TextStyle(
+//                                      fontSize: 14, color: Colors.black,
+//                                      fontWeight: FontWeight.bold)),
+//                                       )
+//
+//
+//                                  ],
+//
+//
+//                                ),
+//                              ),
+//                            Padding(
+//                              padding: const EdgeInsets.only(right: 10),
+//                              child: Image(
+//                                        image: new AssetImage("assets/snbizinvoice.png"),
+//                                        height: size.height / 10,
+//                                      ),
+//                            ),
+//                            ],
+//                          ),
+//
+//            ),
             Flexible(
               child: Container(
                 width: size.width,
@@ -235,6 +243,7 @@ return Scaffold(
               case ConnectionState.active:
               case ConnectionState.waiting:
                     return Container(
+                      padding: EdgeInsets.all(10),
                   child: Center(
 
                    child: Theme(
@@ -281,50 +290,64 @@ return Scaffold(
                                     itemCount: snapshot.data.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      var name = snapshot.data[index].invoiceName;
-                                      return Container(
-                                        child: Card(
-                                          
-                                          elevation: 5,
-                                          
-                                          margin: EdgeInsets.fromLTRB(
-                                              10.0, 10.0, 10.0, 0.0),
-                                          child: ListTile(
-                                            title: Column(
-                                              children: <Widget>[
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                  children: <Widget>[
-                                                    Flexible(
-                                                      child: Text(
-                                                        name,
-                                                        style: TextStyle(
-                                                            fontStyle:
-                                                                FontStyle.normal,
-                                                            fontSize: 17,
-                                                            fontWeight: FontWeight
-                                                                .normal),
+                                         var name = snapshot.data[index].fileName==null?snapshot.data[index].documentURL.substring(snapshot.data[index].documentURL.lastIndexOf('/')+1):snapshot.data[index].fileName;
+                                      return InkWell(
+                                        onTap: (){
+                                          launch(snapshot.data[index].documentURL);  // to open uploaded document
+                                        },
+                                        child: Container(
+                                          child: Card(
+
+                                            elevation: 5,
+
+                                            margin: EdgeInsets.fromLTRB(
+                                                10.0, 10.0, 10.0, 0.0),
+                                            child: ListTile(
+                                              title: Column(
+                                                children: <Widget>[
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                    children: <Widget>[
+
+                                                          Flexible(
+                                                            child: Text(
+                                                              name,
+                                                              style: TextStyle(
+                                                                  fontStyle:
+                                                                      FontStyle.normal,
+                                                                  fontSize: 15,
+                                                                  fontWeight: FontWeight
+                                                                      .normal),
+                                                            ),
+                                                          ),
+                                                          Flexible(
+                                                            child: Padding(
+                                                              padding: const EdgeInsets.only(left:3.0),
+                                                              child: Text(formatDateTime( snapshot.data[index].dateCreated),
+                                                                style: TextStyle(
+                                                                    fontWeight: FontWeight.normal,
+                                                                    color: Color(0xFFA19F9F),
+                                                                    fontSize: 10
+                                                                ),),
+                                                            ),
+                                                          ),
+
+
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 20),
+                                                        child: new Image(
+                                                            image: new AssetImage(
+                                                                "assets/snbizinvoice.png"),
+                                                            height: 60,
+
+                                                            width: 60),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.fromLTRB(
-                                                              0, 20, 0, 20),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 20),
-                                                      child: new Image(
-                                                          image: new AssetImage(
-                                                              "assets/snbizinvoice.png"),
-                                                          height: 60,
-                                                              
-                                                          width: 60),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

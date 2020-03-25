@@ -23,7 +23,6 @@ class DocumentModel {
     return data;
   }
 }
-
 class Documents {
   int documentId;
   String fileName;
@@ -51,6 +50,81 @@ class Documents {
       this.fileTypeName});
 
   Documents.fromJson(Map<String, dynamic> json) {
+    documentId = json['documentId'];
+    fileName = json['fileName'];
+    fileTypeId = json['fileTypeId'];
+    documentURL = json['documentURL'];
+    expiryDate = json['expiryDate'];
+    docDate = json['docDate'];
+    organizationId = json['organizationId'];
+    dateCreated = json['dateCreated'];
+    deleted = json['deleted'];
+    rowstamp = json['rowstamp'];
+    fileTypeName = json['fileTypeName'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['documentId'] = this.documentId;
+    data['fileName'] = this.fileName;
+    data['fileTypeId'] = this.fileTypeId;
+    data['documentURL'] = this.documentURL;
+    data['expiryDate'] = this.expiryDate;
+    data['docDate'] = this.docDate;
+    data['organizationId'] = this.organizationId;
+    data['dateCreated'] = this.dateCreated;
+    data['deleted'] = this.deleted;
+    data['rowstamp'] = this.rowstamp;
+    data['fileTypeName'] = this.fileTypeName;
+    return data;
+  }
+}
+
+class ParentDocumentModel {
+  String fileTypeName;
+  int fileTypeId;
+
+  ParentDocumentModel({this.fileTypeName, this.fileTypeId});
+
+  ParentDocumentModel.fromJson(Map<String, dynamic> json) {
+    fileTypeName = json['fileTypeName'];
+    fileTypeId = json['fileTypeId'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['fileTypeName'] = this.fileTypeName;
+    data['fileTypeId'] = this.fileTypeId;
+    return data;
+  }
+}
+class DocumentListModel {
+  int documentId;
+  String fileName;
+  int fileTypeId;
+  String documentURL;
+  String expiryDate;
+  String docDate;
+  int organizationId;
+  String dateCreated;
+  bool deleted;
+  String rowstamp;
+  String fileTypeName;
+
+  DocumentListModel(
+      {this.documentId,
+        this.fileName,
+        this.fileTypeId,
+        this.documentURL,
+        this.expiryDate,
+        this.docDate,
+        this.organizationId,
+        this.dateCreated,
+        this.deleted,
+        this.rowstamp,
+        this.fileTypeName});
+
+  DocumentListModel.fromJson(Map<String, dynamic> json) {
     documentId = json['documentId'];
     fileName = json['fileName'];
     fileTypeId = json['fileTypeId'];

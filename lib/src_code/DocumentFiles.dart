@@ -16,25 +16,6 @@ class DocumentFilesState extends State<DocumentFilesPage> {
   DocumentFilesState(this.details);
   String documentUrl;
 
-  //method to format date and time
-  String formatDateTime(String date) {
-    DateFormat dateFormat = DateFormat("yyyy-MM-dd");
-    DateTime format = (dateFormat.parse(date));
-    DateFormat longdate = DateFormat("EEEE, MMM d, yyyy");
-    date = longdate.format(format);
-    return date;
-  }
-//method to format time
-  String formatTime(String time) {
-    DateFormat dateFormatremoveT = DateFormat("yyyy-MM-ddTHH:mm:ss");
-    
-    DateTime formattedtime = (dateFormatremoveT.parse(time));
-    DateFormat longtme = DateFormat.jm();
-    time = longtme.format(formattedtime);
-    print(time);
-    
-    return time.toString();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,12 +77,12 @@ class DocumentFilesState extends State<DocumentFilesPage> {
                                             launch('$url');  // to open uploaded document
                                           },
                                         ),
-                                        Text(formatDateTime(details.documents[index].dateCreated),
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          color: Color(0xFFA19F9F),
-                                          fontSize: 14
-                                        ),),
+                                   //     Text(formatDateTime(details.documents[index].dateCreated),
+                                     //   style: TextStyle(
+                                   //       fontWeight: FontWeight.normal,
+                                     //     color: Color(0xFFA19F9F),
+                                      //    fontSize: 14
+                                       // ),),
                                    
                                           ]),
                                       ),
