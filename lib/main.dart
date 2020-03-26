@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:SNBizz/src_code/bridge.dart';
 import 'package:SNBizz/src_code/static.dart';
+import 'package:SNBizz/src_code/static.dart' as prefix0;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -81,12 +82,18 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
                 StaticValue.Tasknotification = true;
               });
             }
-            if(message.toString().contains("Document")){
+            if(message.toString().contains("Document")||message.toString().contains("document")){
               setState(() {
                 StaticValue.Documentnotification = true;
                 StaticValue.shownotificationReceived = false;
               });
             }
+            if(message.toString().contains("Meeting")||message.toString().contains("meeting")){
+              setState(() {
+                StaticValue.shownotificationReceived = false;
+              });
+            }
+
             showNotification(message);
         },
         onLaunch: (Map<String, dynamic> message) async {
@@ -94,9 +101,14 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
             setState(() {
               StaticValue.shownotificationReceived = true;
             });
-            if(message.toString().contains("Document")){
+            if(message.toString().contains("Document")||message.toString().contains("document")){
               setState(() {
                 StaticValue.Documentnotification = true;
+                StaticValue.shownotificationReceived = false;
+              });
+            }
+            if(message.toString().contains("Meeting")||message.toString().contains("meeting")){
+              setState(() {
                 StaticValue.shownotificationReceived = false;
               });
             }

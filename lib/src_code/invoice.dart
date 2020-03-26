@@ -306,18 +306,21 @@ return Scaffold(
                                               title: Column(
                                                 children: <Widget>[
                                                   Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: <Widget>[
 
                                                           Flexible(
-                                                            child: Text(
-                                                              name,
-                                                              style: TextStyle(
-                                                                  fontStyle:
-                                                                      FontStyle.normal,
-                                                                  fontSize: 15,
-                                                                  fontWeight: FontWeight
-                                                                      .normal),
+                                                            child: Container(
+                                                              width: 150,
+                                                              child: Text(
+                                                                name,
+                                                                style: TextStyle(
+                                                                    fontStyle:
+                                                                        FontStyle.normal,
+                                                                    fontSize: 15,
+                                                                    fontWeight: FontWeight
+                                                                        .normal),
+                                                              ),
                                                             ),
                                                           ),
                                                           Flexible(
@@ -333,17 +336,17 @@ return Scaffold(
                                                           ),
 
 
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                left: 20),
-                                                        child: new Image(
-                                                            image: new AssetImage(
-                                                                "assets/snbizinvoice.png"),
-                                                            height: 60,
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets.only(
+                                                                      left: 20),
+                                                              child: new Image(
+                                                                  image: new AssetImage(
+                                                                      "assets/snbizinvoice.png"),
+                                                                  height: 60,
 
-                                                            width: 60),
-                                                      ),
+                                                                  width: 60),
+                                                            ),
                                                     ],
                                                   ),
                                                 ],
@@ -356,9 +359,9 @@ return Scaffold(
                               
                               }}
                               return Container(
-                  child: Center(
-                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                  )  
+                                child: Center(
+                                    child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                )
                 );
                             })),
                   ],

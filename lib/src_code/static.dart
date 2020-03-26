@@ -68,7 +68,7 @@ class StaticValue
   static final String createMeeting_url = "api/Meetings?sender=";
 
   //privacy 
-  static final String privacy_url='http://snbiznepal.com/wp-content/uploads/2019/08';
+  static final String privacy_url='https://snbiznepal.com/privacy-policy/';
 
   //profile
   static final String profile_modelurl = "api/OrganizationUserDetails?Orgid="; 
