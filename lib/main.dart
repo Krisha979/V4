@@ -84,6 +84,7 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
             if(message.toString().contains("Document")){
               setState(() {
                 StaticValue.Documentnotification = true;
+                StaticValue.shownotificationReceived = false;
               });
             }
             showNotification(message);
@@ -93,6 +94,12 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
             setState(() {
               StaticValue.shownotificationReceived = true;
             });
+            if(message.toString().contains("Document")){
+              setState(() {
+                StaticValue.Documentnotification = true;
+                StaticValue.shownotificationReceived = false;
+              });
+            }
             showNotification(message);
         },
         onResume: (Map<String, dynamic> message) async {

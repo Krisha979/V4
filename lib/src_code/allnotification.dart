@@ -15,6 +15,7 @@ import 'documents.dart';
 import 'invoice.dart';
 
 class AllNotification extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() {
     return AllNotificationState();
@@ -26,11 +27,14 @@ class AllNotificationState extends State<AllNotification> {
   Future<List<NotificationModel>> _future;
   final RefreshController _refreshController = RefreshController();
   String date;
+  bool loading = false;
+  List<int> deleteloading =[];
   final storage = new FlutterSecureStorage();
   var latestid;
 
 
   //to check internet 
+  // ignore: missing_return
   Future<bool> _checkConnectivity() async {
     var result = await Connectivity().checkConnectivity();
     if (result == ConnectivityResult.none) {
@@ -39,8 +43,86 @@ class AllNotificationState extends State<AllNotification> {
   }
 
 
+  // ignore: missing_return
+  Future<int> deletenotifications(BuildContext context,String notifid) async {
+
+    bool connection = await _checkConnectivity();
+    if (connection == false) {    //condtition to check the internet connectivity
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(
+                "Please, check your internet connection",
+                style: TextStyle(
+                    color: Color(
+                      0xFFA19F9F,
+                    ),
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      StaticValue.controller.animateTo(0);
+                      Navigator.pop(context);
+                    })
+              ],
+            );
+          });
+    } else {
+      try {
+        String orgid ="";
+        if(notifid==""){
+          orgid = StaticValue.orgId.toString();
+        }
+        http.Response response = await http.get( Uri.encodeFull(StaticValue.baseUrl
+            +"api/DeleteNotification"+"?notifid="+notifid+"&orgid="+orgid
+        ),
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+            "apikey" : StaticValue.apikey,
+            'Cache-Control': 'no-cache,private,no-store,must-revalidate'
+          },
+        );
+
+        print(response);
+        return response.statusCode;
+
+      } catch (e) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  "Please, check your internet connection",
+                  style: TextStyle(
+                      color: Color(
+                        0xFFA19F9F,
+                      ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal),
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                      child: Text("OK"),
+                      onPressed: () {
+                        StaticValue.controller.animateTo(0);
+                        Navigator.pop(context);
+                      })
+                ],
+              );
+            });
+      }
+    }
+  }
 
 
+  // ignore: missing_return
   Future<List<NotificationModel>> getNotifications() async { //function to call notification api
     bool connection = await _checkConnectivity();
     if (connection == false) {    //condtition to check the internet connectivity
@@ -80,7 +162,7 @@ class AllNotificationState extends State<AllNotification> {
                "apikey" : StaticValue.apikey,
               'Cache-Control': 'no-cache,private,no-store,must-revalidate'
             });
-        var jsonData = json.decode(data.body);   
+        var jsonData = json.decode(data.body);
         List<NotificationModel> notifications = [];
         for (var u in jsonData) {
           var notification = NotificationModel.fromJson(u);
@@ -185,6 +267,88 @@ class AllNotificationState extends State<AllNotification> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
+                        loading==false?InkWell(
+                          onTap: () async {
+
+
+                            setState(() {
+                              loading=true;
+                            });
+                            var status = await deletenotifications(context,"");
+
+                            if(status.toString().contains("20")){
+
+                              setState(() {
+                                _future = getNotifications();
+                              loading = false;
+                              });
+                            }else{
+                              setState(() {
+                                loading=false;
+                              });
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Task Failed..Please check your internet connection...",
+                                        style: TextStyle(
+                                            color: Color(
+                                              0xFFA19F9F,
+                                            ),
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                            child: Text("OK"),
+                                            onPressed: () {
+
+                                              Navigator.pop(context);
+                                            })
+                                      ],
+                                    );
+                                  });
+                            }
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(left: 15.0,top: 8.0),
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              border: Border.all(width: 1.0,color: Colors.blueAccent),
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.delete,color: Colors.white,),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text("All Notifications",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ):Container(
+                          margin: EdgeInsets.only(left: 20),
+                          height: 25,width: 25,
+                            child: Center(
+
+                              child: Theme(
+                                data: new ThemeData(
+                                  hintColor: Colors.white,
+                                ),
+                                child: CircularProgressIndicator(
+
+                                    strokeWidth: 3.0,
+                                    backgroundColor: Colors.white
+                                ),
+
+                              ),
+
+                            )
+                        )
                       ],
                     ),
                     Column(
@@ -345,7 +509,7 @@ class AllNotificationState extends State<AllNotification> {
                                                 context,
                                                 CupertinoPageRoute(
                                                     builder: (context) =>
-                                                        Documents()));
+                                                        Documents("","")));
                                           } else if (notificationtype
                                               .contains("Task")) {
                                             Navigator.push(
@@ -394,39 +558,126 @@ class AllNotificationState extends State<AllNotification> {
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+
                   Text(
                     snapshot.data[index].notificationBody,
                     style: TextStyle(fontSize: 16),
                   ),
                   Text(date,
                       style: TextStyle(color: Color(0xFFA19F9F), fontSize: 16)),
-                  Text(
-                    type,
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
+
+                  Row(
+                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(right:8.0),
+                        child: Text(
+                          type,
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      !deleteloading.contains(snapshot.data[index].notificationId)?InkWell(
+                        onTap: () async {
+                          setState(() {
+                            deleteloading.add(snapshot.data[index].notificationId);
+                          });
+                          var status = await deletenotifications(context,snapshot.data[index].notificationId.toString());
+                          if(status.toString().contains("20")){
+
+                            setState(() {
+                              _future = getNotifications();
+                              deleteloading.remove(snapshot.data[index].notificationId);
+                            });
+                          }else{
+                            setState(() {
+                              deleteloading.clear();
+                            });
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      "Task Failed..Please check your internet connection...",
+                                      style: TextStyle(
+                                          color: Color(
+                                            0xFFA19F9F,
+                                          ),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal),
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                          child: Text("OK"),
+                                          onPressed: () {
+
+                                            Navigator.pop(context);
+                                          })
+                                    ],
+                                  );
+                                });
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0.0,0.0,0.0,3),
+                          child: Container(
+                              height: 30,
+
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey),
+                              padding: EdgeInsets.all(3),
+                              child: Icon(Icons.delete,color: Colors.white,size: 20,)),
+                        ),
+                      ):Container(
+                          height: 30,width: 30,
+                          child: Center(
+
+                            child: Theme(
+                              data: new ThemeData(
+                                hintColor: Colors.white,
+                              ),
+                              child: CircularProgressIndicator(
+
+                                  strokeWidth: 3.0,
+                                  backgroundColor: Colors.white
+                              ),
+
+                            ),
+
+                          )
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            ClipOval(
-              child: Material(
-                color: Colors.blue, 
-                child: InkWell(
-                    splashColor: Colors.red,
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Image(
-                        image: new AssetImage(icon),
-                        height: 50,
-                        width: 50,
-                      ),
-                    )),
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+
+                ClipOval(
+                  child: Material(
+                    color: Colors.blue,
+                    child: InkWell(
+                        splashColor: Colors.red,
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Image(
+                            image: new AssetImage(icon),
+                            height: 50,
+                            width: 50,
+                          ),
+                        )),
+                  ),
+                ),
+              ],
             )
           ],
         ),

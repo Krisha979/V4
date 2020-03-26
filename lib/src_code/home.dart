@@ -776,7 +776,7 @@ fmfamount = fmf.output.nonSymbol.toString();
                                     splashColor: Colors.red,
                                     onTap: () {
                                       StaticValue.Documentnotification=false;
-                                       Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents()));
+                                       Navigator.push(context,CupertinoPageRoute(builder: (context) => Documents("","")));
                                     },
                                     child:
                                     StaticValue.Documentnotification == true ?

@@ -308,862 +308,506 @@ class SearchState extends State<Search>{
         actions: <Widget>[
         ],
       ),
-      body: Wrap(
-                children: <Widget>[
-                  Column(children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10.0,0.0,10.0,0.0),
-                      child: new Container(
-                        margin: EdgeInsets.only(top: 15),
-                        height: 45,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: new BorderRadius.circular(15.0),
-                        ),
-                        child: Container(
+      body: SingleChildScrollView(
+        child: Wrap(
+                  children: <Widget>[
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10.0,0.0,10.0,0.0),
+                        child: new Container(
+                          margin: EdgeInsets.only(top: 15),
+                          height: 45,
                           decoration: BoxDecoration(
-                            color: Color(0xffEFE6E6),
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 2.0,
-                                spreadRadius: 0.0,
-                                offset: Offset(0.0, 2.0), // shadow direction: bottom right
-                              )
-                            ],
+                            color: Colors.white,
+                            borderRadius: new BorderRadius.circular(15.0),
                           ),
-                          child: TextFormField(
-                            controller: _searchcontroller,
-                            onFieldSubmitted: (String value) async {
-
-                              if(value.isNotEmpty){
-                                setState(() {
-                                  loading =true;
-                                  if(StaticValue.parentfilteredlist.isNotEmpty){
-                                    StaticValue.parentfilteredlist.clear();
-                                  }
-                                  if(StaticValue.documentfilteredlist.isNotEmpty){
-                                    StaticValue.documentfilteredlist.clear();
-                                  }
-                                });
-
-
-
-                                _future = searchparents(_searchcontroller.text);
-                                _futuredocumentlist = searchdocuments(_searchcontroller.text);
-
-                                setState(() {
-                                  loading=false;
-                                }
-                                );
-
-                              }else{
-                              showdialoge(context, "Search Text Cannot be Empty");
-
-                              }
-
-
-
-
-                            },
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-                              hintStyle: TextStyle(fontSize: 17),
-                              hintText: 'Search documents here',fillColor: Color(0xff1470AE),
-                              focusColor: Color(0xff1470AE),
-                              hoverColor: Color(0xff1470AE),
-
-
-                              suffixIcon: InkWell(
-                                  onTap: () async {
-                                    if(_searchcontroller.text.isNotEmpty){
-                                      setState(() {
-                                        loading =true;
-                                        if(StaticValue.parentfilteredlist.isNotEmpty){
-                                          StaticValue.parentfilteredlist.clear();
-                                        }
-                                        if(StaticValue.documentfilteredlist.isNotEmpty){
-                                          StaticValue.documentfilteredlist.clear();
-                                        }
-                                      });
-
-
-
-
-                                      _future = searchparents(_searchcontroller.text);
-                                      _futuredocumentlist = searchdocuments(_searchcontroller.text);
-
-                                      setState(() {
-                                        loading=false;
-                                      }
-                                      );
-
-                                    }else{
-                                      showdialoge(context, "Search Text Cannot be Empty");
-                                    }
-                                  },
-                                  child: Icon(Icons.search,color: Colors.black,)),
-                              border: InputBorder.none,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xffEFE6E6),
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 2.0,
+                                  spreadRadius: 0.0,
+                                  offset: Offset(0.0, 2.0), // shadow direction: bottom right
+                                )
+                              ],
                             ),
+                            child: TextFormField(
+                              controller: _searchcontroller,
+                              onFieldSubmitted: (String value) async {
+
+                                if(value.isNotEmpty){
+                                  setState(() {
+                                    loading =true;
+                                    if(StaticValue.parentfilteredlist.isNotEmpty){
+                                      StaticValue.parentfilteredlist.clear();
+                                    }
+                                    if(StaticValue.documentfilteredlist.isNotEmpty){
+                                      StaticValue.documentfilteredlist.clear();
+                                    }
+                                  });
+
+
+
+                                  _future = searchparents(_searchcontroller.text);
+                                  _futuredocumentlist = searchdocuments(_searchcontroller.text);
+
+                                  setState(() {
+                                    loading=false;
+                                  }
+                                  );
+
+                                }else{
+                                showdialoge(context, "Search Text Cannot be Empty");
+
+                                }
+
+
+
+
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+                                hintStyle: TextStyle(fontSize: 17),
+                                hintText: 'Search documents here',fillColor: Color(0xff1470AE),
+                                focusColor: Color(0xff1470AE),
+                                hoverColor: Color(0xff1470AE),
+
+
+                                suffixIcon: InkWell(
+                                    onTap: () async {
+                                      if(_searchcontroller.text.isNotEmpty){
+                                        setState(() {
+                                          loading =true;
+                                          if(StaticValue.parentfilteredlist.isNotEmpty){
+                                            StaticValue.parentfilteredlist.clear();
+                                          }
+                                          if(StaticValue.documentfilteredlist.isNotEmpty){
+                                            StaticValue.documentfilteredlist.clear();
+                                          }
+                                        });
+
+
+
+
+                                        _future = searchparents(_searchcontroller.text);
+                                        _futuredocumentlist = searchdocuments(_searchcontroller.text);
+
+                                        setState(() {
+                                          loading=false;
+                                        }
+                                        );
+
+                                      }else{
+                                        showdialoge(context, "Search Text Cannot be Empty");
+                                      }
+                                    },
+                                    child: Icon(Icons.search,color: Colors.black,)),
+                                border: InputBorder.none,
+                              ),
+                            ),
+
                           ),
 
                         ),
-
                       ),
-                    ),
-                    loading==false?StaticValue.parentfilteredlist.isNotEmpty?
-                    Container(
-                      height: size.height/1.27,
-                      child: Column(
-                        children: <Widget>[
-                          FutureBuilder(
-                              future: _future,
-                              builder:(BuildContext context, AsyncSnapshot snapshot){
-                                switch (snapshot.connectionState) {
-                                  case ConnectionState.none:
-                                    return Container(
-                                        child: Center(
-                                          child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                        )
-                                    );
-                                  case ConnectionState.active:
-                                  case ConnectionState.waiting:
-                                    return Container(
-                                      margin: EdgeInsets.all(10),
-                                      height: size.width/2,
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Theme(
-                                            data: new ThemeData(
-                                              hintColor: Colors.white,
-                                            ),
-                                            child: CircularProgressIndicator(
-
-                                                strokeWidth: 3.0,
-                                                backgroundColor: Colors.white
-                                            ),
-
-                                          ),
-                                        ],
-                                      ),
-
-
-                                    );
-                                  case ConnectionState.done:
-                                    if (!snapshot.hasData) {
-                                      return Container(
-                                        height: 1,
-                                      );
-                                    } else {
-                                      if(snapshot.data.length == 0){
-                                        return Container(
-                                          height: 1.0,
-                                        );}
-
-                                      return Column(
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              Padding(
-                                                padding: const EdgeInsets.only(top:8.0,left: 15.0),
-                                                child: Text("Folders",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-                                              ),
-                                            ],
-                                          ),
-                                          Container(
-                                            height: snapshot.data.length*size.width/3,
-
-                                            child:  ListView.builder(
-                                                physics: const NeverScrollableScrollPhysics(),
-                                                primary: true,
-                                                itemCount: snapshot.data.length,
-                                                itemBuilder: (BuildContext context, int index){
-                                                  var name = snapshot.data[index].fileTypeName;
-                                                  var icon = "assets/snbizcircledocument.png";
-                                                  //condition to show the icon according to the uploaded file type
-                                                  if(name.contains("VAT Billssss")){
-                                                    icon = "assets/snbizvaticon.png";
-                                                  }
-                                                  else if(name.contains("Instant Uploads")){
-                                                    icon = "assets/snbizinstantupload.png";
-                                                  }
-                                                  else if(name.contains("Legals")){
-                                                    icon = "assets/legals.png";
-                                                  }
-                                                  else if(name.contains("Registration")){
-                                                    icon = "assets/registration-web.png";
-                                                  }
-                                                  else if(name.contains("Expense")){
-                                                    icon = "assets/expense-web.png";
-                                                  }
-                                                  else if(name.contains("Income")){
-                                                    icon = "assets/income-web.png";
-                                                  }
-                                                  else if(name.contains("Profit")){
-                                                    icon = "assets/profit-web.png";
-                                                  }
-                                                  else{
-                                                    icon = "assets/snbizcircledocument.png";
-                                                  }
-                                                  return Card(
-                                                    margin: EdgeInsets.only(left:8,right: 8,top: 4),
-                                                    child: ListTile(
-                                                        title: InkWell(
-                                                          child: new Theme(
-                                                            data: new ThemeData(
-                                                              hintColor: Colors.white,
-                                                            ),
-                                                            child: Container(
-//                                                                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
-                                                              padding: EdgeInsets.fromLTRB(12, 20, 10, 20),
-                                                              decoration: new BoxDecoration(
-                                                                color: Colors.white,
-                                                                borderRadius: new BorderRadius.circular(3.0),
-
-                                                              ),
-                                                              child: new Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: <Widget>[
-                                                                  Column(
-                                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                                    children: <Widget>[
-                                                                      Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
-
-                                                                    ],
-
-                                                                  ),
-
-                                                                  ClipOval(
-                                                                    child: Material(
-                                                                      color: Colors.blue, // button color
-                                                                      child: InkWell(
-                                                                        splashColor: Colors.red, // inkwell color
-                                                                        child: SizedBox(
-                                                                          height: size.height/15,
-                                                                          width: size.height/15,
-                                                                          child:Image(
-                                                                            image: new AssetImage(icon),
-                                                                            height: size.height / 12,
-                                                                          ),),
-                                                                        onTap: () {
-                                                                          setState(() {
-                                                                            loading =true;
-                                                                          });
-                                                                          _future =  getParentDocuments(snapshot.data[index].fileTypeId.toString());
-                                                                          _futuredocumentlist = getDocumentlist(snapshot.data[index].fileTypeId.toString());
-                                                                          setState(() {
-                                                                        loading=false;
-                                                                          });
-
-                                                                        },
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          onTap: () {
-                                                            setState(() {
-                                                              loading =true;
-                                                            });
-                                                            _future =  getParentDocuments(snapshot.data[index].fileTypeId.toString());
-                                                            _futuredocumentlist = getDocumentlist(snapshot.data[index].fileTypeId.toString());
-                                                            setState(() {
-                                                              loading =false;
-                                                            });
-                                                          },
-                                                        )
-                                                    ),
-                                                  );
-                                                }
-                                            ),
-
-
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                }
-                                return Container(
-                                    child: Center(
-                                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                    )
-                                );
-                              }
-                          ),
-                        ],
-                      ),
-                    ):Container(
-                        height: 1,
-                        ):Container(
-                      height: 1,
-                      margin: EdgeInsets.only(top:20,right: 15),
-                    ),
-                    loading==false?StaticValue.documentfilteredlist.isNotEmpty?
-                    Container(
-                      height: size.height/1.27,
-                      child: Column(
-                        children: <Widget>[
-                          FutureBuilder(
-                              future: _futuredocumentlist,
-                              builder:(BuildContext context, AsyncSnapshot snapshot){
-                                switch (snapshot.connectionState) {
-                                  case ConnectionState.none:
-                                    return Container(
-                                        child: Center(
-                                          child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                        )
-                                    );
-                                  case ConnectionState.active:
-                                  case ConnectionState.waiting:
-                                    return Container(
-                                      height: size.width/2,
-                                      margin: EdgeInsets.all(10),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Theme(
-                                            data: new ThemeData(
-                                              hintColor: Colors.white,
-                                            ),
-                                            child: CircularProgressIndicator(
-
-                                                strokeWidth: 3.0,
-                                                backgroundColor: Colors.white
-                                            ),
-
-                                          ),
-                                        ],
-                                      ),
-
-
-                                    );
-                                  case ConnectionState.done:
-                                    if (!snapshot.hasData) {
+                      loading==false?StaticValue.parentfilteredlist.isNotEmpty?
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+                            FutureBuilder(
+                                future: _future,
+                                builder:(BuildContext context, AsyncSnapshot snapshot){
+                                  switch (snapshot.connectionState) {
+                                    case ConnectionState.none:
                                       return Container(
                                           child: Center(
-                                              child: Text("Try Loading Again.",
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight: FontWeight.normal)
-                                              )
+                                            child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
                                           )
                                       );
-                                    } else {
-                                      if(snapshot.data.length == 0){
-                                        return Container(
-                                          height: 1.0,
-                                        );}
-                                      return  Column(
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              Padding(
-                                                padding: const EdgeInsets.only(top:8.0,left: 15.0),
-                                                child: Text("Files",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                                    case ConnectionState.active:
+                                    case ConnectionState.waiting:
+                                      return Container(
+                                        margin: EdgeInsets.all(10),
+                                        height: size.width/2,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Theme(
+                                              data: new ThemeData(
+                                                hintColor: Colors.white,
                                               ),
-                                            ],
-                                          ),
-                                          Container(
-                                            height: snapshot.data.length*size.width/3.8,
+                                              child: CircularProgressIndicator(
 
-                                            child: ListView.builder(
-                                                physics: NeverScrollableScrollPhysics(),
-                                                primary: true,
-                                                itemCount: snapshot.data.length,
-                                                itemBuilder: (BuildContext context, int index) {
-                                                  var url = snapshot.data[index].documentURL;
-                                                  return GestureDetector(
-                                                    onTap: (){
-                                                      launch('$url');
+                                                  strokeWidth: 3.0,
+                                                  backgroundColor: Colors.white
+                                              ),
 
-                                                    },
-                                                    child: Container(
-
-                                                      child: Card(
-
-                                                        margin: EdgeInsets.fromLTRB(10.0, 5.0, 4.0, 0.0),
-
-                                                        child: ListTile(
-                                                            title: Row(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: <Widget>[
-                                                                  // Padding(
-                                                                  //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
-                                                                  // ),
-                                                                  Flexible(
-                                                                    child: Column(
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                        children: <Widget>[
-                                                                          InkWell(
-                                                                            child: Text(
-                                                                              ( snapshot.data[index].fileName == null)? //to check if file name is null then show the last index of filename
-                                                                              snapshot.data[index].documentURL.substring(snapshot.data[index].documentURL.lastIndexOf('/')+1):
-                                                                              snapshot.data[index].fileName,
+                                            ),
+                                          ],
+                                        ),
 
 
-                                                                              textAlign: TextAlign.left,
-                                                                              style: TextStyle(
-                                                                                  fontStyle: FontStyle.normal,
-                                                                                  fontSize: 16,
-                                                                                  fontWeight: FontWeight.normal),
-                                                                            ),
-                                                                            onTap: () {
-                                                                              launch('$url');  // to open uploaded document
-                                                                            },
-                                                                          ),
-                                                                          Text(formatDateTime(snapshot.data[index].dateCreated),
-                                                                            style: TextStyle(
-                                                                                fontWeight: FontWeight.normal,
-                                                                                color: Color(0xFFA19F9F),
-                                                                                fontSize: 14
-                                                                            ),),
+                                      );
+                                    case ConnectionState.done:
+                                      if (!snapshot.hasData) {
+                                        return Container(
+                                          height: 1,
+                                        );
+                                      } else {
+                                        if(snapshot.data.length == 0){
+                                          return Container(
+                                            height: 1.0,
+                                          );}
 
-                                                                        ]),
-                                                                  ),
-                                                                  Column(
+                                        return Column(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top:8.0,left: 15.0),
+                                                  child: Text("Folders",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              height: snapshot.data.length*size.width/3,
+
+                                              child:  ListView.builder(
+                                                  physics: const NeverScrollableScrollPhysics(),
+                                                  primary: true,
+                                                  itemCount: snapshot.data.length,
+                                                  itemBuilder: (BuildContext context, int index){
+                                                    var name = snapshot.data[index].fileTypeName;
+                                                    var icon = "assets/snbizcircledocument.png";
+                                                    //condition to show the icon according to the uploaded file type
+                                                    if(name.contains("VAT Billssss")){
+                                                      icon = "assets/snbizvaticon.png";
+                                                    }
+                                                    else if(name.contains("Instant Uploads")){
+                                                      icon = "assets/snbizinstantupload.png";
+                                                    }
+                                                    else if(name.contains("Legals")){
+                                                      icon = "assets/legals.png";
+                                                    }
+                                                    else if(name.contains("Registration")){
+                                                      icon = "assets/registration-web.png";
+                                                    }
+                                                    else if(name.contains("Expense")){
+                                                      icon = "assets/expense-web.png";
+                                                    }
+                                                    else if(name.contains("Income")){
+                                                      icon = "assets/income-web.png";
+                                                    }
+                                                    else if(name.contains("Profit")){
+                                                      icon = "assets/profit-web.png";
+                                                    }
+                                                    else{
+                                                      icon = "assets/snbizcircledocument.png";
+                                                    }
+                                                    return Card(
+                                                      margin: EdgeInsets.only(left:8,right: 8,top: 4),
+                                                      child: ListTile(
+                                                          title: InkWell(
+                                                            child: new Theme(
+                                                              data: new ThemeData(
+                                                                hintColor: Colors.white,
+                                                              ),
+                                                              child: Container(
+//                                                                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
+                                                                padding: EdgeInsets.fromLTRB(12, 20, 10, 20),
+                                                                decoration: new BoxDecoration(
+                                                                  color: Colors.white,
+                                                                  borderRadius: new BorderRadius.circular(3.0),
+
+                                                                ),
+                                                                child: new Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                  children: <Widget>[
+                                                                    Column(
                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                       children: <Widget>[
-                                                                        SizedBox(
-                                                                            height: size.height / 12,
-                                                                            width: size.height / 12,
+                                                                        Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
+
+                                                                      ],
+
+                                                                    ),
+
+                                                                    ClipOval(
+                                                                      child: Material(
+                                                                        color: Colors.blue, // button color
+                                                                        child: InkWell(
+                                                                          splashColor: Colors.red, // inkwell color
+                                                                          child: SizedBox(
+                                                                            height: size.height/15,
+                                                                            width: size.height/15,
+                                                                            child:Image(
+                                                                              image: new AssetImage(icon),
+                                                                              height: size.height / 12,
+                                                                            ),),
+                                                                          onTap: () {
+                                                                            setState(() {
+                                                                              loading =true;
+                                                                            });
+                                                                            _future =  getParentDocuments(snapshot.data[index].fileTypeId.toString());
+                                                                            _futuredocumentlist = getDocumentlist(snapshot.data[index].fileTypeId.toString());
+                                                                            setState(() {
+                                                                          loading=false;
+                                                                            });
+
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            onTap: () {
+                                                              setState(() {
+                                                                loading =true;
+                                                              });
+                                                              _future =  getParentDocuments(snapshot.data[index].fileTypeId.toString());
+                                                              _futuredocumentlist = getDocumentlist(snapshot.data[index].fileTypeId.toString());
+                                                              setState(() {
+                                                                loading =false;
+                                                              });
+                                                            },
+                                                          )
+                                                      ),
+                                                    );
+                                                  }
+                                              ),
 
 
-                                                                            //to check the extension of image and show the icon as per the extension
-                                                                            //pdf then pdf icon other wise generic icon
+                                            ),
+                                          ],
+                                        );
+                                      }
+                                  }
+                                  return Container(
+                                      child: Center(
+                                        child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                      )
+                                  );
+                                }
+                            ),
+                          ],
+                        ),
+                      ):Container(
+                          height: 1,
+                          ):Container(
+                        height: 1,
+                        margin: EdgeInsets.only(top:20,right: 15),
+                      ),
+                      loading==false?StaticValue.documentfilteredlist.isNotEmpty?
+                      Container(
+
+                        child: Wrap(
+                          children: <Widget>[
+                            FutureBuilder(
+                                future: _futuredocumentlist,
+                                builder:(BuildContext context, AsyncSnapshot snapshot){
+                                  switch (snapshot.connectionState) {
+                                    case ConnectionState.none:
+                                      return Container(
+                                          child: Center(
+                                            child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                          )
+                                      );
+                                    case ConnectionState.active:
+                                    case ConnectionState.waiting:
+                                      return Container(
+                                        height: size.width/2,
+                                        margin: EdgeInsets.all(10),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Theme(
+                                              data: new ThemeData(
+                                                hintColor: Colors.white,
+                                              ),
+                                              child: CircularProgressIndicator(
+
+                                                  strokeWidth: 3.0,
+                                                  backgroundColor: Colors.white
+                                              ),
+
+                                            ),
+                                          ],
+                                        ),
 
 
-                                                                            child: url.contains(".jpeg")
-                                                                                ? Image.network(snapshot.data[index].documentURL,
-                                                                              fit: BoxFit.cover,
-                                                                            ): url.contains(".webp")
-                                                                                ? Image.network(snapshot.data[index].documentURL,
-                                                                              fit: BoxFit.cover,
-                                                                            ): url.contains(".mp4")
-                                                                                ? Image(
-                                                                              image: new AssetImage("assets/mp4-icon.jpg"),
-                                                                              height: size.height / 10,
-                                                                            ): url.contains(".mp3")
-                                                                                ? Image(
-                                                                              image: new AssetImage("assets/mp4-icon.jpg"),
-                                                                              height: size.height / 10,
-                                                                            ) : url.contains(".pdf") ?
-                                                                            Image(
-                                                                              image: new AssetImage("assets/pdf.png"),
-                                                                              height: size.height / 10,
-                                                                            ): Image(
-                                                                              image: new AssetImage("assets/docnew.png"),height: size.height/10,)
+                                      );
+                                    case ConnectionState.done:
+                                      if (!snapshot.hasData) {
+                                        return Container(
+                                            child: Center(
+                                                child: Text("Try Loading Again.",
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.normal)
+                                                )
+                                            )
+                                        );
+                                      } else {
+                                        if(snapshot.data.length == 0){
+                                          return Container(
+                                            height: 1.0,
+                                          );}
+                                        return  Column(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top:8.0,left: 15.0),
+                                                  child: Text("Files",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              height: snapshot.data.length*size.width/3.8,
 
-                                                                        )
+                                              child: ListView.builder(
+                                                  physics: NeverScrollableScrollPhysics(),
+                                                  primary: true,
+                                                  itemCount: snapshot.data.length,
+                                                  itemBuilder: (BuildContext context, int index) {
+                                                    var url = snapshot.data[index].documentURL;
+                                                    return GestureDetector(
+                                                      onTap: (){
+                                                        launch('$url');
+
+                                                      },
+                                                      child: Container(
+
+                                                        child: Card(
+
+                                                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 4.0, 0.0),
+
+                                                          child: ListTile(
+                                                              title: Row(
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                  children: <Widget>[
+                                                                    // Padding(
+                                                                    //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
+                                                                    // ),
+                                                                    Flexible(
+                                                                      child: Column(
+                                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                                          children: <Widget>[
+                                                                            InkWell(
+                                                                              child: Text(
+                                                                                ( snapshot.data[index].fileName == null)? //to check if file name is null then show the last index of filename
+                                                                                snapshot.data[index].documentURL.substring(snapshot.data[index].documentURL.lastIndexOf('/')+1):
+                                                                                snapshot.data[index].fileName,
 
 
-                                                                      ]
-                                                                  )
-                                                                ]
-                                                            )
+                                                                                textAlign: TextAlign.left,
+                                                                                style: TextStyle(
+                                                                                    fontStyle: FontStyle.normal,
+                                                                                    fontSize: 16,
+                                                                                    fontWeight: FontWeight.normal),
+                                                                              ),
+                                                                              onTap: () {
+                                                                                launch('$url');  // to open uploaded document
+                                                                              },
+                                                                            ),
+                                                                            Text(formatDateTime(snapshot.data[index].dateCreated),
+                                                                              style: TextStyle(
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  color: Color(0xFFA19F9F),
+                                                                                  fontSize: 14
+                                                                              ),),
+
+                                                                          ]),
+                                                                    ),
+                                                                    Column(
+                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                        children: <Widget>[
+                                                                          SizedBox(
+                                                                              height: size.height / 12,
+                                                                              width: size.height / 12,
+
+
+                                                                              //to check the extension of image and show the icon as per the extension
+                                                                              //pdf then pdf icon other wise generic icon
+
+
+                                                                              child: url.contains(".jpeg")
+                                                                                  ? Image.network(snapshot.data[index].documentURL,
+                                                                                fit: BoxFit.cover,
+                                                                              ): url.contains(".webp")
+                                                                                  ? Image.network(snapshot.data[index].documentURL,
+                                                                                fit: BoxFit.cover,
+                                                                              ): url.contains(".mp4")
+                                                                                  ? Image(
+                                                                                image: new AssetImage("assets/mp4-icon.jpg"),
+                                                                                height: size.height / 10,
+                                                                              ): url.contains(".mp3")
+                                                                                  ? Image(
+                                                                                image: new AssetImage("assets/mp4-icon.jpg"),
+                                                                                height: size.height / 10,
+                                                                              ) : url.contains(".pdf") ?
+                                                                              Image(
+                                                                                image: new AssetImage("assets/pdf.png"),
+                                                                                height: size.height / 10,
+                                                                              ): Image(
+                                                                                image: new AssetImage("assets/docnew.png"),height: size.height/10,)
+
+                                                                          )
+
+
+                                                                        ]
+                                                                    )
+                                                                  ]
+                                                              )
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
-                                                }
+                                                    );
+                                                  }
+                                              ),
+
+
                                             ),
-
-
-                                          ),
-                                        ],
-                                      );
-                                    }
+                                          ],
+                                        );
+                                      }
+                                  }
+                                  return Container(
+                                      child: Center(
+                                        child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
+                                      )
+                                  );
                                 }
-                                return Container(
-                                    child: Center(
-                                      child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-                                    )
-                                );
-                              }
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
+                      ):Container(
+                          height:size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Search Document \nusing Name \n& Folders using Name",style: TextStyle(color: Colors.white),),
+                        ),
+                        ): Container(
+                        height: 1,
+                        margin: EdgeInsets.only(top:20,right: 15),
                       ),
-                    ):Container(
-                        height:size.width,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Search Document \nusing Name \n& Folders using Name",style: TextStyle(color: Colors.white),),
-                      ),
-                      ): Container(
-                      height: 1,
-                      margin: EdgeInsets.only(top:20,right: 15),
-                    ),
 
-                  ],),
-//               Column(children: <Widget>[
-//                 FutureBuilder(
-//                     future: _futureparent,
-//                     builder:(BuildContext context, AsyncSnapshot snapshot){
-//                       switch (snapshot.connectionState) {
-//                         case ConnectionState.none:
-//                           return Container(
-//                               child: Center(
-//                                 child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-//                               )
-//                           );
-//                         case ConnectionState.active:
-//                         case ConnectionState.waiting:
-//                           return Container(
-//                             margin: EdgeInsets.all(10),
-//                             height: size.width/2,
-//                             child: Row(
-//                               mainAxisAlignment: MainAxisAlignment.end,
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: <Widget>[
-//                                 Theme(
-//                                   data: new ThemeData(
-//                                     hintColor: Colors.white,
-//                                   ),
-//                                   child: CircularProgressIndicator(
-//
-//                                       strokeWidth: 3.0,
-//                                       backgroundColor: Colors.white
-//                                   ),
-//
-//                                 ),
-//                               ],
-//                             ),
-//
-//
-//                           );
-//                         case ConnectionState.done:
-//                           if (!snapshot.hasData) {
-//                             return Container(
-//                               height: 1,
-//                             );
-//                           } else {
-//                             if(snapshot.data.length == 0){
-//                               return Container(
-//                                 height: 1.0,
-//                               );}
-//
-//                             return Column(
-//                               children: <Widget>[
-//                                 Row(
-//                                   children: <Widget>[
-//                                     Padding(
-//                                       padding: const EdgeInsets.only(top:8.0,left: 15.0),
-//                                       child: Text("Folders",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-//                                     ),
-//                                   ],
-//                                 ),
-//                                 Container(
-//                                   height: snapshot.data.length*size.width/3,
-//
-//                                   child:  ListView.builder(
-//                                       physics: const NeverScrollableScrollPhysics(),
-//                                       primary: true,
-//                                       itemCount: snapshot.data.length,
-//                                       itemBuilder: (BuildContext context, int index){
-//                                         var name = snapshot.data[index].fileTypeName;
-//                                         var icon = "assets/snbizcircledocument.png";
-//                                         //condition to show the icon according to the uploaded file type
-//                                         if(name.contains("VAT Billssss")){
-//                                           icon = "assets/snbizvaticon.png";
-//                                         }
-//                                         else if(name.contains("Instant Uploads")){
-//                                           icon = "assets/snbizinstantupload.png";
-//                                         }
-//                                         else if(name.contains("Legals")){
-//                                           icon = "assets/legals.png";
-//                                         }
-//                                         else if(name.contains("Registration")){
-//                                           icon = "assets/registration-web.png";
-//                                         }
-//                                         else if(name.contains("Expense")){
-//                                           icon = "assets/expense-web.png";
-//                                         }
-//                                         else if(name.contains("Income")){
-//                                           icon = "assets/income-web.png";
-//                                         }
-//                                         else if(name.contains("Profit")){
-//                                           icon = "assets/profit-web.png";
-//                                         }
-//                                         else{
-//                                           icon = "assets/snbizcircledocument.png";
-//                                         }
-//                                         return Card(
-//                                           margin: EdgeInsets.only(left:8,right: 8,top: 4),
-//                                           child: ListTile(
-//                                               title: InkWell(
-//                                                 child: new Theme(
-//                                                   data: new ThemeData(
-//                                                     hintColor: Colors.white,
-//                                                   ),
-//                                                   child: Container(
-////                                                                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
-//                                                     padding: EdgeInsets.fromLTRB(12, 20, 10, 20),
-//                                                     decoration: new BoxDecoration(
-//                                                       color: Colors.white,
-//                                                       borderRadius: new BorderRadius.circular(3.0),
-//
-//                                                     ),
-//                                                     child: new Row(
-//                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                                       children: <Widget>[
-//                                                         Column(
-//                                                           crossAxisAlignment: CrossAxisAlignment.start,
-//                                                           children: <Widget>[
-//                                                             Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
-//
-//                                                           ],
-//
-//                                                         ),
-//
-//                                                         ClipOval(
-//                                                           child: Material(
-//                                                             color: Colors.blue, // button color
-//                                                             child: InkWell(
-//                                                               splashColor: Colors.red, // inkwell color
-//                                                               child: SizedBox(
-//                                                                 height: size.height/15,
-//                                                                 width: size.height/15,
-//                                                                 child:Image(
-//                                                                   image: new AssetImage(icon),
-//                                                                   height: size.height / 12,
-//                                                                 ),),
-//                                                               onTap: () {
-//                                                                 _future=  getParentDocuments(snapshot.data[index].fileTypeId.toString());
-//                                                                 _futuredocumentlist=getDocumentlist(snapshot.data[index].fileTypeId.toString());
-//                                                                 setState(() {
-//
-//                                                                 });
-//
-//                                                               },
-//                                                             ),
-//                                                           ),
-//                                                         )
-//                                                       ],
-//                                                     ),
-//                                                   ),
-//                                                 ),
-//                                                 onTap: () {
-//                                                   _future=  getParentDocuments(snapshot.data[index].fileTypeId.toString());
-//                                                   _futuredocumentlist=getDocumentlist(snapshot.data[index].fileTypeId.toString());
-//                                                   setState(() {
-//
-//                                                   });
-//                                                 },
-//                                               )
-//                                           ),
-//                                         );
-//                                       }
-//                                   ),
-//
-//
-//                                 ),
-//                               ],
-//                             );
-//                           }
-//                       }
-//                       return Container(
-//                           child: Center(
-//                             child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-//                           )
-//                       );
-//                     }
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.only(left:8.0,right:8.0),
-//                   child: Divider(height: 1.0,thickness: 1.0,color: Colors.white,),
-//                 ),
-//                 FutureBuilder(
-//                     future: _futuredocument,
-//                     builder:(BuildContext context, AsyncSnapshot snapshot){
-//                       switch (snapshot.connectionState) {
-//                         case ConnectionState.none:
-//                           return Container(
-//                               child: Center(
-//                                 child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-//                               )
-//                           );
-//                         case ConnectionState.active:
-//                         case ConnectionState.waiting:
-//                           return Container(
-//                             height: size.width/2,
-//                             margin: EdgeInsets.all(10),
-//                             child: Row(
-//                               mainAxisAlignment: MainAxisAlignment.end,
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: <Widget>[
-//                                 Theme(
-//                                   data: new ThemeData(
-//                                     hintColor: Colors.white,
-//                                   ),
-//                                   child: CircularProgressIndicator(
-//
-//                                       strokeWidth: 3.0,
-//                                       backgroundColor: Colors.white
-//                                   ),
-//
-//                                 ),
-//                               ],
-//                             ),
-//
-//
-//                           );
-//                         case ConnectionState.done:
-//                           if (!snapshot.hasData) {
-//                             return Container(
-//                                 child: Center(
-//                                     child: Text("Try Loading Again.",
-//                                         textAlign: TextAlign.left,
-//                                         style: TextStyle(
-//                                             fontSize: 16,
-//                                             fontWeight: FontWeight.normal)
-//                                     )
-//                                 )
-//                             );
-//                           } else {
-//                             if(snapshot.data.length == 0){
-//                               return Container(
-//                                 height: 1.0,
-//                               );}
-//                             return  Column(
-//                               children: <Widget>[
-//                                 Row(
-//                                   children: <Widget>[
-//                                     Padding(
-//                                       padding: const EdgeInsets.only(top:8.0,left: 15.0),
-//                                       child: Text("Files",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-//                                     ),
-//                                   ],
-//                                 ),
-//                                 Container(
-//                                   height: snapshot.data.length*size.width/3.8,
-//
-//                                   child: ListView.builder(
-//                                       physics: NeverScrollableScrollPhysics(),
-//                                       primary: true,
-//                                       itemCount: snapshot.data.length,
-//                                       itemBuilder: (BuildContext context, int index) {
-//                                         var url = snapshot.data[index].documentURL;
-//                                         return GestureDetector(
-//                                           onTap: (){
-//                                             launch('$url');
-//
-//                                           },
-//                                           child: Container(
-//
-//                                             child: Card(
-//
-//                                               margin: EdgeInsets.fromLTRB(10.0, 5.0, 4.0, 0.0),
-//
-//                                               child: ListTile(
-//                                                   title: Row(
-//                                                       crossAxisAlignment: CrossAxisAlignment.start,
-//                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                                       children: <Widget>[
-//                                                         // Padding(
-//                                                         //   padding: EdgeInsets.fromLTRB(5, 10, 0, 0),
-//                                                         // ),
-//                                                         Flexible(
-//                                                           child: Column(
-//                                                               crossAxisAlignment: CrossAxisAlignment.start,
-//                                                               children: <Widget>[
-//                                                                 InkWell(
-//                                                                   child: Text(
-//                                                                     ( snapshot.data[index].fileName == null)? //to check if file name is null then show the last index of filename
-//                                                                     snapshot.data[index].documentURL.substring(snapshot.data[index].documentURL.lastIndexOf('/')+1):
-//                                                                     snapshot.data[index].fileName,
-//
-//
-//                                                                     textAlign: TextAlign.left,
-//                                                                     style: TextStyle(
-//                                                                         fontStyle: FontStyle.normal,
-//                                                                         fontSize: 16,
-//                                                                         fontWeight: FontWeight.normal),
-//                                                                   ),
-//                                                                   onTap: () {
-//                                                                     launch('$url');  // to open uploaded document
-//                                                                   },
-//                                                                 ),
-//                                                                 Text(formatDateTime(snapshot.data[index].dateCreated),
-//                                                                   style: TextStyle(
-//                                                                       fontWeight: FontWeight.normal,
-//                                                                       color: Color(0xFFA19F9F),
-//                                                                       fontSize: 14
-//                                                                   ),),
-//
-//                                                               ]),
-//                                                         ),
-//                                                         Column(
-//                                                             crossAxisAlignment: CrossAxisAlignment.start,
-//                                                             children: <Widget>[
-//                                                               SizedBox(
-//                                                                   height: size.height / 12,
-//                                                                   width: size.height / 12,
-//
-//
-//                                                                   //to check the extension of image and show the icon as per the extension
-//                                                                   //pdf then pdf icon other wise generic icon
-//
-//
-//                                                                   child: url.contains(".jpeg")
-//                                                                       ? Image.network(snapshot.data[index].documentURL,
-//                                                                     fit: BoxFit.cover,
-//                                                                   ): url.contains(".webp")
-//                                                                       ? Image.network(snapshot.data[index].documentURL,
-//                                                                     fit: BoxFit.cover,
-//                                                                   ): url.contains(".mp4")
-//                                                                       ? Image(
-//                                                                     image: new AssetImage("assets/mp4-icon.jpg"),
-//                                                                     height: size.height / 10,
-//                                                                   ): url.contains(".mp3")
-//                                                                       ? Image(
-//                                                                     image: new AssetImage("assets/mp4-icon.jpg"),
-//                                                                     height: size.height / 10,
-//                                                                   ) : url.contains(".pdf") ?
-//                                                                   Image(
-//                                                                     image: new AssetImage("assets/pdf.png"),
-//                                                                     height: size.height / 10,
-//                                                                   ): Image(
-//                                                                     image: new AssetImage("assets/docnew.png"),height: size.height/10,)
-//
-//                                                               )
-//
-//
-//                                                             ]
-//                                                         )
-//                                                       ]
-//                                                   )
-//                                               ),
-//                                             ),
-//                                           ),
-//                                         );
-//                                       }
-//                                   ),
-//
-//
-//                                 ),
-//                               ],
-//                             );
-//                           }
-//                       }
-//                       return Container(
-//                           child: Center(
-//                             child:Flexible(child: Text("Try Loading Again.", textAlign: TextAlign.left, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal))),
-//                           )
-//                       );
-//                     }
-//                 ),
-//               ],),
-//
-                ],
+                    ],),
+                  ],
 
-              ),
+                ),
+      ),
 
 
 

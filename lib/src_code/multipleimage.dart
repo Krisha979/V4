@@ -195,7 +195,6 @@ Future<bool> checkConnectivity()  async{
               ),
             ),
             Container(
-        
               height: 95,
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               decoration: BoxDecoration(
@@ -323,29 +322,6 @@ Future<bool> checkConnectivity()  async{
           ]),
         ));
 
-    /* FlatButton(
-                  
-                  onPressed: () async{
-                  
-                   showDialog(
-                     context: context,
-                     builder: (BuildContext context) {
-                       return Center(child: CircularProgressIndicator(),);
-                     } 
-                   );
-                  await upload(url);
-                  Navigator.pop(context);
-                  Navigator.pop(context);
 
-                  
-                    
-                        
-                    
-                  },
-
-                  color: Colors.blue,
-                  child: Text("Upload",
-                  style: TextStyle(color: Colors.white),),
-                )*/
   }
 }

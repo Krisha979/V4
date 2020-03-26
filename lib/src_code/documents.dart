@@ -13,12 +13,16 @@ import 'package:url_launcher/url_launcher.dart';
 
 
 class Documents extends StatefulWidget{
+  String parentkey,documentkey;
+  Documents(this.parentkey,this.documentkey);
 
   @override
-  _DocumentsState createState() => _DocumentsState();
+  _DocumentsState createState() => _DocumentsState(parentkey,documentkey);
 }
 
 class _DocumentsState extends State<Documents> {
+  String parentkey,documentkey;
+  _DocumentsState(this.parentkey,this.documentkey);
   Future<List<ParentDocumentModel>> _future;
   Future<List<DocumentListModel>> _futuredocumentlist;
 
@@ -32,65 +36,6 @@ class _DocumentsState extends State<Documents> {
                         }
                         }
 
-//    //api call function to get the uploaded document
-//  Future<List<DocumentModel>> getDocuments()async{
-//    bool connection = await _checkConnectivity();
-//      if(connection == false){
-//                   showDialog(
-//                 context: context,
-//                 barrierDismissible: false,
-//                 builder: (BuildContext context){
-//                   return AlertDialog(
-//                     title: Text("Please, check your internet connection",
-//
-//                     style: TextStyle(color:Color(0xFFA19F9F,),
-//                     fontSize: 15,
-//                     fontWeight: FontWeight.normal),),
-//                     actions: <Widget>[
-//                       FlatButton(child: Text("OK"),
-//                       onPressed: (){
-//                       Navigator.pop(context);
-//                        Navigator.pop(context);
-//                       })
-//                     ],
-//                   );
-//                 }
-//
-//               );
-//      }else {
-//
-//  try{
-//  http.Response data = await http.get(
-//          Uri.encodeFull(StaticValue.baseUrl+ StaticValue.document + StaticValue.orgId.toString()),
-//          headers: {
-//        'Content-type': 'application/json',
-//        'Accept': 'application/json',
-//        "apikey" : StaticValue.apikey,
-//        'Cache-Control': 'no-cache,private,no-store,must-revalidate'
-//
-//  }
-//      );
-//
-//  var jsonData = json.decode(data.body);
-//  List <DocumentModel> documents = [];
-//  for (var u in jsonData){
-//      var tasks = DocumentModel.fromJson(u);
-//    documents.add(tasks);
-//  }
-//print(documents.length);
-//return documents;
-//
-//}
-//catch(e){
-//  print(e);
-//  return null;
-//
-//}
-//  }
-//}
-
-  //api call function to get the uploaded document
-  // ignore: missing_return
   Future<List<ParentDocumentModel>> getParentDocuments(String parenttypeid)async{
     bool connection = await _checkConnectivity();
     if(connection == false){
@@ -231,8 +176,8 @@ class _DocumentsState extends State<Documents> {
  @override
   void initState() {
     super.initState();
-    _future = getParentDocuments("");
-    _futuredocumentlist = getDocumentlist("");
+    _future = getParentDocuments(parentkey);
+    _futuredocumentlist = getDocumentlist(documentkey);
 
        
   }
@@ -465,8 +410,13 @@ class _DocumentsState extends State<Documents> {
                                                                               height: size.height / 12,
                                                                             ),),
                                                                                     onTap: () {
-                                                                                      _future=  getParentDocuments(snapshot.data[index].fileTypeId.toString());
-                                                                                      _futuredocumentlist=getDocumentlist(snapshot.data[index].fileTypeId.toString());
+                                                                                      Navigator.push(
+                                                                                          context,
+                                                                                          CupertinoPageRoute(
+                                                                                              builder: (context) =>
+                                                                                                  Documents(snapshot.data[index].fileTypeId.toString(),snapshot.data[index].fileTypeId.toString())));
+//                                                                                      _future=  getParentDocuments(snapshot.data[index].fileTypeId.toString());
+//                                                                                      _futuredocumentlist=getDocumentlist(snapshot.data[index].fileTypeId.toString());
                                                                                       setState(() {
 
                                                                                       });
@@ -480,8 +430,13 @@ class _DocumentsState extends State<Documents> {
                                                                           ),
                                                    ),
                                                                                     onTap: () {
-                                                                                     _future=  getParentDocuments(snapshot.data[index].fileTypeId.toString());
-                                                                                      _futuredocumentlist=getDocumentlist(snapshot.data[index].fileTypeId.toString());
+                                                                                      Navigator.push(
+                                                                                          context,
+                                                                                          CupertinoPageRoute(
+                                                                                              builder: (context) =>
+                                                                                                  Documents(snapshot.data[index].fileTypeId.toString(),snapshot.data[index].fileTypeId.toString())));
+//                                                                                     _future=  getParentDocuments(snapshot.data[index].fileTypeId.toString());
+//                                                                                      _futuredocumentlist=getDocumentlist(snapshot.data[index].fileTypeId.toString());
                                                                                       setState(() {
 
                                                                                       });

@@ -50,7 +50,7 @@ class DashBoardData {
   int activeTaskcount;
   String taskName;
   int invoiceCount;
-  Null lastInvoiceDate;
+  String lastInvoiceDate;
   int uploadsToday;
   String uploadedDate;
 
@@ -70,9 +70,9 @@ class DashBoardData {
     activeTaskcount = json['activeTaskcount'];
     taskName = json['taskName'];
     invoiceCount = json['invoiceCount'];
-    lastInvoiceDate = json['lastInvoiceDate'];
+    lastInvoiceDate = json['lastInvoiceDate']==null?null:json['lastInvoiceDate'].toString();
     uploadsToday = json['uploadsToday'];
-    uploadedDate = json['uploadedDate'];
+    uploadedDate = json['uploadedDate']==null?null:json['uploadedDate'].toString();
   }
 
   Map<String, dynamic> toJson() {
