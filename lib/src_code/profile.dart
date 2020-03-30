@@ -365,11 +365,13 @@ class ProfileState extends State<Profile> {
                                   color: Color(0xFFFBF4F4)),
                               child: Wrap(
                                                               children: <Widget>[ TextFormField(
+
                                   decoration: new InputDecoration(
                                     border: InputBorder.none,
                                     focusedBorder: InputBorder.none,
                                     contentPadding: EdgeInsets.all(10)
                                   ),
+                                keyboardType: TextInputType.number,
                                   controller: userContact,
                                 ),
                                                               ]),

@@ -10,6 +10,7 @@ import 'dart:convert';
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:url_launcher/url_launcher.dart';
 class LoginPage extends StatefulWidget{
         @override
         State createState()=> new LoginPageState();
@@ -398,19 +399,18 @@ class LoginPage extends StatefulWidget{
                                   Padding(
                                     padding: const EdgeInsets.only(top: 80),
                                     child: SizedBox(
-                                      height: 40,
+
                                       width: 170,
                                       child: FlatButton(
                                         color: Colors.white,
                                         textColor: Colors.black,
                                         disabledColor: Colors.grey,
                                         disabledTextColor: Colors.black,
-                                        padding: EdgeInsets.all(9.0),
+                                        padding: EdgeInsets.all(5.0),
                                         splashColor: Colors.blueAccent,
                                         shape:RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10.0)
                                         ),
-                                        
                                         onPressed: () async {
                                             if (_formKey.currentState.validate())
                                              {
@@ -435,11 +435,24 @@ class LoginPage extends StatefulWidget{
                                                 }  
                                               }
                                          },
-                                        child: Text("Sign In", 
-                                        style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2.0),
+                                          child: Text("Sign In",
+                                          style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal)),
+                                        ),
+
                                      ),
                                     ),
-                                  ),   
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      launch(StaticValue.forgotpasswordurl);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Forgot password?",style: TextStyle(color: Colors.white),),
+                                    ),
+                                  )
                                   ]
                                   ),
                                   ), 

@@ -12,8 +12,8 @@
     <application
         android:allowBackup="false"
         android:name="io.flutter.app.FlutterApplication"
-        android:label="snbiz"
-        android:icon="@mipmap/launcher_icons">
+        android:label="S.N.Business"
+        android:icon="@mipmap/launcher_iconsnew">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

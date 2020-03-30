@@ -65,8 +65,10 @@ String _selectedvalue;
                  barrierDismissible: false,
                  builder: (BuildContext context){
                    return AlertDialog(
+
+
                      title: Text("Please, check your internet connection",
-                  
+
                      style: TextStyle(color:Color(0xFFA19F9F,),
                      fontSize: 15,
                      fontWeight: FontWeight.normal),),
@@ -74,8 +76,8 @@ String _selectedvalue;
                        FlatButton(child: Text("OK"),
                        onPressed: (){
                          StaticValue.controller.animateTo(0);
-                        Navigator.pop(context);
-                         Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
                         
 
                        })
@@ -120,7 +122,7 @@ String _selectedvalue;
               );
             },
             transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
-            barrierDismissible: true,
+            barrierDismissible: false,
             barrierLabel: 'LABEL',
             context: context,
             pageBuilder: (context, animation1, animation2) {
@@ -385,30 +387,86 @@ constraints:  new BoxConstraints(
                           mainAxisAlignment: MainAxisAlignment.end,
                                               children:<Widget>[ RaisedButton(
                             onPressed: () async{
-                                          
-                                            showDialog(
-                                              barrierDismissible: false,
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                     ctx = context;
-                                    return new WillPopScope(
+                              if(_selectedvalue==null){
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (BuildContext context){
+                                      return AlertDialog(
+                                        title: Text("You need to first change the status for update..",
 
-                                      onWillPop: _onBackPressed,
-                                      child: Center(
-                                      child: Theme(
-                                                         data: new ThemeData(
-                                          hintColor: Colors.white,
-                                        ),
+                                          style: TextStyle(color:Color(0xFFA19F9F,),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.normal),),
+                                        actions: <Widget>[
+                                          FlatButton(child: Text("OK"),
+                                              onPressed: (){
 
-                                                  child: Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                            strokeWidth: 3.0,
-                                                            backgroundColor: Colors.white
-                                                        ),
-                                        ) ) )  );
-                                                });
-                                            editData();
+                                                Navigator.pop(context);
+
+
+
+                                              })
+                                        ],
+                                      );
+                                    }
+
+                                );
+                              }else{
+                                if(_selectedvalue.toString().toLowerCase().contains("accepted")&&(details.createdBy==StaticValue.orgUserId)){
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context){
+                                        return AlertDialog(
+                                          title: Text("The metting created by you cannot be accepted by self...",
+
+                                            style: TextStyle(color:Color(0xFFA19F9F,),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.normal),),
+                                          actions: <Widget>[
+                                            FlatButton(child: Text("OK"),
+                                                onPressed: (){
+
+                                                  Navigator.pop(context);
+
+
+
+                                                })
+                                          ],
+                                        );
+                                      }
+
+                                  );
+                                }
+                                else{
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        ctx = context;
+                                        return new WillPopScope(
+
+                                            onWillPop: _onBackPressed,
+                                            child: Center(
+                                                child: Theme(
+                                                    data: new ThemeData(
+                                                      hintColor: Colors.white,
+                                                    ),
+
+                                                    child: Center(
+                                                      child:
+                                                      CircularProgressIndicator(
+                                                          strokeWidth: 3.0,
+                                                          backgroundColor: Colors.white
+                                                      ),
+                                                    ) ) )  );
+                                      });
+                                  editData();
+                                }
+                              }
+
+
 
                                           },
                             textColor: Colors.white,

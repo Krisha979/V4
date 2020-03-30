@@ -103,7 +103,7 @@ String lastNotifications = "-";
                   );
                 },
                 transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
-                barrierDismissible: true,
+                barrierDismissible: false,
                 barrierLabel: 'LABEL',
                 context: context,
                 pageBuilder: (context, animation1, animation2) {
@@ -259,7 +259,7 @@ Future<bool> _checkConnectivity()  async{
                       width: size.width,
                       //height: size.height/5,
                       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-                      padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                      padding: EdgeInsets.fromLTRB(0, 15, 10, 15),
                       decoration: new BoxDecoration(
                             color: Colors.white,
                             borderRadius: new BorderRadius.circular(10.0),

@@ -108,7 +108,7 @@ class AddEditDialogState extends State<AddEditDialog> {
                   );
                 },
                 transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
-                barrierDismissible: true,
+                barrierDismissible: false,
                 barrierLabel: 'LABEL',
                 context: context,
                 pageBuilder: (context, animation1, animation2) {
@@ -423,39 +423,67 @@ Future<bool> _onBackPressed() async { //handle on back press
                                         onPressed: () async {
                                           //to check text field empty
                                           if (meetingAgenda.text.isEmpty || meetingLocation.text.isEmpty ||
-                                          meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty){
+                                          meetingreminderTime.text.isEmpty || meetingLocation.text.isEmpty)
+                                            {
+                                            }
+                                          else if(_selectedvalue.toString().toLowerCase().contains("accepted")&&(details.createdBy==StaticValue.orgId)){
+                                            showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder: (BuildContext context){
+                                                  return AlertDialog(
+                                                    title: Text("The metting created by you cannot be accepted by self...",
+
+                                                      style: TextStyle(color:Color(0xFFA19F9F,),
+                                                          fontSize: 15,
+                                                          fontWeight: FontWeight.normal),),
+                                                    actions: <Widget>[
+                                                      FlatButton(child: Text("OK"),
+                                                          onPressed: (){
+
+                                                            Navigator.pop(context);
+
+
+
+                                                          })
+                                                    ],
+                                                  );
+                                                }
+
+                                            );
+                                          }
+
+                                           else if (details.meetingTime == meetingTime.text && details.location == meetingLocation.text
+                                            && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){
+
                                            }
 
-                 else if (details.meetingTime == meetingTime.text && details.location == meetingLocation.text
-                  && details.agenda == meetingAgenda.text && details.statusName == _selectedvalue){ 
+                                           else if (DateTime.now().isAfter(DateTime.parse(meetingTime.text))){
+                                              showDialog(
+                                           context: context,
+                                           barrierDismissible: false,
+                                           builder: (BuildContext context){
+                                             return AlertDialog(
+                                               title: Text("please check your date time",
 
-                 }
+                                               style: TextStyle(color:Color(0xFFA19F9F,),
+                                               fontSize: 15,
+                                               fontWeight: FontWeight.normal),),
+                                               actions: <Widget>[
+                                                 FlatButton(child: Text("OK"),
+                                                 onPressed: (){
+                                                  Navigator.pop(context);
 
-                 else if (DateTime.now().isAfter(DateTime.parse(meetingTime.text))){
-                    showDialog(
-                 context: context,
-                 barrierDismissible: false,
-                 builder: (BuildContext context){
-                   return AlertDialog(
-                     title: Text("please check your date time",
-                  
-                     style: TextStyle(color:Color(0xFFA19F9F,),
-                     fontSize: 15,
-                     fontWeight: FontWeight.normal),),
-                     actions: <Widget>[
-                       FlatButton(child: Text("OK"),
-                       onPressed: (){
-                        Navigator.pop(context);
-                       
-                       })
-                     ],
-                   );
+                                                 })
+                                               ],
+                                             );
 
-                 }
-                                );
-                 }
-                 
-                  else{
+                                           }
+                                                          );
+                                           }
+
+                                            else{
+
                                           showDialog(
                                               context: context,
                                               barrierDismissible:false ,

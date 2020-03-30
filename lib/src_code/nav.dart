@@ -73,7 +73,7 @@ class NavBar extends State<Nav> {
               children: <Widget>[
                
                 Text(
-                  "SN Business Solutions",
+                  "S.N. Business Solutions",
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
@@ -117,7 +117,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
                       
                                         Icon(
                           Icons.person,
-                          color: Colors.black,
+                          color: Colors.white,
                           size: 24.0,
                           
                         ),
@@ -144,7 +144,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
                 children: <Widget>[
                    Icon(
       Icons.info_outline,
-      color: Colors.black,
+      color: Colors.black54,
       size: 24.0,
       
     ),
@@ -173,7 +173,7 @@ CupertinoPageRoute(builder: (context) => Profile()));
                 children: <Widget>[
                    Icon(
       Icons.inbox,
-      color: Colors.black,
+      color: Colors.black54,
       size: 24.0,
       
     ),             
@@ -203,7 +203,7 @@ Container(
                 children: <Widget>[
                    Icon(
       Icons.report,
-      color: Colors.black,
+      color: Colors.black54,
       size: 24.0,
       
     ),
@@ -233,7 +233,7 @@ Container(
                 children: <Widget>[
                    Icon(
       Icons.video_label,
-      color: Colors.black,
+      color: Colors.black54,
       size: 24.0, 
     ),             
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
@@ -262,18 +262,18 @@ Container(
                 children: <Widget>[
                   Icon(
       Icons.phone,
-      color: Colors.black,
+      color: Colors.black54,
       size: 24.0,
-      
+
     ),
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                  
+
                     Text('Contact',
                         style: TextStyle(
                             fontSize: 18,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.normal)),
-                  
+
                 ],
               ),
               onTap: () {
@@ -290,7 +290,7 @@ Container(
                 children: <Widget>[
                  Icon(
       Icons.compare_arrows,
-      color: Colors.black,
+      color: Colors.black54,
       size: 24.0,
       
     ),
@@ -323,6 +323,7 @@ Container(
                
               }),
         ),
+
         
         Column(
          crossAxisAlignment: CrossAxisAlignment.start,
@@ -331,34 +332,57 @@ Container(
           children: <Widget>[
         Row(
          
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
           children: <Widget>[
+           Row(
+             children: <Widget>[
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(25, 20, 0, 0),
+                 child: InkWell(
+                   splashColor: Colors.red,
+                   onTap: () => launch(StaticValue.facebookurl ),
+                   child: Image(
+                     image: new AssetImage("assets/facebook.png"),
+                     height: 30.0,
+                     width: 30.0,
+                   ),
+                 ),
+               ),
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
+                 child: InkWell(
+                   splashColor: Colors.blue,
+                   onTap: () => launch(StaticValue.whatsapp),
+                   child: Image(
+                     image: new AssetImage("assets/whatsapp.png"),
+                     height: 33.0,
+                     width: 33.0,
+                   ),
+
+                 ),
+               ),
+             ],
+           ),
+
             Padding(
-              padding: const EdgeInsets.fromLTRB(25, 20, 0, 0),
+              padding: const EdgeInsets.only(right:8.0),
               child: InkWell(
-                splashColor: Colors.red,
-                onTap: () => launch(StaticValue.facebookurl ),
-                child: Image(
-                  image: new AssetImage("assets/facebook.png"),
-                  height: 30.0,
-                  width: 30.0,
-                ),
+                onTap: (){
+                  launch(StaticValue.baseUrl);
+                },
+                child: Text('Reset Password',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.brown,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.normal)),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
-              child: InkWell(
-                splashColor: Colors.blue,
-                onTap: () => launch(StaticValue.whatsapp), 
-                child: Image(
-                  image: new AssetImage("assets/whatsapp.png"),
-                  height: 33.0,
-                  width: 33.0,
-                ),
-                
-              ),
-            ),
+
+
+
            
           ],
         ),

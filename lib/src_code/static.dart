@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class StaticValue
 {
 //mainpage
-  static bool shownotificationReceived = true;
+  static bool shownotificationReceived = false;
   static bool Tasknotification = false;
   static bool Documentnotification = false;
   //login
@@ -19,6 +19,7 @@ class StaticValue
   static String orgRowstamp;
   static List<MeetingStatus> statuslist = [];
    static final String loginurl = "api/UserAuthentication";
+   static final String forgotpasswordurl =StaticValue.baseUrl+"forgotpassword";
 
   //home baseurl
   static final String home_url="api/OrganizationDashboard?Orgid=" ;

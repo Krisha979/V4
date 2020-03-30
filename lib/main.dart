@@ -66,6 +66,9 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
 @override
   void initState()  {
     super.initState();
+    setState(() {
+      StaticValue.shownotificationReceived = false;
+    });
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var android = new AndroidInitializationSettings("@mipmap/launcher_icons");
     var ios = new IOSInitializationSettings();
@@ -77,18 +80,18 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
             setState(() {
               StaticValue.shownotificationReceived = true;
             });
-            if(message.toString().contains("Task")){
+            if(message.toString().toLowerCase().contains("task")){
               setState(() {
                 StaticValue.Tasknotification = true;
               });
             }
-            if(message.toString().contains("Document")||message.toString().contains("document")){
+            if(message.toString().toLowerCase().contains("document")){
               setState(() {
                 StaticValue.Documentnotification = true;
                 StaticValue.shownotificationReceived = false;
               });
             }
-            if(message.toString().contains("Meeting")||message.toString().contains("meeting")){
+            if(message.toString().toLowerCase().contains("meeting")){
               setState(() {
                 StaticValue.shownotificationReceived = false;
               });
@@ -101,13 +104,13 @@ final FirebaseMessaging _fcm = FirebaseMessaging(); //for notification
             setState(() {
               StaticValue.shownotificationReceived = true;
             });
-            if(message.toString().contains("Document")||message.toString().contains("document")){
+            if(message.toString().toLowerCase().contains("document")){
               setState(() {
                 StaticValue.Documentnotification = true;
                 StaticValue.shownotificationReceived = false;
               });
             }
-            if(message.toString().contains("Meeting")||message.toString().contains("meeting")){
+            if(message.toString().toLowerCase().contains("meeting")){
               setState(() {
                 StaticValue.shownotificationReceived = false;
               });

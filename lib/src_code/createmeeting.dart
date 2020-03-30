@@ -117,7 +117,7 @@ class _CreateState extends State<Create> {
                   );
                 },
                 transitionDuration: Duration(milliseconds: 700), 
-                barrierDismissible: true,
+                barrierDismissible: false,
                 barrierLabel: 'LABEL',
                 context: context,
                 pageBuilder: (context, animation1, animation2) {
@@ -205,12 +205,12 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                         ],
                         color: Colors.white),
                     margin: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    padding: EdgeInsets.fromLTRB(30, 30, 30, 80),
+                    padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
                     child: Wrap(children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Row(
                                   mainAxisAlignment:
@@ -244,7 +244,7 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                               Row(children: <Widget>[
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                      const EdgeInsets.only(top: 10, bottom: 5),
                                   child: Text(
                                     "Meeting Agenda",
                                     style: TextStyle(
@@ -261,7 +261,7 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                                 ),
                                 child: Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                      const EdgeInsets.only(top: 5, bottom: 5),
                                   child: TextFormField(
                                     
                                   
@@ -285,7 +285,7 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                               Row(children: <Widget>[
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
+                                      const EdgeInsets.only(top: 10, bottom: 5),
                                   child: Text(
                                     "Meeting Location",
                                     style: TextStyle(
@@ -296,28 +296,31 @@ Future<bool> _checkConnectivity()  async{ //internet connection function
                                   ),
                                 ),
                               ]),
-                              new Theme(
-                                data: new ThemeData(
-                                  hintColor: Color(0xFFFBF4F4),
-                                ),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, bottom: 10),
-                                  child: TextFormField(
-                                     textInputAction: TextInputAction.done,
-                                   
-                                    maxLines: 3,
-                                    maxLength: 35,
-                                    keyboardType: TextInputType.multiline,
+                              Container(
+                                height: 90,
+                                child: new Theme(
+                                  data: new ThemeData(
+                                    hintColor: Color(0xFFFBF4F4),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 5, bottom: 5),
+                                    child: TextFormField(
+                                       textInputAction: TextInputAction.done,
 
-                                    controller: meetingLocation,
-                                    decoration: new InputDecoration(
-                                      fillColor: Color(0xFFFBF4F4),
-                                      filled: true,
-                                      border: new OutlineInputBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0),
-                                        borderSide: new BorderSide(),
+                                      maxLines: 3,
+                                      maxLength: 35,
+                                      keyboardType: TextInputType.multiline,
+
+                                      controller: meetingLocation,
+                                      decoration: new InputDecoration(
+                                        fillColor: Color(0xFFFBF4F4),
+                                        filled: true,
+                                        border: new OutlineInputBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(10.0),
+                                          borderSide: new BorderSide(),
+                                        ),
                                       ),
                                     ),
                                   ),

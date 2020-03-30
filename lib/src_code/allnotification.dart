@@ -313,19 +313,20 @@ class AllNotificationState extends State<AllNotification> {
                             }
                           },
                           child: Container(
-                            margin: EdgeInsets.only(left: 15.0,top: 8.0),
-                            height: 35,
+                            margin: EdgeInsets.only(left: 28.0,top: 8.0),
+
                             decoration: BoxDecoration(
-                              color: Colors.blue,
-                              border: Border.all(width: 1.0,color: Colors.blueAccent),
+                              color: Colors.white,
+                              border: Border.all(width: 0.10,color: Colors.black12),
                               borderRadius: BorderRadius.circular(10)
                             ),
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                Icon(Icons.delete,color: Colors.white,),
+                                Icon(Icons.delete_outline,color: Colors.brown,),
                                 Padding(
                                   padding: const EdgeInsets.all(5.0),
-                                  child: Text("All Notifications",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),),
+                                  child: Container(child: Text("Clear\nAll Notifications",style: TextStyle(color: Colors.brown,fontSize: 12,fontWeight: FontWeight.bold),)),
                                 ),
                               ],
                             ),
@@ -629,10 +630,9 @@ class AllNotificationState extends State<AllNotification> {
                           padding: const EdgeInsets.fromLTRB(0.0,0.0,0.0,3),
                           child: Container(
                               height: 30,
-
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.white70),
                               padding: EdgeInsets.all(3),
-                              child: Icon(Icons.delete,color: Colors.white,size: 20,)),
+                              child: Icon(Icons.delete_outline,color: Colors.brown,size: 25,)),
                         ),
                       ):Container(
                           height: 30,width: 30,

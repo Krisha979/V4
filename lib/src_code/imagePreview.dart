@@ -158,13 +158,16 @@ Future<bool> _checkConnectivity()  async{
                     children: <Widget>[
                      
                         
-                         Center(
-                          child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
+                         Padding(
+                           padding: const EdgeInsets.only(top:18.0),
+                           child: Center(
+                            child: Text("INSTANT IMAGE UPLOAD", style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal,color:  Color(0xFF665959)),),
                         ),
+                         ),
                       
                       Padding(
-                        padding: const EdgeInsets.only(top: 10,),
+                        padding: const EdgeInsets.only(top: 0,),
                         child: Image.file(File(url),
                             width: size.width,
                             height: size.height/1.5
@@ -231,7 +234,7 @@ Future<bool> _checkConnectivity()  async{
                   );
                 },
                 transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
-                barrierDismissible: true,
+                barrierDismissible: false,
                 barrierLabel: 'LABEL',
                 context: context,
                 pageBuilder: (context, animation1, animation2) {

@@ -166,6 +166,7 @@ Future<bool> checkConnectivity()  async{
 
                                     Flexible(
                                       child: Text(
+                                        StaticValue.filenames.length-1!=index?StaticValue.filenames[index].substring(StaticValue.filenames[index].lastIndexOf('/')+1):
                                         StaticValue.filenames[index].substring(
                                             StaticValue.filenames[index]
                                                 .lastIndexOf('/') +1,StaticValue.filenames[index].lastIndexOf('}')
@@ -259,7 +260,7 @@ Future<bool> checkConnectivity()  async{
                   );
                 },
                 transitionDuration: Duration(milliseconds: 700), // DURATION FOR ANIMATION
-                barrierDismissible: true,
+                barrierDismissible: false,
                 barrierLabel: 'LABEL',
                 context: context,
                 pageBuilder: (context, animation1, animation2) {
