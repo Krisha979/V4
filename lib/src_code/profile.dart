@@ -173,88 +173,91 @@ class ProfileState extends State<Profile> {
                                   fontSize: 17,
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.bold)),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, right: 100),
-                                  child: Text(
-                                    "ORGANIZATION PROFILE",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF665959)),
+                          Padding(
+                            padding: const EdgeInsets.only(left:5.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 10, right: 10),
+                                    child: Text(
+                                      "ORGANIZATION PROFILE",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF665959)),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, right: 40),
-                                  child: Text(
-                                    "Organization Name",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        color: Color(0xFFA19F9F)),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 5, right: 40),
+                                    child: Text(
+                                      "Organization Name".toUpperCase(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color(0xFFA19F9F)),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5, right: 40),
-                                  child: Text(
-                                    details.organizationName == null ? "--" : details.organizationName,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5, right: 40),
+                                    child: Text(
+                                      details.organizationName == null ? "--" : details.organizationName,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, right: 40),
-                                  child: Text(
-                                    "Vat/Pan number",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        color: Color(0xFFA19F9F)),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 5, right: 40),
+                                    child: Text(
+                                      "Vat/Pan number".toUpperCase(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color(0xFFA19F9F)),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5, right: 40),
-                                  child: Text(
-                                    details.taXPAN == null ? "--" : details.taXPAN,
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5, right: 40),
+                                    child: Text(
+                                      details.taXPAN == null ? "--" : details.taXPAN,
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, right: 60),
-                                  child: Text(
-                                    "Organization phone",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal,
-                                        color: Color(0xFFA19F9F)),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 5, right: 60),
+                                    child: Text(
+                                      "Organization phone".toUpperCase(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color(0xFFA19F9F)),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5, right: 60),
-                                  child: Text(
-                                    details.organizationNumber == null ? "--" : details.organizationNumber ,
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.normal),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5, right: 60,bottom: 5.0),
+                                    child: Text(
+                                      details.organizationNumber == null ? "--" : details.organizationNumber ,
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontStyle: FontStyle.normal,
+                                          fontWeight: FontWeight.normal),
+                                    ),
                                   ),
-                                ),
-                              ])
+                                ]),
+                          )
                         ],
                       ),
                     ),
@@ -283,11 +286,11 @@ class ProfileState extends State<Profile> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                             child: Text(
                               "User Name",
                               style:
-                                  TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
+                                  TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
                             ),
                           ),
                          Padding(
@@ -314,11 +317,11 @@ class ProfileState extends State<Profile> {
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                             child: Text(
                               "Email",
                               style:
-                                  TextStyle(fontSize: 14, color: Color(0xFFA19F9F)),
+                                  TextStyle(fontSize: 16, color: Color(0xFFA19F9F)),
                             ),
                           ),
                           Padding(
@@ -345,12 +348,12 @@ class ProfileState extends State<Profile> {
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                             child: Container(
                               child: Text(
                                 "Contact Number",
                                 style: TextStyle(
-                                    fontSize: 14, color: Color(0xFFA19F9F)),
+                                    fontSize: 16, color: Color(0xFFA19F9F)),
                               ),
                             ),
                           ),
@@ -379,7 +382,7 @@ class ProfileState extends State<Profile> {
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.only(top: 10, left: 15, right: 15),
+                                const EdgeInsets.only(top: 10, left: 15, right: 15,bottom: 5),
                             child: MaterialButton(
                                 height: 40,
                                 onPressed: () async {

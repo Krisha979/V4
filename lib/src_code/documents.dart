@@ -344,34 +344,9 @@ class _DocumentsState extends State<Documents> {
                                                                     itemBuilder: (BuildContext context, int index){
                                                                       var name = snapshot.data[index].fileTypeName.toString().toUpperCase();
                                                                       var icon = "assets/foldernewicon.png";
-                                                                      //condition to show the icon according to the uploaded file type
-                                                                                          if(name.contains("VAT Billssss")){
-                                                                                           icon = "assets/snbizvaticon.png";
-                                                                                              }
-                                                                                              else if(name.contains("Instant Uploads")){
-                                                                                                icon = "assets/snbizinstantupload.png";
-                                                                                              }
-                                                                                              else if(name.contains("Legals")){
-                                                                                               icon = "assets/legals.png";
-                                                                                               }
-                                                                                          else if(name.contains("Registration")){
-                                                                                            icon = "assets/registration-web.png";
-                                                                                          }
-                                                                                          else if(name.contains("Expense")){
-                                                                                            icon = "assets/expense-web.png";
-                                                                                          }
-                                                                                          else if(name.contains("Income")){
-                                                                                            icon = "assets/income-web.png";
-                                                                                          }
-                                                                                          else if(name.contains("Profit")){
-                                                                                            icon = "assets/profit-web.png";
-                                                                                          }
-                                                                                                else{
-                                                                                                icon = "assets/foldernewicon.png";
 
-                                                                                              }
                                                                       return Card(
-                                                                        margin: EdgeInsets.only(left:8,right: 8,top: 4),
+                                                                        margin: EdgeInsets.only(left:10,right: 10,top: 4),
                                                                         child: ListTile(
                                                                             title: InkWell(
                                                                                                     child: new Theme(
@@ -379,8 +354,8 @@ class _DocumentsState extends State<Documents> {
                                                                                       hintColor: Colors.white,
                                                                                     ),
                                                                           child: Container(
-//                                                                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
-                                                                          padding: EdgeInsets.fromLTRB(12, 20, 10, 20),
+//
+                                                                          padding: EdgeInsets.fromLTRB(12, 20, 12, 20),
                                                                            decoration: new BoxDecoration(
                                                                            color: Colors.white,
                                                                            borderRadius: new BorderRadius.circular(3.0),
@@ -389,13 +364,16 @@ class _DocumentsState extends State<Documents> {
                                                                            child: new Row(
                                                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                             children: <Widget>[
-                                                                              Column(
-                                                                               crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                children: <Widget>[
-                                                                                Text(name, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                                                                              Container(
+                                                                                width: size.width/1.8,
+                                                                                child: Column(
+                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: <Widget>[
+                                                                                  Text(name, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
 
-                                                                                ],
+                                                                                  ],
 
+                                                                                ),
                                                                               ),
 
                                                                              ClipOval(
@@ -545,11 +523,11 @@ class _DocumentsState extends State<Documents> {
 
                                                                         child: Card(
 
-                                                                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 4.0, 0.0),
+                                                                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
 
                                                                           child: ListTile(
                                                                               title: Padding(
-                                                                                padding: const EdgeInsets.all(8.0),
+                                                                                padding: const EdgeInsets.only(left:8.0,top: 8.0,right: 11.0,bottom: 8.0),
                                                                                 child: Row(
                                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -588,43 +566,44 @@ class _DocumentsState extends State<Documents> {
                                                                                             ]),
                                                                                       ),
                                                                                       Column(
-                                                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                          children: <Widget>[
-                                                                                            SizedBox(
-                                                                                                height: size.height / 12,
-                                                                                                width: size.height / 12,
+                                                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                            children: <Widget>[
+                                                                                              SizedBox(
+                                                                                                  height: size.height / 12,
+                                                                                                  width: size.height / 12,
 
 
-                                                                                                //to check the extension of image and show the icon as per the extension
-                                                                                                //pdf then pdf icon other wise generic icon
+                                                                                                  //to check the extension of image and show the icon as per the extension
+                                                                                                  //pdf then pdf icon other wise generic icon
 
 
-                                                                                                child: url.contains(".jpeg")
-                                                                                                    ? Image.network(snapshot.data[index].documentURL,
-                                                                                                  fit: BoxFit.cover,
-                                                                                                ): url.contains(".webp")
-                                                                                                    ? Image.network(snapshot.data[index].documentURL,
-                                                                                                  fit: BoxFit.cover,
-                                                                                                ): url.contains(".mp4")
-                                                                                                    ? Image(
-                                                                                                  image: new AssetImage("assets/mp4-icon.jpg"),
-                                                                                                  height: size.height / 10,
-                                                                                                ): url.contains(".mp3")
-                                                                                                    ? Image(
-                                                                                                  image: new AssetImage("assets/mp4-icon.jpg"),
-                                                                                                  height: size.height / 10,
-                                                                                                ) : url.contains(".pdf") ?
-                                                                                                Image(
-                                                                                                  image: new AssetImage("assets/pdf.png"),
-                                                                                                  height: size.height / 10,
-                                                                                                ): Image(
-                                                                                                  image: new AssetImage("assets/docnew.png"),height: size.height/10,)
+                                                                                                  child: url.contains(".jpeg")
+                                                                                                      ? Image.network(snapshot.data[index].documentURL,
+                                                                                                    fit: BoxFit.cover,
+                                                                                                  ): url.contains(".webp")
+                                                                                                      ? Image.network(snapshot.data[index].documentURL,
+                                                                                                    fit: BoxFit.cover,
+                                                                                                  ): url.contains(".mp4")
+                                                                                                      ? Image(
+                                                                                                    image: new AssetImage("assets/mp4-icon.jpg"),
+                                                                                                    height: size.height / 10,
+                                                                                                  ): url.contains(".mp3")
+                                                                                                      ? Image(
+                                                                                                    image: new AssetImage("assets/mp4-icon.jpg"),
+                                                                                                    height: size.height / 10,
+                                                                                                  ) : url.contains(".pdf") ?
+                                                                                                  Image(
+                                                                                                    image: new AssetImage("assets/pdf.png"),
+                                                                                                    height: size.height / 10,
+                                                                                                  ): Image(
+                                                                                                    image: new AssetImage("assets/docnew.png"),height: size.height/10,)
 
-                                                                                            )
+                                                                                              )
 
 
-                                                                                          ]
-                                                                                      )
+                                                                                            ]
+                                                                                        ),
+
                                                                                     ]
                                                                                 ),
                                                                               )

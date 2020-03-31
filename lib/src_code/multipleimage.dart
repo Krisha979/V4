@@ -149,8 +149,8 @@ Future<bool> checkConnectivity()  async{
                             title: Column(
                               children: <Widget>[
                                 Row(
-                                
-                                  children: <Widget>[
+                                    children: <Widget>
+                                    [
                                     Padding(
                                       padding: const EdgeInsets.only(left: 20,bottom: 15),
                                       child: new Image(
@@ -163,7 +163,6 @@ Future<bool> checkConnectivity()  async{
                                       padding:
                                           EdgeInsets.fromLTRB(20, 10, 0, 0),
                                     ),
-
                                     Flexible(
                                       child: Text(
                                         StaticValue.filenames.length-1!=index?StaticValue.filenames[index].substring(StaticValue.filenames[index].lastIndexOf('/')+1):

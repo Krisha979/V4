@@ -511,7 +511,7 @@ class SearchState extends State<Search>{
                                                       icon = "assets/foldernewicon.png";
                                                     }
                                                     return Card(
-                                                      margin: EdgeInsets.only(left:8,right: 8,top: 4),
+                                                      margin: EdgeInsets.only(left:10,right: 10,top: 4),
                                                       child: ListTile(
                                                           title: InkWell(
                                                             child: new Theme(
@@ -520,7 +520,7 @@ class SearchState extends State<Search>{
                                                               ),
                                                               child: Container(
 //                                                                        margin: EdgeInsets.fromLTRB(0, 2, 2, 0),
-                                                                padding: EdgeInsets.fromLTRB(12, 20, 10, 20),
+                                                                padding: EdgeInsets.fromLTRB(12, 20, 12, 20),
                                                                 decoration: new BoxDecoration(
                                                                   color: Colors.white,
                                                                   borderRadius: new BorderRadius.circular(3.0),
@@ -690,11 +690,11 @@ class SearchState extends State<Search>{
 
                                                         child: Card(
 
-                                                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 4.0, 0.0),
+                                                          margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
 
                                                           child: ListTile(
                                                               title: Padding(
-                                                                padding: const EdgeInsets.all(8.0),
+                                                                padding: const EdgeInsets.only(left:8.0,top: 8.0,right: 11.0,bottom: 8.0),
                                                                 child: Row(
                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
