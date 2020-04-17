@@ -673,7 +673,7 @@ class SearchState extends State<Search>{
                                               ],
                                             ),
                                             Container(
-                                              height: snapshot.data.length*size.width/3.8,
+                                              height: snapshot.data.length*size.height/5.78,
 
                                               child: ListView.builder(
                                                   physics: NeverScrollableScrollPhysics(),

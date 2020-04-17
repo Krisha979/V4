@@ -19,7 +19,9 @@ class StaticValue
   static String orgRowstamp;
   static List<MeetingStatus> statuslist = [];
    static final String loginurl = "api/UserAuthentication";
+
    static final String forgotpasswordurl =StaticValue.baseUrl+"forgotpassword";
+
 
   //home baseurl
   static final String home_url="api/OrganizationDashboard?Orgid=" ;

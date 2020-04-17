@@ -335,7 +335,7 @@ class _DocumentsState extends State<Documents> {
                                                               ],
                                                             ),
                                                             Container(
-                                                            height: snapshot.data.length*size.width/3,
+                                                            height: snapshot.data.length*size.height/7.01,
 
                                                             child:  ListView.builder(
                                                                     physics: const NeverScrollableScrollPhysics(),
@@ -506,7 +506,9 @@ class _DocumentsState extends State<Documents> {
                                                           ],
                                                         ),
                                                         Container(
-                                                          height: snapshot.data.length*size.width/3.8,
+                                                      //    height: snapshot.data.length*size.width/3.8,
+                                                          height: snapshot.data.length*size.height/5.6,
+
 
                                                               child: ListView.builder(
                                                                   physics: NeverScrollableScrollPhysics(),

@@ -114,13 +114,17 @@ CupertinoPageRoute(builder: (context) => Profile()));
                    
 
                     children: <Widget>[
-                      
-                                        Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 24.0,
-                          
-                        ),
+                      Image(
+                        image: new AssetImage("assets/navprofile.png"),
+                        height: 23.0,
+                        width: 23.0,
+                      ),
+//                                        Icon(
+//                          Icons.person,
+//                          color: Colors.white,
+//                          size: 24.0,
+//
+//                        ),
                    Expanded(
                     
                     child: Padding(
@@ -142,12 +146,17 @@ CupertinoPageRoute(builder: (context) => Profile()));
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                   Icon(
-      Icons.info_outline,
-      color: Colors.black54,
-      size: 24.0,
-      
-    ),
+                  Image(
+                    image: new AssetImage("assets/navabout.png"),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+//                   Icon(
+//      Icons.info_outline,
+//      color: Colors.black54,
+//      size: 24.0,
+//
+//    ),
                   
                   
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
@@ -171,12 +180,17 @@ CupertinoPageRoute(builder: (context) => Profile()));
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                   Icon(
-      Icons.inbox,
-      color: Colors.black54,
-      size: 24.0,
-      
-    ),             
+                  Image(
+                    image: new AssetImage("assets/navnote.png"),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+//                   Icon(
+//      Icons.inbox,
+//      color: Colors.black54,
+//      size: 24.0,
+//
+//    ),
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                    Text('Invoice',
                         style: TextStyle(
@@ -201,12 +215,17 @@ Container(
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                   Icon(
-      Icons.report,
-      color: Colors.black54,
-      size: 24.0,
-      
-    ),
+                  Image(
+                    image: new AssetImage("assets/navcontact.png"),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+//                   Icon(
+//      Icons.report,
+//      color: Colors.black54,
+//      size: 24.0,
+//
+//    ),
                   
                   
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
@@ -231,11 +250,16 @@ Container(
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                   Icon(
-      Icons.video_label,
-      color: Colors.black54,
-      size: 24.0, 
-    ),             
+                  Image(
+                    image: new AssetImage("assets/navover.png"),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+//                   Icon(
+//      Icons.video_label,
+//      color: Colors.black54,
+//      size: 24.0,
+//    ),
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                    Text('Overview',
                         style: TextStyle(
@@ -260,12 +284,17 @@ Container(
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(
-      Icons.phone,
-      color: Colors.black54,
-      size: 24.0,
-
-    ),
+                  Image(
+                    image: new AssetImage("assets/navphone.png"),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+//                  Icon(
+//      Icons.phone,
+//      color: Colors.black54,
+//      size: 24.0,
+//
+//    ),
     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
 
                     Text('Contact',
@@ -288,12 +317,17 @@ Container(
           child: ListTile(
               title: Row(
                 children: <Widget>[
-                 Icon(
-      Icons.compare_arrows,
-      color: Colors.black54,
-      size: 24.0,
-      
-    ),
+                  Image(
+                    image: new AssetImage("assets/navlog.png"),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+//                 Icon(
+//      Icons.compare_arrows,
+//      color: Colors.black54,
+//      size: 24.0,
+//
+//    ),
                   
                   Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                   
@@ -326,51 +360,51 @@ Container(
 
         
         Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
+         crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
 
           children: <Widget>[
         Row(
          
           crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
 
           children: <Widget>[
-           Row(
-             children: <Widget>[
-               Padding(
-                 padding: const EdgeInsets.fromLTRB(25, 20, 0, 0),
-                 child: InkWell(
-                   splashColor: Colors.red,
-                   onTap: () => launch(StaticValue.facebookurl ),
-                   child: Image(
-                     image: new AssetImage("assets/facebook.png"),
-                     height: 30.0,
-                     width: 30.0,
-                   ),
-                 ),
-               ),
-               Padding(
-                 padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
-                 child: InkWell(
-                   splashColor: Colors.blue,
-                   onTap: () => launch(StaticValue.whatsapp),
-                   child: Image(
-                     image: new AssetImage("assets/whatsapp.png"),
-                     height: 33.0,
-                     width: 33.0,
-                   ),
-
-                 ),
-               ),
-             ],
-           ),
+//           Row(
+//             children: <Widget>[
+//               Padding(
+//                 padding: const EdgeInsets.fromLTRB(25, 20, 0, 0),
+//                 child: InkWell(
+//                   splashColor: Colors.red,
+//                   onTap: () => launch(StaticValue.facebookurl ),
+//                   child: Image(
+//                     image: new AssetImage("assets/facebook.png"),
+//                     height: 30.0,
+//                     width: 30.0,
+//                   ),
+//                 ),
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
+//                 child: InkWell(
+//                   splashColor: Colors.blue,
+//                   onTap: () => launch(StaticValue.whatsapp),
+//                   child: Image(
+//                     image: new AssetImage("assets/whatsapp.png"),
+//                     height: 33.0,
+//                     width: 33.0,
+//                   ),
+//
+//                 ),
+//               ),
+//             ],
+//           ),
 
             Padding(
-              padding: const EdgeInsets.only(right:8.0),
+              padding: const EdgeInsets.only(right:8.0,top: 5.0),
               child: InkWell(
                 onTap: (){
-                  launch(StaticValue.baseUrl);
+                  launch(StaticValue.forgotpasswordurl);
                 },
                 child: Text('Reset Password',
                     style: TextStyle(
@@ -388,7 +422,7 @@ Container(
         ),
        
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 5),
           child: Container(
              height: 0.5,
              margin: EdgeInsets.only(left: 20, right: 40),
